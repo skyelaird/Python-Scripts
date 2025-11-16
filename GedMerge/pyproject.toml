@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gedmerge"
+version = "0.1.0"
+description = "A tool to find and merge duplicate people in GEDCOM genealogy files"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "GEDMerge Contributors"}
+]
+keywords = ["genealogy", "gedcom", "duplicate-detection", "family-tree"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Sociology :: Genealogy",
+]
+
+dependencies = [
+    "python-gedcom>=1.0.0",
+    "rapidfuzz>=3.0.0",
+    # "phonetics>=1.0.0",  # Will be needed in Phase 2 for matching
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+gedmerge = "gedmerge.ui.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --cov=gedmerge --cov-report=term-missing"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gedmerge*"]
+exclude = ["tests*"]
