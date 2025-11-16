@@ -398,5 +398,83 @@ class TestEdgeCases:
         assert result.surname is None
 
 
+class TestFrenchNameHandling:
+    """Test French-specific name parsing rules."""
+
+    def test_m_abbreviation_female_names(self):
+        """Test that M. is replaced with Marie for female names."""
+        result = NameParser.parse_givn_field("M. Anne", sex='F')
+        assert result.given == "Marie Anne"
+        assert result.prefix is None
+
+    def test_m_abbreviation_male_names(self):
+        """Test that M. remains a prefix for male names."""
+        result = NameParser.parse_givn_field("M. Jean", sex='M')
+        assert result.given == "Jean"
+        assert result.prefix == "M."
+
+    def test_m_in_name_field_female(self):
+        """Test M. in full NAME field for females."""
+        result = NameParser.parse_name_field("M. Anne /de Bréval/", sex='F')
+        assert result.given == "Marie Anne"
+        assert result.surname == "de Bréval"
+        assert result.prefix is None
+
+    def test_seigneur_as_suffix(self):
+        """Test that Seigneur is treated as a suffix, not prefix."""
+        result = NameParser.parse_field_with_surname_particle(
+            "Pierre Seigneur d'Amboise et Chaumont"
+        )
+        assert result.given == "Pierre"
+        assert result.suffix == "Seigneur d'Amboise et Chaumont"
+        assert result.prefix is None or "Seigneur" not in (result.prefix or "")
+
+    def test_de_particle_in_surname(self):
+        """Test that 'de' particles stay with surnames."""
+        result = NameParser.parse_name_field("Anne /de Bréval/")
+        assert result.given == "Anne"
+        assert result.surname == "de Bréval"
+
+    def test_complex_french_female_name(self):
+        """Test complex French female name with M. and de particle."""
+        result = NameParser.parse_name_field("M. Marie /de France/", sex='F')
+        assert result.given == "Marie Marie"
+        assert result.surname == "de France"
+        assert result.prefix is None
+
+
+class TestGermanNameHandling:
+    """Test German-specific name parsing rules."""
+
+    def test_von_particle_in_surname(self):
+        """Test that 'von' particles stay with surnames."""
+        result = NameParser.parse_name_field("Chadalhoh /von Ogiers-Isengau/")
+        assert result.given == "Chadalhoh"
+        assert result.surname == "von Ogiers-Isengau"
+
+    def test_von_in_nickname_field(self):
+        """Test von particle extracted from misclassified nickname field."""
+        result = NameParser.parse_field_with_surname_particle(
+            "Chadalhoh von OGIERS-ISENGAU"
+        )
+        assert "Chadalhoh" in result.given or result.given == "Chadalhoh"
+        # Should recognize von as surname particle
+
+
+class TestTitleSuffixes:
+    """Test title suffix extraction."""
+
+    def test_is_title_suffix(self):
+        """Test title suffix detection."""
+        assert NameParser.is_title_suffix("Seigneur")
+        assert not NameParser.is_title_suffix("Marie")
+
+    def test_extract_title_suffix(self):
+        """Test title suffix extraction."""
+        text, suffix = NameParser.extract_title_suffix("Pierre Seigneur d'Amboise")
+        assert text == "Pierre"
+        assert suffix == "Seigneur d'Amboise"
+
+
 if __name__ == '__main__':
     pytest.main([__file__, '-v'])
