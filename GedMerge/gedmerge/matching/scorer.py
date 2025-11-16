@@ -2,7 +2,7 @@
 Match scoring engine with confidence-based decisions.
 
 Calculates similarity scores across multiple dimensions and combines
-them into an overall confidence score.
+them into an overall confidence score with validation-based confidence tiers.
 """
 
 from typing import List, Dict, Optional, Tuple
@@ -10,6 +10,13 @@ from dataclasses import dataclass, field
 from rapidfuzz import fuzz
 import phonetics
 from ..rootsmagic.models import RMPerson, RMName, RMEvent
+from ..validation import (
+    ConfidenceTier,
+    ConfidenceTierSystem,
+    ConfidenceAssessment,
+    DateValidator,
+    ParsedDate,
+)
 
 
 @dataclass(slots=True)
@@ -35,9 +42,13 @@ class MatchResult:
     is_exact_date_match: bool = False
     has_conflicting_info: bool = False
 
+    # Confidence tier assessment (added for validation)
+    confidence_tier: Optional[ConfidenceTier] = None
+    confidence_assessment: Optional[ConfidenceAssessment] = None
+
     def __str__(self) -> str:
         """Human-readable description."""
-        return (
+        base_str = (
             f"Match Score: {self.overall_score:.1f}%\n"
             f"  Name: {self.name_score:.1f}%\n"
             f"  Phonetic: {self.phonetic_score:.1f}%\n"
@@ -46,6 +57,14 @@ class MatchResult:
             f"  Relationships: {self.relationship_score:.1f}%\n"
             f"  Sex: {self.sex_score:.1f}%"
         )
+
+        if self.confidence_tier:
+            tier_str = f"\n  Confidence Tier: {self.confidence_tier.value.upper()}"
+            if self.confidence_assessment:
+                tier_str += f" (adjusted: {self.confidence_assessment.adjusted_score * 100:.1f}%)"
+            base_str += tier_str
+
+        return base_str
 
 
 class MatchScorer:
@@ -59,6 +78,11 @@ class MatchScorer:
     - Place matching: 10%
     - Relationship overlap: 8%
     - Sex match: 2%
+
+    Integrates confidence tier system for validation-based assessment:
+    - AUTO_MERGE: High confidence (>= 0.85) with all validations passed
+    - NEEDS_REVIEW: Medium confidence (0.50 - 0.85) or minor issues
+    - REJECT: Low confidence (< 0.50) or validation failures
     """
 
     # Scoring weights (must sum to 1.0)
@@ -70,6 +94,11 @@ class MatchScorer:
         'relationship': 0.08,
         'sex': 0.02,
     }
+
+    def __init__(self):
+        """Initialize the match scorer with validation system."""
+        self.confidence_system = ConfidenceTierSystem()
+        self.date_validator = DateValidator()
 
     # Date tolerance (years)
     DATE_EXACT_TOLERANCE = 0  # Same year = exact
@@ -122,6 +151,9 @@ class MatchScorer:
         if result.has_conflicting_info:
             result.overall_score *= 0.5  # 50% penalty
             result.details['penalty'] = 'Conflicting information detected'
+
+        # Apply confidence tier assessment with validation
+        result = self._apply_confidence_assessment(person1, person2, result)
 
         return result
 
@@ -515,3 +547,136 @@ class MatchScorer:
                 # TODO: Could look up place_id from PlaceTable if needed
 
         return None
+
+    def _apply_confidence_assessment(
+        self,
+        person1: RMPerson,
+        person2: RMPerson,
+        result: MatchResult
+    ) -> MatchResult:
+        """
+        Apply confidence tier assessment with validation.
+
+        This integrates the validation system to check for:
+        - Impossible date scenarios
+        - Living status inconsistencies
+        - Generation gap issues
+        - Family relationship overlap
+
+        Args:
+            person1: First person
+            person2: Second person
+            result: Current match result with base scores
+
+        Returns:
+            Updated MatchResult with confidence tier and assessment
+        """
+        # Extract dates using our date validator
+        birth_date1_str = None
+        death_date1_str = None
+        birth_date2_str = None
+        death_date2_str = None
+
+        for event in person1.events:
+            if event.event_type == 1:  # Birth
+                birth_date1_str = event.date
+            elif event.event_type == 2:  # Death
+                death_date1_str = event.date
+
+        for event in person2.events:
+            if event.event_type == 1:  # Birth
+                birth_date2_str = event.date
+            elif event.event_type == 2:  # Death
+                death_date2_str = event.date
+
+        # Parse dates
+        birth_date1 = self.date_validator.parse_date(birth_date1_str)
+        death_date1 = self.date_validator.parse_date(death_date1_str)
+        birth_date2 = self.date_validator.parse_date(birth_date2_str)
+        death_date2 = self.date_validator.parse_date(death_date2_str)
+
+        # Find latest event year for living status determination
+        latest_event_year1 = self._get_latest_event_year(person1)
+        latest_event_year2 = self._get_latest_event_year(person2)
+
+        # Build person data dicts for confidence system
+        person1_data = {
+            'birth_date': birth_date1,
+            'death_date': death_date1,
+            'living_flag': person1.living if hasattr(person1, 'living') else None,
+            'parent_family_ids': person1.parent_family_ids if hasattr(person1, 'parent_family_ids') else [],
+            'spouse_family_ids': person1.spouse_family_ids if hasattr(person1, 'spouse_family_ids') else [],
+            'sex': self._get_sex_string(person1.sex),
+            'latest_event_year': latest_event_year1,
+        }
+
+        person2_data = {
+            'birth_date': birth_date2,
+            'death_date': death_date2,
+            'living_flag': person2.living if hasattr(person2, 'living') else None,
+            'parent_family_ids': person2.parent_family_ids if hasattr(person2, 'parent_family_ids') else [],
+            'spouse_family_ids': person2.spouse_family_ids if hasattr(person2, 'spouse_family_ids') else [],
+            'sex': self._get_sex_string(person2.sex),
+            'latest_event_year': latest_event_year2,
+        }
+
+        # Assess confidence with validation
+        # Convert overall_score from 0-100 to 0-1 scale
+        base_score = result.overall_score / 100.0
+
+        assessment = self.confidence_system.assess_merge_confidence(
+            base_score,
+            person1_data,
+            person2_data,
+            relationships=None  # TODO: Could extract relationships if needed
+        )
+
+        # Update result with confidence tier
+        result.confidence_tier = assessment.tier
+        result.confidence_assessment = assessment
+
+        # Store validation details in result
+        result.details['validation'] = {
+            'tier': assessment.tier.value,
+            'adjusted_score': assessment.adjusted_score,
+            'date_validation_passed': assessment.date_validation_passed,
+            'living_status_consistent': assessment.living_status_consistent,
+            'generation_gap_plausible': assessment.generation_gap_plausible,
+            'has_family_overlap': assessment.has_family_overlap,
+            'date_quality_score': assessment.date_quality_score,
+            'issues_count': len(assessment.validation_issues),
+        }
+
+        if assessment.validation_issues:
+            result.details['validation_issues'] = [
+                {
+                    'severity': issue.severity,
+                    'category': issue.category,
+                    'message': issue.message,
+                }
+                for issue in assessment.validation_issues
+            ]
+
+        return result
+
+    def _get_latest_event_year(self, person: RMPerson) -> Optional[int]:
+        """Get the year of the most recent event for a person."""
+        latest_year = None
+
+        if person.events:
+            for event in person.events:
+                if event.date:
+                    year = self._get_event_year(person, event.event_type)
+                    if year and (latest_year is None or year > latest_year):
+                        latest_year = year
+
+        return latest_year
+
+    def _get_sex_string(self, sex: int) -> str:
+        """Convert RootsMagic sex code to string."""
+        if sex == 1:
+            return 'M'
+        elif sex == 2:
+            return 'F'
+        else:
+            return 'U'
