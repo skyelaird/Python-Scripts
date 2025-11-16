@@ -70,8 +70,14 @@ class NameParser:
         'af', 'av', 'von und zu'
     ]
 
-    # Ordinal patterns (Roman numerals)
+    # Ordinal patterns (Roman numerals and text ordinals)
     ORDINAL_PATTERN = re.compile(r'\b([IVX]+)\b$')
+    # Also match text ordinals like "the First", "the Second", etc.
+    TEXT_ORDINAL_PATTERN = re.compile(
+        r'\b(?:the\s+)?(First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|'
+        r'Eleventh|Twelfth|Thirteenth|Fourteenth|Fifteenth)\b',
+        re.IGNORECASE
+    )
 
     # Quoted epithet patterns (nicknames in quotes)
     QUOTED_EPITHET_PATTERN = re.compile(r'''['"]([^'"]+)['"]''')
@@ -125,20 +131,31 @@ class NameParser:
 
     @classmethod
     def extract_ordinal(cls, text: str) -> Tuple[str, Optional[str]]:
-        """Extract Roman numeral ordinal from end of text.
+        """Extract Roman numeral or text ordinal from end of text.
 
         Args:
-            text: Text potentially ending with ordinal (e.g., "Thomas II")
+            text: Text potentially ending with ordinal (e.g., "Thomas II" or "Thomas the First")
 
         Returns:
             Tuple of (text_without_ordinal, ordinal)
         """
+        # First try Roman numerals
         match = cls.ORDINAL_PATTERN.search(text)
         if match:
             ordinal = match.group(1)
             # Remove ordinal from text
             text_without = text[:match.start()].strip()
             return text_without, ordinal
+
+        # Try text ordinals
+        match = cls.TEXT_ORDINAL_PATTERN.search(text)
+        if match:
+            ordinal = match.group(0)  # Get full match including "the" if present
+            # Remove ordinal from text
+            text_without = text[:match.start()] + text[match.end():]
+            text_without = re.sub(r'\s+', ' ', text_without).strip()
+            return text_without, ordinal
+
         return text, None
 
     @classmethod
@@ -217,6 +234,154 @@ class NameParser:
                 return remaining, surname
 
         return text, None
+
+    @classmethod
+    def _title_case_single_part(cls, part: str) -> str:
+        """Title case a single part, handling apostrophes for particles like d', l'.
+
+        Args:
+            part: A single word part (no spaces or hyphens)
+
+        Returns:
+            Title-cased part
+        """
+        if not part:
+            return part
+
+        # Check for particles with apostrophes like "d'Angouleme", "l'Eveque"
+        if "'" in part:
+            # Split on apostrophe
+            apos_parts = part.split("'")
+            if len(apos_parts) == 2:
+                prefix_part, suffix_part = apos_parts
+                # Check if prefix is a particle (d, l, etc.)
+                if prefix_part.lower() in ["d", "l"]:
+                    # Return as "d'Suffix" or "l'Suffix"
+                    return prefix_part.lower() + "'" + suffix_part.capitalize()
+
+        # Check if this is a surname particle
+        if cls.is_surname_particle(part):
+            return part.lower()
+
+        # Check for particles with apostrophes like "d'", "l'" (just the particle)
+        if part.lower() in ["d'", "l'"]:
+            return part.lower()
+
+        # Regular title case
+        return part.capitalize()
+
+    @classmethod
+    def smart_title_case(cls, text: str) -> str:
+        """Apply smart title casing that respects name particles and conventions.
+
+        This handles ALLCAPS names and converts them properly, keeping particles
+        lowercase where appropriate (de, von, van, etc.).
+
+        Args:
+            text: Text to title case (may be ALLCAPS)
+
+        Returns:
+            Properly title-cased text
+
+        Examples:
+            "DE CHANAC DE TURENNE-D'ANGOULEME" -> "de Chanac de Turenne-d'Angouleme"
+            "GEOFFROI DE LIMOGES" -> "Geoffroi de Limoges"
+        """
+        if not text:
+            return text
+
+        # Check if text is all uppercase (likely needs fixing)
+        if text.isupper():
+            # First pass: split on spaces only
+            words = text.split()
+            result_words = []
+
+            for word in words:
+                # Check if word contains hyphens
+                if '-' in word:
+                    # Split on hyphens, preserving the hyphen
+                    hyphen_parts = word.split('-')
+                    result_parts = []
+
+                    for part in hyphen_parts:
+                        result_parts.append(cls._title_case_single_part(part))
+
+                    result_words.append('-'.join(result_parts))
+                else:
+                    # No hyphens, process normally
+                    result_words.append(cls._title_case_single_part(word))
+
+            return ' '.join(result_words)
+
+        # If not all caps, return as-is
+        return text
+
+    @classmethod
+    def parse_tagged_name_field(cls, name_value: str) -> ParsedName:
+        """Parse a name field with [GIVN] and [Surname] tags.
+
+        Some genealogy data includes inline tags to mark which parts are
+        given names vs surnames.
+
+        Example:
+            "Geoffroi 'Bocourt' [GIVN] de Limoges Vicomte de Limoges [Surname]"
+            -> given: "Geoffroi", nickname: "Bocourt",
+               surname: "de Limoges Vicomte de Limoges"
+
+        Args:
+            name_value: Name with [GIVN] and/or [Surname] tags
+
+        Returns:
+            ParsedName object with extracted components
+        """
+        result = ParsedName()
+        text = name_value.strip()
+
+        if not text:
+            return result
+
+        # Extract parts marked as [GIVN]
+        givn_match = re.search(r'(.*?)\s*\[GIVN\]', text, re.IGNORECASE)
+        givn_text = ""
+        if givn_match:
+            givn_text = givn_match.group(1).strip()
+            # Remove this part from text
+            text = text[givn_match.end():].strip()
+
+        # Extract parts marked as [Surname] or [SURN]
+        surn_match = re.search(r'(.*?)\s*\[(?:Surname|SURN)\]', text, re.IGNORECASE)
+        surn_text = ""
+        if surn_match:
+            surn_text = surn_match.group(1).strip()
+            # Remove this part from text
+            text = text[surn_match.end():].strip()
+
+        # Parse the given name part
+        if givn_text:
+            # Apply smart title casing if needed
+            givn_text = cls.smart_title_case(givn_text)
+            givn_parsed = cls.parse_givn_field(givn_text)
+            result.given = givn_parsed.given
+            result.ordinal = givn_parsed.ordinal
+            result.nickname = givn_parsed.nickname
+            result.epithets = givn_parsed.epithets
+            result.prefix = givn_parsed.prefix
+            result.suffix = givn_parsed.suffix
+
+        # Parse the surname part (may contain titles or particles)
+        if surn_text:
+            # Apply smart title casing if needed
+            surn_text = cls.smart_title_case(surn_text)
+            result.surname = surn_text
+
+        # Any remaining text should be analyzed
+        if text:
+            # Could be additional suffix or other components
+            text, suffix = cls.extract_nobility_suffix(text)
+            if suffix:
+                result.suffix = result.suffix + " " + suffix if result.suffix else suffix
+
+        return result
 
     @classmethod
     def parse_givn_field(cls, givn_value: str) -> ParsedName:

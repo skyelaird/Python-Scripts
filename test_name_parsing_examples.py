@@ -122,6 +122,56 @@ def main():
         is_prefix = NameParser.is_prefix(word)
         print(f"     - \"{word}\": {is_prefix} (should be False)")
 
+    # Test 9: Tagged name field parsing
+    print("\n9. Parsing tagged name field: \"Geoffroi 'Bocourt' [GIVN] de Limoges Vicomte de Limoges [Surname]\"")
+    print("   Expected:")
+    print("     - Given: Geoffroi")
+    print("     - Nickname: Bocourt")
+    print("     - Surname: de Limoges Vicomte de Limoges")
+    result = NameParser.parse_tagged_name_field("Geoffroi 'Bocourt' [GIVN] de Limoges Vicomte de Limoges [Surname]")
+    print("   Result:")
+    print_parsed_name(result, "     - ")
+
+    # Test 10: ALLCAPS name with particles
+    print("\n10. Smart title casing: \"DE CHANAC DE TURENNE-D'ANGOULEME\"")
+    print("   Expected: de Chanac de Turenne-d'Angouleme")
+    result = NameParser.smart_title_case("DE CHANAC DE TURENNE-D'ANGOULEME")
+    print(f"   Result: {result}")
+
+    # Test 11: ALLCAPS simple name
+    print("\n11. Smart title casing: \"GEOFFROI DE LIMOGES\"")
+    print("   Expected: Geoffroi de Limoges")
+    result = NameParser.smart_title_case("GEOFFROI DE LIMOGES")
+    print(f"   Result: {result}")
+
+    # Test 12: Text ordinals
+    print("\n12. Parsing text ordinal: \"Thomas the First\"")
+    print("   Expected:")
+    print("     - Given: Thomas the First")
+    print("     - Ordinal: the First")
+    result = NameParser.parse_givn_field("Thomas the First")
+    print("   Result:")
+    print_parsed_name(result, "     - ")
+
+    # Test 13: Combined ALLCAPS tagged field
+    print("\n13. Parsing ALLCAPS tagged field: \"GEOFFROI [GIVN] DE LIMOGES [Surname]\"")
+    print("   Expected:")
+    print("     - Given: Geoffroi")
+    print("     - Surname: de Limoges")
+    result = NameParser.parse_tagged_name_field("GEOFFROI [GIVN] DE LIMOGES [Surname]")
+    print("   Result:")
+    print_parsed_name(result, "     - ")
+
+    # Test 14: Ordinal with nickname and title
+    print("\n14. Parsing complex GIVN: \"Richard II 'Lionheart'\"")
+    print("   Expected:")
+    print("     - Given: Richard II")
+    print("     - Ordinal: II")
+    print("     - Nickname: Lionheart")
+    result = NameParser.parse_givn_field("Richard II 'Lionheart'")
+    print("   Result:")
+    print_parsed_name(result, "     - ")
+
     print("\n" + "="*80)
     print("TESTS COMPLETE")
     print("="*80)
