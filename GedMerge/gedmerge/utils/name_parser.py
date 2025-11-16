@@ -36,10 +36,11 @@ class NameParser:
     """Parser for complex genealogical name fields."""
 
     # Honorific prefixes by language
+    # Note: 'M' for French is handled specially - it can be 'Monsieur' OR 'Marie' for females
     PREFIXES = {
         'English': ['Sir', 'Lady', 'Lord', 'Dame', 'Mr', 'Mrs', 'Miss', 'Ms',
                    'Dr', 'Rev', 'Revd', 'Father', 'Mother'],
-        'French': ['M', 'Mme', 'Mlle', 'Sieur', 'Dame', 'Seigneur', 'Messire'],
+        'French': ['M', 'Mme', 'Mlle', 'Sieur', 'Dame', 'Messire'],
         'German': ['Herr', 'Frau', 'Fräulein', 'Freiherr', 'Freiin'],
         'Spanish': ['Sr', 'Sra', 'Srta', 'Don', 'Doña', 'Señor', 'Señora'],
         'Italian': ['Sig', 'Sig.ra', 'Sig.na', 'Signore', 'Signora', 'Donna'],
@@ -47,10 +48,23 @@ class NameParser:
         'Portuguese': ['Sr', 'Sra', 'Srta', 'Senhor', 'Senhora', 'Dom', 'Dona']
     }
 
+    # Titles that should be treated as suffixes (nobility titles, etc.)
+    # These were previously incorrectly classified as prefixes
+    TITLE_SUFFIXES = {
+        'French': ['Seigneur', 'Seigneure'],
+        'English': [],
+        'German': [],
+    }
+
     # Flatten prefix list for easy matching
     ALL_PREFIXES = []
     for prefixes in PREFIXES.values():
         ALL_PREFIXES.extend(prefixes)
+
+    # Flatten title suffix list for easy matching
+    ALL_TITLE_SUFFIXES = []
+    for suffixes in TITLE_SUFFIXES.values():
+        ALL_TITLE_SUFFIXES.extend(suffixes)
 
     # Noble surname particles that indicate surnames, NOT nicknames
     SURNAME_PARTICLES = [
@@ -112,6 +126,12 @@ class NameParser:
         """Check if a word is an honorific prefix."""
         word_clean = word.rstrip('.')
         return word_clean in cls.ALL_PREFIXES or word_clean.lower().capitalize() in cls.ALL_PREFIXES
+
+    @classmethod
+    def is_title_suffix(cls, word: str) -> bool:
+        """Check if a word is a title that should be treated as a suffix."""
+        word_clean = word.rstrip('.')
+        return word_clean in cls.ALL_TITLE_SUFFIXES or word_clean.lower().capitalize() in cls.ALL_TITLE_SUFFIXES
 
     @classmethod
     def extract_quoted_epithets(cls, text: str) -> Tuple[str, List[str]]:
@@ -179,11 +199,15 @@ class NameParser:
         return text, None
 
     @classmethod
-    def extract_prefix(cls, text: str) -> Tuple[str, Optional[str]]:
+    def extract_prefix(cls, text: str, sex: Optional[str] = None) -> Tuple[str, Optional[str]]:
         """Extract honorific prefix from beginning of text.
+
+        Special handling for French 'M.' - if sex is 'F' (female), 'M.' is expanded
+        to 'Marie' as part of the given name, not treated as a prefix.
 
         Args:
             text: Text potentially starting with prefix
+            sex: Optional sex indicator ('M', 'F', 'U') for context-aware parsing
 
         Returns:
             Tuple of (text_without_prefix, prefix)
@@ -193,10 +217,41 @@ class NameParser:
             return text, None
 
         first_word = words[0].rstrip('.')
+
+        # Special case: French 'M' or 'M.' for female names = Marie
+        if sex == 'F' and first_word.upper() == 'M':
+            # Replace M. with Marie in the given name
+            remaining_words = words[1:]
+            expanded = 'Marie ' + ' '.join(remaining_words)
+            return expanded, None
+
         if cls.is_prefix(first_word):
             prefix = words[0]  # Keep original with punctuation
             remaining = ' '.join(words[1:])
             return remaining, prefix
+
+        return text, None
+
+    @classmethod
+    def extract_title_suffix(cls, text: str) -> Tuple[str, Optional[str]]:
+        """Extract title suffixes like 'Seigneur' that appear in the name.
+
+        This handles titles like 'Seigneur d'Amboise et Chaumont' where 'Seigneur'
+        should be moved to the suffix field.
+
+        Args:
+            text: Text potentially containing title suffix
+
+        Returns:
+            Tuple of (text_without_title, title_suffix)
+        """
+        words = text.split()
+        for i, word in enumerate(words):
+            if cls.is_title_suffix(word):
+                # Everything from this word onward is the suffix
+                title_suffix = ' '.join(words[i:])
+                remaining = ' '.join(words[:i]).strip() if i > 0 else ''
+                return remaining, title_suffix
 
         return text, None
 
@@ -384,7 +439,7 @@ class NameParser:
         return result
 
     @classmethod
-    def parse_givn_field(cls, givn_value: str) -> ParsedName:
+    def parse_givn_field(cls, givn_value: str, sex: Optional[str] = None) -> ParsedName:
         """Parse a GIVN field that may contain ordinals, epithets, and titles.
 
         Example inputs:
@@ -393,9 +448,12 @@ class NameParser:
                 nickname: "The Wise"
                 suffix: "1st Baron"
                 ordinal: "II"
+            "M. Anne" (sex='F') ->
+                given: "Marie Anne"
 
         Args:
             givn_value: Value from GIVN field
+            sex: Optional sex indicator ('M', 'F', 'U') for context-aware parsing
 
         Returns:
             ParsedName object with extracted components
@@ -406,18 +464,29 @@ class NameParser:
         if not text:
             return result
 
+        # Step 0: Handle M. -> Marie for female names
+        text, prefix = cls.extract_prefix(text, sex=sex)
+        if prefix:
+            result.prefix = prefix
+
         # Step 1: Extract quoted epithets (these become nicknames)
         text, epithets = cls.extract_quoted_epithets(text)
         result.epithets = epithets
         if epithets:
             result.nickname = epithets[0]  # Use first epithet as primary nickname
 
-        # Step 2: Extract nobility suffix
-        text, suffix = cls.extract_nobility_suffix(text)
-        if suffix:
-            result.suffix = suffix
+        # Step 2: Extract title suffixes (like "Seigneur")
+        text, title_suffix = cls.extract_title_suffix(text)
+        if title_suffix:
+            result.suffix = title_suffix
 
-        # Step 3: Extract ordinal (if present, keep it with given name)
+        # Step 3: Extract nobility suffix
+        if not result.suffix:  # Only if we didn't already find a title suffix
+            text, suffix = cls.extract_nobility_suffix(text)
+            if suffix:
+                result.suffix = suffix
+
+        # Step 4: Extract ordinal (if present, keep it with given name)
         text_without_ordinal, ordinal = cls.extract_ordinal(text)
         if ordinal:
             result.ordinal = ordinal
@@ -428,7 +497,7 @@ class NameParser:
         return result
 
     @classmethod
-    def parse_name_field(cls, name_value: str) -> ParsedName:
+    def parse_name_field(cls, name_value: str, sex: Optional[str] = None) -> ParsedName:
         """Parse a full NAME field in GEDCOM format.
 
         GEDCOM NAME format: "Given /Surname/ Suffix"
@@ -440,9 +509,11 @@ class NameParser:
                                                surname: "Smith", suffix: "1st Baron"
             "Frau Gerberga /von Franconia/" -> prefix: "Frau", given: "Gerberga",
                                                 surname: "von Franconia"
+            "M. Anne /de Bréval/" (sex='F') -> given: "Marie Anne", surname: "de Bréval"
 
         Args:
             name_value: Value from NAME field
+            sex: Optional sex indicator ('M', 'F', 'U') for context-aware parsing
 
         Returns:
             ParsedName object with extracted components
@@ -465,8 +536,8 @@ class NameParser:
         if not text:
             return result
 
-        # Extract prefix from beginning
-        text, prefix = cls.extract_prefix(text)
+        # Extract prefix from beginning (handles M. -> Marie for females)
+        text, prefix = cls.extract_prefix(text, sex=sex)
         if prefix:
             result.prefix = prefix
 
@@ -476,10 +547,16 @@ class NameParser:
         if epithets:
             result.nickname = epithets[0]
 
+        # Extract title suffixes (like "Seigneur")
+        text, title_suffix = cls.extract_title_suffix(text)
+        if title_suffix:
+            result.suffix = title_suffix
+
         # Extract nobility suffix
-        text, suffix = cls.extract_nobility_suffix(text)
-        if suffix:
-            result.suffix = suffix
+        if not result.suffix:  # Only if we didn't already find a title suffix
+            text, suffix = cls.extract_nobility_suffix(text)
+            if suffix:
+                result.suffix = suffix
 
         # What remains is the given name (possibly with ordinal)
         text_without_ordinal, ordinal = cls.extract_ordinal(text)
@@ -492,7 +569,7 @@ class NameParser:
         return result
 
     @classmethod
-    def parse_field_with_surname_particle(cls, field_value: str, field_type: str = 'UNKNOWN') -> ParsedName:
+    def parse_field_with_surname_particle(cls, field_value: str, field_type: str = 'UNKNOWN', sex: Optional[str] = None) -> ParsedName:
         """Parse a field that incorrectly contains surname particles.
 
         This handles cases where a field tagged as NICK or GIVN actually contains
@@ -507,6 +584,7 @@ class NameParser:
         Args:
             field_value: The field value
             field_type: Type hint (NICK, GIVN, etc.) for better parsing
+            sex: Optional sex indicator ('M', 'F', 'U') for context-aware parsing
 
         Returns:
             ParsedName object with corrected components
@@ -517,14 +595,19 @@ class NameParser:
         if not text:
             return result
 
-        # Extract prefix first
-        text, prefix = cls.extract_prefix(text)
+        # Extract prefix first (handles M. -> Marie for females)
+        text, prefix = cls.extract_prefix(text, sex=sex)
         if prefix:
             result.prefix = prefix
 
         # Extract quoted epithets
         text, epithets = cls.extract_quoted_epithets(text)
         result.epithets = epithets
+
+        # Extract title suffixes (like "Seigneur d'Amboise")
+        text, title_suffix = cls.extract_title_suffix(text)
+        if title_suffix:
+            result.suffix = title_suffix
 
         # Check for surname particle
         remaining, surname = cls.extract_surname_with_particle(text)
@@ -543,7 +626,8 @@ class NameParser:
                                   surname: Optional[str] = None,
                                   prefix: Optional[str] = None,
                                   suffix: Optional[str] = None,
-                                  nickname: Optional[str] = None) -> ParsedName:
+                                  nickname: Optional[str] = None,
+                                  sex: Optional[str] = None) -> ParsedName:
         """Normalize and validate name components, applying parsing rules.
 
         This method takes individual name components and applies parsing rules to
@@ -556,6 +640,7 @@ class NameParser:
             prefix: Prefix value
             suffix: Suffix value
             nickname: Nickname value
+            sex: Optional sex indicator ('M', 'F', 'U') for context-aware parsing
 
         Returns:
             ParsedName object with normalized components
@@ -564,17 +649,19 @@ class NameParser:
 
         # Process given name for embedded components
         if given:
-            given_parsed = cls.parse_givn_field(given)
+            given_parsed = cls.parse_givn_field(given, sex=sex)
             result.given = given_parsed.given
             result.ordinal = given_parsed.ordinal
             if not nickname and given_parsed.nickname:
                 result.nickname = given_parsed.nickname
             if not suffix and given_parsed.suffix:
                 result.suffix = given_parsed.suffix
+            if not prefix and given_parsed.prefix:
+                result.prefix = given_parsed.prefix
 
         # Process nickname for embedded surname particles
         if nickname and cls.has_surname_particle(nickname):
-            nick_parsed = cls.parse_field_with_surname_particle(nickname, 'NICK')
+            nick_parsed = cls.parse_field_with_surname_particle(nickname, 'NICK', sex=sex)
             # If it contains surname particles, it's misclassified
             if nick_parsed.surname and not surname:
                 result.surname = nick_parsed.surname
