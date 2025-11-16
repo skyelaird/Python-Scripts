@@ -145,7 +145,10 @@ class DuplicateDetector:
                 print(f"    Name: {name.given} /{name.surname}/ {lang}")
         if p1.events:
             for event in p1.events[:2]:  # Show first 2 events
-                print(f"    {event.event_type}: {event.date or '?'} - {event.place or '?'}")
+                event_types = {1: 'Birth', 2: 'Death', 3: 'Burial', 4: 'Marriage', 5: 'Divorce'}
+                event_name = event_types.get(event.event_type, f'Event{event.event_type}')
+                # Events have place_id, not place string
+                print(f"    {event_name}: {event.date or '?'}")
         print(f"    Sex: {p1.sex or 'Unknown'}")
         print()
 
@@ -157,7 +160,10 @@ class DuplicateDetector:
                 print(f"    Name: {name.given} /{name.surname}/ {lang}")
         if p2.events:
             for event in p2.events[:2]:
-                print(f"    {event.event_type}: {event.date or '?'} - {event.place or '?'}")
+                event_types = {1: 'Birth', 2: 'Death', 3: 'Burial', 4: 'Marriage', 5: 'Divorce'}
+                event_name = event_types.get(event.event_type, f'Event{event.event_type}')
+                # Events have place_id, not place string
+                print(f"    {event_name}: {event.date or '?'}")
         print(f"    Sex: {p2.sex or 'Unknown'}")
         print()
 

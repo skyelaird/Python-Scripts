@@ -290,9 +290,9 @@ class MatchScorer:
         """
         scores = []
 
-        # Compare birth dates
-        birth1 = self._get_event_year(person1, 'Birth')
-        birth2 = self._get_event_year(person2, 'Birth')
+        # Compare birth dates (event_type=1 for Birth)
+        birth1 = self._get_event_year(person1, 1)
+        birth2 = self._get_event_year(person2, 1)
 
         if birth1 and birth2:
             birth_score = self._compare_years(birth1, birth2)
@@ -303,9 +303,9 @@ class MatchScorer:
             elif abs(birth1 - birth2) <= self.DATE_CLOSE_TOLERANCE:
                 result.details['birth_match'] = 'close'
 
-        # Compare death dates
-        death1 = self._get_event_year(person1, 'Death')
-        death2 = self._get_event_year(person2, 'Death')
+        # Compare death dates (event_type=2 for Death)
+        death1 = self._get_event_year(person1, 2)
+        death2 = self._get_event_year(person2, 2)
 
         if death1 and death2:
             death_score = self._compare_years(death1, death2)
@@ -357,17 +357,17 @@ class MatchScorer:
         """
         scores = []
 
-        # Compare birth places
-        birth_place1 = self._get_event_place(person1, 'Birth')
-        birth_place2 = self._get_event_place(person2, 'Birth')
+        # Compare birth places (event_type=1 for Birth)
+        birth_place1 = self._get_event_place(person1, 1)
+        birth_place2 = self._get_event_place(person2, 1)
 
         if birth_place1 and birth_place2:
             place_score = self._compare_places(birth_place1, birth_place2)
             scores.append(place_score)
 
-        # Compare death places
-        death_place1 = self._get_event_place(person1, 'Death')
-        death_place2 = self._get_event_place(person2, 'Death')
+        # Compare death places (event_type=2 for Death)
+        death_place1 = self._get_event_place(person1, 2)
+        death_place2 = self._get_event_place(person2, 2)
 
         if death_place1 and death_place2:
             place_score = self._compare_places(death_place1, death_place2)
@@ -400,26 +400,27 @@ class MatchScorer:
         If two persons share the same parents or spouses, they're more
         likely to be duplicates.
         """
-        # Check for shared spouses
-        spouses1 = set(person1.spouse_family_ids or [])
-        spouses2 = set(person2.spouse_family_ids or [])
-        shared_spouses = spouses1 & spouses2
+        # Check for shared spouses (using simple IDs for now)
+        # TODO: Load full family relationships from database
+        spouse1 = person1.spouse_id if hasattr(person1, 'spouse_id') else None
+        spouse2 = person2.spouse_id if hasattr(person2, 'spouse_id') else None
+        shared_spouse = (spouse1 and spouse2 and spouse1 == spouse2)
 
         # Check for shared parents
-        parents1 = set(person1.parent_family_ids or [])
-        parents2 = set(person2.parent_family_ids or [])
-        shared_parents = parents1 & parents2
+        parent1 = person1.parent_id if hasattr(person1, 'parent_id') else None
+        parent2 = person2.parent_id if hasattr(person2, 'parent_id') else None
+        shared_parent = (parent1 and parent2 and parent1 == parent2)
 
         # Calculate score
         score = 0.0
 
-        if shared_parents:
+        if shared_parent:
             score += 60.0  # Same parents = strong indicator
-            result.details['shared_parents'] = len(shared_parents)
+            result.details['shared_parent'] = parent1
 
-        if shared_spouses:
+        if shared_spouse:
             score += 40.0  # Same spouse = strong indicator
-            result.details['shared_spouses'] = len(shared_spouses)
+            result.details['shared_spouse'] = spouse1
 
         return min(score, 100.0)
 
@@ -435,12 +436,21 @@ class MatchScorer:
         Same sex: 100%
         Unknown sex: 50% (neutral)
         Different sex: 0% (strong conflict)
-        """
-        sex1 = person1.sex
-        sex2 = person2.sex
 
-        # If either is unknown
-        if not sex1 or sex1 == 'U' or not sex2 or sex2 == 'U':
+        Sex codes: 0=Unknown, 1=Male, 2=Female (or 'U', 'M', 'F' strings)
+        """
+        # Get sex values (handle both int and string formats)
+        sex1 = person1.sex if hasattr(person1, 'sex') else 0
+        sex2 = person2.sex if hasattr(person2, 'sex') else 0
+
+        # Normalize to integers
+        if isinstance(sex1, str):
+            sex1 = {'U': 0, 'M': 1, 'F': 2}.get(sex1.upper(), 0)
+        if isinstance(sex2, str):
+            sex2 = {'U': 0, 'M': 1, 'F': 2}.get(sex2.upper(), 0)
+
+        # If either is unknown (0)
+        if sex1 == 0 or sex2 == 0:
             return 50.0
 
         # If same
@@ -449,11 +459,21 @@ class MatchScorer:
 
         # If different (strong conflict)
         result.has_conflicting_info = True
-        result.details['sex_conflict'] = f"{sex1} vs {sex2}"
+        sex_names = {0: 'U', 1: 'M', 2: 'F'}
+        result.details['sex_conflict'] = f"{sex_names.get(sex1, '?')} vs {sex_names.get(sex2, '?')}"
         return 0.0
 
-    def _get_event_year(self, person: RMPerson, event_type: str) -> Optional[int]:
-        """Extract year from event."""
+    def _get_event_year(self, person: RMPerson, event_type: int) -> Optional[int]:
+        """
+        Extract year from event.
+
+        Args:
+            person: Person to get event from
+            event_type: Event type code (1=Birth, 2=Death, etc.)
+
+        Returns:
+            Year as integer, or None
+        """
         if not person.events:
             return None
 
@@ -472,13 +492,26 @@ class MatchScorer:
 
         return None
 
-    def _get_event_place(self, person: RMPerson, event_type: str) -> Optional[str]:
-        """Extract place from event."""
+    def _get_event_place(self, person: RMPerson, event_type: int) -> Optional[str]:
+        """
+        Extract place from event.
+
+        Args:
+            person: Person to get event from
+            event_type: Event type code (1=Birth, 2=Death, etc.)
+
+        Returns:
+            Place string, or None
+        """
         if not person.events:
             return None
 
         for event in person.events:
-            if event.event_type == event_type and event.place:
-                return event.place
+            # Handle both place attribute and place_id
+            if event.event_type == event_type:
+                # Try place attribute first
+                if hasattr(event, 'place') and event.place:
+                    return event.place
+                # TODO: Could look up place_id from PlaceTable if needed
 
         return None
