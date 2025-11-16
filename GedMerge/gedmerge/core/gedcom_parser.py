@@ -1,6 +1,6 @@
 """GEDCOM parser for reading and writing genealogy files."""
 
-from typing import Dict, List, Tuple, Optional
+from typing import Any, Dict, List, Tuple, Optional
 from pathlib import Path
 from gedcom.parser import Parser
 from gedcom.element.individual import IndividualElement
@@ -410,7 +410,7 @@ class GedcomParser:
                 f.write(f"{level + 1} CONC {chunk}\n")
                 remaining = remaining[max_length:]
 
-    def get_statistics(self) -> Dict[str, any]:
+    def get_statistics(self) -> Dict[str, Any]:
         """Get statistics about the loaded GEDCOM file.
 
         Returns:
