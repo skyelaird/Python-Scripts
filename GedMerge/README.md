@@ -79,6 +79,39 @@ gedmerge find-duplicates path/to/your/file.ged
 gedmerge merge path/to/your/file.ged --output merged.ged
 ```
 
+## Name Preprocessing for Duplicate Detection
+
+**IMPORTANT**: Before running duplicate detection, names must be preprocessed to ensure consistent "apples to apples" comparisons.
+
+See [NAMING_CONVENTIONS.md](../NAMING_CONVENTIONS.md) for complete details.
+
+### Quick Overview
+
+1. **NN Convention**: Use `NN` for missing given names (genealogy standard)
+2. **Language Codes**: Set ISO 639-1 codes (`en`, `fr`, `de`) for all names
+3. **Clean Variants**: Separate embedded variants like `Margaret [Marguerite]` into separate name records
+4. **Remove Placeholders**: Remove generic placeholders like `EndofLine`, `Unknown`
+5. **Preserve Meaningful Data**: Keep mother's maiden names even if different from children
+
+### Preprocessing Workflow
+
+```bash
+# Step 1: Structural cleanup (NN convention, placeholders)
+python ../preprocess_names_for_matching.py database.rmtree --report
+python ../preprocess_names_for_matching.py database.rmtree --execute
+
+# Step 2: Language analysis and variant separation
+python ../analyze_name_structure.py database.rmtree --check-language
+python ../analyze_name_structure.py database.rmtree --fix-variants --execute
+
+# Step 3: NOW ready for duplicate detection
+gedmerge find-duplicates database.rmtree
+```
+
+### RootsMagic Compatibility
+
+✅ **Language codes are safe** - The `NameTable.Language` field is a standard RootsMagic field and will NOT break your database.
+
 ## Development
 
 ### Running Tests
