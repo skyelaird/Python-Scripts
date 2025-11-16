@@ -1,0 +1,1320 @@
+Analyzing 3 GEDCOM files...
+  - Joel2020.ged
+  - Rootsmagic export 12may18 for consolidation.ged
+  - JOEL.GED
+
+================================================================================
+MULTILINGUAL ANALYSIS OF GEDCOM DATA
+================================================================================
+
+### TITLES FOUND IN DATA ###
+
+English:
+  - "Squire"
+  - 'Casey' Helen Cushman Bragdon, Deposition by Helen C. Bragdon
+  - 'Plantagenet Ancestry of Seventeenth Century Colonists'
+  - 'The Complete Peerage of England Scotland Ireland Great Britain andthe Un
+  - 'The Magna Charta Sureties, 1215'
+  - , Nova Scotia, Antigonish Catholic Diocese, 1823-1905: , St. Paul, Havr
+  - ..Pedigree Resource FileA(r)
+  - ..Pedigree Resource FileA(r) (The Church of Jesus Christ of Latter-day S
+  - 15th Census of the United States (1930 (1 apr 1930)
+  - 1678 Census
+  - 200px-Wealhtheow
+  - 210px-Henri_I
+  - 2nd Earl of Lothian
+  - 340px-Philip_I_of_France_·_HHW
+  - 4th Earl of Angus, 4th Mormaer of Angus
+  - 55th King of Ireland at Tara
+  - Acadian & French Ancestral Home
+  - Acadian Church Records
+  - Ada-18
+  - Adela
+  - Admiral of France
+  - Adoption
+  - Alan Huestis, Compiler: Alan Huestis, Harvey Gullon  Thomas Huestis & H
+  - Alison Weir, Britain's Royal Families (Pimlico (Random House), London, 1
+  - Alphonsine Lacasse Florido Mor
+  - AlphonsineLacasse2
+  - Alpin H. Allen, Deposition by Alpin Allen, Interviewer: Joel Morin, Inf
+  - Alternate Death Place
+  - Alternate name
+  - Ancestors of Tracy Ashley Crocker Sr.
+  - Ancestral File
+  - Ancestral File (1998, The Church of Jesus Christ of Latter-day Saints)
+  - Ancestral File Number
+  - Ancestral Roots of Certain American Colonists who came to America bef.170
+  - Ancestral Roots of Sixty Colonists Who Came to New England Between1623 an
+  - Ancestry Family Trees (Online publication - Provo, UT, USA: Ancestry.co
+  - Ancestry Family Trees (Online publication - Provo, UT, USA: The Generat
+  - Anecdote
+  - Anglo Saxon Chronicles
+  - AnnaKyjev
+  - Annulment
+  - Are we 6 or 7 cousins, Recipient: Joel Morin, Address: Antigonish NS, Aut
+  - Arrival
+  - Association
+  - Assumption or Calculation, Interviewer: Joel Morin, Informant Address: Ot
+  - Assumption or calculation, Assumption or Calculation, Interviewer: Joel M
+  - Attwater, Charles Hobart, Atwater History and Genealogy -- The Great Ad
+  - Atwater History & Genealogy
+  - Atwater History and Genealogy -- The Great Adventure, Pages: vol 5, Recor
+  - Atwater, Francis, Atwater History & Genealogy (1901)
+  - Baptism
+  - Bar Mitzvah
+  - Baron
+  - Baron Abergavenny
+  - Baron of Meuillon
+  - Bas Mitzvah
+  - Begga_de_landen
+  - Belenus
+  - Bertha Allen, Interviewer: Joel Morin, Informant Address: Springhill NS
+  - BertieCorbett-1
+  - BertieCorbett-3
+  - BertieCorbett-4
+  - BertieCorbett-5
+  - BertieCorbett-6
+  - Biography
+  - Birth
+  - Birth certificate of Principal, Record Type: birth certificate, Subject
+  - Blessing
+  - Bona Arsenault, Source #8
+  - Bowman Files
+  - Bowman, George Ernest, Bowman Files (Society of Mayflower Descendants, 1
+  - Bragdon-Byerly (genealogy)
+  - Brenda King, Brenda King, Interviewer: Joel Morin, Informant Address: G
+  - Brenda King, Interviewer: Joel Morin, Informant Address: Greely ON
+  - Brian Aug1963
+  - Brian C. Tompsett, University of Hull
+  - Britain's Royal Families
+  - Burial
+  - Buried and Location
+  - Burke's Guide to the Royal Family
+  - Burke, Burke's Guide to the Royal Family (London, 1973)
+  - COSTE Family
+  - Canadian Army Personnel Records - Lt. Mark Alphonsus Corbett, Subject: Lt
+  - Canadian Army Personnel Records - Lt. Mark Alphonsus Corbett, Subject:L
+  - Canadian Census for 1901, Film: T6520(Arisaig/HavreBoucher);T6447(Ste-Cla
+  - Capt.
+  - Captain
+  - Captain (N)
+  - Caroli Magni Progenies
+  - Caste
+  - Catholic Encyclopedia on line, Url: http://www.newadvent.org/cathen/
+  - Cause of Death
+  - Census
+  - Census (fam)
+  - Census (family)
+  - Census of 1626
+  - Census of 1626 (1626)
+  - Census of 1671
+  - Census of 1671 (1671)
+  - Census of 1686
+  - Census of 1698
+  - Census of 1698 (1698)
+  - Census of 1699
+  - Census of 1699 (1699)
+  - Census of 1871, Series: District 201 Antigonish, Pages: 1232-1233, Recor
+  - Census of 1881, Series: District 21 Antigonish, S.District Harbour Bouche
+  - Census of 1891
+  - Census of 1891 (1891)
+  - Charlemagne
+  - Charlemagne's coronation
+  - Charles morin birth
+  - CharlesMorin
+  - Chevalier
+  - Christen
+  - Christen (adult)
+  - Christened
+  - Christian Dutil, Deposition Christian Dutil
+  - Church of Jesus Christ and Latter Day Saints (Mormon) Ancestry File
+  - Claire Monique Barbeau, Deposition Monique Barbeau Morin
+  - Coat of Arms Documentation
+  - Cobb Chronicles, An Overview of the clan
+  - Colin C. Corbett, Research by Colin Corbett
+  - Compiler: GenQuest, The Nobility of the Holy Roman Empire, Subject: Nob
+  - Compiler: on the orders of King Alfred the Great, Anglo Saxon Chronicle
+  - Comte
+  - Comtesse d'Entremont
+  - Confirmation
+  - Corbett
+  - Corbett Family Bible
+  - Corbetts-10
+  - Corbetts-11
+  - Corbetts-12
+  - Corbetts-13
+  - Corbetts-14
+  - Corbetts-15
+  - Corbetts-16
+  - Corbetts-17
+  - Corbetts-18
+  - Corbetts-19
+  - Corbetts-2
+  - Corbetts-3
+  - Corbetts-4
+  - Corbetts-5
+  - Corbetts-6
+  - Corbetts-7
+  - Corbetts-8
+  - Corbetts-9
+  - Count
+  - Count of Vexin and Count of Vermandois, King of France
+  - Countess
+  - Countess Eglinton Lady of Argyll Baroness of Mar
+  - Counts_of_Holland_Arms.svg
+  - Craig HUGHES Obituary_ Craig H
+  - Craig Parry Hughes, Deposition by Craig Parry Hughes
+  - Cremation
+  - Crocker, Tracy Ashley, Ancestors of Tracy Ashley Crocker Sr. (CompuServ
+  - Ct im Bliesgau, Ct of Charmois
+  - Ct of Ebersberg
+  - Cte d'Arles & Provence
+  - D. G. Whidden, The History of the Town of Antigonish (1934)
+  - DNA test
+  - David Faris, 'Plantagenet Ancestry of Seventeenth Century Colonists' (G
+  - David Faris, Plantagenet Ancestry of 17th Century Colonists (Genealogic
+  - Deacon
+  - Death
+  - Degree
+  - Departure
+  - Deposition Brian Morin, Interviewer: Joel Morin, Informant Address: Quebe
+  - Deposition Christian Dutil
+  - Deposition Joel Morin
+  - Deposition Monique Barbeau Morin
+  - Deposition Sylvie Morin
+  - Deposition by Alpin Allen, Interviewer: Joel Morin, Informant Address: Sp
+  - Deposition by Craig Parry Hughes
+  - Deposition by Deryn Elizabeth Hughes
+  - Deposition by Helen C. Bragdon
+  - Deposition by John 'Jack' W. Brown
+  - Deposition by Lloyd Anderson
+  - Deposition by principal individual
+  - Deryn Elizabeth Hughes, Deposition by Deryn Elizabeth Hughes
+  - Descendants of John Irish The Immigrant 1629-1963 and Allied Families
+  - Description
+  - Dictionnaire Biographique francais
+  - Divorce
+  - Divorce filed
+  - Docteur
+  - Doctor
+  - Dodd, Jordan, comp, Kentucky, Compiled Marriages, 1851-1900 (Ancestry.c
+  - Dr
+  - Dr Brian Alexander Athanase Morin M.Ps., Ph.D., CD, Deposition Brian Mo
+  - Dr.
+  - Duc
+  - Duke
+  - Duke Snyder Research, Record Type: personal research, Location: Corbett.d
+  - Duke Snyder, Duke Snyder Research, Record Type: personal research, Loca
+  - Duke of Wormsgau
+  - Ealdorman
+  - Earl
+  - Earl of Marche
+  - Early Settlers of Eastham
+  - Editor: George Holmes, The Oxford Illustrated History of Medieval Europ
+  - Edmund West, comp., Family Data Collection - Births (Online publication - P
+  - Edmund West, comp., Family Data Collection - Individual Records (Ancest
+  - Edmund West, comp., Family Data Collection - Individual Records (Online p
+  - Edmund West, comp., Family Data Collection - Marriages (Online publicat
+  - Edson's Genealogical Notes
+  - Edson, George Thomas, Edson's Genealogical Notes (The Times Print Shop, B
+  - Education
+  - Edward Fairchild, 4320 Washtenaw Ave, Ann Arbor, MI 48108-1008, 734-971-2
+  - Edward Fairchild, 4320 Washtenaw Ave, Ann Arbor, MI 48108-1008,734-971-
+  - Elder
+  - Election
+  - Elybar11, Black Genealogy, Url:http://community.ancestry.ca/profile.asp
+  - Emerentienne-Rousseau
+  - Emigration
+  - Empereur
+  - Emperor
+  - Emprisonnement
+  - Encyclopedia Britannica
+  - Engagement
+  - Europaische Stammtafeln
+  - Event-Misc
+  - Excommunication
+  - Fact
+  - Familysearch.org, Url: https://familysearch.org/ark:/61903/1:1:KSZB-H95
+  - Father
+  - First communion
+  - Fleur Alexis wedding anniv 7
+  - Florent_III_de_Hollande
+  - FloridoMorin
+  - Fougeres of North America
+  - Francis H. Fuller, The Register: Early New England Fullers, Volume: 55 (
+  - Frederick Lewis Weis & Walter L.Sheppard, Ancestral Roots of Certain Am
+  - Frederick Lewis Weis, 'The Magna Charta Sureties, 1215' (Genealogical P
+  - Frederick Lewis Weis, Ancestral Roots of Sixty Colonists Who Came to Ne
+  - FreeBMD, England & Wales, Civil Registration Death Index, 1837-1915 (An
+  - Fuller, Gerald R., Gerald Fuller (FGS)
+  - GEDCOM File AG15.GED submitted by Keith R. Lambert
+  - GEDCOM File C:\Program Files\The Master Genealogist\GEDCOM\bayfield.ged
+  - GEDCOM File C:\Program Files\The Master Genealogist\GEDCOM\ib4eexcept.-bo
+  - GEDCOM File C:\Program Files\The Master Genealogist\GEDCOM\ib4eexcept.g
+  - GEDCOM File C:\Program Files\The Master Genealogist\GEDCOM\ib4eexcept.ge
+  - GEDCOM File C:\Program Files\The MasterGenealogist\GEDCOM\ib4eexcept.-b
+  - GEDCOM File C:\TMGW\BACKUPS\ISABEL~1.GED imported on 04-06-2002 at 22:22:
+  - GEDCOM File C:\TMGW\BACKUPS\ISABEL~1.GED imported on 04-06-2002 at22:22
+  - Gale Research, Passenger and Immigration Lists Index, 1500s-1900s (Onli
+  - Garry L McLaughlin <actor@@gbso.net>, Garry L McLaughlin's Family Histo
+  - Garry L McLaughlin <actor@gbso.net>, Garry L McLaughlin's Family Histor
+  - Garry L McLaughlin's Family History
+  - Genealogical Dictionary of Maine and New Hampshire
+  - Genealogical Dictionary of the First Settlers of New Enland
+  - Genealogical Notes of Barnstable Families
+  - Genealogical Research Library, Ontario, Canada, Canadian Genealogy Inde
+  - Genealogical notes from Isabelle Crispo
+  - Genealogists' Magazine Journal of the Society of Genealogists
+  - General
+  - Gens Nostra
+  - Gens Nostra (Amsterdam)
+  - George Edward Cockayne, 'The Complete Peerage of England Scotland Irela
+  - George Einarson, Just Rooting Around the Randall Family Tree (Mulgrave N
+  - Gerald Fuller
+  - Gillingham Family: Descendants of Yeamans Gillingham
+  - Gillingham Family: Descendants of Yeamans Gillingham (Gillingham, Harro
+  - Godfrey Memorial Library, comp., American Genealogical-Biographical Ind
+  - Gov't of Canada, Index to Bounty Claims, Record Type: Index to Bounty C
+  - Government of Canada, Canadian Census for 1901, Film:T6520(Arisaig/Havr
+  - Government of Canada, Census of 1871, Series: District 201 Antigonish, P
+  - Government of Nova Scotia, Nova Scotia Census of 1817, Pages: Antigonis
+  - Governor of Marseilles
+  - Graduation
+  - Grampa Cobett Bertie and Missy
+  - Grand Duke
+  - Grand Duke of Kiev
+  - Grandes Familles
+  - Gravesite
+  - Guertin, Iris, Rose, comp, Connecticut Soldiers, French and Indian War, 1
+  - Guillaume_longue_epee_rouen_jn
+  - Guysborough Sketches and Essays
+  - Hamilton, Rosanna, comp., British Chancery Records, 1386-1558 (Ancestry
+  - Harvey Gullon  Thomas Huestis & His Descendents, North Cumberlan
+  - Hebert Acadian database, Url: http://genweb.net/~hebert/
+  - Hebert, Hebert Acadian database, Url: http://genweb.net/~hebert/
+  - Henrietta Mahinaku Trask, Mahina Trask Maxey, Interviewer: Leanne Maxey M
+  - Henry Lanouette
+  - Henry1
+  - Herbert Olding's Ancestor Charts
+  - Heritage Consulting, Millennium File (Online publication - Provo, UT, U
+  - Herzog
+  - Historical Data Systems, comp, U.S., Civil War Soldier Records and Prof
+  - History Files, The -- The King Lists
+  - History of Antigonish
+  - History of Gorham, Maine
+  - History of the County of Antigonish
+  - History of the Town of Middleboro, Massachussetts
+  - Hodges, Margaret, Hopkins of the Mayflower (New York, 1972)
+  - Hon.
+  - Honorable
+  - Hopkins of the Mayflower
+  - How He Died:
+  - Howard Frazier, Source #12 (15 Jan 2003)
+  - Howland GEDCOM File
+  - Huestis / Bigney Family, Recipient: Joel Morin, Address: Greely ON, Autho
+  - Hugh Webb, Are we 6 or 7 cousins, Recipient: Joel Morin, Address: Antig
+  - Human Family Project
+  - Ii
+  - Iii
+  - Illness
+  - Immigration
+  - Index to Bounty Claims, Record Type: Index to Bounty Claims, File Number
+  - Information of cemetary tombstone
+  - International Geneological Index
+  - International Geneological Index (1998, The Church of Jesus Christ of L
+  - International genealogical Index
+  - Internet Medieval Sourcebook, Url: http://www.fordham.edu/halsall/sbook.h
+  - Internet Medieval Sourcebook, Url:http://www.fordham.edu/halsall/sbook.
+  - Isabelle Crispo, Genealogical notes from Isabelle Crispo
+  - Iv
+  - Ix
+  - J. Alton Alexander, Melinda Bigney, Recipient: Joel Morin, Address: Ott
+  - Jacobus, Donald, TAG
+  - James F Wilman Research, Recipient: Joel Morin, Author Address: Holden, M
+  - Jeanne Beauvais Genealogy Research
+  - Joanne deBellefeuille
+  - Joanne deBellefeuille-Landry, Joanne deBellefeuille
+  - John 'Jack' Wilmot Brown, Jr, Deposition by John 'Jack' W. Brown
+  - John Burke, pp, Letter of introduction of John Corbet and Margaret Corb
+  - Jos athanase alphonsine 1940
+  - Joseph Athanase Morin, Interviewer: Joel Morin, Informant Address: Ste-Cl
+  - Just Rooting Around the Randall Family Tree
+  - Karen DeCoste Perusse, COSTE Family
+  - Kevin Foohey, Interviewer: Joel Morin, Informant Address: San Diego CA
+  - Kevin Foohey, Kevin Foohey, Interviewer: Joel Morin, Informant Address: S
+  - King
+  - King of Britain
+  - King of Dumnonia and Brittany
+  - LDS Baptism
+  - LDS Confirmation
+  - LDS Endowment
+  - LDS Initiatory
+  - LDS Seal to parents
+  - LDS Seal to spouse
+  - La_Bonne_Soupe_Habitant[1]
+  - Lackland_smaller
+  - Lady
+  - Lady of Villemomble
+  - Laird of Craignish
+  - Laird of Creich Castle
+  - Land
+  - Landry wedding
+  - LeonEmerentienne
+  - LeonMorin
+  - Leonard Cunningham, The Cunningham Family of Antigonish
+  - Letter of introduction of John Corbet and Margaret Corbet alias Casey b
+  - Letterhead for the Dolmelynllyn Estate (National Trust for Places of Hist
+  - Letterhead for the Dolmelynllyn Estate (National Trust for Places ofHis
+  - Lewis GEDCOM File
+  - LifeSketch
+  - Liudolf,_Duke_of_Saxony
+  - Living
+  - Lloyd Boucher, research compiled from Antigonish Co.: Roman Catholic pa
+  - Lord
+  - Lord of Pembroke
+  - Lord of Villereau en Chastin
+  - Lori Steadman's Genealogical Database
+  - LotharRichardII10thcentury
+  - Louis-VI
+  - Lt-Col
+  - Lt.
+  - Lt.Col. W. H. Turton, The Plantagenet Ancestry (Baltimore, 1975)
+  - Lucie LeBlanc Consentino, Acadian & French Ancestral Home
+  - Macdonald, Elizabeth, Notes kept by Elizabeth Macdonald
+  - Major
+  - Major Joseph Athanase Morin ED, Joseph Athanase Morin, Interviewer: Joe
+  - MarieDesangesCorriveau
+  - Mark Corbett Obit
+  - Markwithgrave-1
+  - Marriage
+  - Marriage Bann
+  - Marriage Contract
+  - Marriage License
+  - Marriage Notice
+  - Marriage Settlement
+  - Mary
+  - MaryCorbett
+  - Mathilde_0_de_ringelheim
+  - Matthew Geneological Research Foundation Web Site
+  - Matthew Geneological Research Foundation, Matthew Geneological Research F
+  - Mayflower
+  - Mayflower Births and Deaths
+  - Mayflower Families Through 5 Generations
+  - Mayflower Marriages
+  - McLellan, History of Gorham, Maine
+  - Methodist Mariages
+  - Mgr.
+  - Mike Smith Research
+  - Mike Smith, Mike Smith Research (CompuServe)
+  - Milit
+  - Milit-Beg
+  - Milit-End
+  - Military
+  - Mireile Lacasse
+  - Misc
+  - Miscellaneous
+  - Mission
+  - Mme
+  - Mme.
+  - More family info:
+  - Mrs.
+  - Namesake
+  - National Society, Daughters of the American Revolution, Daughters of th
+  - Nationality
+  - Naturalization
+  - Nelson, Dr. Abiel Ward, History of the Town of Middleboro, Massachusset
+  - New England Historical and Genealogical Society Register
+  - Norma Rosen, Recipient: Joel Morin, Address: normajr@mail.ocis.net
+  - Notes kept by Elizabeth Macdonald
+  - Nova Scotia Census of 1817, Pages: Antigonish, Co. Sydney, Record Info: R
+  - Nova Scotia Photo Archives
+  - Nova Scotia Vital Records Register
+  - Occupation
+  - Old King Coel
+  - Ordination
+  - Otis, Amis, Genealogical Notes of Barnstable Families (Otis, Amis, Balt
+  - Otto_I,_Duke_of_Saxony (1)
+  - Otto_I_Manuscriptum_Mediolanen
+  - P L Kessler <plk@@globalnet.co.uk>, History Files, The -- The King List
+  - P L Kessler <plk@globalnet.co.uk>, History Files, The -- The King Lists (
+  - Paine, Josiah, Early Settlers of Eastham (Sturges Library, Barnstable M
+  - Parliament of Canada, Canadian Parliamentary Guide (Office of Publicati
+  - Pat Welch's Genealogical Research
+  - Patrikios
+  - Paulette  Boudreault-Gilbert, just got off the phone with Helene....:) j
+  - Person-Source
+  - Philias Morin
+  - Philias Morin Marie Blanche
+  - Pierre Lacasse
+  - Pierre Miville, un ancetre exceptionnel
+  - Plantagenet Ancestry of 17th Century Colonists
+  - Plymouth Colony, its History and People 1620-1691
+  - Plymouth Records
+  - Prince
+  - Prince of Wales
+  - Princess
+  - Princess Of Iceland
+  - Principal person involved, Deposition by principal individual
+  - Probate
+  - Professor
+  - Proof Emma was the wife of Vincent Meigs
+  - Property
+  - Ptacnik_Mechtilda
+  - Queen
+  - Queen of Dal Riada
+  - Queen of Dublin
+  - Raoul-1
+  - Rebecca Cushman Sherman Will
+  - Record of Burials, St-Patrick's parish, Quebec, Volume: 1937
+  - Ref #
+  - Ref # (Fam)
+  - Reference No
+  - Reference No (Family)
+  - Reginal Olivier, Your Ancient Canadian Family Ties
+  - Religion
+  - Report of research carried on by Katherine MacDonald 541 Chisolm Stree Ne
+  - Report of research carried on by Katherine MacDonald 541 Chisolm StreeN
+  - Research by Colin Corbett
+  - Research compiled by Francis Snyder [sent via Jim Fraser]
+  - Research compiled by Francis Snyder [sent via Jim Fraser] (1998)
+  - Research done by Lissa Soergel
+  - Residence
+  - Residence (family)
+  - Restaurant Aux Anciens Canadiens website, Url:http://www.auxancienscana
+  - Retirement
+  - Rev.
+  - Rev. D.J. Rankin, History of the County of Antigonish (Mika Publishing, B
+  - Reverend
+  - Richar_fearless_statue_in_fala
+  - Richard_good_statue_in_falaise
+  - Robert_II_de_France
+  - Robert_magnificent_statue_in_f
+  - Roderick W. Stuart, Royalty for Commoners (Baltimore, 1988)
+  - Roi
+  - Rollo_statue_in_falaise
+  - Ron Frazier, Fougeres of North America (3.29.00)
+  - Roser, Susan B., Mayflower Births and Deaths
+  - Royal Highness ancestry of the royal child
+  - Royal Message of condolence
+  - Royalty for Commoners
+  - Saint
+  - Saint_Arnould
+  - Sainte
+  - Savage, James, Genealogical Dictionary of the First Settlers of New Eng
+  - Seigneur
+  - Seigneur d'Ecury
+  - Senator
+  - Separated
+  - Separation
+  - Sergeant
+  - Sgt
+  - Sgt.
+  - Sherriff
+  - Sir
+  - Sir Ian Moncreiffe of That Ilk, Royal Highness ancestry of the royal ch
+  - Sire
+  - Soc Sec No
+  - Source #12
+  - Source #3
+  - Source #4
+  - Source #77
+  - Source #78
+  - Source #8
+  - Squire
+  - St-Paul's church records, Subject: St-Paul's Church Records
+  - St-Paul's church records, Subject: St-Paul's Church Records (Havre Bouc
+  - St.
+  - St_Olga_2
+  - Stillborn
+  - Stratton, Eugene Aubrey, Plymouth Colony, its History and People 1620-1
+  - Sue Dyer, Windsor, Nova Scotia, CAN, mailto:dyer@@busicomp.ns.ca
+  - Sue Dyer, Windsor, Nova Scotia, CAN, mailto:dyer@busicomp.ns.ca
+  - TAG
+  - The Anglo-Saxon Chronicles, Url: http://www.yale.edu/lawweb/avalon/angsax
+  - The Anglo-Saxon Chronicles, Url:http://www.yale.edu/lawweb/avalon/angsa
+  - The Antigonish Casket
+  - The Antigonish Casket (1 oct 1891)
+  - The Carolingian Empire
+  - The Cunningham Family of Antigonish
+  - The History of the Town of Antigonish
+  - The Lineage and Ancestry of H.R.H. Prince Charles, Prince of Wales
+  - The Mayflower Descendant
+  - The New England Register and Genealogy, Colonial Families of the United
+  - The New England Register and Genealogy, Colonial Families of the United S
+  - The Nobility of the Holy Roman Empire, Subject: Nobility BMD data
+  - The Online Medieval and Classical Library, Url:http://sunsite.berkeley.
+  - The Ottawa Citizen: Craig HUGHES, Location: Ottawa (17nov2012)
+  - The Oxford Illustrated History of Medieval Europe
+  - The Plantagenet Ancestry
+  - The Russian Chronicles
+  - The Russian Chronicles (London, 1990)
+  - Thunder Bay Mariages 1910 bess
+  - Title
+  - Title (Nobility)
+  - Title of Nobility
+  - Tony & Grand-mere Lacasse
+  - Tony - Sheffield Park
+  - Typewritten genealogical notes collated by an unknown person, provided b
+  - United States National Archives, Civil War Service Records (Ancestry.co
+  - University of Hull
+  - University of Hull: http://www.dcs.hull.ac.uk/public/genealogy/royal/
+  - Up the Johns! The Story of the Royal Regina Rifles, Url: http://www.warch
+  - V
+  - Vi
+  - Vicomte
+  - Vii
+  - Viii
+  - Vladimir.of.Kiev.3
+  - WWW Genealogical Index
+  - War Diary, Regina Rifles Regiment of Canada
+  - Web Page
+  - Wikipedia, Url: http://en.wikipedia.org
+  - Will
+  - William1
+  - William_longsword_statue_in_fa
+  - WilliamofWarenne
+  - World Family Tree, Url: http://trees.ancestry.ca
+  - World Wide Web Site
+  - Your Ancient Canadian Family Ties
+  - _Shakespeare
+  - alexis bertie 35th anniversay
+  - alexis corriveau c1900
+  - alexis corriveau desanges lali
+  - alphonsine lacasse birth
+  - athanase morin birth
+  - bertie aug80
+  - bertie with folks
+  - bess-corbett-burial-record
+  - boucherie Philias
+  - cohabit
+  - corbett girls july 1926 detail
+  - corbett-1
+  - corbett-3 crop
+  - corbett-4crop
+  - crowned
+  - depositions by various family members
+  - doncorbett-1
+  - doncorbett-10
+  - doncorbett-11
+  - doncorbett-12
+  - doncorbett-13
+  - doncorbett-14
+  - doncorbett-15
+  - doncorbett-16
+  - doncorbett-17
+  - doncorbett-2
+  - doncorbett-3
+  - doncorbett-4
+  - doncorbett-5
+  - doncorbett-6
+  - doncorbett-7
+  - doncorbett-8
+  - doncorbett-9
+  - doucet
+  - duc d'Aquitaine
+  - family research link
+  - florido morin burial
+  - florido morin desanges corrive
+  - francois papa noel78
+  - hay2
+  - immigration
+  - jacques miville catherine bail
+  - joseph leon morin birth
+  - joseph leon morin mariage
+  - just got off the phone with Helene....:) just got off the phone with Hele
+  - karen bertie joelwedding dec82
+  - king
+  - king_louis_vii_of_france
+  - leon morin birth
+  - leon morin burial
+  - leon morin emerentienne rousse
+  - mary elizabeth macdonald
+  - mstone
+  - of Anjou
+  - of Castile
+  - of Portugal
+  - philias-mariage-full
+  - quality: 1
+  - raoul mary alexis fleur grampa
+  - research compiled from Antigonish Co.: Roman Catholic parish records of S
+  - roi
+  - saint_olga
+  - suevic Chieftain
+  - tony gus noel78
+  - tony new year 1981
+  - tony therese yvan
+  - wife of ferreolus
+  - www.dcs.hull.ac.uk, Url: www.dcs.hull.ac.uk
+  - yvan cecile tony colette
+
+French:
+  - Adrien Bergeron, s.s.s., Le Grand Arrangement des Acadiens au Québec (L
+  - Ancestors of Marie de France, Record Type: genealogy research documentati
+  - Anonyme, Dictionnaire Généalogique Drouin (Institut Drouin, Montreal)
+  - Anonyme, Repertoire alphabetique des mariages des Canadiens-Francais (I
+  - Antoine de Nadaillac's WebPage, Genealogie et Dynasties Europeennes, Url
+  - Antoine de Nadaillac, Antoine de Nadaillac's WebPage, Genealogie et Dyn
+  - Armorial Général de la France
+  - Armorial Général de la France (De l'Imprimerie de Jacques Collombat, Pr
+  - Armé Chevalier Par Le Duc De Savoie en 1445
+  - Arsenault, Bona, Histoire et genealogie des Acadiens (Léméac, Montreal, 1
+  - Athanase Morin avec cousines
+  - Athanase avec alphonsine lacas
+  - Athanase avec grandmere Lacass
+  - Athanase avec la famille a son
+  - Athanase avec la famille augme
+  - Biographic-bibliographic church encyclopedia, Url: http://www.bautz.de/bb
+  - Biographic-bibliographic church encyclopedia, Url:http://www.bautz.de/b
+  - Bonneau, Louis-Philippe, Les Familles MORIN de la Cote-du-Sud (Societe d
+  - Catherine de Baillon: Enquête sur une fille du roi
+  - Christian Settipani, Nos Ancêtres de l'Antiquité (Paris, 1991)
+  - Claude Drouin, Repertoire Alphabetique des Mariages Canadian-Francais d
+  - Constance.-Walter.le.Blount.ancestors.ged
+  - Contrat de mariage
+  - Contrat de mariage entre Pierre Hudon dit Beaulieu et Marie Gobeil
+  - Dame De Cressia
+  - De Graven van Limburg-Stirum
+  - De Graven van Limburg-Stirum (Assen, Amsterdam, 1976)
+  - Dictionnaire Biographique du Canada
+  - Dictionnaire Biographique du Canada (Les Presses de l'Universite Laval, Q
+  - Dictionnaire Genealogique de la Famille RACINE en Amerique
+  - Dictionnaire Généalogique Drouin
+  - Dictionnaire biographique du Canada en ligne: Dictionnaire biographique
+  - Dictionnaire biographique du Canada en ligne: Dictionnaire biographique d
+  - Dictionnaire de la France Médiévale
+  - Dictionnaire genealogique des familles canadiennes
+  - Dictionnaire genealogique des familles du Quebec
+  - Dictionnaire généalogique des familles acadiennes
+  - Duc de Normandie
+  - Duke de Bretagne
+  - Ella Oliver Gleason, Recipient: Joël Morin, Author E-mail: beelgl1@aol.co
+  - Ella Ross, Ella Ross, Recipient: Joël Morin, Author E-mail: beelgl1@@ao
+  - Ella Ross, Ella Ross, Recipient: Joël Morin, Author E-mail: beelgl1@aol
+  - Extrait du mortuaire de Catherine de Cordé
+  - G. & A. AUREJAC, Domaine de Canals, La Bouffière, 82800 Bioule, FRANCE,
+  - G. & A. AUREJAC, Domaine de Canals, La Bouffière, 82800 Bioule, FRANCE, E
+  - GEDCOM File C:\TMGW\BMI-MAT_.TMG submitted by Denis Beauregard, 726 de l
+  - GEDCOM File C:\TMGW\BMIFAUT_.TMG submitted by Denis Beauregard, 726 de l
+  - GenWeb Bas-du-fleuve - les grandes familles, Url: http://www.microtec.net
+  - GenWeb Bas-du-fleuve - les grandes familles, Url:http://www.microtec.ne
+  - Genealogics - Leo van de Pas, Url: http://www.genealogics.org
+  - Genealogie des familles originaires des comtes de Montmagny, L'Islet, Bel
+  - Genealogisches Handbuch des Adels Fürstliche
+  - H.J. Birch, Genealogisches Handbuch des Adels Fürstliche (Kopenhagen, 1
+  - Heritiere De Vallengoujart
+  - Histoire et genealogie des Acadiens
+  - Index des mariages Loiselle
+  - Inspection Voyage of Sieur de La Roque
+  - Inspection Voyage of Sieur de La Roque (1752)
+  - Inventaire de la succession des biens
+  - Jacques Saillot, Les seize quartiers des Reines et Imperatrices Francai
+  - Jean Favier, Dictionnaire de la France Médiévale (Librairie Arthème Fay
+  - Jean François Louis Jeantin, Manuel de la Meuse histoire de Montmedy et d
+  - Jette, Rene, Dictionnaire genealogique des familles du Quebec (Montreal
+  - Joël Jean MacDonald Morin, Deposition Joel Morin
+  - Kenneth Breau Research, Recipient: Joël Morin, Address: Greely Ontario, A
+  - Kenneth Breau, Kenneth Breau Research, Recipient: Joël Morin, Address: G
+  - L'Ancêtre
+  - L'Ancêtre (Société généalogique de Québec)
+  - Lascaris de Vintimille Royal Gateway, Url: fp-www.wwnet.net/~dulongj/bail
+  - Lascaris de Vintimille Royal Gateway, Url:fp-www.wwnet.net/~dulongj/bai
+  - Le Centre de généalogie francophone d'Amérique, Url: http://www.genealogi
+  - Le Centre de généalogie francophone d'Amérique, Url:http://www.genealog
+  - Le Grand Arrangement des Acadiens au Québec
+  - Leo van de Pas, Ancestors of Marie de France, Record Type: genealogy re
+  - Les Ancêtres de Richard Paul Francois Frederic BORRI, Url: http://www.ma-
+  - Les Ancêtres de Richard Paul Francois Frederic BORRI, Url:http://www.ma
+  - Les Familles MORIN de la Cote-du-Sud
+  - Les seize quartiers des Reines et Imperatrices Francaises
+  - Lieutenant
+  - Lieutenant-Major
+  - Loiselle, Index des mariages Loiselle
+  - Louis-Félix_Amiel-Philippe_II_
+  - LEncyclopédie de lhistoire du Québec, Url: http://www2.marianopolis.edu
+  - L’Encyclopédie de l’histoire du Québec, Url:http://www2.marianopolis.ed
+  - M. L'Abbé Armand Proulx, Mariages de St-Roch des Aulnaies (Editions Ber
+  - Mariages de St-Roch des Aulnaies
+  - Mariages et necrologie - St-Charles de Bellechasse
+  - Marie-Noëlle Tanguay
+  - Maud de St Valery website, Url:http://freespace.virgin.net/doug.thompso
+  - Memoires de la Societe Genealogique Canadienne Francaise
+  - Mes Aïeux.com, Url: http://www.mesaieux.com/
+  - Ministere des Affaires culturelles, Place-Royale. Les familles-souches (
+  - Nos Ancêtres de l'Antiquité
+  - Orphelines en France, pionnières au Canada: les Filles du roi au XVIIe si
+  - PRDH - Programme de recherche en démographie historique., Url:http://ww
+  - Pierre Miville, un ancêtre exceptionnel
+  - Place-Royale. Les familles-souches
+  - Raymond Ouimet & Nicole Mauger, Catherine de Baillon: Enquête sur une f
+  - Raymond Ouimet avec la collaboration de Suzanne Miville-Deschênes, Pier
+  - Raymond Ouimet, Pierre Miville, un ancetre exceptionnel (Les éditions d
+  - Receuil de genealogies de comtes de Beauce, Dorchester, Frontenac
+  - Registre de la paroisse de Ste-Claire
+  - Registre paroissial de St-Charles de Bellechasse
+  - Registre paroissial de St-Gervais de Bellechasse
+  - René Jetté, John P. DuLong, Roland-Yves Gagné, Gail F. Moreau, Joseph A
+  - René Jetté, dossier transmis à Denis BEAUREGARD concernant Franclieu, H
+  - Repertoire Alphabetique des Mariages Canadian-Francais de 1760 a 1935
+  - Repertoire alphabetique des mariages des Canadiens-Francais
+  - Répertoire des actes de St-Vallier
+  - Répertoire des actes de bapteme, mariage sépulture et des recensements d
+  - SGCF, Memoires de la Societe Genealogique Canadienne Francaise (Jun 194
+  - Seigneur De Mont Saint Jean
+  - Seigneur de Kouaskagouche
+  - Site Web Les Immeubles Doncaster, Inc. Ste-Agathe-des-Monts, QC, Url: htt
+  - Site Web Les Immeubles Doncaster, Inc. Ste-Agathe-des-Monts, QC, Url:ht
+  - Site Web de l'Assemblée Nationale du Québec, Url: http://www.assnat.qc.ca
+  - Site Web de l'Assemblée Nationale du Québec, Url:http://www.assnat.qc.c
+  - Sr de Valence et de la Mascotterie
+  - Stephen A. White, Dictionnaire généalogique des familles acadiennes (Ce
+  - Stephen A. White, Source #3 (Centre DÕŽtudes Acadiennes - UniversitŽ de M
+  - Stephen A. White, Source #4 (Centre DÕŽtudes Acadiennes - UniversitŽ de M
+  - Sylvie Marie Cécile Gertrude Morin, Deposition Sylvie Morin
+  - Table d'ascendance de Catherine Baillon (12 générations)
+  - Talbot, Eloi-Gerard, Genealogie des familles originaires des comtes de M
+  - Talbot, Fr. Eloi-Gerard, fm, Receuil de genealogies de comtes de Beauce
+  - Tanguay, Cyprien, Dictionnaire genealogique des familles canadiennes (Q
+  - Yves Landry, Orphelines en France, pionnières au Canada: les Filles du r
+  - anne couvent 1675 acte de sepu
+  - dame de Saint-Martin-aux-Champs
+  - dossier transmis à Denis BEAUREGARD concernant Franclieu, Héere, Guyot, R
+  - du Mont Cassel entre Flamands et Franco-Normands
+  - ecuyer seigneur de Prasville
+  - recherche généalogique de Denis Beauregard et al
+  - seigneur d'Andelot, de Beaupont, de Beauvoir, de Loysia, de Crilla et de la Cuei
+  - seigneur de Coligny, d'Andelot, de Beaupont, de Beauvoir, de Fromentes, de Rouss
+  - seigneur de Coligny, d'Andelot, de Cresia, de Beaupont, de Beauvoir, de Fromente
+
+German:
+  - Ancestry.com, Texas, Birth Index, 1903-1997 (Ancestry.com Operations In
+  - Arrival in Quebec
+  - Arrived in Boston, British Colonial America in 1634 from Suffolk, England
+  - Cheryl A. Chandler, Lot #14 RR #2, Sayre, , PA  18840 as submitted in GED
+  - Dr. A. W. E. Dek, Genealogie der Graven van Holland (Zaltbommel, 1969)
+  - Duprey, Tag (Clare), Notes made in correspondence to Herb Olding and Ma
+  - Genealogie der Graven van Holland
+  - Notes made in correspondence to Herb Olding and Martha Feltmate.
+  - Ragnar meets Kráka (Aslaug), as imagined by August Malmström.
+  - Roman Catholic Cemetary in Merigomish NS
+  - Siegfried Rosch, Caroli Magni Progenies (Neustadt an der Aisch, 1977)
+  - Stammtafeln zur Geschichte der Europaischen Staaten, Volume: 4 volumes
+  - Tony at a castle in UK
+  - W.K. Prinz von Isenburg, Stammtafeln zur Geschichte der Europaischen St
+  - bertie hugs tony in CT
+
+Italian:
+  - , <I>Report of research carried on by Katherine MacDonald 541 Chisolm S
+  - Ancestry.com and The Church of Jesus Christ of Latter-day Saints, 1881 E
+  - Ancestry.com, <i>1891 Census of Canada</i> (Provo, UT, USA: Ancestry.co
+  - Ancestry.com, <i>1901 Census of Canada</i> (Provo, UT, USA: Ancestry.co
+  - Ancestry.com, <i>Connecticut, Deaths and Burials Index, 1650-1934</i> (
+  - Ancestry.com, <i>UK and Ireland, Find A Grave Index, 1300s-Current</i> (
+  - Ancestry.com, <i>Web: Netherlands, GenealogieOnline Trees Index, 1000-2
+  - Ancestry.com, Indiana, Marriages, 1810-2001 (Ancestry.com Operations, I
+  - Ancestry.com, World War I Draft Registration Cards, 1917-1918 (Online p
+  - Bruce Corbett, Email from Bruce Corbett, Recipient: Joel Morin, Author E
+  - CaryAnn Hess, 24743 Sunday Drive, Moreno Valley, CA  92557 as submitted i
+  - Charleen E. Roa, Resarch by Charleen E. Roa, Recipient: Joel Morin, Aut
+  - Cobb, John E., Cobb Chronicles, An Overview of the clan (Durant Publica
+  - Dini Corbett-Lourenco, e-mail message from Dini Corbett-Lourenco, Recip
+  - E-mail from Eve Stabler, Recipient: Joel Morin, Address: Oahu, Hawaii, Au
+  - Edmund West comp., <i>Family Data Collection - Deaths</i> (Provo, UT, U
+  - Email from Bruce Corbett, Recipient: Joel Morin, Author E-mail: bruce.lid
+  - GEDCOM File C:\Program Files\The Master Genealogist\GEDCOM\bayfield.ged i
+  - Heritage Consulting, <i>Millennium File</i> (Provo, UT, USA: Ancestry.c
+  - I
+  - Melinda Bigney, Recipient: Joel Morin, Address: Ottawa ON, Author E-mail
+  - National Archives and Records Administration, U.S., Civil War Pension I
+  - Resarch by Charleen E. Roa, Recipient: Joel Morin, Author E-mail: croa@cv
+  - Roser, Susan E., Mayflower Marriages (Baltimore, 1990)
+  - The Online Medieval and Classical Library, Url: http://sunsite.berkeley.e
+  - Updates, Recipient: Brenda King, Address: BC, Author E-mail: rallen@axion
+  - Yates Publishing, <i>U.S. and International Marriage Records, 1560-1900
+  - e-mail message from Dini Corbett-Lourenco, Recipient: Joel Morin, Autho
+
+Portuguese:
+  - A Dictionary of Scottish Emigrants to Canada
+  - A History of the County of Antigonish, Nova Scotia
+  - A Representative
+  - A.C. Jost, Guysborough Sketches and Essays Kentville Publishing Co., Ke
+  - A.F. Church Map of Antigonish County
+  - A.W.M., Bragdon-Byerly (genealogy) (December, 1930)
+  - Acadian GenWeb Site, Url: http://www.geocities.com/Heartland/Meadows/2700
+  - Acadian GenWeb Site, Url:http://www.geocities.com/Heartland/Meadows/270
+  - Ancestry.com and Genealogical Research Library (Brampton Ontario, Canad
+  - Ancestry.com and Genealogical Research Library (Brampton, Ontario, Cana
+  - Ancestry.com and The Church of Jesus Christ of Latter-day Saints, 1861 C
+  - Ancestry.com and The Church of Jesus Christ of Latter-day Saints, 1871 C
+  - Ancestry.com and The Church of Jesus Christ of Latter-day Saints, 1880 U
+  - Ancestry.com and The Church of Jesus Christ of Latter-day Saints, 1881 C
+  - Ancestry.com, 1810 United States Federal Census (Ancestry.com Operation
+  - Ancestry.com, 1841 England Census (Online publication - Provo, UT, USA: T
+  - Ancestry.com, 1850 United States Federal Census (Ancestry.com Operation
+  - Ancestry.com, 1850 United States Federal Census (Online publication - P
+  - Ancestry.com, 1851 Census of Canada East, Canada West, New Brunswick, a
+  - Ancestry.com, 1851 England Census (Online publication - Provo, UT, USA: T
+  - Ancestry.com, 1860 United States Federal Census (Online publication - P
+  - Ancestry.com, 1870 United States Federal Census (Ancestry.com Operation
+  - Ancestry.com, 1891 Census of Canada (Ancestry.com Operations Inc)
+  - Ancestry.com, 1900 United States Federal Census (Ancestry.com Operation
+  - Ancestry.com, 1900 United States Federal Census (Online publication - P
+  - Ancestry.com, 1901 Census of Canada (Ancestry.com Operations Inc)
+  - Ancestry.com, 1910 United States Federal Census (Online publication - P
+  - Ancestry.com, 1911 Census of Canada (Ancestry.com Operations Inc)
+  - Ancestry.com, 1920 United States Federal Census (Ancestry.com Operation
+  - Ancestry.com, 1920 United States Federal Census (Online publication - P
+  - Ancestry.com, 1930 United States Federal Census (Ancestry.com Operation
+  - Ancestry.com, 1930 United States Federal Census (Online publication - P
+  - Ancestry.com, 1940 United States Federal Census (Ancestry.com Operation
+  - Ancestry.com, Acadia, Canada, Vital and Church Records (Drouin Collecti
+  - Ancestry.com, American Marriages Before 1699 (Online publication - Prov
+  - Ancestry.com, Bristol, England, Select Church of England Parish Registe
+  - Ancestry.com, California Passenger and Crew Lists, 1893-1957 (Online pu
+  - Ancestry.com, California, Passenger and Crew Lists, 1882-1959 (Ancestry
+  - Ancestry.com, California, Voter Registrations, 1900-1968 (Ancestry.com O
+  - Ancestry.com, Cambridge University Alumni, 1261-1900 (Online publicatio
+  - Ancestry.com, Canada, Find A Grave Index, 1600s-Current (Ancestry.com O
+  - Ancestry.com, Canada, Seafarers of the Atlantic Provinces, 1789-1935 (A
+  - Ancestry.com, Canadian Civil Servants Lists, 1872-1900 (Ancestry.com Op
+  - Ancestry.com, Colonial Families of the USA, 1607-1775 (Ancestry.com Ope
+  - Ancestry.com, Connecticut Town Birth Records, pre-1870 (Barbour Collect
+  - Ancestry.com, Connecticut Town Marriage Records, pre-1870 (Barbour Coll
+  - Ancestry.com, Connecticut, Church Record Abstracts, 1630-1920
+  - Ancestry.com, Connecticut, Deaths and Burials Index, 1650-1934 (Ancestr
+  - Ancestry.com, Connecticut, Hale Collection of Cemetery Inscriptions and N
+  - Ancestry.com, Connecticut, Town Marriage Records, pre-1870 (Barbour Col
+  - Ancestry.com, Dictionary of National Biography, Volumes 1-20, 22 (Onlin
+  - Ancestry.com, England, Pallot's Marriage Index, 1780-1837 (Ancestry.com O
+  - Ancestry.com, England, Select Births and Christenings, 1538-1975 (Ances
+  - Ancestry.com, England, Select Marriages, 1538–1973 (Ancestry.com Operat
+  - Ancestry.com, Franklin County, Virginia, Marriage Bond Index, 1786-1858 (
+  - Ancestry.com, Germany, Select Marriages, 1558-1929 (Ancestry.com Operat
+  - Ancestry.com, Global, Find A Grave Index for Burials at Sea and other S
+  - Ancestry.com, Hawaii, Compiled Census Index, 1900-1910 (Ancestry.com Op
+  - Ancestry.com, Hawaii, Passenger Lists, 1941-1948 (Ancestry.com Operatio
+  - Ancestry.com, Honolulu, Hawaii, Passenger and Crew Lists, 1900-1959 (An
+  - Ancestry.com, Indiana Deaths, 1882-1920 (Online publication - Provo, UT
+  - Ancestry.com, Ireland, Select Births and Baptisms, 1620-1911 (Ancestry.
+  - Ancestry.com, Kansas State Census Collection, 1855-1925 (Ancestry.com O
+  - Ancestry.com, Kent, England, Extracted Parish Records (Ancestry.com Ope
+  - Ancestry.com, Kentucky, Birth Records, 1847-1911 (Ancestry.com Operatio
+  - Ancestry.com, Kentucky, County Marriage Records, 1783-1965 (Ancestry.co
+  - Ancestry.com, Kentucky, Death Records, 1852-1964 (Ancestry.com Operatio
+  - Ancestry.com, London, England, Church of England Baptisms, Marriages an
+  - Ancestry.com, London, England, Church of England Deaths and Burials, 18
+  - Ancestry.com, London, England, Church of England Marriages and Banns, 1
+  - Ancestry.com, Massachusetts, Compiled Marriages, 1633-1850 (Ancestry.co
+  - Ancestry.com, Massachusetts, Town and Vital Records, 1620-1988 (Ancestr
+  - Ancestry.com, Mecklenburg-Schwerin, Germany, Census, 1900 (Ancestry.com O
+  - Ancestry.com, New Hampshire, Births and Christenings Index, 1714-1904 (
+  - Ancestry.com, North America, Family Histories, 1500-2000 (Ancestry.com O
+  - Ancestry.com, Norway, Select Baptisms, 1634-1927 (Ancestry.com Operatio
+  - Ancestry.com, Nova Scotia, Canada, Census, Assessment and Poll Tax Reco
+  - Ancestry.com, Nova Scotia, Canada, Deaths, 1864-1877, 1890-1960 (Ancest
+  - Ancestry.com, Nova Scotia, Canada, Land Petitions, 1765-1800 (Ancestry.
+  - Ancestry.com, Ontario and Nova Scotia, Census, 1800-1842 (Ancestry.com O
+  - Ancestry.com, Oxford University Alumni, 1500-1886 (Ancestry.com Operati
+  - Ancestry.com, Quebec, Canada, Land Grants, 1763-1890 (Ancestry.com Oper
+  - Ancestry.com, Quebec, Canada, Vital and Church Records (Drouin Collecti
+  - Ancestry.com, Scotland, Select Births and Baptisms, 1564-1950 (Ancestry
+  - Ancestry.com, Scotland, Select Marriages, 1561-1910 (Ancestry.com Opera
+  - Ancestry.com, Shropshire, England, Extracted Church of England Parish R
+  - Ancestry.com, Social Security Death Index (Online publication - Provo, U
+  - Ancestry.com, Somerset, England, Extracted Church of England  Parish Re
+  - Ancestry.com, Spain, Select Baptisms, 1502-1940 (Ancestry.com Operation
+  - Ancestry.com, Suffolk, England, Extracted Church of England Parish Reco
+  - Ancestry.com, U.S. City Directories, 1822-1995 (Ancestry.com Operations
+  - Ancestry.com, U.S. Public Records Index, 1950-1993, Volume 1 (Ancestry.
+  - Ancestry.com, U.S. Public Records Index, 1950-1993, Volume 2 (Ancestry.
+  - Ancestry.com, U.S. WWII Draft Cards Young Men, 1940-1947 (Ancestry.com O
+  - Ancestry.com, U.S. and Canada, Passenger and Immigration Lists Index, 1
+  - Ancestry.com, U.S., Civil War Draft Registrations Records, 1863-1865 (A
+  - Ancestry.com, U.S., Craftperson Files, 1600-1995 (Ancestry.com Operatio
+  - Ancestry.com, U.S., Find A Grave Index, 1600s-Current (Ancestry.com Ope
+  - Ancestry.com, U.S., New England Marriages Prior to 1700 (Ancestry.com O
+  - Ancestry.com, U.S., Newspaper Extractions from the Northeast, 1704-1930 (
+  - Ancestry.com, U.S., Social Security Applications and Claims Index, 1936
+  - Ancestry.com, U.S., Sons of the American Revolution Membership Applicat
+  - Ancestry.com, UK and Ireland, Find A Grave Index, 1300s-Current (Ancest
+  - Ancestry.com, UK, Registers of Births, Marriages and Deaths From Britis
+  - Ancestry.com, Virginia, Select Marriages, 1785-1940 (Ancestry.com Opera
+  - Ancestry.com, Washington, Death Records, 1883-1960 (Ancestry.com Operat
+  - Ancestry.com, Washington, Select Death Certificates, 1907-1960 (Ancestr
+  - Ancestry.com, Web:  Moray, Scotland, Local Heritage Index, 1632-2014 (A
+  - Ancestry.com, Web: International, Find A Grave Index (Ancestry.com Oper
+  - Ancestry.com, Web: Netherlands, GenealogieOnline Trees Index, 1000-2015 (
+  - Anonymous, A.F. Church Map of Antigonish County (A.F. Church Company, H
+  - Anonymous, Canadian Army Personnel records - Maj. J.A. Morin, Subject: M
+  - Anonymous, Canadian Immigrant Records, Part One (Ancestry.com Operation
+  - Athanase Morin a Sussex
+  - Britannia Internet Magazine, Url: http://www.britannia.com/
+  - Britannia Internet Magazine, Url: http://www.britannia.com/ (Britannia.
+  - Canadian Army Personnel records - Maj. J.A. Morin, Subject: Maj. J.A. Mor
+  - Cape Jack Road - A Journey to the Past
+  - CaryAnn Hess, 24743 Sunday Drive, Moreno Valley, CA  92557 as submitted
+  - Cheryl A. Chandler, Lot #14 RR #2, Sayre, , PA  18840 as submitted inGE
+  - David A. Blocher research, Url: www.ancestry.com
+  - David A. Blocher, David A. Blocher research, Url: www.ancestry.com
+  - Desmond's Concise History of Ireland, Url: http://members.tripod.com/~Jer
+  - Desmond's Concise History of Ireland, Url:http://members.tripod.com/~Je
+  - Dodd, Jordan, Virginia, Compiled Marriages, 1660-1800 (Ancestry.com Ope
+  - Edmund West, comp., Family Data Collection - Births (Ancestry.com Opera
+  - Edmund West, comp., Family Data Collection - Deaths (Ancestry.com Opera
+  - Edmund West, comp., Family Data Collection - Marriages (Ancestry.com Op
+  - Encyclopedia Britannica (www.britannica.com)
+  - Encyclopedia Brittanica Online; http://www.britannica.com/
+  - Europaische Stammtafeln (J.A. Stargardt Verlag, Marburg)
+  - Evelyn DeCoste, Cape Jack Road - A Journey to the Past (privately print
+  - Evelyn DeCoste, The Village and East - Havre Boucher, A Journey To The P
+  - Fichier Origine, Url: http://www.genealogie.com/fichier.origine/
+  - Find A Grave
+  - Gerald Paget, The Lineage and Ancestry of H.R.H. Prince Charles, Prince o
+  - Heritage Consulting, Millennium File (Ancestry.com Operations Inc)
+  - Human Family Project (12 July 2001, users.legacyfamilytree.com\Northern
+  - Image of a page of recorded marriages for Ontario, Url:http://search.an
+  - Information from Rod O'Sullivan
+  - James F. Wilman, James F Wilman Research, Recipient: Joel Morin, Author A
+  - Leanne Mahinaku Maxey, Leanne Maxey Morin, Informant Address: Edmonton, A
+  - Lettre-Athanase-Morin-a-Alphon
+  - Lt-Col Roderick Bernard O'Sullivan Cd, Information from Rod O'Sullivan
+  - Margaret R. O'Brien, Corbett Family Bible
+  - Mes Aieux, Url: http://www.mesaieux.com
+  - National Park Service, U.S. Civil War Soldiers, 1861-1865 (Ancestry.com O
+  - Rev. D.J. Rankin, A History of the County of Antigonish, Nova Scotia (T
+  - Rev. Ronald and Charlie MacGillivray, Editor: Raymond A. MacLean, Histo
+  - Robin Penner's Genealogy Database, Url: http://www.altenberg.com/eric/Doc
+  - Robin Penner's Genealogy Database, Url:http://www.altenberg.com/eric/Do
+  - Society of Genealogists, Genealogists' Magazine Journal of the Society o
+  - Stephen A. White, Source #77 (Centre DÕŽtudes Acadiennes - UniversitŽ d
+  - Stephen A. White, Source #78 (Centre DÕŽtudes Acadiennes - UniversitŽ d
+  - Stewart A.G. Mein, Up the Johns! The Story of the Royal Regina Rifles, U
+  - The Village and East - Havre Boucher, A Journey To The Past
+  - Willis L. Irish, Descendants of John Irish The Immigrant 1629-1963 and A
+  - Yates Publishing, U.S. and International Marriage Records, 1560-1900 (A
+  - Yates Publishing, U.S. and International Marriage Records, 1560-1900 (O
+  - early british kingdoms, Url: http://www.earlybritishkingdoms.com/
+  - esearch done by Ancestry.com members, Url: www.ancestry.com
+  - thePeerage.com - A genealogical survey of the peerage of Britain as wel
+
+### OCCUPATIONS FOUND IN DATA ###
+
+English:
+  - "The Rich" Counselor of Paris
+  - # adopted
+  - # married twice?
+  - #adopted
+  - 1st Earl of Huntingdon
+  - 1st husband
+  - 1st husband of H1511
+  - 2 husbands
+  - 2nd Earl of Leicester
+  - 2nd Lord Of Leinster
+  - Abbesse
+  - Ambassadeur
+  - Amiral
+  - Architecte
+  - Attleboro, Mass & Wallace
+  - Audiologist
+  - Avocate
+  - Barber, Glass Maker and Weaver
+  - Boulanger
+  - Brooklyn, NY
+
+French:
+  - Abbé
+  - Administratrice du magasin
+  - Amiral de l'Empire, Régent de Byzance de 919 à 944.
+  - Apothicaire de la reine et épicier.
+  - Avocat au Parlement de Paris
+  - Bourgmestre De Bruges
+  - Camérier
+  - Capitaine
+  - Capitaine (de cette cote)
+  - Capitaine des Milices
+  - Chancelier du roi Clothaire III
+  - Châtelaine
+  - Châtelaine d'Amiens.
+  - Co-Roi de Thuringe
+  - Commandant de la Paphlagonie.
+  - Commanding Officer of Les Voltigeurs de Quebec
+  - Comte d'Anjou, Duc de Bretagne
+  - Comte d'Anjou. Il occupe le comté de Nantes de 907 à 919.
+  - Comte d'Artois, Vitry, Pévèle & Mélantois.
+  - Comte dans le Cambraisis
+
+German:
+  - "subregulus" of Kent, Essex, Sussex and Surrey in 825 or 828, and succeed
+  - # divorced in 1979
+  - 'Civil and Criminal Leutenant (Judge) for Quebec in 1651. Around July 20
+  - A merchant in Antigonish, Nova Scotia.
+  - Comte d'Aulun & Markgraf von Septimanie
+  - Count von Ringelheim
+  - He was the first School Master in Gloucester  and Town Clerk for 51 years .
+  - Held various management positions in Min of Justice.
+  - King in Soissons
+  - Lived in Wentworth
+  - Lives in Toronto
+  - Minister (preacher).  In 1832 he received a certificate authorizing, hi
+  - Pfalzgraf in Saxony
+  - a businessman, in the field of contruction materials
+  - a cabinet maker and farmer from Freetown, PEI  moved to VAncouver in 191
+  - an artist. She was employed as a set painter for the movie "Boy in Blue
+  - an artist. She was employed as a set painter for the movie "Boy in Blue"when she died.
+  - died in infancy?
+  - enroled in Canadian Army as a gunner in the Royal Canadian ArtilleryAnti-Tank. Pay $1.30 per diem.
+  - killed early in WW 1
+
+Italian:
+  - King of Scotland, succeeding Donald I
+  - Referendarius to Dagobert I, King of Neustria
+  - m. C.E. Casey
+  - m. Frederick E. Bettle
+
+Portuguese:
+  - Chemical engineer. Charles was a member of the American Chemical Societ
+  - Founder of a shipbuilding business / Carpenter
+  - RCMP constable then a businessman
+  - Transport Canada as an Air Traffic Controller then as a  Manager
+  - a businessman and stock broker
+  - a carpenter
+  - a magistrate
+  - a prof. at Wesleyan
+  - a twin
+  - founder of O'Hara Bakeries
+  - kept a public house
+  - m. a cousin, his 2nd wife
+  - owners of a bowling alley. They purchased the business and turned it int
+  - prince of Armenia. Byzantine Curopalates (a title awarded to the rulers o
+  - school teacher; a customs collector; a Postmaster and a Commissionner o
+  - some give name as Bessie
+  - started articling as sollicitor.
+  - was a loyalist. He was a member of Capt. Kipps Dragoons, Westchester Corp
+
+Spanish:
+  - navigator, farmer-fisherman (Ònavigateur, habt-pcheurÓ) (as a navigator
+
+### EVENT TYPES FOUND IN DATA ###
+
+English:
+  - 1678 Census
+  - Alternate Death Place
+  - Anecdote
+  - Arrival
+  - Biography
+  - Buried and Location
+  - Cause of Death
+  - Census (fam)
+  - Christened
+  - Coat of Arms Documentation
+  - Departure
+  - Emprisonnement
+  - Event-Misc
+  - Fact
+  - Gravesite
+  - How He Died:
+  - Illness
+  - Land
+  - LifeSketch
+  - Marriage Notice
+  - Mayflower
+  - Milit
+  - Milit-Beg
+  - Milit-End
+  - Military
+  - Misc
+  - More family info:
+  - Person-Source
+  - Proof Emma was the wife of Vincent Meigs
+  - Ref #
+  - Ref # (Fam)
+  - Residence
+  - Separated
+  - Title
+  - Title (Nobility)
+  - Title of Nobility
+  - cohabit
+  - crowned
+  - family research link
+  - immigration
+
+French:
+  - Contrat de mariage
+  - Contrat de mariage entre Pierre Hudon dit Beaulieu et Marie Gobeil
+  - Inventaire de la succession des biens
+
+German:
+  - Arrival in Quebec
+  - Arrived in Boston, British Colonial America in 1634 from Suffolk, England
+
+Portuguese:
+  - A Representative
+  - Find A Grave
+
+### SAMPLE PLACES BY LANGUAGE ###
+
+English:
+  - Bailleul-en-Vimeu, Somme, Picardy, France
+  - C. North C. Levesque
+  - Hancock Ceme. Quincy, Norfolk, Massachusetts, United States
+  - Mercia, Medieval States
+  - Reviers, Calvados, Normandy, France
+  - Slain Fighting Norse, Limerick, Ireland Sitric
+  - Ui Chennselaig, Laigin, Ireland
+  - Woodhouses, Staffordshire
+  - Wymondham, England
+  - of, Wakefield, Yorkshire, England
+
+French:
+  - Bonsecours, L'Islet, Montmagny, Québec, Canada
+  - Böblingen, Neckarkreis, Württemberg, Deutschland
+  - Calw, Kreis Calw, Württemberg, Deutschland
+  - Chatillon sur Long,France
+  - Gournay Sur Marne, Seine Et Marne, Ile De France, France
+  - Kamouraska, Québec, Canada
+  - Le Puy, France
+  - Maine, Pays de la Loire, Mayenne, Pays de la Loire, France
+  - Notre-Dame de Soissons, Aisne, France
+  - Villefranche-de-Rouergue, Aveyron, Occitanie, France
+
+German:
+  - Bohemia (Böhmen, Bohemen), Heiliges Römisches Reich
+  - Burg Schwarzenburg, Rötz, Landkreis Cham, Bayern, Deutschland
+  - Cologne, Köln, Nordrhein-Westfalen, Germany
+  - First Congregational Church in Gloucester, Essex, Massachusetts Bay, British Colonial America
+  - Höskuldsstadhir, Austur-Húnavatnssýsla, Iceland
+  - Of, Pöchlarn, Niederösterreich, Austria
+  - Sulzbach, Ruhstorf an der Rott, Landkreis Passau, Bayern, Allemagne
+  - Tromöy, Norway
+  - Vohburg an der Donau Landkreis Pfaffenhofen an der Ilm
+  - an Island in the Rhine near Ingelheim, Germany
+
+Italian:
+  - Basilica di Sant'Anastasia al Palatino, Provincia di Roma, Italy, Roman Empire
+  - Basilica di Sant'Anastasia al Palatino, Roma, Roman Empire
+  - Killed by his cousin Clovis I - Frankish Kingdom
+  - Lucca, Provincia di Lucca, Toscana, Italy
+  - Marino (Spoleto) Spoleto East Adelgis (Spoleto) di Spoleto
+  - Oyster Bay, Queens County, L. I.
+  - Provincia di Barletta - Andria - Trani, Puglia, Italy
+  - Provincia di Lucca, Tuscany, Italy
+  - Provincia di Udine, ItalyFriuli-Venezia Giulia, Italy
+  - San Agostino, Provincia di Pavia, Lombardy, Italy
+
+Portuguese:
+  - Aberconway, A, Wales
+  - As Sheriff of, Inverness-shire, Scotland
+  - Died a prisoner, Wallingford Castle, Berkshire, , England
+  - Guimarães Oliveira do Castelo, Guimarães, Braga, Portugal
+  - Land Granr, a., Scotland
+  - Nogueira, Cinfães, Viseu, Portugal
+  - Pucklechurch, Saint Thomas a Becket, Gloucestershire, England
+  - Saint Thomas a Beckett, Ramsey, Huntingdon, England
+  - Stratford On A., Warwickshire, England
+  - São Pulo, Amazonas, Brazil
+
+Spanish:
+  - Bigorre, Mediodía-Pirineos, Francia
+  - Cataluña, Spain
+  - Diocese of Barcelona, Cataluña, España
+  - Laguardia, Álava, Kingdom of Navarre
+  - León, Leon, Castilla-Leon, Spain
+  - Rangárvallasýsla, Suðurland, Iceland
+  - Southold, Suffolk, N. Y.
+  - Valladolid, Castilla y León, Espagne
+  - Vididalur, Vestur-Húnavatnssýsla, Norðurland Vestra, Iceland
+  - Zaragoza, Aragón, España
+
+================================================================================
+COMPREHENSIVE EQUIVALENCY TABLE
+================================================================================
+
+### MILITARY RANKS ###
+
+|------------|------------|------------|------------|------------|------------|
+|  English   |   French   |   German   |  Italian   | Portuguese |  Spanish   |
+|------------|------------|------------|------------|------------|------------|
+| Lieutenant | Lieutenant |  Leutnant  |  Tenente   |  Tenente   |  Teniente  |
+|  Captain   | Capitaine  | Hauptmann  |  Capitano  |  Capitão   |  Capitán   |
+|   Major    |   Major    |   Major    |  Maggiore  |   Major    |   Mayor    |
+|  Colonel   |  Colonel   |   Oberst   | Colonnello |  Coronel   |  Coronel   |
+|  General   |  Général   |  General   |  Generale  |  General   |  General   |
+|  Private   |   Soldat   |   Soldat   |  Soldato   |  Soldado   |  Soldado   |
+|  Sergeant  |  Sergent   | Feldwebel  |  Sergente  |  Sargento  |  Sargento  |
+|------------|------------|------------|------------|------------|------------|
+
+### RELATIONSHIPS ###
+
+|-----------|-----------|-----------|-----------|-----------|-----------|
+|  English  |  French   |  German   |  Italian  | Portuguese |  Spanish  |
+|-----------|-----------|-----------|-----------|-----------|-----------|
+|  Father   |   Père    |   Vater   |   Padre   |    Pai    |   Padre   |
+|  Mother   |   Mère    |  Mutter   |   Madre   |    Mãe    |   Madre   |
+|    Son    |   Fils    |   Sohn    |  Figlio   |   Filho   |   Hijo    |
+| Daughter  |   Fille   |  Tochter  |  Figlia   |   Filha   |   Hija    |
+|  Brother  |   Frère   |  Bruder   | Fratello  |   Irmão   |  Hermano  |
+|  Sister   |   Sœur    | Schwester |  Sorella  |   Irmã    |  Hermana  |
+|  Husband  |   Mari    |  Ehemann  |  Marito   |  Marido   |  Esposo   |
+|   Wife    |   Femme   |  Ehefrau  |  Moglie   |  Esposa   |  Esposa   |
+|-----------|-----------|-----------|-----------|-----------|-----------|
+
+### EVENT TYPES ###
+
+|-------------------|-------------------|-------------------|-------------------|-------------------|-------------------|
+|      English      |      French       |      German       |      Italian      |    Portuguese     |      Spanish      |
+|-------------------|-------------------|-------------------|-------------------|-------------------|-------------------|
+|       Birth       |     Naissance     |      Geburt       |      Nascita      |    Nascimento     |    Nacimiento     |
+|       Death       |       Décès       |        Tod        |       Morte       |       Óbito       |     Defunción     |
+|     Marriage      |      Mariage      |     Hochzeit      |    Matrimonio     |     Casamento     |    Matrimonio     |
+|      Baptism      |      Baptême      |       Taufe       |     Battesimo     |      Batismo      |     Bautismo      |
+|      Burial       |    Inhumation     |    Beerdigung     |     Sepoltura     |   Sepultamento    |     Entierro      |
+|     Residence     |     Résidence     |     Wohnsitz      |     Residenza     |    Residência     |    Residencia     |
+|    Occupation     |    Profession     |       Beruf       |    Occupazione    |     Ocupação      |     Ocupación     |
+| Military Service  | Service Militaire |   Militärdienst   | Servizio Militare |  Serviço Militar  | Servicio Militar  |
+|     Education     |     Éducation     |      Bildung      |    Istruzione     |     Educação      |     Educación     |
+|    Immigration    |    Immigration    |   Einwanderung    |   Immigrazione    |     Imigração     |    Inmigración    |
+|    Emigration     |    Émigration     |   Auswanderung    |    Emigrazione    |     Emigração     |    Emigración     |
+|-------------------|-------------------|-------------------|-------------------|-------------------|-------------------|
+
+### TITLES ###
+
+|----------|----------|----------|----------|----------|----------|
+| English  |  French  |  German  | Italian  | Portuguese | Spanish  |
+|----------|----------|----------|----------|----------|----------|
+|   Mr.    |    M.    |   Herr   |   Sig.   |   Sr.    |   Sr.    |
+|   Mrs.   |   Mme    |   Frau   |  Sig.ra  |   Sra.   |   Sra.   |
+|   Miss   |   Mlle   | Fräulein |  Sig.na  |  Srta.   |  Srta.   |
+|   Dr.    |    Dr    |   Dr.    |  Dott.   |   Dr.    |   Dr.    |
+|   Rev.   |   Rév.   | Pfarrer  |   Rev.   |   Rev.   |   Rev.   |
+|   Sir    |  Sieur   |   Herr   | Signore  |  Senhor  |  Señor   |
+|   Lady   |   Dame   |   Frau   | Signora  | Senhora  |  Señora  |
+|   Lord   | Seigneur |   Herr   | Signore  |  Senhor  |  Señor   |
+|----------|----------|----------|----------|----------|----------|
+
+### OCCUPATIONS ###
+
+|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+|      English       |       French       |       German       |      Italian       |     Portuguese     |      Spanish       |
+|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+|       Farmer       |    Cultivateur     |       Bauer        |    Agricoltore     |     Agricultor     |     Agricultor     |
+|      Merchant      |     Commerçant     |      Kaufmann      |    Commerciante    |    Comerciante     |    Comerciante     |
+|      Teacher       |     Enseignant     |       Lehrer       |     Insegnante     |     Professor      |      Maestro       |
+|       Doctor       |      Médecin       |        Arzt        |       Medico       |       Médico       |       Médico       |
+|       Lawyer       |       Avocat       |       Anwalt       |      Avvocato      |      Advogado      |      Abogado       |
+|     Carpenter      |    Charpentier     |     Zimmermann     |     Falegname      |    Carpinteiro     |     Carpintero     |
+|     Blacksmith     |      Forgeron      |      Schmied       |       Fabbro       |      Ferreiro      |      Herrero       |
+|     Postmaster     |  Maître de poste   |    Postmeister     | Direttore postale  | Chefe dos correios |  Jefe de correos   |
+|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+
+================================================================================
+ANALYSIS COMPLETE
+================================================================================
+
+Total text samples analyzed: 19089
+
+Languages detected:
+  - English: 17427 occurrences
+  - French: 1270 occurrences
+  - Portuguese: 260 occurrences
+  - German: 86 occurrences
+  - Italian: 45 occurrences
+  - Spanish: 1 occurrences
