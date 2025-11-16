@@ -21,14 +21,20 @@ from ...ml.models import (
 from ...ml.utils import ModelRegistry, MLConfig
 from ...rootsmagic.adapter import RootsMagicDatabase
 
+# Import continual learning router
+from .continual_learning import router as learning_router
+
 logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
     title="GedMerge ML API",
-    description="Machine Learning API for genealogy duplicate detection and data quality",
-    version="1.0.0",
+    description="Machine Learning API for genealogy duplicate detection and data quality with continual learning",
+    version="2.0.0",
 )
+
+# Include continual learning router
+app.include_router(learning_router)
 
 # Mount static files and templates
 BASE_DIR = Path(__file__).parent.parent
