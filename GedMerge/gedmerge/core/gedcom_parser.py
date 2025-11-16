@@ -9,6 +9,7 @@ from gedcom.element.family import FamilyElement
 from .person import Person
 from .family import Family
 from .event import Event
+from .place import Place
 
 
 class GedcomParser:
@@ -237,7 +238,7 @@ class GedcomParser:
         return events
 
     def _parse_event(self, element, event_type: str) -> Optional[Event]:
-        """Parse a single event element.
+        """Parse a single event element with multilingual place support.
 
         Args:
             element: Event element
@@ -258,7 +259,8 @@ class GedcomParser:
             if tag == 'DATE' and value:
                 date = value
             elif tag == 'PLAC' and value:
-                place = value
+                # Parse place with multilingual support
+                place = self._parse_place(child, value)
             elif tag == 'NOTE' and value:
                 notes = value if not notes else notes + ' ' + value
             elif tag == 'TYPE' and value:
@@ -279,6 +281,111 @@ class GedcomParser:
             notes=notes,
             attributes=attributes
         )
+
+    def _parse_place(self, element, primary_name: str) -> Place:
+        """Parse a place with multilingual variations and coordinates.
+
+        GEDCOM 5.5.1 supports place variations through:
+        - ROMN: Romanized variation
+        - FONE: Phonetic variation
+        - MAP/LATI/LONG: Coordinates
+
+        Args:
+            element: PLAC element
+            primary_name: The primary place name
+
+        Returns:
+            Place object with multilingual support
+        """
+        names = {'en': primary_name}  # Default to English for primary name
+        latitude = None
+        longitude = None
+        notes = None
+
+        # Parse sub-elements for variations and coordinates
+        for child in element.get_child_elements():
+            tag = child.get_tag()
+            value = child.get_value()
+
+            if tag == 'ROMN' and value:
+                # Romanized version (often used for non-Latin scripts)
+                # Check for language attribute
+                lang = self._get_language_from_element(child) or 'romn'
+                names[lang] = value
+            elif tag == 'FONE' and value:
+                # Phonetic version
+                lang = self._get_language_from_element(child) or 'fone'
+                names[lang] = value
+            elif tag == 'MAP':
+                # Parse coordinates from MAP subelement
+                for map_child in child.get_child_elements():
+                    map_tag = map_child.get_tag()
+                    map_value = map_child.get_value()
+                    if map_tag == 'LATI' and map_value:
+                        latitude = self._parse_coordinate(map_value)
+                    elif map_tag == 'LONG' and map_value:
+                        longitude = self._parse_coordinate(map_value)
+            elif tag == 'NOTE' and value:
+                notes = value
+
+        # Create Place object
+        place = Place(
+            names=names,
+            primary_language='en',
+            latitude=latitude,
+            longitude=longitude,
+            notes=notes
+        )
+
+        return place
+
+    def _get_language_from_element(self, element) -> Optional[str]:
+        """Extract language code from GEDCOM element.
+
+        Args:
+            element: GEDCOM element that may have a LANG subtag
+
+        Returns:
+            Language code or None
+        """
+        for child in element.get_child_elements():
+            if child.get_tag() == 'LANG':
+                return child.get_value()
+        return None
+
+    def _parse_coordinate(self, coord_str: str) -> Optional[float]:
+        """Parse a GEDCOM coordinate string to decimal degrees.
+
+        GEDCOM coordinates can be in formats like:
+        - N18.150833
+        - S18.150833
+        - E45.234567
+        - W45.234567
+
+        Args:
+            coord_str: Coordinate string from GEDCOM
+
+        Returns:
+            Coordinate as decimal degrees, or None if parsing fails
+        """
+        if not coord_str:
+            return None
+
+        try:
+            coord_str = coord_str.strip()
+            # Check for directional prefix
+            if coord_str[0] in 'NSEW':
+                direction = coord_str[0]
+                value = float(coord_str[1:])
+                # South and West are negative
+                if direction in 'SW':
+                    value = -value
+                return value
+            else:
+                # Try parsing as plain number
+                return float(coord_str)
+        except (ValueError, IndexError):
+            return None
 
     def save_gedcom(self, filepath: str, individuals: Dict[str, Person],
                     families: Dict[str, Family]) -> None:
@@ -364,7 +471,7 @@ class GedcomParser:
             self._write_event(f, event, level=1)
 
     def _write_event(self, f, event: Event, level: int) -> None:
-        """Write an event to the GEDCOM file.
+        """Write an event to the GEDCOM file with multilingual place support.
 
         Args:
             f: File object
@@ -377,7 +484,7 @@ class GedcomParser:
             f.write(f"{level + 1} DATE {event.date}\n")
 
         if event.place:
-            f.write(f"{level + 1} PLAC {event.place}\n")
+            self._write_place(f, event.place, level + 1)
 
         if event.notes:
             # Handle long notes (GEDCOM has line length limits)
@@ -385,6 +492,79 @@ class GedcomParser:
 
         if 'TYPE' in event.attributes:
             f.write(f"{level + 1} TYPE {event.attributes['TYPE']}\n")
+
+    def _write_place(self, f, place, level: int) -> None:
+        """Write a place to the GEDCOM file with multilingual support.
+
+        Args:
+            f: File object
+            place: Place object or string
+            level: GEDCOM level for the place
+        """
+        # Handle backward compatibility with string places
+        if isinstance(place, str):
+            f.write(f"{level} PLAC {place}\n")
+            return
+
+        if not isinstance(place, Place):
+            return
+
+        # Write primary place name
+        primary_name = place.get_name()
+        if not primary_name:
+            return
+
+        f.write(f"{level} PLAC {primary_name}\n")
+
+        # Write multilingual variations
+        all_names = place.get_all_names()
+        for lang_code, name in all_names.items():
+            # Skip the primary language (already written)
+            if lang_code == place.primary_language:
+                continue
+
+            # Write romanized or phonetic variations
+            if lang_code == 'romn':
+                f.write(f"{level + 1} ROMN {name}\n")
+            elif lang_code == 'fone':
+                f.write(f"{level + 1} FONE {name}\n")
+            else:
+                # Write as romanized with language tag
+                f.write(f"{level + 1} ROMN {name}\n")
+                f.write(f"{level + 2} LANG {lang_code}\n")
+
+        # Write coordinates if available
+        if place.has_coordinates():
+            f.write(f"{level + 1} MAP\n")
+            # Format coordinates in GEDCOM format (N/S for latitude, E/W for longitude)
+            lat_str = self._format_coordinate(place.latitude, 'NS')
+            lon_str = self._format_coordinate(place.longitude, 'EW')
+            if lat_str:
+                f.write(f"{level + 2} LATI {lat_str}\n")
+            if lon_str:
+                f.write(f"{level + 2} LONG {lon_str}\n")
+
+    def _format_coordinate(self, coord: Optional[float], directions: str) -> Optional[str]:
+        """Format a coordinate for GEDCOM output.
+
+        Args:
+            coord: Coordinate in decimal degrees
+            directions: Two-character string for positive/negative (e.g., 'NS' or 'EW')
+
+        Returns:
+            Formatted coordinate string or None
+        """
+        if coord is None:
+            return None
+
+        # Determine direction
+        if coord >= 0:
+            direction = directions[0]
+        else:
+            direction = directions[1]
+            coord = -coord
+
+        return f"{direction}{coord}"
 
     def _write_long_text(self, f, tag: str, text: str, level: int,
                          max_length: int = 248) -> None:

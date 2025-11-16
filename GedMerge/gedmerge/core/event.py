@@ -1,7 +1,8 @@
 """Event class for representing GEDCOM events."""
 
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Union
+from .place import Place
 
 
 @dataclass
@@ -11,7 +12,7 @@ class Event:
     Attributes:
         type: The type of event (e.g., 'BIRT', 'DEAT', 'MARR', 'BURI')
         date: The date of the event in GEDCOM format
-        place: The place where the event occurred
+        place: The place where the event occurred (can be a Place object or string for backward compatibility)
         notes: Additional notes about the event
         sources: List of source citations for this event
         attributes: Additional GEDCOM attributes (e.g., AGE, CAUS)
@@ -19,18 +20,53 @@ class Event:
 
     type: str
     date: Optional[str] = None
-    place: Optional[str] = None
+    place: Optional[Union[Place, str]] = None
     notes: Optional[str] = None
     sources: list = field(default_factory=list)
     attributes: Dict[str, Any] = field(default_factory=dict)
+
+    def __post_init__(self):
+        """Convert string places to Place objects for consistency."""
+        if isinstance(self.place, str) and self.place:
+            self.place = Place.from_string(self.place)
+
+    def get_place_name(self, language: Optional[str] = None) -> Optional[str]:
+        """Get the place name, handling both Place objects and strings.
+
+        Args:
+            language: Optional language code for multilingual places
+
+        Returns:
+            The place name as a string, or None if no place is set
+        """
+        if self.place is None:
+            return None
+        if isinstance(self.place, Place):
+            return self.place.get_name(language)
+        return str(self.place)
+
+    def set_place(self, place: Union[Place, str, None], language: str = 'en') -> None:
+        """Set the place for this event.
+
+        Args:
+            place: Place object, string, or None
+            language: Language code if place is a string (default: 'en')
+        """
+        if place is None:
+            self.place = None
+        elif isinstance(place, str):
+            self.place = Place.from_string(place, language)
+        else:
+            self.place = place
 
     def __str__(self) -> str:
         """Return a human-readable string representation of the event."""
         parts = [self.type]
         if self.date:
             parts.append(f"on {self.date}")
-        if self.place:
-            parts.append(f"at {self.place}")
+        place_name = self.get_place_name()
+        if place_name:
+            parts.append(f"at {place_name}")
         return " ".join(parts)
 
     def __repr__(self) -> str:
@@ -39,10 +75,17 @@ class Event:
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert event to dictionary representation."""
+        place_data = None
+        if self.place is not None:
+            if isinstance(self.place, Place):
+                place_data = self.place.to_dict()
+            else:
+                place_data = str(self.place)
+
         return {
             'type': self.type,
             'date': self.date,
-            'place': self.place,
+            'place': place_data,
             'notes': self.notes,
             'sources': self.sources,
             'attributes': self.attributes
@@ -58,10 +101,18 @@ class Event:
         Returns:
             Event instance
         """
+        place_data = data.get('place')
+        place = None
+        if place_data is not None:
+            if isinstance(place_data, dict):
+                place = Place.from_dict(place_data)
+            else:
+                place = str(place_data)
+
         return cls(
             type=data['type'],
             date=data.get('date'),
-            place=data.get('place'),
+            place=place,
             notes=data.get('notes'),
             sources=data.get('sources', []),
             attributes=data.get('attributes', {})
