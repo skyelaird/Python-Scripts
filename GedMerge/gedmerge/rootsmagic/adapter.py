@@ -518,3 +518,251 @@ class RootsMagicDatabase:
             return True
 
         return False
+
+    # ========== Insert/Update Methods ==========
+
+    def insert_person(self, person: RMPerson) -> int:
+        """Insert a new person into the database.
+
+        Args:
+            person: RMPerson object to insert (person_id will be auto-assigned)
+
+        Returns:
+            The assigned PersonID
+        """
+        cursor = self.conn.cursor()
+
+        # Insert into PersonTable
+        cursor.execute("""
+            INSERT INTO PersonTable (
+                UniqueID, Sex, ParentID, SpouseID, Color,
+                Color1, Color2, Color3, Color4, Color5, Color6, Color7, Color8, Color9,
+                Relate1, Relate2, Flags, Living, IsPrivate, Proof, Bookmark, Note, UTCModDate
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            person.unique_id or '',
+            person.sex or 3,
+            person.parent_id or 0,
+            person.spouse_id or 0,
+            person.color or 0,
+            person.color1 or 0,
+            person.color2 or 0,
+            person.color3 or 0,
+            person.color4 or 0,
+            person.color5 or 0,
+            person.color6 or 0,
+            person.color7 or 0,
+            person.color8 or 0,
+            person.color9 or 0,
+            person.relate1 or 0,
+            person.relate2 or 0,
+            person.flags or 0,
+            1 if person.living else 0,
+            1 if person.is_private else 0,
+            person.proof or 0,
+            1 if person.bookmark else 0,
+            person.note or '',
+            person.utc_mod_date or 0,
+        ))
+
+        person_id = cursor.lastrowid
+
+        # Insert names
+        if person.names:
+            for name in person.names:
+                self.insert_name(person_id, name)
+
+        # Insert events
+        if person.events:
+            for event in person.events:
+                event.owner_id = person_id
+                self.insert_event(event)
+
+        return person_id
+
+    def insert_name(self, person_id: int, name: RMName) -> int:
+        """Insert a name for a person.
+
+        Args:
+            person_id: PersonID to associate name with
+            name: RMName object to insert
+
+        Returns:
+            The assigned NameID
+        """
+        cursor = self.conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO NameTable (
+                OwnerID, Surname, Given, Prefix, Suffix, Nickname,
+                NameType, Date, SortDate, IsPrimary, IsPrivate, Proof,
+                Sentence, Note, BirthYear, DeathYear, Display, Language,
+                UTCModDate, SurnameMP, GivenMP, NicknameMP
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            person_id,
+            name.surname or '',
+            name.given or '',
+            name.prefix or '',
+            name.suffix or '',
+            name.nickname or '',
+            name.name_type or 0,
+            name.date or '',
+            name.sort_date or 0,
+            1 if name.is_primary else 0,
+            1 if name.is_private else 0,
+            name.proof or 0,
+            name.sentence or '',
+            name.note or '',
+            name.birth_year or 0,
+            name.death_year or 0,
+            name.display or '',
+            name.language or '',
+            name.utc_mod_date or 0,
+            name.surname_mp or '',
+            name.given_mp or '',
+            name.nickname_mp or '',
+        ))
+
+        return cursor.lastrowid
+
+    def insert_event(self, event: RMEvent) -> int:
+        """Insert an event.
+
+        Args:
+            event: RMEvent object to insert
+
+        Returns:
+            The assigned EventID
+        """
+        cursor = self.conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO EventTable (
+                EventType, OwnerType, OwnerID, FamilyID, PlaceID, SiteID,
+                Date, SortDate, IsPrimary, IsPrivate, Proof, Status,
+                Sentence, Details, Note, UTCModDate
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            event.event_type,
+            event.owner_type,
+            event.owner_id,
+            event.family_id or 0,
+            event.place_id or 0,
+            event.site_id or 0,
+            event.date or '',
+            event.sort_date or 0,
+            1 if event.is_primary else 0,
+            1 if event.is_private else 0,
+            event.proof or 0,
+            event.status or 0,
+            event.sentence or '',
+            event.details or '',
+            event.note or '',
+            event.utc_mod_date or 0,
+        ))
+
+        return cursor.lastrowid
+
+    def insert_family(self, family: RMFamily) -> int:
+        """Insert a family.
+
+        Args:
+            family: RMFamily object to insert
+
+        Returns:
+            The assigned FamilyID
+        """
+        cursor = self.conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO FamilyTable (
+                FatherID, MotherID, ChildID, HusbOrder, WifeOrder,
+                IsPrivate, Proof, SpouseLabel, FatherLabel, MotherLabel,
+                SpouseLabelStr, FatherLabelStr, MotherLabelStr, Note, UTCModDate
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            family.father_id or 0,
+            family.mother_id or 0,
+            family.child_id or 0,
+            family.husb_order or 0,
+            family.wife_order or 0,
+            1 if family.is_private else 0,
+            family.proof or 0,
+            family.spouse_label or 0,
+            family.father_label or 0,
+            family.mother_label or 0,
+            family.spouse_label_str or '',
+            family.father_label_str or '',
+            family.mother_label_str or '',
+            family.note or '',
+            family.utc_mod_date or 0,
+        ))
+
+        return cursor.lastrowid
+
+    def insert_child_to_family(self, family_id: int, child_id: int, child_order: int = 0) -> None:
+        """Add a child to a family.
+
+        Args:
+            family_id: FamilyID
+            child_id: PersonID of child
+            child_order: Order of child in family (0 for auto)
+        """
+        cursor = self.conn.cursor()
+
+        # Get max child order if not specified
+        if child_order == 0:
+            cursor.execute("""
+                SELECT MAX(ChildOrder) FROM ChildTable WHERE FamilyID = ?
+            """, (family_id,))
+            result = cursor.fetchone()
+            child_order = (result[0] or 0) + 1
+
+        cursor.execute("""
+            INSERT INTO ChildTable (FamilyID, ChildID, ChildOrder)
+            VALUES (?, ?, ?)
+        """, (family_id, child_id, child_order))
+
+    def update_person(self, person: RMPerson) -> None:
+        """Update an existing person.
+
+        Args:
+            person: RMPerson object with updated data
+        """
+        cursor = self.conn.cursor()
+
+        cursor.execute("""
+            UPDATE PersonTable SET
+                UniqueID = ?, Sex = ?, ParentID = ?, SpouseID = ?, Color = ?,
+                Color1 = ?, Color2 = ?, Color3 = ?, Color4 = ?, Color5 = ?,
+                Color6 = ?, Color7 = ?, Color8 = ?, Color9 = ?,
+                Relate1 = ?, Relate2 = ?, Flags = ?, Living = ?, IsPrivate = ?,
+                Proof = ?, Bookmark = ?, Note = ?, UTCModDate = ?
+            WHERE PersonID = ?
+        """, (
+            person.unique_id or '',
+            person.sex or 3,
+            person.parent_id or 0,
+            person.spouse_id or 0,
+            person.color or 0,
+            person.color1 or 0,
+            person.color2 or 0,
+            person.color3 or 0,
+            person.color4 or 0,
+            person.color5 or 0,
+            person.color6 or 0,
+            person.color7 or 0,
+            person.color8 or 0,
+            person.color9 or 0,
+            person.relate1 or 0,
+            person.relate2 or 0,
+            person.flags or 0,
+            1 if person.living else 0,
+            1 if person.is_private else 0,
+            person.proof or 0,
+            1 if person.bookmark else 0,
+            person.note or '',
+            person.utc_mod_date or 0,
+            person.person_id,
+        ))
