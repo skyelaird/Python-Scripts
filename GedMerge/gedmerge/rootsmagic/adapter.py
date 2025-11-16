@@ -519,6 +519,38 @@ class RootsMagicDatabase:
 
         return False
 
+    def ensure_parent_id_column(self) -> bool:
+        """Ensure the PlaceTable has a ParentID column for hierarchical places.
+
+        This adds the column if it doesn't exist. Safe to call multiple times.
+        ParentID references another PlaceID to create nested place hierarchies.
+
+        Example: "Cathédrale de Québec" (child) -> "Québec" (parent)
+
+        Returns:
+            True if column was added, False if it already existed
+        """
+        cursor = self.conn.cursor()
+
+        # Check if column exists
+        cursor.execute("PRAGMA table_info(PlaceTable)")
+        columns = [row[1] for row in cursor.fetchall()]
+
+        if 'ParentID' not in columns:
+            # Add the column
+            cursor.execute("""
+                ALTER TABLE PlaceTable
+                ADD COLUMN ParentID INTEGER
+            """)
+            # Create index for faster parent lookups
+            cursor.execute("""
+                CREATE INDEX IF NOT EXISTS idx_place_parent ON PlaceTable(ParentID)
+            """)
+            self.conn.commit()
+            return True
+
+        return False
+
     # ========== Insert/Update Methods ==========
 
     def insert_person(self, person: RMPerson) -> int:
