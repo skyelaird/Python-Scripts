@@ -389,7 +389,16 @@ async def upload_file(file: UploadFile = File(...)):
     try:
         # Create uploads directory if it doesn't exist
         upload_dir = BASE_DIR / "static" / "uploads"
-        upload_dir.mkdir(parents=True, exist_ok=True)
+        logger.info(f"Upload directory: {upload_dir}")
+
+        try:
+            upload_dir.mkdir(parents=True, exist_ok=True)
+        except Exception as mkdir_error:
+            logger.error(f"Failed to create upload directory {upload_dir}: {mkdir_error}")
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to create upload directory: {str(mkdir_error)}"
+            )
 
         # Generate unique filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -397,13 +406,22 @@ async def upload_file(file: UploadFile = File(...)):
         unique_filename = f"{timestamp}_{file.filename}"
         file_path = upload_dir / unique_filename
 
+        logger.info(f"Saving file to: {file_path}")
+
         # Save file
-        with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
+        try:
+            with open(file_path, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+        except Exception as save_error:
+            logger.error(f"Failed to save file {file_path}: {save_error}")
+            raise HTTPException(
+                status_code=500,
+                detail=f"Failed to save file: {str(save_error)}"
+            )
 
         file_size = os.path.getsize(file_path)
 
-        logger.info(f"File uploaded: {file_path} ({file_size} bytes)")
+        logger.info(f"File uploaded successfully: {file_path} ({file_size} bytes)")
 
         return {
             "filename": unique_filename,
@@ -412,9 +430,15 @@ async def upload_file(file: UploadFile = File(...)):
             "uploaded_at": datetime.now().isoformat(),
         }
 
+    except HTTPException:
+        # Re-raise HTTP exceptions as-is
+        raise
     except Exception as e:
-        logger.error(f"Error uploading file: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Unexpected error uploading file: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Unexpected error uploading file: {str(e)}"
+        )
 
 
 class PlacesAnalysisRequest(BaseModel):
