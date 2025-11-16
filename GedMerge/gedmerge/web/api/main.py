@@ -38,8 +38,21 @@ app.include_router(learning_router)
 
 # Mount static files and templates
 BASE_DIR = Path(__file__).parent.parent
-app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+static_dir = BASE_DIR / "static"
+templates_dir = BASE_DIR / "templates"
+
+# Only mount static files if directory exists
+if static_dir.exists():
+    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+else:
+    logger.warning(f"Static directory not found: {static_dir}")
+
+# Only initialize templates if directory exists
+if templates_dir.exists():
+    templates = Jinja2Templates(directory=str(templates_dir))
+else:
+    logger.warning(f"Templates directory not found: {templates_dir}")
+    templates = None
 
 # Global model registry
 config = MLConfig()
@@ -127,6 +140,11 @@ def load_model(model_type: str):
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
     """Main dashboard page."""
+    if templates is None:
+        return HTMLResponse(
+            content="<h1>GedMerge ML API</h1><p>API is running. Visit <a href='/docs'>/docs</a> for API documentation.</p>",
+            status_code=200
+        )
     return templates.TemplateResponse("dashboard.html", {"request": request})
 
 
