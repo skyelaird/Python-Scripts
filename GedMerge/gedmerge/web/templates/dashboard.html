@@ -292,11 +292,10 @@
     <div class="container">
         <div class="nav-tabs">
             <button class="nav-tab active" onclick="showTab('overview')">Overview</button>
-            <button class="nav-tab" onclick="showTab('models')">Models</button>
-            <button class="nav-tab" onclick="showTab('predict')">Predictions</button>
+            <button class="nav-tab" onclick="showTab('repairs')">Data Repairs</button>
+            <button class="nav-tab" onclick="showTab('quality')">Data Quality Check</button>
             <button class="nav-tab" onclick="showTab('train')">Training</button>
-            <button class="nav-tab" onclick="showTab('places')">Places Repairs</button>
-            <button class="nav-tab" onclick="showTab('quality')">Data Quality</button>
+            <button class="nav-tab" onclick="showTab('models')">Models</button>
         </div>
 
         <!-- Overview Tab -->
@@ -335,9 +334,9 @@
             <div class="card">
                 <h2>🎯 Quick Actions</h2>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button class="btn btn-primary" onclick="showTab('predict')">Run Predictions</button>
-                    <button class="btn btn-success" onclick="showTab('train')">Train Models</button>
+                    <button class="btn btn-primary" onclick="showTab('repairs')">Data Repairs</button>
                     <button class="btn btn-warning" onclick="showTab('quality')">Quality Check</button>
+                    <button class="btn btn-success" onclick="showTab('train')">Train Models</button>
                     <button class="btn btn-primary" onclick="refreshModels()">Refresh Data</button>
                 </div>
             </div>
@@ -353,30 +352,82 @@
             </div>
         </div>
 
-        <!-- Predictions Tab -->
-        <div id="predict" class="tab-content">
+        <!-- Data Repairs Tab -->
+        <div id="repairs" class="tab-content">
             <div class="card">
-                <h2>🔮 Name Matching</h2>
+                <h2>🔧 Data Repairs</h2>
+                <p style="color: #657786; margin-bottom: 1.5rem;">
+                    Repair and standardize data in your genealogy database. Upload a file or enter a path, then run specific repairs.
+                </p>
+
                 <div class="form-group">
-                    <label>First Name</label>
-                    <input type="text" id="name1" placeholder="e.g., Jean-Baptiste Dubois">
+                    <label>Database File</label>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="file" id="repairs-db-file" accept=".rmtree,.ged,.db" style="flex: 1;">
+                        <button class="btn btn-primary" onclick="uploadRepairsFile()" style="white-space: nowrap;">📤 Upload</button>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label>Second Name</label>
-                    <input type="text" id="name2" placeholder="e.g., John Baptist Dubois">
+                    <label>Or Enter Database Path</label>
+                    <input type="text" id="repairs-db-path" placeholder="/path/to/database.rmtree">
                 </div>
-                <button class="btn btn-primary" onclick="predictNameMatch()">Check Similarity</button>
-                <div id="name-match-result"></div>
+
+                <div id="repairs-upload-status"></div>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e1e8ed;">
+
+                <h3 style="margin-bottom: 1rem;">Run Repairs</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <button class="btn btn-success" onclick="repairPlaces()">🌍 Fix Places</button>
+                    <button class="btn btn-success" onclick="repairNames()">👤 Repair Names</button>
+                    <button class="btn btn-success" onclick="repairEvents()">📅 Repair Events</button>
+                    <button class="btn btn-success" onclick="repairPeople()">👨‍👩‍👧‍👦 Repair People/Families</button>
+                </div>
+
+                <div id="repairs-results" style="margin-top: 2rem;"></div>
             </div>
 
             <div class="card">
-                <h2>🌍 Language Detection</h2>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" id="lang-name" placeholder="e.g., François Müller">
+                <h2>🔍 What Each Repair Does</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">🌍 Places</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Standardize format (City, County, State, Country)</li>
+                            <li>Match multilingual variations</li>
+                            <li>Fix abbreviations</li>
+                            <li>Resolve hierarchies</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">👤 Names</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Fix reversed names</li>
+                            <li>Extract embedded variants</li>
+                            <li>Move titles to proper fields</li>
+                            <li>Standardize formatting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">📅 Events</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Validate dates</li>
+                            <li>Fix date formats</li>
+                            <li>Standardize event types</li>
+                            <li>Check chronological order</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">👨‍👩‍👧‍👦 People/Families</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Fix relationship inconsistencies</li>
+                            <li>Validate family structures</li>
+                            <li>Check for orphaned records</li>
+                            <li>Repair missing links</li>
+                        </ul>
+                    </div>
                 </div>
-                <button class="btn btn-primary" onclick="detectLanguage()">Detect Language</button>
-                <div id="language-result"></div>
             </div>
         </div>
 
@@ -422,77 +473,100 @@
             </div>
         </div>
 
-        <!-- Places Repairs Tab -->
-        <div id="places" class="tab-content">
+        <!-- Data Quality Tab -->
+        <div id="quality" class="tab-content">
             <div class="card">
-                <h2>🌍 Places Repairs & Standardization</h2>
+                <h2>🔍 Data Sanity Check</h2>
                 <p style="color: #657786; margin-bottom: 1.5rem;">
-                    Standardize and repair place names in your genealogy database. This tool helps match place name variations and apply multilingual standardization.
+                    Run comprehensive data quality checks on your genealogy database. This will examine all aspects of your data and report issues.
                 </p>
 
                 <div class="form-group">
                     <label>Database File</label>
                     <div style="display: flex; gap: 1rem; align-items: center;">
-                        <input type="file" id="places-db-file" accept=".rmtree,.ged,.db" style="flex: 1;">
-                        <button class="btn btn-primary" onclick="uploadPlacesFile()" style="white-space: nowrap;">📤 Upload</button>
+                        <input type="file" id="quality-db-file" accept=".rmtree,.ged,.db" style="flex: 1;">
+                        <button class="btn btn-primary" onclick="uploadQualityFile()" style="white-space: nowrap;">📤 Upload</button>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Or Enter Database Path</label>
-                    <input type="text" id="places-db-path" placeholder="/path/to/database.rmtree">
+                    <input type="text" id="quality-db-path" placeholder="/path/to/database.rmtree">
                 </div>
 
-                <div id="places-upload-status"></div>
+                <div id="quality-upload-status"></div>
 
                 <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                    <button class="btn btn-success" onclick="analyzePlaces()">🔍 Analyze Places</button>
-                    <button class="btn btn-warning" onclick="repairPlaces()">🔧 Repair Places</button>
+                    <button class="btn btn-warning" onclick="runSanityCheck()">🔍 Run Sanity Check</button>
+                    <button class="btn btn-success" onclick="runAllRepairs()">🔧 Repair All Issues</button>
                 </div>
 
-                <div id="places-results" style="margin-top: 2rem;"></div>
+                <div id="quality-results" style="margin-top: 2rem;"></div>
             </div>
 
             <div class="card">
-                <h2>📊 Place Statistics</h2>
-                <div id="places-stats">
-                    <p style="color: #657786;">Upload a database and analyze to see place statistics.</p>
+                <h2>📊 Quality Metrics</h2>
+                <div id="quality-stats">
+                    <p style="color: #657786;">Upload a database and run sanity check to see quality metrics.</p>
                 </div>
             </div>
 
             <div class="card">
-                <h2>🔧 Common Repairs</h2>
-                <p style="color: #657786; margin-bottom: 1rem;">
-                    The Places Repairs tool can:
-                </p>
-                <ul style="margin-left: 2rem; color: #657786;">
-                    <li>Standardize place name formats (City, County, State, Country)</li>
-                    <li>Match multilingual variations (München ↔ Munich)</li>
-                    <li>Fix common abbreviations (NY → New York)</li>
-                    <li>Resolve place hierarchies (ensure proper nesting)</li>
-                    <li>Detect and merge duplicate place entries</li>
-                    <li>Add missing standardized place names</li>
-                </ul>
+                <h2>🔍 What We Check</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">Names Quality</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Reversed names</li>
+                            <li>Embedded variants</li>
+                            <li>Titles in wrong fields</li>
+                            <li>Placeholder names</li>
+                            <li>Inconsistent formatting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">Places Quality</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Non-standardized formats</li>
+                            <li>Duplicate places</li>
+                            <li>Missing hierarchies</li>
+                            <li>Abbreviations</li>
+                            <li>Inconsistent naming</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">Events Quality</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Invalid dates</li>
+                            <li>Chronological errors</li>
+                            <li>Missing data</li>
+                            <li>Inconsistent formats</li>
+                            <li>Impossible events</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 0.5rem;">Relationships Quality</h4>
+                        <ul style="margin-left: 1.5rem; color: #657786; font-size: 0.9rem;">
+                            <li>Broken relationships</li>
+                            <li>Orphaned records</li>
+                            <li>Missing links</li>
+                            <li>Circular references</li>
+                            <li>Invalid structures</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Data Quality Tab -->
-        <div id="quality" class="tab-content">
             <div class="card">
-                <h2>🔍 Data Quality Analysis</h2>
-                <p>Data quality analysis tools will be displayed here.</p>
-                <p style="color: #657786; margin-top: 1rem;">
-                    This section provides insights into data quality issues such as:
-                </p>
-                <ul style="margin-left: 2rem; margin-top: 1rem; color: #657786;">
-                    <li>Reversed names</li>
-                    <li>Embedded variants</li>
-                    <li>Titles in wrong fields</li>
-                    <li>Missing data</li>
-                    <li>Invalid dates</li>
-                    <li>Placeholder names</li>
-                    <li>Inconsistent formatting</li>
-                </ul>
+                <h2>🎯 Workflow</h2>
+                <p style="color: #657786; margin-bottom: 1rem;">Recommended workflow for data cleanup:</p>
+                <ol style="margin-left: 2rem; color: #657786; line-height: 1.8;">
+                    <li><strong>Run Sanity Check</strong> - Identify all data quality issues</li>
+                    <li><strong>Review Issues</strong> - Examine the report and decide what to fix</li>
+                    <li><strong>Run Specific Repairs</strong> - Use the Data Repairs tab to fix each category</li>
+                    <li><strong>Verify Fixes</strong> - Run sanity check again to confirm improvements</li>
+                    <li><strong>Deduplicate</strong> - Once data is clean, run duplicate detection</li>
+                </ol>
             </div>
         </div>
     </div>
@@ -586,76 +660,97 @@
             }
         }
 
-        // Predict name match
-        async function predictNameMatch() {
-            const name1 = document.getElementById('name1').value;
-            const name2 = document.getElementById('name2').value;
+        // Upload file for repairs
+        async function uploadRepairsFile() {
+            const fileInput = document.getElementById('repairs-db-file');
+            const file = fileInput.files[0];
 
-            if (!name1 || !name2) {
-                alert('Please enter both names');
+            if (!file) {
+                alert('Please select a file to upload');
                 return;
             }
 
+            const statusDiv = document.getElementById('repairs-upload-status');
+            statusDiv.innerHTML = '<p style="color: #667eea;">⏳ Uploading file...</p>';
+
             try {
-                const response = await fetch('/api/predict/name-match', {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const response = await fetch('/api/upload', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name1, name2 })
+                    body: formData
                 });
+
+                if (!response.ok) {
+                    throw new Error(`Upload failed: ${response.statusText}`);
+                }
 
                 const result = await response.json();
 
-                const resultDiv = document.getElementById('name-match-result');
-                const similarity = (result.similarity * 100).toFixed(1);
+                // Update the database path input with uploaded file path
+                document.getElementById('repairs-db-path').value = result.file_path;
 
-                resultDiv.className = 'result ' + (result.is_match ? 'result-success' : '');
-                resultDiv.innerHTML = `
-                    <strong>Match Result:</strong> ${result.is_match ? '✅ Match' : '❌ Not a Match'}<br>
-                    <strong>Similarity:</strong> ${similarity}%
-                    <div class="progress">
-                        <div class="progress-bar" style="width: ${similarity}%"></div>
+                statusDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ File uploaded successfully!<br>
+                        <strong>Path:</strong> ${result.file_path}<br>
+                        <strong>Size:</strong> ${(result.file_size / 1024 / 1024).toFixed(2)} MB
                     </div>
                 `;
             } catch (error) {
-                const resultDiv = document.getElementById('name-match-result');
-                resultDiv.className = 'result result-error';
-                resultDiv.textContent = 'Error: ' + error.message;
+                statusDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Upload failed: ${error.message}
+                    </div>
+                `;
             }
         }
 
-        // Detect language
-        async function detectLanguage() {
-            const name = document.getElementById('lang-name').value;
+        // Upload file for quality check
+        async function uploadQualityFile() {
+            const fileInput = document.getElementById('quality-db-file');
+            const file = fileInput.files[0];
 
-            if (!name) {
-                alert('Please enter a name');
+            if (!file) {
+                alert('Please select a file to upload');
                 return;
             }
 
+            const statusDiv = document.getElementById('quality-upload-status');
+            statusDiv.innerHTML = '<p style="color: #667eea;">⏳ Uploading file...</p>';
+
             try {
-                const response = await fetch('/api/predict/language', {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const response = await fetch('/api/upload', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name })
+                    body: formData
                 });
+
+                if (!response.ok) {
+                    throw new Error(`Upload failed: ${response.statusText}`);
+                }
 
                 const result = await response.json();
 
-                const resultDiv = document.getElementById('language-result');
-                const confidence = (result.confidence * 100).toFixed(1);
+                // Update the database path input with uploaded file path
+                document.getElementById('quality-db-path').value = result.file_path;
 
-                resultDiv.className = 'result result-success';
-                resultDiv.innerHTML = `
-                    <strong>Detected Language:</strong> ${result.language.toUpperCase()}<br>
-                    <strong>Confidence:</strong> ${confidence}%
-                    <div class="progress">
-                        <div class="progress-bar" style="width: ${confidence}%"></div>
+                statusDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ File uploaded successfully!<br>
+                        <strong>Path:</strong> ${result.file_path}<br>
+                        <strong>Size:</strong> ${(result.file_size / 1024 / 1024).toFixed(2)} MB
                     </div>
                 `;
             } catch (error) {
-                const resultDiv = document.getElementById('language-result');
-                resultDiv.className = 'result result-error';
-                resultDiv.textContent = 'Error: ' + error.message;
+                statusDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Upload failed: ${error.message}
+                    </div>
+                `;
             }
         }
 
@@ -776,120 +871,9 @@
             }
         }
 
-        // Upload file for places repairs
-        async function uploadPlacesFile() {
-            const fileInput = document.getElementById('places-db-file');
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert('Please select a file to upload');
-                return;
-            }
-
-            const statusDiv = document.getElementById('places-upload-status');
-            statusDiv.innerHTML = '<p style="color: #667eea;">⏳ Uploading file...</p>';
-
-            try {
-                const formData = new FormData();
-                formData.append('file', file);
-
-                const response = await fetch('/api/upload', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Upload failed: ${response.statusText}`);
-                }
-
-                const result = await response.json();
-
-                // Update the database path input with uploaded file path
-                document.getElementById('places-db-path').value = result.file_path;
-
-                statusDiv.innerHTML = `
-                    <div class="result result-success">
-                        ✅ File uploaded successfully!<br>
-                        <strong>Path:</strong> ${result.file_path}<br>
-                        <strong>Size:</strong> ${(result.file_size / 1024 / 1024).toFixed(2)} MB
-                    </div>
-                `;
-            } catch (error) {
-                statusDiv.innerHTML = `
-                    <div class="result result-error">
-                        ❌ Upload failed: ${error.message}
-                    </div>
-                `;
-            }
-        }
-
-        // Analyze places
-        async function analyzePlaces() {
-            const dbPath = document.getElementById('places-db-path').value;
-
-            if (!dbPath) {
-                alert('Please enter database path or upload a file');
-                return;
-            }
-
-            const resultsDiv = document.getElementById('places-results');
-            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Analyzing places...</p>';
-
-            try {
-                const response = await fetch('/api/places/analyze', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ database_path: dbPath })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Analysis failed: ${response.statusText}`);
-                }
-
-                const result = await response.json();
-
-                // Display statistics
-                const statsDiv = document.getElementById('places-stats');
-                statsDiv.innerHTML = `
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value">${result.total_places}</div>
-                            <div class="stat-label">Total Places</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${result.unique_places}</div>
-                            <div class="stat-label">Unique Places</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${result.duplicates}</div>
-                            <div class="stat-label">Potential Duplicates</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">${result.needs_standardization}</div>
-                            <div class="stat-label">Need Standardization</div>
-                        </div>
-                    </div>
-                `;
-
-                // Display results
-                resultsDiv.innerHTML = `
-                    <div class="result result-success">
-                        ✅ Analysis complete!<br>
-                        Found ${result.duplicates} potential duplicate place names and ${result.needs_standardization} places needing standardization.
-                    </div>
-                `;
-            } catch (error) {
-                resultsDiv.innerHTML = `
-                    <div class="result result-error">
-                        ❌ Analysis failed: ${error.message}
-                    </div>
-                `;
-            }
-        }
-
         // Repair places
         async function repairPlaces() {
-            const dbPath = document.getElementById('places-db-path').value;
+            const dbPath = document.getElementById('repairs-db-path').value;
 
             if (!dbPath) {
                 alert('Please enter database path or upload a file');
@@ -900,11 +884,11 @@
                 return;
             }
 
-            const resultsDiv = document.getElementById('places-results');
+            const resultsDiv = document.getElementById('repairs-results');
             resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Repairing places...</p>';
 
             try {
-                const response = await fetch('/api/places/repair', {
+                const response = await fetch('/api/repairs/places', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ database_path: dbPath })
@@ -924,6 +908,281 @@
                         <strong>Updated:</strong> ${result.updated} records
                     </div>
                 `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Repair failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Repair names
+        async function repairNames() {
+            const dbPath = document.getElementById('repairs-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path or upload a file');
+                return;
+            }
+
+            if (!confirm('This will fix name issues like reversed names, embedded variants, and titles. Continue?')) {
+                return;
+            }
+
+            const resultsDiv = document.getElementById('repairs-results');
+            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Repairing names...</p>';
+
+            try {
+                const response = await fetch('/api/repairs/names', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ database_path: dbPath })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Repair failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                resultsDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ Names repaired successfully!<br>
+                        <strong>Reversed names fixed:</strong> ${result.reversed_fixed}<br>
+                        <strong>Variants extracted:</strong> ${result.variants_extracted}<br>
+                        <strong>Titles moved:</strong> ${result.titles_moved}<br>
+                        <strong>Total updated:</strong> ${result.total_updated} records
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Repair failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Repair events
+        async function repairEvents() {
+            const dbPath = document.getElementById('repairs-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path or upload a file');
+                return;
+            }
+
+            if (!confirm('This will fix event issues like invalid dates and chronological errors. Continue?')) {
+                return;
+            }
+
+            const resultsDiv = document.getElementById('repairs-results');
+            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Repairing events...</p>';
+
+            try {
+                const response = await fetch('/api/repairs/events', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ database_path: dbPath })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Repair failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                resultsDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ Events repaired successfully!<br>
+                        <strong>Invalid dates fixed:</strong> ${result.dates_fixed}<br>
+                        <strong>Formats standardized:</strong> ${result.formats_standardized}<br>
+                        <strong>Chronological errors fixed:</strong> ${result.chronological_fixed}<br>
+                        <strong>Total updated:</strong> ${result.total_updated} records
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Repair failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Repair people and families
+        async function repairPeople() {
+            const dbPath = document.getElementById('repairs-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path or upload a file');
+                return;
+            }
+
+            if (!confirm('This will fix relationship and family structure issues. Continue?')) {
+                return;
+            }
+
+            const resultsDiv = document.getElementById('repairs-results');
+            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Repairing people and families...</p>';
+
+            try {
+                const response = await fetch('/api/repairs/people', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ database_path: dbPath })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Repair failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                resultsDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ People and families repaired successfully!<br>
+                        <strong>Relationships fixed:</strong> ${result.relationships_fixed}<br>
+                        <strong>Orphaned records linked:</strong> ${result.orphans_linked}<br>
+                        <strong>Family structures repaired:</strong> ${result.families_repaired}<br>
+                        <strong>Total updated:</strong> ${result.total_updated} records
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Repair failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Run sanity check
+        async function runSanityCheck() {
+            const dbPath = document.getElementById('quality-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path or upload a file');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('quality-results');
+            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Running comprehensive sanity check...</p>';
+
+            try {
+                const response = await fetch('/api/quality/sanity-check', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ database_path: dbPath })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Sanity check failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                // Display statistics
+                const statsDiv = document.getElementById('quality-stats');
+                statsDiv.innerHTML = `
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">${result.total_issues}</div>
+                            <div class="stat-label">Total Issues</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.name_issues}</div>
+                            <div class="stat-label">Name Issues</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.place_issues}</div>
+                            <div class="stat-label">Place Issues</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.event_issues}</div>
+                            <div class="stat-label">Event Issues</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.relationship_issues}</div>
+                            <div class="stat-label">Relationship Issues</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.quality_score}%</div>
+                            <div class="stat-label">Overall Quality</div>
+                        </div>
+                    </div>
+                `;
+
+                // Display results with detailed breakdown
+                let issuesHTML = '';
+                if (result.details && result.details.length > 0) {
+                    issuesHTML = '<h4 style="margin-top: 1rem;">Issue Details:</h4><ul style="margin-left: 2rem;">';
+                    result.details.forEach(issue => {
+                        issuesHTML += `<li><strong>${issue.category}:</strong> ${issue.description} (${issue.count} instances)</li>`;
+                    });
+                    issuesHTML += '</ul>';
+                }
+
+                resultsDiv.innerHTML = `
+                    <div class="result ${result.total_issues === 0 ? 'result-success' : ''}">
+                        ${result.total_issues === 0 ? '✅' : '⚠️'} Sanity check complete!<br>
+                        <strong>Overall Quality Score:</strong> ${result.quality_score}%<br>
+                        <strong>Total Issues Found:</strong> ${result.total_issues}
+                        ${issuesHTML}
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Sanity check failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Run all repairs
+        async function runAllRepairs() {
+            const dbPath = document.getElementById('quality-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path or upload a file');
+                return;
+            }
+
+            if (!confirm('This will run all repairs on your database. This may take several minutes. Continue?')) {
+                return;
+            }
+
+            const resultsDiv = document.getElementById('quality-results');
+            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Running all repairs (this may take a while)...</p>';
+
+            try {
+                const response = await fetch('/api/quality/repair-all', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ database_path: dbPath })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Repair failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                resultsDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ All repairs completed!<br>
+                        <strong>Places:</strong> ${result.places_repaired} repaired<br>
+                        <strong>Names:</strong> ${result.names_repaired} repaired<br>
+                        <strong>Events:</strong> ${result.events_repaired} repaired<br>
+                        <strong>Relationships:</strong> ${result.relationships_repaired} repaired<br>
+                        <strong>Total Records Updated:</strong> ${result.total_updated}
+                    </div>
+                `;
+
+                // Refresh quality stats
+                await runSanityCheck();
             } catch (error) {
                 resultsDiv.innerHTML = `
                     <div class="result result-error">
