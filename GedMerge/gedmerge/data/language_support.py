@@ -30,7 +30,7 @@ class Language(Enum):
     UNKNOWN = "unknown"
 
 
-@dataclass
+@dataclass(slots=True)
 class MultilingualTerm:
     """A term with translations across multiple languages."""
     english: str  # Canonical/normalized form

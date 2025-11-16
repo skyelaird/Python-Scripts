@@ -14,7 +14,7 @@ from ..rootsmagic.adapter import RootsMagicDatabase
 from .scorer import MatchScorer, MatchResult
 
 
-@dataclass
+@dataclass(slots=True)
 class MatchCandidate:
     """Represents a potential duplicate match between two persons."""
     person1_id: int

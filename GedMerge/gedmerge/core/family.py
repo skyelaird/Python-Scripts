@@ -1,11 +1,11 @@
 """Family class for representing family units in GEDCOM files."""
 
 from dataclasses import dataclass, field
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Self
 from .event import Event
 
 
-@dataclass
+@dataclass(slots=True)
 class Family:
     """Represents a family unit (marriage/partnership) in genealogy.
 
@@ -141,7 +141,7 @@ class Family:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Family':
+    def from_dict(cls, data: Dict[str, Any]) -> Self:
         """Create a Family instance from a dictionary.
 
         Args:

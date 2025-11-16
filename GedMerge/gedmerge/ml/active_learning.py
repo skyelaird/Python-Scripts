@@ -22,7 +22,7 @@ from ..core.person import Person
 logger = logging.getLogger(__name__)
 
 
-@dataclass
+@dataclass(slots=True)
 class UncertainPrediction:
     """An uncertain prediction that needs user review."""
     prediction_type: str  # "duplicate", "name_match", "language", "quality"

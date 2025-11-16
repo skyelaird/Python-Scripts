@@ -29,7 +29,7 @@ from ...core.person import Person
 logger = logging.getLogger(__name__)
 
 
-@dataclass
+@dataclass(slots=True)
 class DuplicatePrediction:
     """Prediction for a person pair."""
 

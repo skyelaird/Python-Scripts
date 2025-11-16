@@ -27,7 +27,7 @@ class MergeDecision(Enum):
     MANUAL_REVIEW = "manual_review"
 
 
-@dataclass
+@dataclass(slots=True)
 class ConflictResolution:
     """Resolution of a conflict between two values."""
     field: str

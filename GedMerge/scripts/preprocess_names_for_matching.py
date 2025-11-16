@@ -58,7 +58,7 @@ class SimpleRMDatabase:
         self.close()
 
 
-@dataclass
+@dataclass(slots=True)
 class NamePreprocessingChange:
     """Represents a change to be made during preprocessing."""
     person_id: int

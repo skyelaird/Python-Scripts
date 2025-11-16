@@ -14,7 +14,7 @@ from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(slots=True)
 class ParsedName:
     """Represents a fully parsed name with all components."""
     given: Optional[str] = None

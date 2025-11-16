@@ -1,11 +1,11 @@
 """Event class for representing GEDCOM events."""
 
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any, Union, Self
 from .place import Place
 
 
-@dataclass
+@dataclass(slots=True)
 class Event:
     """Represents a genealogical event (birth, death, marriage, etc.).
 
@@ -92,7 +92,7 @@ class Event:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Event':
+    def from_dict(cls, data: Dict[str, Any]) -> Self:
         """Create an Event instance from a dictionary.
 
         Args:

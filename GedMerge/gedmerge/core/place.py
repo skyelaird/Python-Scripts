@@ -1,10 +1,10 @@
 """Place class for representing locations with multilingual support."""
 
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Self
 
 
-@dataclass
+@dataclass(slots=True)
 class Place:
     """Represents a geographical location with support for multilingual names.
 
@@ -110,7 +110,7 @@ class Place:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Place':
+    def from_dict(cls, data: Dict[str, Any]) -> Self:
         """Create a Place instance from a dictionary.
 
         Args:
@@ -130,7 +130,7 @@ class Place:
         )
 
     @classmethod
-    def from_string(cls, place_string: str, language: str = 'en') -> 'Place':
+    def from_string(cls, place_string: str, language: str = 'en') -> Self:
         """Create a Place instance from a simple string.
 
         This is a convenience method for backward compatibility with existing code
@@ -183,7 +183,7 @@ class Place:
 
         return name
 
-    def merge_with(self, other: 'Place') -> 'Place':
+    def merge_with(self, other: Self) -> Self:
         """Merge this place with another, combining multilingual names.
 
         Args:

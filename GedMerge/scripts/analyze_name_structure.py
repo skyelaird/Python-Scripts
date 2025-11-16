@@ -58,7 +58,7 @@ class SimpleRMDatabase:
         self.close()
 
 
-@dataclass
+@dataclass(slots=True)
 class NameIssue:
     """Represents an issue found with a name record."""
     person_id: int
