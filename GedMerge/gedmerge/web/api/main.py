@@ -655,7 +655,7 @@ async def analyze_places(request: PlacesAnalysisRequest):
         places = []
         try:
             # Try to query places from the database
-            query = "SELECT DISTINCT PlaceName FROM PlaceTable WHERE PlaceName IS NOT NULL"
+            query = "SELECT DISTINCT Name FROM PlaceTable WHERE Name IS NOT NULL"
             places = [row[0] for row in db.connection.execute(query).fetchall()]
         except Exception as e:
             # If PlaceTable doesn't exist, try EventTable
@@ -713,7 +713,7 @@ async def repair_places(request: RepairRequest):
             cursor = db.conn.cursor()
 
             # Get all places
-            cursor.execute("SELECT PlaceID, PlaceName FROM PlaceTable ORDER BY PlaceID")
+            cursor.execute("SELECT PlaceID, Name FROM PlaceTable ORDER BY PlaceID")
             places = cursor.fetchall()
 
             logger.info(f"Found {len(places)} places to analyze")
@@ -777,7 +777,7 @@ async def repair_places(request: RepairRequest):
                     if normalized != place_name and normalized:
                         cursor.execute("""
                             UPDATE PlaceTable
-                            SET PlaceName = ?
+                            SET Name = ?
                             WHERE PlaceID = ?
                         """, (normalized, place_id))
 
@@ -1291,7 +1291,7 @@ async def sanity_check(request: RepairRequest):
             name_issues += placeholder_names
 
         # 2. Check places for issues
-        cursor.execute("SELECT PlaceID, PlaceName FROM PlaceTable")
+        cursor.execute("SELECT PlaceID, Name FROM PlaceTable")
         places = cursor.fetchall()
 
         places_with_postal_codes = 0
