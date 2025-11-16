@@ -203,6 +203,46 @@ class DateValidator:
                 return day
         return None
 
+    def validate_birth_after_death(
+        self,
+        birth_date: Optional[ParsedDate],
+        death_date: Optional[ParsedDate]
+    ) -> Tuple[bool, str]:
+        """
+        Check if birth date is after death date (data entry error).
+
+        This is a specific check for the common data entry error where
+        birth and death dates are swapped or incorrectly entered.
+
+        Args:
+            birth_date: Person's birth date
+            death_date: Person's death date
+
+        Returns:
+            Tuple of (is_error, error_message)
+        """
+        if not birth_date or not death_date:
+            return False, ''
+
+        birth_year = birth_date.get_best_year()
+        death_year = death_date.get_best_year()
+
+        if not birth_year or not death_year:
+            return False, ''
+
+        if birth_year > death_year:
+            return True, f"SUSPICIOUS: Birth year ({birth_year}) is after death year ({death_year})"
+        elif birth_year == death_year:
+            # Check if we have more specific dates
+            if birth_date.month and death_date.month:
+                if birth_date.month > death_date.month:
+                    return True, f"SUSPICIOUS: Birth month ({birth_date.month}) is after death month ({death_date.month}) in year {birth_year}"
+                elif birth_date.month == death_date.month and birth_date.day and death_date.day:
+                    if birth_date.day > death_date.day:
+                        return True, f"SUSPICIOUS: Birth day is after death day in same month/year"
+
+        return False, ''
+
     def validate_date_range(
         self,
         birth_date: Optional[ParsedDate],
@@ -210,6 +250,10 @@ class DateValidator:
     ) -> Tuple[DateValidationResult, List[str]]:
         """
         Validate that birth and death dates are plausible.
+
+        This checks for:
+        - Birth after death (INVALID)
+        - Excessive lifespan (INVALID or WARNING)
 
         Returns:
             Tuple of (validation_result, list of issues)
@@ -225,9 +269,10 @@ class DateValidator:
         if not birth_year or not death_year:
             return DateValidationResult.VALID, issues
 
-        # Death must be after birth
-        if death_year < birth_year:
-            issues.append(f"Death year {death_year} is before birth year {birth_year}")
+        # Check for birth after death (data entry error)
+        is_error, error_msg = self.validate_birth_after_death(birth_date, death_date)
+        if is_error:
+            issues.append(error_msg)
             return DateValidationResult.INVALID, issues
 
         # Check lifespan
