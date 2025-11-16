@@ -59,6 +59,8 @@ dependencies = [
     # Database & Caching
     "redis>=5.0.0",
     "celery>=5.3.0",
+    # AI Integration
+    "anthropic>=0.18.0",
 ]
 
 [project.optional-dependencies]
