@@ -1,6 +1,7 @@
 """FastAPI application for GedMerge ML models."""
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
@@ -33,6 +34,15 @@ app = FastAPI(
     title="GedMerge ML API",
     description="Machine Learning API for genealogy duplicate detection and data quality with continual learning",
     version="2.0.0",
+)
+
+# Add CORS middleware to allow frontend to access API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for development
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
 )
 
 # Include continual learning router
@@ -438,6 +448,189 @@ async def upload_file(file: UploadFile = File(...)):
         raise HTTPException(
             status_code=500,
             detail=f"Unexpected error uploading file: {str(e)}"
+        )
+
+
+class GeocodeRequest(BaseModel):
+    place_name: str
+    language: str = "en"
+
+
+class ReverseGeocodeRequest(BaseModel):
+    latitude: float
+    longitude: float
+    language: str = "en"
+
+
+class BatchGeocodeRequest(BaseModel):
+    database_path: str
+    limit: Optional[int] = None  # Limit number of places to geocode (None = all)
+    update_database: bool = False  # Whether to update the database with geocoded coordinates
+
+
+@app.post("/api/geocode")
+async def geocode_place(request: GeocodeRequest):
+    """Geocode a place name to coordinates using Nominatim."""
+    try:
+        from ...utils.geocoding import NominatimGeocoder
+
+        geocoder = NominatimGeocoder()
+        result = geocoder.geocode(request.place_name, request.language)
+
+        if result is None:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Could not geocode place: {request.place_name}"
+            )
+
+        return {
+            "place_name": request.place_name,
+            "latitude": result.latitude,
+            "longitude": result.longitude,
+            "display_name": result.display_name,
+            "place_type": result.place_type,
+            "osm_id": result.osm_id,
+            "confidence": result.confidence,
+            "address": result.address,
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Geocoding error: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Geocoding failed: {str(e)}"
+        )
+
+
+@app.post("/api/reverse-geocode")
+async def reverse_geocode_coords(request: ReverseGeocodeRequest):
+    """Reverse geocode coordinates to a place name using Nominatim."""
+    try:
+        from ...utils.geocoding import NominatimGeocoder
+
+        geocoder = NominatimGeocoder()
+        result = geocoder.reverse_geocode(
+            request.latitude,
+            request.longitude,
+            request.language
+        )
+
+        if result is None:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Could not reverse geocode coordinates: ({request.latitude}, {request.longitude})"
+            )
+
+        return {
+            "latitude": result.latitude,
+            "longitude": result.longitude,
+            "display_name": result.display_name,
+            "place_type": result.place_type,
+            "osm_id": result.osm_id,
+            "confidence": result.confidence,
+            "address": result.address,
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Reverse geocoding error: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Reverse geocoding failed: {str(e)}"
+        )
+
+
+@app.post("/api/geocode/batch")
+async def batch_geocode_places(request: BatchGeocodeRequest, background_tasks: BackgroundTasks):
+    """Batch geocode places from database."""
+    try:
+        from ...utils.geocoding import NominatimGeocoder
+        from ...rootsmagic.adapter import RootsMagicDatabase
+
+        db = RootsMagicDatabase(request.database_path)
+        geocoder = NominatimGeocoder()
+
+        # Get places without coordinates
+        query = """
+            SELECT PlaceID, Name, Latitude, Longitude
+            FROM PlaceTable
+            WHERE (Latitude IS NULL OR Latitude = 0) AND (Longitude IS NULL OR Longitude = 0)
+            ORDER BY PlaceID
+        """
+
+        if request.limit:
+            query += f" LIMIT {request.limit}"
+
+        places_to_geocode = []
+        with db.conn:
+            cursor = db.conn.cursor()
+            cursor.execute(query)
+            places_to_geocode = cursor.fetchall()
+
+        if not places_to_geocode:
+            return {
+                "status": "success",
+                "message": "No places need geocoding",
+                "total_places": 0,
+                "geocoded": 0,
+                "failed": 0,
+            }
+
+        # Geocode places
+        results = {
+            "geocoded": [],
+            "failed": [],
+        }
+
+        for place_id, name, lat, lon in places_to_geocode:
+            logger.info(f"Geocoding place {place_id}: {name}")
+
+            result = geocoder.geocode(name)
+
+            if result:
+                results["geocoded"].append({
+                    "place_id": place_id,
+                    "name": name,
+                    "latitude": result.latitude,
+                    "longitude": result.longitude,
+                    "display_name": result.display_name,
+                })
+
+                # Update database if requested
+                if request.update_database:
+                    with db.conn:
+                        cursor = db.conn.cursor()
+                        # Convert to microdegrees for RootsMagic
+                        lat_micro = int(result.latitude * 1_000_000)
+                        lon_micro = int(result.longitude * 1_000_000)
+                        cursor.execute(
+                            "UPDATE PlaceTable SET Latitude = ?, Longitude = ?, LatLongExact = 1 WHERE PlaceID = ?",
+                            (lat_micro, lon_micro, place_id)
+                        )
+                        db.conn.commit()
+            else:
+                results["failed"].append({
+                    "place_id": place_id,
+                    "name": name,
+                })
+
+        return {
+            "status": "success",
+            "message": f"Geocoded {len(results['geocoded'])} of {len(places_to_geocode)} places",
+            "total_places": len(places_to_geocode),
+            "geocoded": len(results["geocoded"]),
+            "failed": len(results["failed"]),
+            "results": results,
+        }
+
+    except Exception as e:
+        logger.error(f"Batch geocoding error: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Batch geocoding failed: {str(e)}"
         )
 
 

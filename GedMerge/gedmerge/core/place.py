@@ -19,6 +19,9 @@ class Place:
         place_type: Type of place (city, country, region, etc.)
         notes: Additional notes about the place
         hierarchy: List of parent places (e.g., ['USA', 'California', 'Los Angeles'])
+        parent_place: Optional reference to parent Place object (for nested hierarchy)
+        place_id: Optional database ID for this place
+        parent_id: Optional database ID of parent place
     """
 
     names: Dict[str, str] = field(default_factory=dict)
@@ -28,6 +31,9 @@ class Place:
     place_type: Optional[str] = None
     notes: Optional[str] = None
     hierarchy: List[str] = field(default_factory=list)
+    parent_place: Optional['Place'] = None
+    place_id: Optional[int] = None
+    parent_id: Optional[int] = None
 
     def __post_init__(self):
         """Ensure names dictionary is initialized and primary language is set."""
@@ -106,7 +112,9 @@ class Place:
             'longitude': self.longitude,
             'place_type': self.place_type,
             'notes': self.notes,
-            'hierarchy': self.hierarchy
+            'hierarchy': self.hierarchy,
+            'place_id': self.place_id,
+            'parent_id': self.parent_id,
         }
 
     @classmethod
@@ -126,7 +134,9 @@ class Place:
             longitude=data.get('longitude'),
             place_type=data.get('place_type'),
             notes=data.get('notes'),
-            hierarchy=data.get('hierarchy', [])
+            hierarchy=data.get('hierarchy', []),
+            place_id=data.get('place_id'),
+            parent_id=data.get('parent_id'),
         )
 
     @classmethod
@@ -208,3 +218,90 @@ class Place:
             notes=self.notes or other.notes,
             hierarchy=merged_hierarchy
         )
+
+    def get_full_hierarchy(self, language: Optional[str] = None) -> List[str]:
+        """Get the full hierarchical path from root to this place.
+
+        Traverses parent_place references to build the full hierarchy.
+
+        Args:
+            language: Language code for place names (default: primary_language)
+
+        Returns:
+            List of place names from most general to most specific
+            e.g., ['Canada', 'Québec', 'Québec City', 'Cathédrale Notre-Dame de Québec']
+        """
+        path = []
+        current = self
+
+        # Traverse up to the root
+        while current is not None:
+            name = current.get_name(language)
+            if name:
+                path.insert(0, name)  # Insert at beginning to build root-to-leaf path
+            current = current.parent_place
+
+        return path
+
+    def get_hierarchy_string(self, language: Optional[str] = None, separator: str = ", ") -> str:
+        """Get the full hierarchical path as a formatted string.
+
+        Args:
+            language: Language code for place names (default: primary_language)
+            separator: String to use between hierarchy levels (default: ", ")
+
+        Returns:
+            Formatted hierarchy string
+            e.g., "Canada, Québec, Québec City, Cathédrale Notre-Dame de Québec"
+        """
+        hierarchy = self.get_full_hierarchy(language)
+        return separator.join(hierarchy)
+
+    def is_descendant_of(self, ancestor: Self) -> bool:
+        """Check if this place is a descendant of another place.
+
+        Args:
+            ancestor: Potential ancestor place
+
+        Returns:
+            True if this place is a descendant of the given ancestor
+        """
+        current = self.parent_place
+
+        while current is not None:
+            if current == ancestor or (
+                current.place_id is not None and
+                ancestor.place_id is not None and
+                current.place_id == ancestor.place_id
+            ):
+                return True
+            current = current.parent_place
+
+        return False
+
+    def get_depth(self) -> int:
+        """Get the depth of this place in the hierarchy.
+
+        Returns:
+            Depth level (0 for root places, 1 for their children, etc.)
+        """
+        depth = 0
+        current = self.parent_place
+
+        while current is not None:
+            depth += 1
+            current = current.parent_place
+
+        return depth
+
+    def set_parent(self, parent: Optional[Self]) -> None:
+        """Set the parent place for this place.
+
+        Args:
+            parent: Parent Place object, or None to remove parent
+        """
+        self.parent_place = parent
+        if parent is not None and parent.place_id is not None:
+            self.parent_id = parent.place_id
+        else:
+            self.parent_id = None
