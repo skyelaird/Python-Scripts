@@ -829,17 +829,18 @@ async def repair_names(request: RepairRequest):
         with db.transaction():
             cursor = db.conn.cursor()
 
-            # Get all names
+            # Get all names with person sex for context-aware parsing
             cursor.execute("""
-                SELECT NameID, OwnerID, Surname, Given, Prefix, Suffix, Nickname, IsPrimary
-                FROM NameTable
-                ORDER BY NameID
+                SELECT n.NameID, n.OwnerID, n.Surname, n.Given, n.Prefix, n.Suffix, n.Nickname, n.IsPrimary, p.Sex
+                FROM NameTable n
+                LEFT JOIN PersonTable p ON n.OwnerID = p.PersonID
+                ORDER BY n.NameID
             """)
             names = cursor.fetchall()
 
             logger.info(f"Found {len(names)} names to analyze")
 
-            for name_id, owner_id, surname, given, prefix, suffix, nickname, is_primary in names:
+            for name_id, owner_id, surname, given, prefix, suffix, nickname, is_primary, sex in names:
                 updated = False
                 new_surname = surname
                 new_given = given
@@ -849,7 +850,9 @@ async def repair_names(request: RepairRequest):
 
                 # 1. Extract and move prefixes (titles) from given names
                 if new_given and not new_prefix:
-                    text, extracted_prefix = NameParser.extract_prefix(new_given)
+                    # Pass sex for context-aware parsing (e.g., M. -> Marie for females)
+                    sex_code = sex if sex in ('M', 'F', 'U') else None
+                    text, extracted_prefix = NameParser.extract_prefix(new_given, sex=sex_code)
                     if extracted_prefix:
                         new_prefix = extracted_prefix
                         new_given = text
@@ -858,23 +861,44 @@ async def repair_names(request: RepairRequest):
 
                 # 2. Extract embedded variants from given names (in parentheses or quotes)
                 if new_given:
-                    # Check for parentheses variants like "John (Jack)"
+                    # Check for parentheses content like "John (Jack)" or "Albert (the Elder)"
                     variant_match = re.search(r'\(([^)]+)\)', new_given)
                     if variant_match:
-                        variant = variant_match.group(1).strip()
-                        # Remove the variant from given name
+                        content = variant_match.group(1).strip()
+                        # Remove the content from given name
                         new_given = re.sub(r'\s*\([^)]+\)', '', new_given).strip()
 
-                        # Create alternate name record with the variant
-                        if is_primary and variant:
-                            cursor.execute("""
-                                INSERT INTO NameTable (
-                                    OwnerID, Surname, Given, Prefix, Suffix, Nickname,
-                                    NameType, IsPrimary, Language
-                                )
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                            """, (owner_id, new_surname or '', variant, new_prefix or '', new_suffix or '', '', 1, 0, ''))
-                            variants_extracted += 1
+                        # Determine if it's a nickname/epithet or a name variant
+                        is_epithet = False
+
+                        # Check for common epithet patterns
+                        epithet_patterns = [
+                            r'^the\s+',  # "the Elder", "the Great"
+                            r'(?:Earl|Baron|Duke|Count|Lord|Lady)\s+of',  # Nobility titles
+                            r'^(?:Elder|Younger|Senior|Junior|Sr|Jr)$',  # Age descriptors
+                        ]
+
+                        for pattern in epithet_patterns:
+                            if re.search(pattern, content, re.IGNORECASE):
+                                is_epithet = True
+                                break
+
+                        if is_epithet:
+                            # This is a nickname/epithet, store in nickname field
+                            if not new_nickname:
+                                new_nickname = content
+                        else:
+                            # This is a name variant, create alternate name record
+                            if is_primary and content:
+                                cursor.execute("""
+                                    INSERT INTO NameTable (
+                                        OwnerID, Surname, Given, Prefix, Suffix, Nickname,
+                                        NameType, IsPrimary, Language
+                                    )
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                """, (owner_id, new_surname or '', content, new_prefix or '', new_suffix or '', '', 1, 0, ''))
+                                variants_extracted += 1
+
                         updated = True
 
                     # Check for quoted epithets
@@ -921,6 +945,24 @@ async def repair_names(request: RepairRequest):
                         # Clear nickname since it was misclassified
                         new_nickname = ''
                         updated = True
+
+                # 6. Fix capitalization issues
+                for field_name, field_value in [('given', new_given), ('surname', new_surname), ('prefix', new_prefix)]:
+                    if field_value and len(field_value) > 1:
+                        # Check for mixed case issues (e.g., "mISS", "jOHN")
+                        if (field_value[0].islower() and any(c.isupper() for c in field_value[1:])) or \
+                           (field_value.isupper() and len(field_value) > 3) or \
+                           (field_value.islower() and len(field_value) > 3 and field_name != 'surname'):
+                            # Apply smart title case using NameParser
+                            fixed = NameParser.smart_title_case(field_value)
+                            if fixed != field_value:
+                                if field_name == 'given':
+                                    new_given = fixed
+                                elif field_name == 'surname':
+                                    new_surname = fixed
+                                elif field_name == 'prefix':
+                                    new_prefix = fixed
+                                updated = True
 
                 # Update the name record if any changes were made
                 if updated:
@@ -1242,8 +1284,9 @@ async def sanity_check(request: RepairRequest):
 
         # 1. Check names for issues
         cursor.execute("""
-            SELECT NameID, OwnerID, Surname, Given, Prefix, Suffix, Nickname
-            FROM NameTable
+            SELECT n.NameID, n.OwnerID, n.Surname, n.Given, n.Prefix, n.Suffix, n.Nickname, p.Sex
+            FROM NameTable n
+            LEFT JOIN PersonTable p ON n.OwnerID = p.PersonID
         """)
         names = cursor.fetchall()
 
@@ -1251,8 +1294,9 @@ async def sanity_check(request: RepairRequest):
         embedded_variants = 0
         titles_in_wrong_field = 0
         placeholder_names = 0
+        capitalization_issues = 0
 
-        for name_id, owner_id, surname, given, prefix, suffix, nickname in names:
+        for name_id, owner_id, surname, given, prefix, suffix, nickname, sex in names:
             # Check for reversed names (comma in given name)
             if given and ',' in given and not surname:
                 reversed_names += 1
@@ -1277,9 +1321,11 @@ async def sanity_check(request: RepairRequest):
                     "value": f"Given: '{given}'"
                 })
 
-            # Check for titles in wrong field
+            # Check for titles in wrong field (pass sex for context-aware M. handling)
             if given and not prefix:
-                _, extracted_prefix = NameParser.extract_prefix(given)
+                # Convert sex to single letter format expected by NameParser
+                sex_code = sex if sex in ('M', 'F', 'U') else None
+                _, extracted_prefix = NameParser.extract_prefix(given, sex=sex_code)
                 if extracted_prefix:
                     titles_in_wrong_field += 1
                     detailed_errors.append({
@@ -1290,6 +1336,24 @@ async def sanity_check(request: RepairRequest):
                         "description": "Title in given name field",
                         "value": f"Given: '{given}', Extracted prefix: '{extracted_prefix}'"
                     })
+
+            # Check for capitalization issues
+            for field_name, field_value in [('Given', given), ('Surname', surname), ('Prefix', prefix)]:
+                if field_value and len(field_value) > 1:
+                    # Check for mixed case issues (e.g., "mISS", "jOHN")
+                    # Look for patterns like lowercase start with uppercase letters, or other inconsistent patterns
+                    if (field_value[0].islower() and any(c.isupper() for c in field_value[1:])) or \
+                       (field_value.isupper() and len(field_value) > 3) or \
+                       (field_value.islower() and len(field_value) > 3 and field_name != 'Surname'):
+                        capitalization_issues += 1
+                        detailed_errors.append({
+                            "type": "capitalization_issue",
+                            "category": "Names",
+                            "record_id": name_id,
+                            "person_id": owner_id,
+                            "description": f"Capitalization issue in {field_name.lower()} name",
+                            "value": f"{field_name}: '{field_value}'"
+                        })
 
             # Check for placeholder names
             if surname and surname.upper() in ['NN', 'UNKNOWN', '?', '??', 'N.N.']:
@@ -1330,6 +1394,10 @@ async def sanity_check(request: RepairRequest):
         if placeholder_names > 0:
             details.append({"category": "Names", "description": "Placeholder names", "count": placeholder_names})
             name_issues += placeholder_names
+
+        if capitalization_issues > 0:
+            details.append({"category": "Names", "description": "Capitalization issues", "count": capitalization_issues})
+            name_issues += capitalization_issues
 
         # 2. Check places for issues
         cursor.execute("SELECT PlaceID, Name FROM PlaceTable")

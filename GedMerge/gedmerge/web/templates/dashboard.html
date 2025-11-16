@@ -489,11 +489,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Or Enter Database Path</label>
-                    <input type="text" id="quality-db-path" placeholder="/path/to/database.rmtree">
-                </div>
-
                 <div id="quality-upload-status"></div>
 
                 <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
@@ -575,6 +570,8 @@
         // Global state
         let models = {};
         let jobs = {};
+        let qualityDbPath = null;
+        let detailedErrors = [];
 
         // Tab switching
         function showTab(tabName) {
@@ -758,8 +755,8 @@
 
                 const result = await response.json();
 
-                // Update the database path input with uploaded file path
-                document.getElementById('quality-db-path').value = result.file_path;
+                // Store the uploaded file path
+                qualityDbPath = result.file_path;
 
                 statusDiv.innerHTML = `
                     <div class="result result-success">
@@ -1096,10 +1093,8 @@
 
         // Run sanity check
         async function runSanityCheck() {
-            const dbPath = document.getElementById('quality-db-path').value;
-
-            if (!dbPath) {
-                alert('Please enter database path or upload a file');
+            if (!qualityDbPath) {
+                alert('Please upload a database file first');
                 return;
             }
 
@@ -1110,7 +1105,7 @@
                 const response = await fetch('/api/quality/sanity-check', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ database_path: dbPath })
+                    body: JSON.stringify({ database_path: qualityDbPath })
                 });
 
                 if (!response.ok) {
@@ -1163,6 +1158,9 @@
                 // Display detailed errors if available
                 let detailedErrorsHTML = '';
                 if (result.detailed_errors && result.detailed_errors.length > 0) {
+                    // Store errors globally for export
+                    detailedErrors = result.detailed_errors;
+
                     detailedErrorsHTML = `
                         <h4 style="margin-top: 1.5rem;">Detailed Error Report:</h4>
                         <div style="max-height: 500px; overflow-y: auto; background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem;">
@@ -1196,9 +1194,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p style="margin-top: 0.5rem; color: #657786; font-size: 0.85rem;">
-                            Showing ${result.detailed_errors.length} detailed error(s). You can export this data or use the repair functions to fix these issues.
-                        </p>
+                        <div style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+                            <p style="color: #657786; font-size: 0.85rem; margin: 0;">
+                                Showing ${result.detailed_errors.length} detailed error(s).
+                            </p>
+                            <button class="btn btn-primary" onclick="exportErrorsToCSV()" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+                                📥 Export to CSV
+                            </button>
+                        </div>
                     `;
                 }
 
@@ -1222,10 +1225,8 @@
 
         // Run all repairs
         async function runAllRepairs() {
-            const dbPath = document.getElementById('quality-db-path').value;
-
-            if (!dbPath) {
-                alert('Please enter database path or upload a file');
+            if (!qualityDbPath) {
+                alert('Please upload a database file first');
                 return;
             }
 
@@ -1240,7 +1241,7 @@
                 const response = await fetch('/api/quality/repair-all', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ database_path: dbPath })
+                    body: JSON.stringify({ database_path: qualityDbPath })
                 });
 
                 if (!response.ok) {
@@ -1269,6 +1270,58 @@
                     </div>
                 `;
             }
+        }
+
+        // Export detailed errors to CSV
+        function exportErrorsToCSV() {
+            if (!detailedErrors || detailedErrors.length === 0) {
+                alert('No error data to export');
+                return;
+            }
+
+            // CSV header
+            const headers = ['Category', 'Type', 'Record ID', 'Person ID', 'Description', 'Value'];
+            let csv = headers.join(',') + '\n';
+
+            // CSV rows
+            detailedErrors.forEach(error => {
+                const row = [
+                    escapeCSV(error.category),
+                    escapeCSV(error.type),
+                    escapeCSV(error.record_id),
+                    escapeCSV(error.person_id || ''),
+                    escapeCSV(error.description),
+                    escapeCSV(error.value)
+                ];
+                csv += row.join(',') + '\n';
+            });
+
+            // Create download link
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `sanity-check-errors-${timestamp}.csv`);
+            link.style.visibility = 'hidden';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Helper function to escape CSV values
+        function escapeCSV(value) {
+            if (value === null || value === undefined) {
+                return '';
+            }
+            const stringValue = String(value);
+            // If value contains comma, quote, or newline, wrap in quotes and escape quotes
+            if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
+                return '"' + stringValue.replace(/"/g, '""') + '"';
+            }
+            return stringValue;
         }
 
         // Initialize dashboard
