@@ -36,10 +36,25 @@ app = FastAPI(
 # Include continual learning router
 app.include_router(learning_router)
 
-# Mount static files and templates
+# Mount static files and templates (conditionally if directories exist)
 BASE_DIR = Path(__file__).parent.parent
-app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")
-templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+STATIC_DIR = BASE_DIR / "static"
+TEMPLATES_DIR = BASE_DIR / "templates"
+
+# Only mount static files if directory exists
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+    logger.info(f"Mounted static files from {STATIC_DIR}")
+else:
+    logger.warning(f"Static directory not found at {STATIC_DIR}, skipping static files mounting")
+
+# Only initialize templates if directory exists
+if TEMPLATES_DIR.exists():
+    templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+    logger.info(f"Initialized templates from {TEMPLATES_DIR}")
+else:
+    logger.warning(f"Templates directory not found at {TEMPLATES_DIR}, using fallback")
+    templates = None
 
 # Global model registry
 config = MLConfig()
@@ -127,7 +142,23 @@ def load_model(model_type: str):
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
     """Main dashboard page."""
-    return templates.TemplateResponse("dashboard.html", {"request": request})
+    if templates is not None:
+        return templates.TemplateResponse("dashboard.html", {"request": request})
+    else:
+        # Fallback response when templates are not available
+        return HTMLResponse(
+            content="""
+            <html>
+                <head><title>GedMerge ML API</title></head>
+                <body>
+                    <h1>GedMerge ML API</h1>
+                    <p>API is running. Visit <a href="/docs">/docs</a> for API documentation.</p>
+                    <p>Note: Dashboard templates not found. Please add templates to enable full UI.</p>
+                </body>
+            </html>
+            """,
+            status_code=200
+        )
 
 
 @app.get("/api/health")
