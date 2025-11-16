@@ -1153,11 +1153,53 @@
                 // Display results with detailed breakdown
                 let issuesHTML = '';
                 if (result.details && result.details.length > 0) {
-                    issuesHTML = '<h4 style="margin-top: 1rem;">Issue Details:</h4><ul style="margin-left: 2rem;">';
+                    issuesHTML = '<h4 style="margin-top: 1rem;">Issue Summary:</h4><ul style="margin-left: 2rem;">';
                     result.details.forEach(issue => {
                         issuesHTML += `<li><strong>${issue.category}:</strong> ${issue.description} (${issue.count} instances)</li>`;
                     });
                     issuesHTML += '</ul>';
+                }
+
+                // Display detailed errors if available
+                let detailedErrorsHTML = '';
+                if (result.detailed_errors && result.detailed_errors.length > 0) {
+                    detailedErrorsHTML = `
+                        <h4 style="margin-top: 1.5rem;">Detailed Error Report:</h4>
+                        <div style="max-height: 500px; overflow-y: auto; background: #f8f9fa; padding: 1rem; border-radius: 6px; margin-top: 0.5rem;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                                <thead>
+                                    <tr style="background: #667eea; color: white;">
+                                        <th style="padding: 0.5rem; text-align: left;">Category</th>
+                                        <th style="padding: 0.5rem; text-align: left;">Type</th>
+                                        <th style="padding: 0.5rem; text-align: left;">Record ID</th>
+                                        <th style="padding: 0.5rem; text-align: left;">Description</th>
+                                        <th style="padding: 0.5rem; text-align: left;">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    `;
+
+                    result.detailed_errors.forEach((error, index) => {
+                        const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fa';
+                        detailedErrorsHTML += `
+                            <tr style="background: ${bgColor}; border-bottom: 1px solid #e1e8ed;">
+                                <td style="padding: 0.5rem;">${error.category}</td>
+                                <td style="padding: 0.5rem; font-family: monospace; font-size: 0.8rem;">${error.type}</td>
+                                <td style="padding: 0.5rem; font-family: monospace;">${error.record_id}${error.person_id ? ' (P:' + error.person_id + ')' : ''}</td>
+                                <td style="padding: 0.5rem;">${error.description}</td>
+                                <td style="padding: 0.5rem; font-family: monospace; font-size: 0.75rem; max-width: 300px; overflow-wrap: break-word;">${error.value}</td>
+                            </tr>
+                        `;
+                    });
+
+                    detailedErrorsHTML += `
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="margin-top: 0.5rem; color: #657786; font-size: 0.85rem;">
+                            Showing ${result.detailed_errors.length} detailed error(s). You can export this data or use the repair functions to fix these issues.
+                        </p>
+                    `;
                 }
 
                 resultsDiv.innerHTML = `
@@ -1166,6 +1208,7 @@
                         <strong>Overall Quality Score:</strong> ${result.quality_score}%<br>
                         <strong>Total Issues Found:</strong> ${result.total_issues}
                         ${issuesHTML}
+                        ${detailedErrorsHTML}
                     </div>
                 `;
             } catch (error) {
