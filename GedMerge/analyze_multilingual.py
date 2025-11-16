@@ -355,10 +355,15 @@ class MultilingualAnalyzer:
                 for item in sorted(items):
                     print(f"  - {item}")
 
-        print("\n### SAMPLE PLACES BY LANGUAGE ###")
+        print("\n### PLACE NAMES BY LANGUAGE ###")
+        total_places = sum(len(items) for items in self.places.values())
+        print(f"\nTotal unique place names found: {total_places}")
+        print("\nPlace names are extracted from PLAC (place) tags and categorized by language.")
+        print("Language detection uses geographic terms, accents, and linguistic patterns.")
+        print("\nSample places by detected language (showing first 10 per language):")
         for lang, items in sorted(self.places.items()):
             if items:
-                print(f"\n{lang}:")
+                print(f"\n{lang} ({len(items)} unique places):")
                 for item in sorted(list(items)[:10]):  # Show first 10
                     print(f"  - {item}")
 

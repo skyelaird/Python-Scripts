@@ -2730,79 +2730,86 @@ Portuguese:
   - A Representative
   - Find A Grave
 
-### SAMPLE PLACES BY LANGUAGE ###
+### PLACE NAMES BY LANGUAGE ###
 
-English:
-  - Aldenham, Hertfordshire, England
-  - Black Friars Churchyard, Hereford, Herefordshire, England
-  - Great Hanwood, Shropshire, England
-  - Hen, Staffordshire, England
-  - Hipperholme, Yorkshire, England, United Kingdom
-  - Launay, , Perche (Orne), France
-  - St-Pierre, bacqueville-en-caux, Seine-Maritime, Haute-Normandie, France
-  - Westminster Abbey or Winchester Cathedral, London, Middlesex, England
-  - Woodchurch, Kent, England, United Kingdom
-  - Zollern, Wessingen, Hohaenzollern, Prussia
+Total unique place names found: 34173
 
-French:
-  - Albon, Drôme, Auvergne-Rhône-Alpes, France
-  - Coligny, Loiret, Centre-Val de Loire, France
-  - Gerabronn, Jagstkreis, Württemberg, Germany
-  - Grand Pré, Kings County, Nova Scotia, Canada
-  - Halluin, Nord-Pas-de-Calais, France
-  - Pays des Hurons, , Canada
-  - Roussillon, , Rhône-Alpes, France
-  - Saint-Maur-des-Fossés, Val-de-Marne, Île-de-France, France
-  - Saint-Nazaire, Loire-Atlantique, Pays de la Loire, France
-  - St-Nicolas, La Ferté-Vidame, Eure-et-Loir, Centre, France
+Place names are extracted from PLAC (place) tags and categorized by language.
+Language detection uses geographic terms, accents, and linguistic patterns.
 
-German:
-  - Bad Tölz-Wolfratshausen, Oberbayern, Bavaria, Germany
-  - Birkenau, Bergstraße, Hessen, Germany
-  - Furness Abbey, Barrow-In-Furness, England
-  - Plumpton in Spofforth, Yorkshire, Angleterre
-  - Vohburg an der Donau Landkreis Pfaffenhofen an der Ilm
-  - Wittislingen, Landkreis Dillingen an der Donau, Bayern, Alemanha
-  - in battle at Falkirk, Stirlingshire, Scotland
-  - in battle at Halidon Hill, Berwick, Scotland
-  - in battle at Tournai, Tournai, Hainaut, Belgium
-  - in battle at Tracht-Mugha, Ireland
+Sample places by detected language (showing first 10 per language):
 
-Italian:
-  - Basilica di Sant'Anastasia al Palatino, Provincia di Roma, Italy, Roman Empire
-  - Chiesa di Santa Maria Rotonda, Ravenna, Emilia-Romagna, Ostrogothic Italy
+English (28378 unique places):
+  - Cavendish Hall, Cavendish Suffolk England
+  - Coates and Summerfield, Wiltshire, , England
+  - Kirkham, Yorkshire, England
+  - Lochaber, Inverness-shire, Scotland
+  - Ormesby Saint Michael, Norfolk, England
+  - Priory Church of Saint Mary Abergavenny, Abergavenny, Monmouthshire, Wales
+  - Saint Cuthbert's Churchyard Bewcastle, Carlisle, Cumbria, England
+  - Sedgewick, Hancock, Maine, United States
+  - Skotland
+  - Worcester Cathedral, Worcestershire, England
+
+French (5011 unique places):
+  - Aniane, Hérault, Languedoc-Roussillon, France
+  - Auxy, Saône-et-Loire, Bourgogne, France
+  - Boheme, Cosne Cours sur Loire, Bourgogne, France
+  - Boulogne-sur-Mer-Sud, Boulogne-sur-Mer, Pas-de-Calais, France
+  - Cathedrale Saint-Pierre de Beauvais, Beauvais, Departement de l'Oise, Picardie, France
+  - Flanders, Nord-Pas-de-Calais, France
+  - Fontaine-le-Bourg, Seine-Maritime, Haute-Normandie, France
+  - Stuttgart, Baden-Württemberg, Deutschland
+  - Université Laval, Québec, , Québec, Canada
+  - Vexin, Yvelines (Normandie), Île-de-France, France
+
+German (391 unique places):
+  - Etelköz, hungria
+  - Hockley-in-the-Hole, Anne Arundel, Maryland, United States
+  - Minster in Sheppey, Kent, England
+  - Pöchlarn, Niederösterreich, Austria
+  - Saint Martin in the Fields, Westminster, Middlesex, England
+  - Saint Stephen in Brannel, Cornwall, England
+  - Skipton in Craven, West Riding, Yorkshire, England
+  - Sutton-in-Craven, Yorkshire, England
+  - in battle at Hallidan Hill, Northumberland, England
+  - in battle, Lune, Elbe, , Germany
+
+Italian (93 unique places):
+  - Austria - aka Luitpold I
   - Duke Henry I of Bavaria, Duke of Saxony, Henry of Germany II
-  - Killed by his cousin Clovis I - Frankish Kingdom
-  - Saint Peter's Basilica, Provincia di Roma, Italy
-  - Sant'Andrea Monastery, Provincia di Torino, Piedmont, Italy
-  - St-Jean-Baptiste d'Argences, Caen, e. Bayeux, Normandie (Calvados), France
-  - Thvotta, Hof I Alftafirdi, Sudur-Mulasysla, Iceland
-  - Verona, Provincia di Verona, Veneto, Italy
-  - Waimea, Kaua'i, Kingdom of Hawaii
+  - Marino (Spoleto) Spoleto East Adelgis (Spoleto) di Spoleto
+  - Monastero di Bobbio, Piacenza, Emilia Romagna, Italia
+  - Oyster Bay, Queens County, L. I.
+  - Parrochia di Canischio, Canischio, Torino, Piemonte Italy
+  - Provincia di Barletta - Andria - Trani, Puglia, Italy
+  - Provincia di Foggia, Kingdom of Sicily
+  - Provincia di Udine, ItalyFriuli-Venezia Giulia, Italy
+  - Rollo Bay, P. E. I., Canada
 
-Portuguese:
-  - A, Fyn, Denmark
-  - As Sheriff of, Inverness-shire, Scotland
-  - Land Granr, a., Scotland
-  - Napo'opo'o, Kona, Hawaii
-  - Napo'opo'o, South Kona, Hawaii
+Portuguese (37 unique places):
+  - Coimbrã, Leiria, Portugal
+  - Dover District, Kent, England (also known as Dover, Hospital of Saint Mary)
+  - Figueira da Foz, , , Portugal
+  - Figueira da Foz, Portugal
+  - Nogueira, Cinfães, Viseu, Portugal
+  - Of Doune Ampney Com, Wiltshire, England
   - Of, , a, France
-  - Stratford On A., Warwickshire, England
-  - Virtual Burial on Find a Grave, actual location currently unknown
+  - Pucklechurch, Saint Thomas a Becket, Gloucestershire, England
   - murdered by a vassal Bernard Plantevelues, France
   - of Thvotta, Hof a Alptafirdi, Nordur Mula, Iceland
 
-Spanish:
-  - Barbastro, Huesca, Aragón, España
-  - Besalú, Catalonia, Spain
-  - Colorado Springs, El Paso, Colorado, United States
-  - Paiz Vasco España
-  - Pamplona, Navarra, España
-  - Ripoll, Gerona, Cataluña, Spain
-  - San Martín del Rey Aurelio, Asturias, España
-  - Saragossa, Aragón, Spain
-  - Znojmo, Csehország
-  - Þvottá, Suður-Múlasýsla, Eastern Region, Iceland
+Spanish (263 unique places):
+  - Autún, Borgoña, France
+  - Batallanes, Pontevedra, Galicia, España
+  - Benevento, Itália
+  - Burgos, Castilla y León, España
+  - Castilla y León, Spain
+  - Esztergom, Komárom, Hungary
+  - Los Angeles, Los Angeles, California, United States
+  - Saldaña, Palencia, Castilla y León, Espanha
+  - Valladolid, Castilla y León, Espagne
+  - Vivar, Burgos, España
 
 ================================================================================
 COMPREHENSIVE EQUIVALENCY TABLE
