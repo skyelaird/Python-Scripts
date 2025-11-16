@@ -872,8 +872,8 @@ async def repair_names(request: RepairRequest):
                                     OwnerID, Surname, Given, Prefix, Suffix, Nickname,
                                     NameType, IsPrimary, Language
                                 )
-                                VALUES (?, ?, ?, ?, ?, ?, 1, 0, '')
-                            """, (owner_id, new_surname or '', variant, new_prefix or '', new_suffix or '', '', ))
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            """, (owner_id, new_surname or '', variant, new_prefix or '', new_suffix or '', '', 1, 0, ''))
                             variants_extracted += 1
                         updated = True
 
@@ -1234,6 +1234,7 @@ async def sanity_check(request: RepairRequest):
         event_issues = 0
         relationship_issues = 0
         details = []
+        detailed_errors = []  # Store specific error records
 
         logger.info(f"Running sanity check on {request.database_path}")
 
@@ -1241,7 +1242,7 @@ async def sanity_check(request: RepairRequest):
 
         # 1. Check names for issues
         cursor.execute("""
-            SELECT NameID, Surname, Given, Prefix, Suffix, Nickname
+            SELECT NameID, OwnerID, Surname, Given, Prefix, Suffix, Nickname
             FROM NameTable
         """)
         names = cursor.fetchall()
@@ -1251,28 +1252,68 @@ async def sanity_check(request: RepairRequest):
         titles_in_wrong_field = 0
         placeholder_names = 0
 
-        for name_id, surname, given, prefix, suffix, nickname in names:
+        for name_id, owner_id, surname, given, prefix, suffix, nickname in names:
             # Check for reversed names (comma in given name)
             if given and ',' in given and not surname:
                 reversed_names += 1
+                detailed_errors.append({
+                    "type": "reversed_name",
+                    "category": "Names",
+                    "record_id": name_id,
+                    "person_id": owner_id,
+                    "description": "Reversed name (comma in given name)",
+                    "value": f"Given: '{given}', Surname: '{surname or '(empty)'}'"
+                })
 
             # Check for embedded variants
             if given and ('(' in given or ')' in given):
                 embedded_variants += 1
+                detailed_errors.append({
+                    "type": "embedded_variant",
+                    "category": "Names",
+                    "record_id": name_id,
+                    "person_id": owner_id,
+                    "description": "Embedded name variant in parentheses",
+                    "value": f"Given: '{given}'"
+                })
 
             # Check for titles in wrong field
             if given and not prefix:
                 _, extracted_prefix = NameParser.extract_prefix(given)
                 if extracted_prefix:
                     titles_in_wrong_field += 1
+                    detailed_errors.append({
+                        "type": "title_in_wrong_field",
+                        "category": "Names",
+                        "record_id": name_id,
+                        "person_id": owner_id,
+                        "description": "Title in given name field",
+                        "value": f"Given: '{given}', Extracted prefix: '{extracted_prefix}'"
+                    })
 
             # Check for placeholder names
             if surname and surname.upper() in ['NN', 'UNKNOWN', '?', '??', 'N.N.']:
                 placeholder_names += 1
+                detailed_errors.append({
+                    "type": "placeholder_name",
+                    "category": "Names",
+                    "record_id": name_id,
+                    "person_id": owner_id,
+                    "description": "Placeholder surname",
+                    "value": f"Surname: '{surname}', Given: '{given or '(empty)'}'"
+                })
 
             # Check for surname particles in nickname field
             if nickname and NameParser.has_surname_particle(nickname):
                 name_issues += 1
+                detailed_errors.append({
+                    "type": "surname_particle_in_nickname",
+                    "category": "Names",
+                    "record_id": name_id,
+                    "person_id": owner_id,
+                    "description": "Surname particle in nickname field",
+                    "value": f"Nickname: '{nickname}'"
+                })
 
         if reversed_names > 0:
             details.append({"category": "Names", "description": "Reversed names detected", "count": reversed_names})
@@ -1297,27 +1338,43 @@ async def sanity_check(request: RepairRequest):
         places_with_postal_codes = 0
         duplicate_places = 0
 
-        seen_places = set()
+        seen_places = {}  # Maps normalized name to first occurrence PlaceID
         for place_id, place_name in places:
             if not place_name:
                 continue
 
             # Check for postal codes
             postal_patterns = [
-                r'\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b',  # Canadian
-                r'\b\d{5}(?:-\d{4})?\b',  # US ZIP
-                r'\b[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}\b',  # UK
+                (r'\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b', 'Canadian'),  # Canadian
+                (r'\b\d{5}(?:-\d{4})?\b', 'US ZIP'),  # US ZIP
+                (r'\b[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}\b', 'UK'),  # UK
             ]
-            for pattern in postal_patterns:
-                if re.search(pattern, place_name):
+            for pattern, postal_type in postal_patterns:
+                match = re.search(pattern, place_name)
+                if match:
                     places_with_postal_codes += 1
+                    detailed_errors.append({
+                        "type": "postal_code_in_place",
+                        "category": "Places",
+                        "record_id": place_id,
+                        "description": f"Place contains {postal_type} postal code",
+                        "value": f"Place: '{place_name}', Postal code: '{match.group()}'"
+                    })
                     break
 
             # Check for duplicates (case-insensitive)
             normalized = place_name.lower().strip()
             if normalized in seen_places:
                 duplicate_places += 1
-            seen_places.add(normalized)
+                detailed_errors.append({
+                    "type": "duplicate_place",
+                    "category": "Places",
+                    "record_id": place_id,
+                    "description": "Duplicate place name",
+                    "value": f"Place: '{place_name}' (duplicate of PlaceID {seen_places[normalized]})"
+                })
+            else:
+                seen_places[normalized] = place_id
 
         if places_with_postal_codes > 0:
             details.append({"category": "Places", "description": "Places with postal codes", "count": places_with_postal_codes})
@@ -1344,6 +1401,7 @@ async def sanity_check(request: RepairRequest):
             if owner_id not in person_events:
                 person_events[owner_id] = []
             person_events[owner_id].append({
+                'event_id': event_id,
                 'event_type': event_type,
                 'date': date,
                 'sort_date': sort_date
@@ -1352,6 +1410,14 @@ async def sanity_check(request: RepairRequest):
             # Check for invalid date formats
             if date and re.search(r'\d{1,2}-\d{1,2}-\d{4}', date):
                 invalid_dates += 1
+                detailed_errors.append({
+                    "type": "invalid_date_format",
+                    "category": "Events",
+                    "record_id": event_id,
+                    "person_id": owner_id,
+                    "description": "Invalid date format (MM-DD-YYYY)",
+                    "value": f"Date: '{date}'"
+                })
 
         # Check chronological order
         for person_id, events_list in person_events.items():
@@ -1363,6 +1429,14 @@ async def sanity_check(request: RepairRequest):
                 death_date = death_events[0]['sort_date']
                 if birth_date and death_date and birth_date > death_date:
                     chronological_errors += 1
+                    detailed_errors.append({
+                        "type": "chronological_error",
+                        "category": "Events",
+                        "record_id": birth_events[0]['event_id'],
+                        "person_id": person_id,
+                        "description": "Birth date after death date",
+                        "value": f"Birth: '{birth_events[0]['date']}' (sort: {birth_date}), Death: '{death_events[0]['date']}' (sort: {death_date})"
+                    })
 
         if invalid_dates > 0:
             details.append({"category": "Events", "description": "Invalid date formats", "count": invalid_dates})
@@ -1391,6 +1465,14 @@ async def sanity_check(request: RepairRequest):
                 """, (person_id, parent_id))
                 if cursor.fetchone()[0] == 0:
                     invalid_parent_refs += 1
+                    detailed_errors.append({
+                        "type": "invalid_parent_reference",
+                        "category": "Relationships",
+                        "record_id": person_id,
+                        "person_id": person_id,
+                        "description": "Invalid parent reference",
+                        "value": f"PersonID {person_id} has ParentID {parent_id} but no matching ChildTable record"
+                    })
 
             if spouse_id > 0:
                 cursor.execute("""
@@ -1399,6 +1481,14 @@ async def sanity_check(request: RepairRequest):
                 """, (spouse_id, person_id, person_id))
                 if cursor.fetchone()[0] == 0:
                     invalid_spouse_refs += 1
+                    detailed_errors.append({
+                        "type": "invalid_spouse_reference",
+                        "category": "Relationships",
+                        "record_id": person_id,
+                        "person_id": person_id,
+                        "description": "Invalid spouse reference",
+                        "value": f"PersonID {person_id} has SpouseID {spouse_id} but is not in corresponding FamilyTable"
+                    })
 
         if invalid_parent_refs > 0:
             details.append({"category": "Relationships", "description": "Invalid parent references", "count": invalid_parent_refs})
@@ -1428,6 +1518,7 @@ async def sanity_check(request: RepairRequest):
             "relationship_issues": relationship_issues,
             "quality_score": round(quality_score, 1),
             "details": details,
+            "detailed_errors": detailed_errors,  # Full list of all errors with specifics
             "status": "completed",
         }
 
