@@ -1,0 +1,389 @@
+{
+  "_description": "Noble title suffixes with multilingual variants for genealogical records",
+  "_languages": ["en", "fr", "de", "it", "es", "la"],
+  "_version": "1.0",
+
+  "titles": [
+    {
+      "canonical": "emperor",
+      "rank": 1,
+      "category": "royalty",
+      "variants": {
+        "en": ["emperor", "emp"],
+        "fr": ["empereur", "emp"],
+        "de": ["kaiser", "ks"],
+        "it": ["imperatore", "imp"],
+        "es": ["emperador", "emp"],
+        "la": ["imperator", "imp"]
+      },
+      "feminine": {
+        "en": ["empress"],
+        "fr": ["impératrice"],
+        "de": ["kaiserin"],
+        "it": ["imperatrice"],
+        "es": ["emperatriz"],
+        "la": ["imperatrix"]
+      }
+    },
+    {
+      "canonical": "king",
+      "rank": 2,
+      "category": "royalty",
+      "variants": {
+        "en": ["king", "kg"],
+        "fr": ["roi"],
+        "de": ["könig", "kg"],
+        "it": ["re"],
+        "es": ["rey"],
+        "la": ["rex"]
+      },
+      "feminine": {
+        "en": ["queen"],
+        "fr": ["reine"],
+        "de": ["königin"],
+        "it": ["regina"],
+        "es": ["reina"],
+        "la": ["regina"]
+      }
+    },
+    {
+      "canonical": "archduke",
+      "rank": 3,
+      "category": "royalty",
+      "variants": {
+        "en": ["archduke", "archdk"],
+        "fr": ["archiduc"],
+        "de": ["erzherzog", "ehzg"],
+        "it": ["arciduca"],
+        "es": ["archiduque"],
+        "la": ["archidux"]
+      },
+      "feminine": {
+        "en": ["archduchess"],
+        "fr": ["archiduchesse"],
+        "de": ["erzherzogin"],
+        "it": ["arciduchessa"],
+        "es": ["archiduquesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "grand_duke",
+      "rank": 4,
+      "category": "royalty",
+      "variants": {
+        "en": ["grand duke", "grand dk", "gd"],
+        "fr": ["grand-duc", "grand duc"],
+        "de": ["großherzog", "ghzg"],
+        "it": ["granduca"],
+        "es": ["gran duque"],
+        "la": ["magnus dux"]
+      },
+      "feminine": {
+        "en": ["grand duchess"],
+        "fr": ["grande-duchesse"],
+        "de": ["großherzogin"],
+        "it": ["granduchessa"],
+        "es": ["gran duquesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "prince",
+      "rank": 5,
+      "category": "royalty",
+      "variants": {
+        "en": ["prince", "pr", "pce"],
+        "fr": ["prince", "pr"],
+        "de": ["prinz", "prz", "fürst"],
+        "it": ["principe", "pr"],
+        "es": ["príncipe", "principe", "pr"],
+        "la": ["princeps"]
+      },
+      "feminine": {
+        "en": ["princess", "pss"],
+        "fr": ["princesse", "psse"],
+        "de": ["prinzessin", "fürstin"],
+        "it": ["principessa"],
+        "es": ["princesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "duke",
+      "rank": 6,
+      "category": "nobility",
+      "variants": {
+        "en": ["duke", "dk"],
+        "fr": ["duc"],
+        "de": ["herzog", "hzg"],
+        "it": ["duca"],
+        "es": ["duque", "dq"],
+        "la": ["dux"]
+      },
+      "feminine": {
+        "en": ["duchess", "dss"],
+        "fr": ["duchesse"],
+        "de": ["herzogin"],
+        "it": ["duchessa"],
+        "es": ["duquesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "marquis",
+      "rank": 7,
+      "category": "nobility",
+      "variants": {
+        "en": ["marquis", "marquess", "mq", "mqss"],
+        "fr": ["marquis", "mq"],
+        "de": ["markgraf", "mgf"],
+        "it": ["marchese", "march"],
+        "es": ["marqués", "marques", "mq"],
+        "la": ["marchio"]
+      },
+      "feminine": {
+        "en": ["marchioness"],
+        "fr": ["marquise"],
+        "de": ["markgräfin"],
+        "it": ["marchesa"],
+        "es": ["marquesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "count",
+      "rank": 8,
+      "category": "nobility",
+      "variants": {
+        "en": ["count", "earl", "ct"],
+        "fr": ["comte", "cte"],
+        "de": ["graf", "gf"],
+        "it": ["conte", "co"],
+        "es": ["conde", "cd"],
+        "la": ["comes"]
+      },
+      "feminine": {
+        "en": ["countess"],
+        "fr": ["comtesse", "ctsse"],
+        "de": ["gräfin"],
+        "it": ["contessa"],
+        "es": ["condesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "viscount",
+      "rank": 9,
+      "category": "nobility",
+      "variants": {
+        "en": ["viscount", "vct", "visc"],
+        "fr": ["vicomte", "vcte"],
+        "de": ["vicomte", "vizegraf"],
+        "it": ["visconte", "visc"],
+        "es": ["vizconde", "vizc"],
+        "la": ["vicecomes"]
+      },
+      "feminine": {
+        "en": ["viscountess"],
+        "fr": ["vicomtesse"],
+        "de": ["vicomtessin"],
+        "it": ["viscontessa"],
+        "es": ["vizcondesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "baron",
+      "rank": 10,
+      "category": "nobility",
+      "variants": {
+        "en": ["baron", "bn", "bar"],
+        "fr": ["baron", "bn"],
+        "de": ["baron", "freiherr", "fhr"],
+        "it": ["barone", "bar"],
+        "es": ["barón", "baron", "br"],
+        "la": ["baro"]
+      },
+      "feminine": {
+        "en": ["baroness"],
+        "fr": ["baronne"],
+        "de": ["baronin", "freifrau"],
+        "it": ["baronessa"],
+        "es": ["baronesa"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "baronet",
+      "rank": 11,
+      "category": "nobility",
+      "variants": {
+        "en": ["baronet", "bart", "bt"],
+        "fr": ["baronnet"],
+        "de": ["baronet"],
+        "it": ["baronetto"],
+        "es": ["baronet"],
+        "la": []
+      },
+      "feminine": {
+        "en": ["baronetess"],
+        "fr": [],
+        "de": [],
+        "it": [],
+        "es": [],
+        "la": []
+      }
+    },
+    {
+      "canonical": "knight",
+      "rank": 12,
+      "category": "nobility",
+      "variants": {
+        "en": ["knight", "kt", "sir"],
+        "fr": ["chevalier", "chev"],
+        "de": ["ritter", "ritt"],
+        "it": ["cavaliere", "cav"],
+        "es": ["caballero", "cab"],
+        "la": ["eques", "miles"]
+      },
+      "feminine": {
+        "en": ["dame", "lady"],
+        "fr": ["dame"],
+        "de": ["dame"],
+        "it": ["dama"],
+        "es": ["dama"],
+        "la": []
+      }
+    },
+    {
+      "canonical": "lord",
+      "rank": 13,
+      "category": "nobility",
+      "variants": {
+        "en": ["lord", "ld"],
+        "fr": ["seigneur", "sgr"],
+        "de": ["herr"],
+        "it": ["signore", "sig"],
+        "es": ["señor", "sr"],
+        "la": ["dominus", "dom"]
+      },
+      "feminine": {
+        "en": ["lady"],
+        "fr": ["dame"],
+        "de": ["frau"],
+        "it": ["signora"],
+        "es": ["señora"],
+        "la": ["domina"]
+      }
+    }
+  ],
+
+  "professional_suffixes": [
+    {
+      "canonical": "doctor",
+      "category": "academic",
+      "variants": {
+        "en": ["dr", "doctor", "md", "phd", "dphil"],
+        "fr": ["dr", "docteur", "md"],
+        "de": ["dr", "doktor"],
+        "it": ["dr", "dottore", "dott"],
+        "es": ["dr", "doctor"],
+        "la": ["dr"]
+      }
+    },
+    {
+      "canonical": "professor",
+      "category": "academic",
+      "variants": {
+        "en": ["prof", "professor"],
+        "fr": ["prof", "professeur"],
+        "de": ["prof", "professor"],
+        "it": ["prof", "professore"],
+        "es": ["prof", "profesor"],
+        "la": ["prof"]
+      }
+    },
+    {
+      "canonical": "esquire",
+      "category": "professional",
+      "variants": {
+        "en": ["esq", "esquire"],
+        "fr": ["écuyer", "esc"],
+        "de": ["esq"],
+        "it": ["scudiero"],
+        "es": ["escudero"],
+        "la": ["armiger"]
+      }
+    }
+  ],
+
+  "generational_suffixes": [
+    {
+      "canonical": "junior",
+      "variants": {
+        "en": ["jr", "junior", "jun"],
+        "fr": ["jr", "jeune"],
+        "de": ["jr", "jun"],
+        "it": ["jr", "iunior"],
+        "es": ["jr", "hijo"],
+        "la": ["jr", "iunior"]
+      }
+    },
+    {
+      "canonical": "senior",
+      "variants": {
+        "en": ["sr", "senior", "sen"],
+        "fr": ["sr", "père"],
+        "de": ["sr", "sen"],
+        "it": ["sr", "senior"],
+        "es": ["sr", "padre"],
+        "la": ["sr", "senior"]
+      }
+    },
+    {
+      "canonical": "second",
+      "variants": {
+        "en": ["ii", "2nd", "the second"],
+        "fr": ["ii", "deuxième"],
+        "de": ["ii", "zweite"],
+        "it": ["ii", "secondo"],
+        "es": ["ii", "segundo"],
+        "la": ["ii", "secundus"]
+      }
+    },
+    {
+      "canonical": "third",
+      "variants": {
+        "en": ["iii", "3rd", "the third"],
+        "fr": ["iii", "troisième"],
+        "de": ["iii", "dritte"],
+        "it": ["iii", "terzo"],
+        "es": ["iii", "tercero"],
+        "la": ["iii", "tertius"]
+      }
+    },
+    {
+      "canonical": "fourth",
+      "variants": {
+        "en": ["iv", "4th", "the fourth"],
+        "fr": ["iv", "quatrième"],
+        "de": ["iv", "vierte"],
+        "it": ["iv", "quarto"],
+        "es": ["iv", "cuarto"],
+        "la": ["iv", "quartus"]
+      }
+    },
+    {
+      "canonical": "fifth",
+      "variants": {
+        "en": ["v", "5th", "the fifth"],
+        "fr": ["v", "cinquième"],
+        "de": ["v", "fünfte"],
+        "it": ["v", "quinto"],
+        "es": ["v", "quinto"],
+        "la": ["v", "quintus"]
+      }
+    }
+  ]
+}

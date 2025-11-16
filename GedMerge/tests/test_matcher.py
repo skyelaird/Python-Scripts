@@ -5,6 +5,7 @@ Tests for person matching engine.
 import pytest
 from gedmerge.rootsmagic.models import RMPerson, RMName, RMEvent
 from gedmerge.matching import PersonMatcher, MatchScorer
+from gedmerge.data.reference_loader import reference_data
 
 
 class TestPersonMatcher:
@@ -286,3 +287,297 @@ class TestMatchCandidate:
         assert not candidate.is_high_confidence
         assert not candidate.is_medium_confidence
         assert candidate.is_low_confidence
+
+
+class TestMultilingualSuffixMatching:
+    """Tests for multilingual noble title suffix matching."""
+
+    def test_normalize_name_removes_duke_variants(self):
+        """Test that duke/duc/herzog are all removed from names."""
+        # English duke
+        name_en = "Duke John Smith"
+        normalized_en = PersonMatcher.normalize_name_for_matching(name_en, 'en')
+        assert 'duke' not in normalized_en
+        assert 'john' in normalized_en
+        assert 'smith' in normalized_en
+
+        # French duc
+        name_fr = "Jean Dupont Duc"
+        normalized_fr = PersonMatcher.normalize_name_for_matching(name_fr, 'fr')
+        assert 'duc' not in normalized_fr
+        assert 'jean' in normalized_fr
+        assert 'dupont' in normalized_fr
+
+        # German herzog
+        name_de = "Herzog Wilhelm Schmidt"
+        normalized_de = PersonMatcher.normalize_name_for_matching(name_de, 'de')
+        assert 'herzog' not in normalized_de
+        assert 'wilhelm' in normalized_de
+        assert 'schmidt' in normalized_de
+
+    def test_normalize_name_removes_count_variants(self):
+        """Test that count/comte/graf are all removed from names."""
+        # English count
+        name_en = "Count John Smith"
+        normalized_en = PersonMatcher.normalize_name_for_matching(name_en)
+        assert 'count' not in normalized_en
+        assert 'john' in normalized_en
+
+        # French comte
+        name_fr = "Comte Jean Dupont"
+        normalized_fr = PersonMatcher.normalize_name_for_matching(name_fr)
+        assert 'comte' not in normalized_fr
+        assert 'jean' in normalized_fr
+
+        # German graf
+        name_de = "Graf Wilhelm Schmidt"
+        normalized_de = PersonMatcher.normalize_name_for_matching(name_de)
+        assert 'graf' not in normalized_de
+        assert 'wilhelm' in normalized_de
+
+    def test_normalize_name_removes_prince_variants(self):
+        """Test that prince/prinz/fürst are all removed from names."""
+        name_en = "Prince Charles Windsor"
+        normalized_en = PersonMatcher.normalize_name_for_matching(name_en)
+        assert 'prince' not in normalized_en
+        assert 'charles' in normalized_en
+
+        name_de = "Prinz Otto Habsburg"
+        normalized_de = PersonMatcher.normalize_name_for_matching(name_de)
+        assert 'prinz' not in normalized_de
+        assert 'otto' in normalized_de
+
+    def test_score_equivalent_noble_titles(self):
+        """Test that equivalent noble titles in different languages score high."""
+        # Duke in English vs Duc in French
+        person1 = RMPerson(
+            person_id=1,
+            sex='M',
+            names=[RMName(
+                name_id=1,
+                given='John',
+                surname='Smith',
+                suffix='Duke'
+            )]
+        )
+
+        person2 = RMPerson(
+            person_id=2,
+            sex='M',
+            names=[RMName(
+                name_id=2,
+                given='John',
+                surname='Smith',
+                suffix='Duc'
+            )]
+        )
+
+        scorer = MatchScorer()
+        result = scorer.calculate_match_score(person1, person2)
+
+        # Suffix score should be 100 (equivalent titles)
+        assert result.suffix_score == 100.0
+        assert result.details.get('suffix_match', {}).get('status') == 'match'
+
+    def test_score_different_noble_titles(self):
+        """Test that different noble titles score lower but not zero."""
+        # Duke vs Count
+        person1 = RMPerson(
+            person_id=1,
+            sex='M',
+            names=[RMName(
+                name_id=1,
+                given='John',
+                surname='Smith',
+                suffix='Duke'
+            )]
+        )
+
+        person2 = RMPerson(
+            person_id=2,
+            sex='M',
+            names=[RMName(
+                name_id=2,
+                given='John',
+                surname='Smith',
+                suffix='Count'
+            )]
+        )
+
+        scorer = MatchScorer()
+        result = scorer.calculate_match_score(person1, person2)
+
+        # Different titles - should score lower but not zero
+        assert result.suffix_score == 40.0
+        assert result.details.get('suffix_match', {}).get('status') == 'different'
+
+    def test_score_cross_language_noble_titles(self):
+        """Test that cross-language equivalent titles match correctly."""
+        # Herzog (German) vs Duca (Italian) - both are "duke"
+        person1 = RMPerson(
+            person_id=1,
+            sex='M',
+            names=[RMName(
+                name_id=1,
+                given='Wilhelm',
+                surname='Schmidt',
+                suffix='Herzog'
+            )]
+        )
+
+        person2 = RMPerson(
+            person_id=2,
+            sex='M',
+            names=[RMName(
+                name_id=2,
+                given='Wilhelm',
+                surname='Schmidt',
+                suffix='Duca'
+            )]
+        )
+
+        scorer = MatchScorer()
+        result = scorer.calculate_match_score(person1, person2)
+
+        # Should match as equivalent titles
+        assert result.suffix_score == 100.0
+
+    def test_score_missing_suffix(self):
+        """Test scoring when one person has a suffix and one doesn't."""
+        person1 = RMPerson(
+            person_id=1,
+            sex='M',
+            names=[RMName(
+                name_id=1,
+                given='John',
+                surname='Smith',
+                suffix='Duke'
+            )]
+        )
+
+        person2 = RMPerson(
+            person_id=2,
+            sex='M',
+            names=[RMName(
+                name_id=2,
+                given='John',
+                surname='Smith'
+                # No suffix
+            )]
+        )
+
+        scorer = MatchScorer()
+        result = scorer.calculate_match_score(person1, person2)
+
+        # One missing - should score 80
+        assert result.suffix_score == 80.0
+        assert result.details.get('suffix_match', {}).get('status') == 'one_missing'
+
+
+class TestMultilingualPlaceMatching:
+    """Tests for multilingual place name matching."""
+
+    def test_score_equivalent_place_names(self):
+        """Test that equivalent place names in different languages match."""
+        # Vienna vs Wien
+        person1 = RMPerson(
+            person_id=1,
+            sex='M',
+            names=[RMName(name_id=1, given='John', surname='Smith')],
+            events=[
+                RMEvent(
+                    event_id=1,
+                    event_type='Birth',
+                    date='1 JAN 1900',
+                    place='Vienna'
+                )
+            ]
+        )
+
+        person2 = RMPerson(
+            person_id=2,
+            sex='M',
+            names=[RMName(name_id=2, given='John', surname='Smith')],
+            events=[
+                RMEvent(
+                    event_id=2,
+                    event_type='Birth',
+                    date='1 JAN 1900',
+                    place='Wien'
+                )
+            ]
+        )
+
+        scorer = MatchScorer()
+        result = scorer.calculate_match_score(person1, person2)
+
+        # Place score should be 100 (equivalent places)
+        assert result.place_score == 100.0
+
+    def test_score_munich_muenchen(self):
+        """Test Munich vs München matching."""
+        person1 = RMPerson(
+            person_id=1,
+            sex='F',
+            names=[RMName(name_id=1, given='Anna', surname='Müller')],
+            events=[
+                RMEvent(
+                    event_id=1,
+                    event_type='Birth',
+                    place='Munich'
+                )
+            ]
+        )
+
+        person2 = RMPerson(
+            person_id=2,
+            sex='F',
+            names=[RMName(name_id=2, given='Anna', surname='Müller')],
+            events=[
+                RMEvent(
+                    event_id=2,
+                    event_type='Birth',
+                    place='München'
+                )
+            ]
+        )
+
+        scorer = MatchScorer()
+        result = scorer.calculate_match_score(person1, person2)
+
+        # Should recognize as equivalent
+        assert result.place_score == 100.0
+
+    def test_score_prague_praha(self):
+        """Test Prague vs Praha vs Prag matching."""
+        person1 = RMPerson(
+            person_id=1,
+            sex='M',
+            names=[RMName(name_id=1, given='Josef', surname='Novák')],
+            events=[
+                RMEvent(
+                    event_id=1,
+                    event_type='Death',
+                    place='Prague'
+                )
+            ]
+        )
+
+        person2 = RMPerson(
+            person_id=2,
+            sex='M',
+            names=[RMName(name_id=2, given='Josef', surname='Novák')],
+            events=[
+                RMEvent(
+                    event_id=2,
+                    event_type='Death',
+                    place='Praha'
+                )
+            ]
+        )
+
+        scorer = MatchScorer()
+        result = scorer.calculate_match_score(person1, person2)
+
+        # Should recognize as equivalent
+        assert result.place_score == 100.0

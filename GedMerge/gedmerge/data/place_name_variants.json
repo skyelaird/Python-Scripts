@@ -1,0 +1,481 @@
+{
+  "_description": "Place name variants across different languages for genealogical matching",
+  "_version": "1.0",
+  "_note": "This allows matching of locations that have different names in different languages",
+
+  "cities": [
+    {
+      "canonical": "vienna",
+      "country": "austria",
+      "variants": {
+        "en": ["vienna"],
+        "de": ["wien"],
+        "fr": ["vienne"],
+        "it": ["vienna"],
+        "es": ["viena"],
+        "la": ["vindobona"],
+        "hu": ["bécs"],
+        "cs": ["vídeň"]
+      }
+    },
+    {
+      "canonical": "munich",
+      "country": "germany",
+      "variants": {
+        "en": ["munich"],
+        "de": ["münchen"],
+        "fr": ["munich"],
+        "it": ["monaco di baviera", "monaco"],
+        "es": ["múnich", "munich"],
+        "la": ["monacum"],
+        "cs": ["mnichov"]
+      }
+    },
+    {
+      "canonical": "prague",
+      "country": "czech_republic",
+      "variants": {
+        "en": ["prague"],
+        "de": ["prag"],
+        "fr": ["prague"],
+        "it": ["praga"],
+        "es": ["praga"],
+        "la": ["praga"],
+        "cs": ["praha"]
+      }
+    },
+    {
+      "canonical": "cologne",
+      "country": "germany",
+      "variants": {
+        "en": ["cologne"],
+        "de": ["köln"],
+        "fr": ["cologne"],
+        "it": ["colonia"],
+        "es": ["colonia"],
+        "la": ["colonia agrippina", "colonia"]
+      }
+    },
+    {
+      "canonical": "brussels",
+      "country": "belgium",
+      "variants": {
+        "en": ["brussels"],
+        "de": ["brüssel"],
+        "fr": ["bruxelles"],
+        "it": ["bruxelles"],
+        "es": ["bruselas"],
+        "la": ["bruxellae"],
+        "nl": ["brussel"]
+      }
+    },
+    {
+      "canonical": "rome",
+      "country": "italy",
+      "variants": {
+        "en": ["rome"],
+        "de": ["rom"],
+        "fr": ["rome"],
+        "it": ["roma"],
+        "es": ["roma"],
+        "la": ["roma"]
+      }
+    },
+    {
+      "canonical": "florence",
+      "country": "italy",
+      "variants": {
+        "en": ["florence"],
+        "de": ["florenz"],
+        "fr": ["florence"],
+        "it": ["firenze"],
+        "es": ["florencia"],
+        "la": ["florentia"]
+      }
+    },
+    {
+      "canonical": "venice",
+      "country": "italy",
+      "variants": {
+        "en": ["venice"],
+        "de": ["venedig"],
+        "fr": ["venise"],
+        "it": ["venezia"],
+        "es": ["venecia"],
+        "la": ["venetia"]
+      }
+    },
+    {
+      "canonical": "milan",
+      "country": "italy",
+      "variants": {
+        "en": ["milan"],
+        "de": ["mailand"],
+        "fr": ["milan"],
+        "it": ["milano"],
+        "es": ["milán", "milan"],
+        "la": ["mediolanum"]
+      }
+    },
+    {
+      "canonical": "naples",
+      "country": "italy",
+      "variants": {
+        "en": ["naples"],
+        "de": ["neapel"],
+        "fr": ["naples"],
+        "it": ["napoli"],
+        "es": ["nápoles", "napoles"],
+        "la": ["neapolis"]
+      }
+    },
+    {
+      "canonical": "paris",
+      "country": "france",
+      "variants": {
+        "en": ["paris"],
+        "de": ["paris"],
+        "fr": ["paris"],
+        "it": ["parigi"],
+        "es": ["parís", "paris"],
+        "la": ["lutetia", "parisii"]
+      }
+    },
+    {
+      "canonical": "marseille",
+      "country": "france",
+      "variants": {
+        "en": ["marseille", "marseilles"],
+        "de": ["marseille"],
+        "fr": ["marseille"],
+        "it": ["marsiglia"],
+        "es": ["marsella"],
+        "la": ["massilia"]
+      }
+    },
+    {
+      "canonical": "lyon",
+      "country": "france",
+      "variants": {
+        "en": ["lyon", "lyons"],
+        "de": ["lyon"],
+        "fr": ["lyon"],
+        "it": ["lione"],
+        "es": ["lyon"],
+        "la": ["lugdunum"]
+      }
+    },
+    {
+      "canonical": "athens",
+      "country": "greece",
+      "variants": {
+        "en": ["athens"],
+        "de": ["athen"],
+        "fr": ["athènes", "athenes"],
+        "it": ["atene"],
+        "es": ["atenas"],
+        "la": ["athenae"],
+        "el": ["αθήνα", "athína", "athina"]
+      }
+    },
+    {
+      "canonical": "moscow",
+      "country": "russia",
+      "variants": {
+        "en": ["moscow"],
+        "de": ["moskau"],
+        "fr": ["moscou"],
+        "it": ["mosca"],
+        "es": ["moscú", "moscu"],
+        "la": ["moscua"],
+        "ru": ["москва", "moskva"]
+      }
+    },
+    {
+      "canonical": "saint_petersburg",
+      "country": "russia",
+      "variants": {
+        "en": ["saint petersburg", "st petersburg", "petersburg", "leningrad", "petrograd"],
+        "de": ["sankt petersburg", "st petersburg", "petersburg"],
+        "fr": ["saint-pétersbourg", "saint petersbourg"],
+        "it": ["san pietroburgo"],
+        "es": ["san petersburgo"],
+        "la": ["petropolis"],
+        "ru": ["санкт-петербург", "sankt-peterburg", "ленинград", "leningrad"]
+      }
+    },
+    {
+      "canonical": "warsaw",
+      "country": "poland",
+      "variants": {
+        "en": ["warsaw"],
+        "de": ["warschau"],
+        "fr": ["varsovie"],
+        "it": ["varsavia"],
+        "es": ["varsovia"],
+        "la": ["varsovia"],
+        "pl": ["warszawa"]
+      }
+    },
+    {
+      "canonical": "copenhagen",
+      "country": "denmark",
+      "variants": {
+        "en": ["copenhagen"],
+        "de": ["kopenhagen"],
+        "fr": ["copenhague"],
+        "it": ["copenaghen"],
+        "es": ["copenhague"],
+        "la": ["hafnia"],
+        "da": ["københavn", "kobenhavn"]
+      }
+    },
+    {
+      "canonical": "bucharest",
+      "country": "romania",
+      "variants": {
+        "en": ["bucharest"],
+        "de": ["bukarest"],
+        "fr": ["bucarest"],
+        "it": ["bucarest"],
+        "es": ["bucarest"],
+        "la": ["bucarestum"],
+        "ro": ["bucurești", "bucuresti"]
+      }
+    },
+    {
+      "canonical": "lisbon",
+      "country": "portugal",
+      "variants": {
+        "en": ["lisbon"],
+        "de": ["lissabon"],
+        "fr": ["lisbonne"],
+        "it": ["lisbona"],
+        "es": ["lisboa"],
+        "la": ["olisipo"],
+        "pt": ["lisboa"]
+      }
+    }
+  ],
+
+  "regions": [
+    {
+      "canonical": "bavaria",
+      "country": "germany",
+      "variants": {
+        "en": ["bavaria"],
+        "de": ["bayern"],
+        "fr": ["bavière", "baviere"],
+        "it": ["baviera"],
+        "es": ["baviera"],
+        "la": ["bavaria"]
+      }
+    },
+    {
+      "canonical": "prussia",
+      "country": "historical",
+      "variants": {
+        "en": ["prussia"],
+        "de": ["preußen", "preussen"],
+        "fr": ["prusse"],
+        "it": ["prussia"],
+        "es": ["prusia"],
+        "la": ["borussia", "prussia"]
+      }
+    },
+    {
+      "canonical": "bohemia",
+      "country": "historical",
+      "variants": {
+        "en": ["bohemia"],
+        "de": ["böhmen", "bohmen"],
+        "fr": ["bohème", "boheme"],
+        "it": ["boemia"],
+        "es": ["bohemia"],
+        "la": ["bohemia"],
+        "cs": ["čechy", "cechy"]
+      }
+    },
+    {
+      "canonical": "moravia",
+      "country": "historical",
+      "variants": {
+        "en": ["moravia"],
+        "de": ["mähren", "mahren"],
+        "fr": ["moravie"],
+        "it": ["moravia"],
+        "es": ["moravia"],
+        "la": ["moravia"],
+        "cs": ["morava"]
+      }
+    },
+    {
+      "canonical": "silesia",
+      "country": "historical",
+      "variants": {
+        "en": ["silesia"],
+        "de": ["schlesien"],
+        "fr": ["silésie", "silesie"],
+        "it": ["slesia"],
+        "es": ["silesia"],
+        "la": ["silesia"],
+        "pl": ["śląsk", "slask"],
+        "cs": ["slezsko"]
+      }
+    },
+    {
+      "canonical": "alsace",
+      "country": "france",
+      "variants": {
+        "en": ["alsace"],
+        "de": ["elsass"],
+        "fr": ["alsace"],
+        "it": ["alsazia"],
+        "es": ["alsacia"],
+        "la": ["alsatia"]
+      }
+    },
+    {
+      "canonical": "lorraine",
+      "country": "france",
+      "variants": {
+        "en": ["lorraine"],
+        "de": ["lothringen"],
+        "fr": ["lorraine"],
+        "it": ["lorena"],
+        "es": ["lorena"],
+        "la": ["lotharingia"]
+      }
+    },
+    {
+      "canonical": "saxony",
+      "country": "germany",
+      "variants": {
+        "en": ["saxony"],
+        "de": ["sachsen"],
+        "fr": ["saxe"],
+        "it": ["sassonia"],
+        "es": ["sajonia"],
+        "la": ["saxonia"]
+      }
+    },
+    {
+      "canonical": "tyrol",
+      "country": "austria",
+      "variants": {
+        "en": ["tyrol", "tirol"],
+        "de": ["tirol"],
+        "fr": ["tyrol"],
+        "it": ["tirolo"],
+        "es": ["tirol"],
+        "la": ["tirolia"]
+      }
+    }
+  ],
+
+  "countries": [
+    {
+      "canonical": "germany",
+      "variants": {
+        "en": ["germany"],
+        "de": ["deutschland"],
+        "fr": ["allemagne"],
+        "it": ["germania"],
+        "es": ["alemania"],
+        "la": ["germania"]
+      }
+    },
+    {
+      "canonical": "austria",
+      "variants": {
+        "en": ["austria"],
+        "de": ["österreich", "osterreich"],
+        "fr": ["autriche"],
+        "it": ["austria"],
+        "es": ["austria"],
+        "la": ["austria"]
+      }
+    },
+    {
+      "canonical": "hungary",
+      "variants": {
+        "en": ["hungary"],
+        "de": ["ungarn"],
+        "fr": ["hongrie"],
+        "it": ["ungheria"],
+        "es": ["hungría", "hungria"],
+        "la": ["hungaria"],
+        "hu": ["magyarország", "magyarorszag"]
+      }
+    },
+    {
+      "canonical": "france",
+      "variants": {
+        "en": ["france"],
+        "de": ["frankreich"],
+        "fr": ["france"],
+        "it": ["francia"],
+        "es": ["francia"],
+        "la": ["francia", "gallia"]
+      }
+    },
+    {
+      "canonical": "spain",
+      "variants": {
+        "en": ["spain"],
+        "de": ["spanien"],
+        "fr": ["espagne"],
+        "it": ["spagna"],
+        "es": ["españa", "espana"],
+        "la": ["hispania"]
+      }
+    },
+    {
+      "canonical": "italy",
+      "variants": {
+        "en": ["italy"],
+        "de": ["italien"],
+        "fr": ["italie"],
+        "it": ["italia"],
+        "es": ["italia"],
+        "la": ["italia"]
+      }
+    },
+    {
+      "canonical": "poland",
+      "variants": {
+        "en": ["poland"],
+        "de": ["polen"],
+        "fr": ["pologne"],
+        "it": ["polonia"],
+        "es": ["polonia"],
+        "la": ["polonia"],
+        "pl": ["polska"]
+      }
+    },
+    {
+      "canonical": "russia",
+      "variants": {
+        "en": ["russia"],
+        "de": ["russland"],
+        "fr": ["russie"],
+        "it": ["russia"],
+        "es": ["rusia"],
+        "la": ["ruthenia", "russia"],
+        "ru": ["россия", "rossiya"]
+      }
+    },
+    {
+      "canonical": "czech_republic",
+      "variants": {
+        "en": ["czech republic", "czechia"],
+        "de": ["tschechien", "tschechische republik"],
+        "fr": ["république tchèque", "republique tcheque", "tchéquie", "tcheque"],
+        "it": ["repubblica ceca"],
+        "es": ["república checa", "republica checa", "chequia"],
+        "la": ["bohemia"],
+        "cs": ["česká republika", "ceska republika", "česko", "cesko"]
+      }
+    }
+  ]
+}

@@ -12,6 +12,7 @@ from rapidfuzz import fuzz
 from ..rootsmagic.models import RMPerson, RMName, RMEvent, RMPlace
 from ..rootsmagic.adapter import RootsMagicDatabase
 from .scorer import MatchScorer, MatchResult
+from ..data.reference_loader import reference_data
 
 
 @dataclass
@@ -67,9 +68,21 @@ class PersonMatcher:
         'la': {'dominus', 'domina', 'sanctus', 'sancta'},
     }
 
+    # Legacy suffixes - now loaded dynamically from reference data
+    # Kept for backward compatibility
     HONORIFIC_SUFFIXES = {
         'jr', 'sr', 'ii', 'iii', 'iv', 'v', 'esq', 'md', 'phd',
     }
+
+    @staticmethod
+    def get_all_suffix_variants() -> Set[str]:
+        """
+        Get all suffix variants from reference data (noble titles, professional, generational).
+
+        Returns:
+            Set of all suffix variants in lowercase
+        """
+        return reference_data.get_all_suffix_variants()
 
     def __init__(self, db: RootsMagicDatabase, min_confidence: float = 60.0):
         """
@@ -208,12 +221,16 @@ class PersonMatcher:
         """
         Normalize a name for matching by removing honorifics and standardizing.
 
+        This method removes prefixes (Mr, Mrs, Herr, etc.), suffixes (Jr, Sr, etc.),
+        and noble titles (Duke/Duc/Herzog, Count/Comte/Graf, etc.) to facilitate
+        matching across different linguistic representations.
+
         Args:
             name: Name to normalize
             language: Language code (en, fr, de, etc.)
 
         Returns:
-            Normalized name
+            Normalized name with honorifics and titles removed
         """
         if not name:
             return ""
@@ -237,9 +254,11 @@ class PersonMatcher:
             for lang_prefixes in PersonMatcher.HONORIFIC_PREFIXES.values():
                 prefixes.update(lang_prefixes)
 
-        suffixes = PersonMatcher.HONORIFIC_SUFFIXES
+        # Get all suffix variants (noble titles, professional, generational)
+        # This now includes multilingual noble titles from reference data
+        suffixes = PersonMatcher.get_all_suffix_variants()
 
-        # Filter out honorifics
+        # Filter out honorifics, suffixes, and noble titles
         for part in parts:
             clean_part = part.strip()
             if clean_part and clean_part not in prefixes and clean_part not in suffixes:

@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from rapidfuzz import fuzz
 import phonetics
 from ..rootsmagic.models import RMPerson, RMName, RMEvent
+from ..data.reference_loader import reference_data
 
 
 @dataclass
@@ -23,6 +24,7 @@ class MatchResult:
     place_score: float = 0.0
     relationship_score: float = 0.0
     sex_score: float = 0.0
+    suffix_score: float = 0.0  # Noble titles, professional suffixes, etc.
 
     # Overall confidence (0-100)
     overall_score: float = 0.0
@@ -43,6 +45,7 @@ class MatchResult:
             f"  Phonetic: {self.phonetic_score:.1f}%\n"
             f"  Dates: {self.date_score:.1f}%\n"
             f"  Places: {self.place_score:.1f}%\n"
+            f"  Suffixes: {self.suffix_score:.1f}%\n"
             f"  Relationships: {self.relationship_score:.1f}%\n"
             f"  Sex: {self.sex_score:.1f}%"
         )
@@ -53,21 +56,23 @@ class MatchScorer:
     Calculates match scores between person records.
 
     Scoring weights:
-    - Name similarity: 35%
+    - Name similarity: 30%
     - Phonetic matching: 25%
     - Date proximity: 20%
     - Place matching: 10%
-    - Relationship overlap: 8%
+    - Suffix matching: 8% (noble titles, professional, generational)
+    - Relationship overlap: 5%
     - Sex match: 2%
     """
 
     # Scoring weights (must sum to 1.0)
     WEIGHTS = {
-        'name': 0.35,
+        'name': 0.30,
         'phonetic': 0.25,
         'date': 0.20,
         'place': 0.10,
-        'relationship': 0.08,
+        'suffix': 0.08,
+        'relationship': 0.05,
         'sex': 0.02,
     }
 
@@ -105,6 +110,7 @@ class MatchScorer:
         result.phonetic_score = self._score_phonetic(person1, person2, result)
         result.date_score = self._score_dates(person1, person2, result)
         result.place_score = self._score_places(person1, person2, result)
+        result.suffix_score = self._score_suffixes(person1, person2, result)
         result.relationship_score = self._score_relationships(person1, person2, result)
         result.sex_score = self._score_sex(person1, person2, result)
 
@@ -114,6 +120,7 @@ class MatchScorer:
             result.phonetic_score * self.WEIGHTS['phonetic'] +
             result.date_score * self.WEIGHTS['date'] +
             result.place_score * self.WEIGHTS['place'] +
+            result.suffix_score * self.WEIGHTS['suffix'] +
             result.relationship_score * self.WEIGHTS['relationship'] +
             result.sex_score * self.WEIGHTS['sex']
         )
@@ -379,9 +386,18 @@ class MatchScorer:
         return sum(scores) / len(scores)
 
     def _compare_places(self, place1: str, place2: str) -> float:
-        """Compare two place names using fuzzy matching."""
+        """
+        Compare two place names using fuzzy matching and multilingual normalization.
+
+        This handles place names that may be in different languages
+        (e.g., Vienna/Wien/Bécs, Munich/München).
+        """
         if not place1 or not place2:
             return 0.0
+
+        # Check if they're equivalent in different languages
+        if reference_data.are_equivalent_places(place1, place2):
+            return 100.0
 
         # Direct fuzzy match
         score = fuzz.token_sort_ratio(place1.lower(), place2.lower())
@@ -451,6 +467,82 @@ class MatchScorer:
         result.has_conflicting_info = True
         result.details['sex_conflict'] = f"{sex1} vs {sex2}"
         return 0.0
+
+    def _score_suffixes(
+        self,
+        person1: RMPerson,
+        person2: RMPerson,
+        result: MatchResult
+    ) -> float:
+        """
+        Score suffix/title match using multilingual normalization.
+
+        This handles noble titles (duke/duc/herzog), professional suffixes (dr, esq),
+        and generational suffixes (jr, sr, ii, iii) across multiple languages.
+
+        Scoring:
+        - Both missing: 100% (neutral - no information to compare)
+        - One missing: 80% (slight penalty for uncertainty)
+        - Same canonical form: 100% (equivalent across languages)
+        - Different suffixes: 40% (may still be same person)
+        """
+        if not person1.names or not person2.names:
+            return 100.0  # No names to compare
+
+        # Get all suffix values from all name records
+        suffixes1 = set()
+        for name in person1.names:
+            if name.suffix:
+                # Normalize suffix to canonical form
+                canonical = reference_data.normalize_suffix(name.suffix)
+                if canonical:
+                    suffixes1.add(canonical)
+                else:
+                    # Keep original if not in reference data
+                    suffixes1.add(name.suffix.lower().strip())
+
+        suffixes2 = set()
+        for name in person2.names:
+            if name.suffix:
+                canonical = reference_data.normalize_suffix(name.suffix)
+                if canonical:
+                    suffixes2.add(canonical)
+                else:
+                    suffixes2.add(name.suffix.lower().strip())
+
+        # Both missing suffixes - neutral
+        if not suffixes1 and not suffixes2:
+            return 100.0
+
+        # One missing - slight penalty for uncertainty
+        if not suffixes1 or not suffixes2:
+            result.details['suffix_match'] = {
+                'person1_suffixes': list(suffixes1) if suffixes1 else ['none'],
+                'person2_suffixes': list(suffixes2) if suffixes2 else ['none'],
+                'status': 'one_missing'
+            }
+            return 80.0
+
+        # Check for overlap in canonical forms
+        overlap = suffixes1.intersection(suffixes2)
+
+        if overlap:
+            # At least one matching suffix (across languages)
+            result.details['suffix_match'] = {
+                'person1_suffixes': list(suffixes1),
+                'person2_suffixes': list(suffixes2),
+                'matching': list(overlap),
+                'status': 'match'
+            }
+            return 100.0
+        else:
+            # Different suffixes - may still be same person (titles change)
+            result.details['suffix_match'] = {
+                'person1_suffixes': list(suffixes1),
+                'person2_suffixes': list(suffixes2),
+                'status': 'different'
+            }
+            return 40.0
 
     def _get_event_year(self, person: RMPerson, event_type: str) -> Optional[int]:
         """Extract year from event."""
