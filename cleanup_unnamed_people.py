@@ -15,6 +15,7 @@ import sys
 import sqlite3
 import argparse
 import re
+import unicodedata
 from pathlib import Path
 from typing import Set, Dict, List, Optional, Tuple
 from collections import defaultdict
@@ -24,6 +25,77 @@ sys.path.insert(0, str(Path(__file__).parent / "GedMerge"))
 
 from gedmerge.rootsmagic.adapter import RootsMagicDatabase
 from gedmerge.rootsmagic.models import RMPerson, RMName, RMFamily
+
+
+# Multi-language placeholder titles for Western European languages
+PLACEHOLDER_TITLES = {
+    # English
+    'MRS', 'MRS.', 'MS', 'MS.', 'MISS', 'MR', 'MR.',
+
+    # French
+    'MME', 'MME.', 'MADAME', 'M', 'M.', 'MONSIEUR', 'MLLE', 'MLLE.', 'MADEMOISELLE',
+
+    # Spanish
+    'SRA', 'SRA.', 'SEÑORA', 'SENORA', 'SR', 'SR.', 'SEÑOR', 'SENOR',
+    'SRTA', 'SRTA.', 'SEÑORITA', 'SRITA', 'SRITA.',
+
+    # Portuguese
+    'SENHORA', 'SENHOR',
+
+    # German
+    'FRAU', 'HERR',
+
+    # Dutch
+    'MEVROUW', 'MEVR', 'MEVR.', 'MIJNHEER', 'DHR', 'DHR.',
+
+    # Italian
+    'SIG.RA', 'SIGNORA', 'SIG', 'SIG.', 'SIGNORE', 'SIGNORINA',
+
+    # Catalan
+    'SRA', 'SR', 'SENYORA', 'SENYOR',
+
+    # Other common patterns
+    'DAME', 'LADY', 'LORD', 'SIR',
+}
+
+# Prefixes that indicate placeholder names (e.g., "Mrs. John Smith")
+PLACEHOLDER_PREFIXES = {
+    'MRS.', 'MRS ', 'MS.', 'MS ', 'MISS ', 'MR.', 'MR ',
+    'MME.', 'MME ', 'M.', 'M ', 'MLLE.', 'MLLE ',
+    'SRA.', 'SRA ', 'SR.', 'SR ', 'SRTA.', 'SRTA ',
+    'FRAU ', 'HERR ',
+    'MEVROUW ', 'MEVR.', 'MEVR ', 'MIJNHEER ', 'DHR.', 'DHR ',
+    'SIG.RA ', 'SIG.', 'SIG ',
+}
+
+
+def normalize_for_comparison(text: str) -> str:
+    """
+    Normalize text for language-agnostic comparison.
+
+    This removes accents and converts to uppercase for comparison,
+    so "Señora" matches "SENORA", "Madame" matches "MADAME", etc.
+
+    Args:
+        text: Text to normalize
+
+    Returns:
+        Normalized uppercase text without accents
+    """
+    if not text:
+        return ''
+
+    # Normalize unicode to decomposed form (NFD)
+    # This separates accented characters into base + accent
+    nfd = unicodedata.normalize('NFD', text)
+
+    # Remove accent marks (combining characters)
+    without_accents = ''.join(
+        char for char in nfd
+        if unicodedata.category(char) != 'Mn'  # Mn = Mark, Nonspacing
+    )
+
+    return without_accents.upper().strip()
 
 
 class PersonCleaner:
@@ -100,7 +172,9 @@ class PersonCleaner:
 
     def is_mrs_placeholder(self, person: RMPerson) -> Tuple[bool, Optional[str]]:
         """
-        Check if a person is a MRS placeholder.
+        Check if a person is a placeholder title (MRS, Madame, Señora, etc.).
+
+        Supports multi-language detection for Western European languages.
 
         Returns:
             Tuple of (is_placeholder, reason)
@@ -109,22 +183,31 @@ class PersonCleaner:
         if not primary_name:
             return False, None
 
-        given = (primary_name.given or '').strip().upper()
+        given = (primary_name.given or '').strip()
         surname = (primary_name.surname or '').strip()
 
-        # Check for MRS as given name
-        if given in ['MRS', 'MRS.', 'MS', 'MS.', 'MISS']:
-            return True, f"Generic MRS/MS/MISS with surname '{surname}'"
+        # Normalize for comparison (removes accents, uppercase)
+        given_normalized = normalize_for_comparison(given)
 
-        # Check for "Mrs. [Husband's Full Name]" pattern
-        if given.startswith('MRS.') or given.startswith('MRS '):
-            return True, f"MRS clone of husband's name: '{primary_name.full_name()}'"
+        # Check for placeholder title as given name (multi-language)
+        if given_normalized in PLACEHOLDER_TITLES:
+            return True, f"Generic placeholder title '{given}' with surname '{surname}'"
+
+        # Check for "Mrs./Mme./Sra. [Full Name]" pattern (prefix + more)
+        for prefix in PLACEHOLDER_PREFIXES:
+            if given_normalized.startswith(prefix):
+                # If there's more after the prefix, it's likely a clone name
+                remainder = given_normalized[len(prefix):].strip()
+                if remainder:
+                    return True, f"Placeholder clone name: '{primary_name.full_name()}'"
 
         return False, None
 
     def is_endofline_parent(self, person: RMPerson) -> Tuple[bool, Optional[str]]:
         """
         Check if person is an EndofLine parent (surname only matching child's surname).
+
+        Uses Unicode normalization for language-agnostic surname matching.
 
         Returns:
             Tuple of (is_endofline, reason)
@@ -139,6 +222,9 @@ class PersonCleaner:
         # Must have surname but no real given name
         if not surname or given:
             return False, None
+
+        # Normalize surname for comparison
+        surname_normalized = normalize_for_comparison(surname)
 
         # Check if this person's surname matches their child's surname
         children_ids = self.parent_child_map.get(person.person_id, [])
@@ -157,8 +243,11 @@ class PersonCleaner:
             child_surname = (child_name.surname or '').strip()
             child_given = (child_name.given or '').strip()
 
+            # Normalize child surname for comparison
+            child_surname_normalized = normalize_for_comparison(child_surname)
+
             # If parent surname matches child surname and child has a given name
-            if surname.upper() == child_surname.upper() and child_given:
+            if surname_normalized == child_surname_normalized and child_given:
                 return True, f"EndofLine parent '{surname}' of child '{child_name.full_name()}'"
 
         return False, None
@@ -214,15 +303,17 @@ class PersonCleaner:
 
     def check_mrs_named_elsewhere(self, person: RMPerson) -> bool:
         """
-        Check if a MRS person is named elsewhere (potential merge candidate).
+        Check if a placeholder person is named elsewhere (potential merge candidate).
 
         This checks if there's another person with the same surname but a real given name.
+        Uses Unicode normalization for language-agnostic matching.
         """
         primary_name = person.get_primary_name()
         if not primary_name or not primary_name.surname:
             return False
 
         surname = primary_name.surname.strip()
+        surname_normalized = normalize_for_comparison(surname)
 
         # Search for other people with same surname and a real given name
         for other_id, other_person in self.all_persons.items():
@@ -236,10 +327,14 @@ class PersonCleaner:
             other_surname = (other_name.surname or '').strip()
             other_given = (other_name.given or '').strip()
 
-            # Same surname, has a real given name, and same sex
-            if (surname.upper() == other_surname.upper() and
+            # Normalize for comparison
+            other_surname_normalized = normalize_for_comparison(other_surname)
+            other_given_normalized = normalize_for_comparison(other_given)
+
+            # Same surname, has a real given name (not a placeholder), and same sex
+            if (surname_normalized == other_surname_normalized and
                 other_given and
-                other_given.upper() not in ['MRS', 'MRS.', 'MS', 'MS.', 'MISS'] and
+                other_given_normalized not in PLACEHOLDER_TITLES and
                 person.sex == other_person.sex):
                 return True
 

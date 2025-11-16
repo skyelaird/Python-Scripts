@@ -1,6 +1,21 @@
 # Cleanup Unnamed People Script
 
-This script cleans up unnamed and placeholder people from RootsMagic genealogy databases.
+This script cleans up unnamed and placeholder people from RootsMagic genealogy databases with **multi-language support** for Western European languages.
+
+## Multi-Language Support
+
+The script automatically detects and handles placeholder names in multiple languages:
+
+- **English**: Mrs, Mrs., Ms, Miss, Mr
+- **French**: Mme, Madame, M., Monsieur, Mlle, Mademoiselle
+- **Spanish**: Sra, Señora, Sr, Señor, Srta, Señorita
+- **Portuguese**: Senhora, Senhor
+- **German**: Frau, Herr
+- **Dutch**: Mevrouw, Mijnheer
+- **Italian**: Signora, Sig.ra, Signore
+- **Catalan**: Senyora, Senyor
+
+The script uses **Unicode normalization** to handle accented characters properly, so "Señora" and "Senora" are treated as equivalent. This ensures consistent detection regardless of how names are entered.
 
 ## Features
 
@@ -16,10 +31,15 @@ The script identifies and removes the following types of problematic records:
 - Example: "Mrs Smith" as mother of "John Smith"
 - These are placeholder entries that provide no genealogical value
 
-### 3. MRS Placeholders
-- Generic "MRS" or "Mrs." entries without a real given name
-- "MRS [Surname]" entries
-- "Mrs. [Husband's Full Name]" clones
+### 3. Placeholder Titles (Multi-Language)
+- Generic placeholder titles without a real given name:
+  - English: "MRS", "Mrs.", "Ms", "Miss"
+  - French: "Mme", "Madame", "Mlle"
+  - Spanish/Portuguese: "Sra", "Señora", "Srta"
+  - German: "Frau", "Herr"
+  - Italian: "Signora", "Sig.ra"
+  - And other Western European equivalents
+- Placeholder clone names like "Mrs. John Smith", "Mme. Jean Dupont", "Sra. Maria Garcia"
 - Only deleted if not connected to named ancestors
 
 ### 4. Merge Candidates
@@ -67,16 +87,28 @@ python cleanup_unnamed_people.py your_database.rmtree --execute
 ### Detection Logic
 
 1. **Unnamed Check**: Person has no given name or only whitespace
-2. **MRS Check**: Given name is "MRS", "Mrs.", "MS", "Miss" or starts with "Mrs."
+2. **Placeholder Title Check**: Given name matches placeholder titles in any supported language:
+   - Uses Unicode normalization (accents removed for comparison)
+   - Checks against 50+ placeholder titles in Western European languages
+   - Detects clone names like "Mrs. John Smith", "Mme. Jean Dupont", etc.
 3. **EndofLine Check**: Person has only a surname (no given name) that matches a child's surname
+   - Uses Unicode-normalized comparison for surnames
 4. **Named Ancestor Check**: Recursively searches up the family tree for any ancestor with a real given name
+
+### Unicode Normalization
+
+The script normalizes all text for comparison:
+- Removes accents: "François" → "FRANCOIS", "Señora" → "SENORA"
+- Case-insensitive: "madame" = "Madame" = "MADAME"
+- This ensures consistent detection across different data entry methods
+- Native language forms are preserved in the original data (only normalized for comparison)
 
 ### Deletion Rules
 
 A person is deleted if ANY of the following are true:
 
 1. **EndofLine parent** - Always deleted (provides no value)
-2. **MRS placeholder** AND no named ancestors - Deleted (unless named elsewhere)
+2. **Placeholder title** (multi-language) AND no named ancestors - Deleted (unless named elsewhere)
 3. **Unnamed** AND no named ancestors - Deleted
 
 ### Safety Features
@@ -94,11 +126,12 @@ Loading database...
 Loaded 5234 persons and 1876 families
 
 Analyzing persons...
-  Merge candidate: Mrs. Jane Smith (ID: 1234) - Generic MRS/MS/MISS with surname 'Smith'
+  Merge candidate: Mrs. Jane Smith (ID: 1234) - Generic placeholder title 'Mrs.' with surname 'Smith'
+  Merge candidate: Mme Dubois (ID: 2345) - Generic placeholder title 'Mme' with surname 'Dubois'
 
 Found 127 persons to delete:
   - 45 unnamed without named ancestors
-  - 38 MRS placeholders without named ancestors
+  - 38 placeholder titles without named ancestors (English, French, Spanish, etc.)
   - 44 EndofLine surname-only parents
 
 Found 12 potential merge candidates
@@ -113,9 +146,18 @@ Showing first 50 of 127 persons to delete:
    Reason: EndofLine parent 'Smith' of child 'John Smith', parent of: John Smith
 
 2. ID 2346: Mrs Smith (F)
-   Reason: Generic MRS/MS/MISS with surname 'Smith' - no named ancestors, parent of: John Smith
+   Reason: Generic placeholder title 'Mrs' with surname 'Smith' - no named ancestors, parent of: John Smith
 
-3. ID 3456: Unknown (U)
+3. ID 3456: Mme Dupont (F)
+   Reason: Generic placeholder title 'Mme' with surname 'Dupont' - no named ancestors, parent of: Marie Dupont
+
+4. ID 3457: Señora García (F)
+   Reason: Generic placeholder title 'Señora' with surname 'García' - no named ancestors, parent of: Juan García
+
+5. ID 3458: Frau Müller (F)
+   Reason: Generic placeholder title 'Frau' with surname 'Müller' - no named ancestors, parent of: Hans Müller
+
+6. ID 4567: Unknown (U)
    Reason: Unnamed person 'Unknown' - no named ancestors
 
 ...
