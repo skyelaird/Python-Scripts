@@ -207,14 +207,13 @@ class FeedbackDatabase:
 
                 -- User input
                 user_notes TEXT,
-                correction_type TEXT,
-
-                -- Indexes for fast querying
-                INDEX idx_timestamp (timestamp),
-                INDEX idx_model_version (model_version),
-                INDEX idx_user_confirmed (user_confirmed)
+                correction_type TEXT
             )
         """)
+
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_duplicate_timestamp ON duplicate_feedback(timestamp)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_duplicate_model_version ON duplicate_feedback(model_version)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_duplicate_user_confirmed ON duplicate_feedback(user_confirmed)")
 
         # Name match feedback table
         cursor.execute("""
@@ -232,12 +231,12 @@ class FeedbackDatabase:
                 detected_language2 TEXT,
                 surname_similarity REAL,
                 given_name_similarity REAL,
-                user_notes TEXT,
-
-                INDEX idx_timestamp (timestamp),
-                INDEX idx_model_version (model_version)
+                user_notes TEXT
             )
         """)
+
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_name_match_timestamp ON name_match_feedback(timestamp)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_name_match_model_version ON name_match_feedback(model_version)")
 
         # Language feedback table
         cursor.execute("""
@@ -252,13 +251,13 @@ class FeedbackDatabase:
 
                 place_context TEXT,
                 other_names TEXT,
-                user_notes TEXT,
-
-                INDEX idx_timestamp (timestamp),
-                INDEX idx_predicted_language (predicted_language),
-                INDEX idx_correct_language (correct_language)
+                user_notes TEXT
             )
         """)
+
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_language_timestamp ON language_feedback(timestamp)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_language_predicted ON language_feedback(predicted_language)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_language_correct ON language_feedback(correct_language)")
 
         # Quality feedback table
         cursor.execute("""
@@ -274,12 +273,12 @@ class FeedbackDatabase:
                 model_version TEXT NOT NULL,
 
                 issue_details TEXT,  -- JSON object
-                user_notes TEXT,
-
-                INDEX idx_timestamp (timestamp),
-                INDEX idx_person_id (person_id)
+                user_notes TEXT
             )
         """)
+
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_quality_timestamp ON quality_feedback(timestamp)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_quality_person_id ON quality_feedback(person_id)")
 
         # Place feedback table
         cursor.execute("""
@@ -296,11 +295,11 @@ class FeedbackDatabase:
                 country2 TEXT,
                 standardized_place1 TEXT,
                 standardized_place2 TEXT,
-                user_notes TEXT,
-
-                INDEX idx_timestamp (timestamp)
+                user_notes TEXT
             )
         """)
+
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_place_timestamp ON place_feedback(timestamp)")
 
         # Event feedback table
         cursor.execute("""
@@ -317,12 +316,12 @@ class FeedbackDatabase:
 
                 date1_precision TEXT,
                 date2_precision TEXT,
-                user_notes TEXT,
-
-                INDEX idx_timestamp (timestamp),
-                INDEX idx_event_type (event_type)
+                user_notes TEXT
             )
         """)
+
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_event_timestamp ON event_feedback(timestamp)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_event_type ON event_feedback(event_type)")
 
         # Performance metrics table
         cursor.execute("""
@@ -333,12 +332,12 @@ class FeedbackDatabase:
                 metric_name TEXT NOT NULL,
                 metric_value REAL NOT NULL,
                 timestamp TEXT NOT NULL,
-                num_samples INTEGER,
-
-                INDEX idx_model_type (model_type),
-                INDEX idx_timestamp (timestamp)
+                num_samples INTEGER
             )
         """)
+
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_metrics_model_type ON performance_metrics(model_type)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_metrics_timestamp ON performance_metrics(timestamp)")
 
         conn.commit()
         conn.close()
