@@ -3,6 +3,7 @@
 from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any
 from datetime import datetime
+import json
 
 
 @dataclass
@@ -91,7 +92,25 @@ class RMEvent:
 
 @dataclass
 class RMPlace:
-    """Represents a place record from the PlaceTable."""
+    """Represents a place record from the PlaceTable with multilingual support.
+
+    Attributes:
+        place_id: Unique identifier for this place
+        place_type: Type of place (0=normal, other values for special types)
+        name: Primary place name (typically in primary language)
+        abbrev: Abbreviated name
+        normalized: Normalized form of the name
+        latitude: Latitude in microdegrees (divide by 1,000,000 for decimal degrees)
+        longitude: Longitude in microdegrees (divide by 1,000,000 for decimal degrees)
+        lat_long_exact: Whether the coordinates are exact
+        master_id: ID of the master place record if this is a variant
+        note: Additional notes about the place
+        reverse: Reverse geocoding information
+        fs_id: FamilySearch place ID
+        an_id: Ancestry.com place ID
+        utc_mod_date: Last modification date (UTC timestamp)
+        multilingual_names: Dictionary mapping language codes to place names (JSON string in DB)
+    """
     place_id: int
     place_type: int = 0
     name: Optional[str] = None
@@ -106,6 +125,96 @@ class RMPlace:
     fs_id: Optional[int] = None
     an_id: Optional[int] = None
     utc_mod_date: Optional[float] = None
+    multilingual_names: Optional[str] = None  # JSON string storing Dict[str, str]
+
+    def get_multilingual_names_dict(self) -> Dict[str, str]:
+        """Parse the multilingual_names JSON string into a dictionary.
+
+        Returns:
+            Dictionary mapping language codes to place names
+        """
+        if not self.multilingual_names:
+            # If no multilingual names, return primary name as English
+            if self.name:
+                return {'en': self.name}
+            return {}
+
+        try:
+            return json.loads(self.multilingual_names)
+        except (json.JSONDecodeError, TypeError):
+            # If JSON parsing fails, return primary name as fallback
+            if self.name:
+                return {'en': self.name}
+            return {}
+
+    def set_multilingual_names_dict(self, names: Dict[str, str]) -> None:
+        """Set multilingual names from a dictionary.
+
+        Args:
+            names: Dictionary mapping language codes to place names
+        """
+        if names:
+            self.multilingual_names = json.dumps(names)
+            # Also update the primary name field with the first available name
+            if 'en' in names:
+                self.name = names['en']
+            elif names:
+                self.name = next(iter(names.values()))
+        else:
+            self.multilingual_names = None
+
+    def add_name_in_language(self, language: str, name: str) -> None:
+        """Add a place name in a specific language.
+
+        Args:
+            language: ISO 639-1 language code (e.g., 'en', 'de', 'fr')
+            name: The place name in that language
+        """
+        names = self.get_multilingual_names_dict()
+        names[language] = name
+        self.set_multilingual_names_dict(names)
+
+    def get_name_in_language(self, language: str = 'en') -> Optional[str]:
+        """Get the place name in a specific language.
+
+        Args:
+            language: ISO 639-1 language code (default: 'en')
+
+        Returns:
+            The place name in the requested language, or None if not available
+        """
+        names = self.get_multilingual_names_dict()
+        return names.get(language)
+
+    def get_latitude_decimal(self) -> Optional[float]:
+        """Get latitude in decimal degrees.
+
+        Returns:
+            Latitude in decimal degrees, or None if not set
+        """
+        if self.latitude is not None:
+            return self.latitude / 1_000_000.0
+        return None
+
+    def get_longitude_decimal(self) -> Optional[float]:
+        """Get longitude in decimal degrees.
+
+        Returns:
+            Longitude in decimal degrees, or None if not set
+        """
+        if self.longitude is not None:
+            return self.longitude / 1_000_000.0
+        return None
+
+    def set_coordinates_decimal(self, lat: float, lon: float) -> None:
+        """Set coordinates from decimal degrees.
+
+        Args:
+            lat: Latitude in decimal degrees
+            lon: Longitude in decimal degrees
+        """
+        self.latitude = int(lat * 1_000_000)
+        self.longitude = int(lon * 1_000_000)
 
 
 @dataclass

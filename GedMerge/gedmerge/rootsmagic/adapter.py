@@ -6,6 +6,7 @@ from typing import List, Optional, Dict, Any, Tuple
 from contextlib import contextmanager
 
 from .models import RMPerson, RMFamily, RMEvent, RMName, RMPlace, RMSource, RMCitation
+from ..core.place import Place
 
 
 class RootsMagicDatabase:
@@ -422,6 +423,11 @@ class RootsMagicDatabase:
 
     def _row_to_place(self, row: sqlite3.Row) -> RMPlace:
         """Convert database row to RMPlace object."""
+        # Check if multilingual_names column exists
+        multilingual_names = None
+        if 'MultilingualNames' in row.keys():
+            multilingual_names = row['MultilingualNames']
+
         return RMPlace(
             place_id=row['PlaceID'],
             place_type=row['PlaceType'],
@@ -437,4 +443,78 @@ class RootsMagicDatabase:
             fs_id=row['fsID'],
             an_id=row['anID'],
             utc_mod_date=row['UTCModDate'],
+            multilingual_names=multilingual_names,
         )
+
+    def rm_place_to_place(self, rm_place: RMPlace) -> Place:
+        """Convert RMPlace to generic Place object.
+
+        Args:
+            rm_place: RMPlace database object
+
+        Returns:
+            Place object with multilingual support
+        """
+        names = rm_place.get_multilingual_names_dict()
+
+        # Determine primary language (default to 'en' if not specified)
+        primary_language = 'en'
+
+        return Place(
+            names=names,
+            primary_language=primary_language,
+            latitude=rm_place.get_latitude_decimal(),
+            longitude=rm_place.get_longitude_decimal(),
+            place_type='database',
+            notes=rm_place.note,
+            hierarchy=[]
+        )
+
+    def place_to_rm_place(self, place: Place, place_id: int = 0) -> RMPlace:
+        """Convert generic Place object to RMPlace.
+
+        Args:
+            place: Generic Place object
+            place_id: The place ID (0 for new places)
+
+        Returns:
+            RMPlace database object
+        """
+        names = place.get_all_names()
+        primary_name = place.get_name()
+
+        rm_place = RMPlace(place_id=place_id)
+        rm_place.set_multilingual_names_dict(names)
+        rm_place.name = primary_name
+
+        if place.latitude is not None and place.longitude is not None:
+            rm_place.set_coordinates_decimal(place.latitude, place.longitude)
+
+        rm_place.note = place.notes
+
+        return rm_place
+
+    def ensure_multilingual_names_column(self) -> bool:
+        """Ensure the PlaceTable has a MultilingualNames column.
+
+        This adds the column if it doesn't exist. Safe to call multiple times.
+
+        Returns:
+            True if column was added, False if it already existed
+        """
+        cursor = self.conn.cursor()
+
+        # Check if column exists
+        cursor.execute("PRAGMA table_info(PlaceTable)")
+        columns = [row[1] for row in cursor.fetchall()]
+
+        if 'MultilingualNames' not in columns:
+            # Add the column
+            cursor.execute("""
+                ALTER TABLE PlaceTable
+                ADD COLUMN MultilingualNames TEXT
+            """)
+            self.conn.commit()
+            return True
+
+        return False
