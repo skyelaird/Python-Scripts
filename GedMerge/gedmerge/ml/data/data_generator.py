@@ -17,7 +17,7 @@ from ..utils.feature_extractor import FeatureExtractor, PairwiseFeatures, Person
 logger = logging.getLogger(__name__)
 
 
-@dataclass
+@dataclass(slots=True)
 class LabeledPair:
     """A labeled person pair for training."""
 

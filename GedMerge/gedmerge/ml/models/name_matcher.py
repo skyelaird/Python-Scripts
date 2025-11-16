@@ -16,7 +16,7 @@ from ..utils.config import MLConfig
 logger = logging.getLogger(__name__)
 
 
-@dataclass
+@dataclass(slots=True)
 class NameMatchResult:
     """Result of name matching."""
 

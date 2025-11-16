@@ -64,7 +64,7 @@ class ImportMode(Enum):
     FORCE_ADD = "force-add"  # Add all as new (creates duplicates)
 
 
-@dataclass
+@dataclass(slots=True)
 class ImportStats:
     """Statistics from import operation."""
     total_persons: int = 0

@@ -20,7 +20,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-@dataclass
+@dataclass(slots=True)
 class DuplicateFeedback:
     """Feedback on duplicate prediction."""
     person1_id: str
@@ -58,7 +58,7 @@ class DuplicateFeedback:
     correction_type: Optional[str] = None  # "name", "date", "place", "relationship"
 
 
-@dataclass
+@dataclass(slots=True)
 class NameMatchFeedback:
     """Feedback on name matching."""
     name1: str
@@ -80,7 +80,7 @@ class NameMatchFeedback:
     user_notes: Optional[str] = None
 
 
-@dataclass
+@dataclass(slots=True)
 class LanguageFeedback:
     """Feedback on language detection."""
     name: str
@@ -97,7 +97,7 @@ class LanguageFeedback:
     user_notes: Optional[str] = None
 
 
-@dataclass
+@dataclass(slots=True)
 class QualityFeedback:
     """Feedback on data quality classification."""
     person_id: str
@@ -114,7 +114,7 @@ class QualityFeedback:
     user_notes: Optional[str] = None
 
 
-@dataclass
+@dataclass(slots=True)
 class PlaceFeedback:
     """Feedback on place matching/standardization."""
     place1: str
@@ -133,7 +133,7 @@ class PlaceFeedback:
     user_notes: Optional[str] = None
 
 
-@dataclass
+@dataclass(slots=True)
 class EventFeedback:
     """Feedback on event matching."""
     event_type: str  # "birth", "death", "marriage", etc.

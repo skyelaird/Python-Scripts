@@ -10,7 +10,7 @@ from ...core.person import Person
 from ...matching.scorer import MatchScorer
 
 
-@dataclass
+@dataclass(slots=True)
 class PersonFeatures:
     """Features extracted from a Person for ML models."""
 
@@ -58,7 +58,7 @@ class PersonFeatures:
     primary_given_name: str
 
 
-@dataclass
+@dataclass(slots=True)
 class PairwiseFeatures:
     """Features for a pair of persons (for duplicate detection)."""
 

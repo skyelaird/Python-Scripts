@@ -21,7 +21,7 @@ class MergeStrategy(Enum):
     INTERACTIVE = "interactive"  # Auto for high, ask for medium
 
 
-@dataclass
+@dataclass(slots=True)
 class MergeResult:
     """Result of a merge operation."""
     success: bool

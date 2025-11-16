@@ -12,7 +12,7 @@ import phonetics
 from ..rootsmagic.models import RMPerson, RMName, RMEvent
 
 
-@dataclass
+@dataclass(slots=True)
 class MatchResult:
     """Results of matching two person records."""
 

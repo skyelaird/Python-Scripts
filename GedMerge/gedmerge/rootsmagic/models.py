@@ -6,7 +6,7 @@ from datetime import datetime
 import json
 
 
-@dataclass
+@dataclass(slots=True)
 class RMName:
     """Represents a name record from the NameTable."""
     name_id: int
@@ -53,7 +53,7 @@ class RMName:
         return f'{given} {surname}'.strip()
 
 
-@dataclass
+@dataclass(slots=True)
 class RMEvent:
     """Represents an event record from the EventTable."""
     event_id: int
@@ -90,7 +90,7 @@ class RMEvent:
         return int(year_match.group(1)) if year_match else None
 
 
-@dataclass
+@dataclass(slots=True)
 class RMPlace:
     """Represents a place record from the PlaceTable with multilingual support.
 
@@ -217,7 +217,7 @@ class RMPlace:
         self.longitude = int(lon * 1_000_000)
 
 
-@dataclass
+@dataclass(slots=True)
 class RMSource:
     """Represents a source record from the SourceTable."""
     source_id: int
@@ -231,7 +231,7 @@ class RMSource:
     utc_mod_date: Optional[float] = None
 
 
-@dataclass
+@dataclass(slots=True)
 class RMCitation:
     """Represents a citation record from the CitationTable."""
     citation_id: int
@@ -247,7 +247,7 @@ class RMCitation:
     citation_name: Optional[str] = None
 
 
-@dataclass
+@dataclass(slots=True)
 class RMFamily:
     """Represents a family record from the FamilyTable."""
     family_id: int
@@ -268,7 +268,7 @@ class RMFamily:
     utc_mod_date: Optional[float] = None
 
 
-@dataclass
+@dataclass(slots=True)
 class RMPerson:
     """Represents a person record from the PersonTable with associated data."""
     person_id: int

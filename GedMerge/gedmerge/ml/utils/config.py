@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 
 
-@dataclass
+@dataclass(slots=True)
 class MLConfig:
     """Configuration for ML models and training."""
 

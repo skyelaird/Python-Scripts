@@ -1,11 +1,11 @@
 """Person class for representing individuals in GEDCOM files."""
 
 from dataclasses import dataclass, field
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Self
 from .event import Event
 
 
-@dataclass
+@dataclass(slots=True)
 class Person:
     """Represents an individual person in a genealogy database.
 
@@ -180,7 +180,7 @@ class Person:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Person':
+    def from_dict(cls, data: Dict[str, Any]) -> Self:
         """Create a Person instance from a dictionary.
 
         Args:
