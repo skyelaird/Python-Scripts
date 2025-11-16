@@ -11,7 +11,7 @@ The workflow has two main phases:
 
 ## Prerequisites
 
-- Python 3.8+
+- Python 3.11+
 - RootsMagic .rmtree database file
 - GEDCOM file to import
 - **IMPORTANT: Always work on a backup copy of your database!**
