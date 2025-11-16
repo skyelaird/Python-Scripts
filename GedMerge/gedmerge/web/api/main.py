@@ -481,23 +481,103 @@ class RepairRequest(BaseModel):
 async def repair_places(request: RepairRequest):
     """Repair and standardize places in a database."""
     try:
+        import re
         from ...rootsmagic.adapter import RootsMagicDatabase
 
         db = RootsMagicDatabase(request.database_path)
-
-        # This is a simplified implementation
-        # In a real implementation, you would:
-        # 1. Load all places
-        # 2. Standardize format (City, County, State, Country)
-        # 3. Merge duplicates
-        # 4. Update records
 
         standardized = 0
         merged = 0
         updated = 0
 
-        # Placeholder for actual repair logic
         logger.info(f"Repairing places in {request.database_path}")
+
+        with db.transaction():
+            cursor = db.conn.cursor()
+
+            # Get all places
+            cursor.execute("SELECT PlaceID, PlaceName FROM PlaceTable ORDER BY PlaceID")
+            places = cursor.fetchall()
+
+            logger.info(f"Found {len(places)} places to analyze")
+
+            # Track place normalization mapping
+            place_mapping = {}  # Maps old PlaceID to new PlaceID
+
+            # Helper function to remove postal codes
+            def remove_postal_code(place_name):
+                if not place_name:
+                    return place_name
+                patterns = [
+                    r',?\s*\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b',  # Canadian
+                    r',?\s*\b\d{5}(?:-\d{4})?\b',  # US ZIP
+                    r',?\s*\b[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}\b',  # UK
+                ]
+                cleaned = place_name
+                for pattern in patterns:
+                    cleaned = re.sub(pattern, '', cleaned)
+                cleaned = re.sub(r',\s*,', ',', cleaned)
+                cleaned = re.sub(r',\s*$', '', cleaned)
+                cleaned = re.sub(r'^\s*,', '', cleaned)
+                return cleaned.strip()
+
+            # Helper function to standardize place format
+            def standardize_place(place_name):
+                if not place_name:
+                    return place_name
+                # Remove postal codes
+                cleaned = remove_postal_code(place_name)
+                # Trim whitespace around commas
+                cleaned = re.sub(r'\s*,\s*', ', ', cleaned)
+                # Remove duplicate commas and trim
+                cleaned = re.sub(r',+', ',', cleaned)
+                cleaned = cleaned.strip().strip(',').strip()
+                return cleaned
+
+            # Normalize and deduplicate places
+            normalized_places = {}  # Maps normalized name to original PlaceID
+
+            for place_id, place_name in places:
+                normalized = standardize_place(place_name)
+
+                if normalized != place_name:
+                    standardized += 1
+
+                # Track for deduplication (case-insensitive)
+                norm_key = normalized.lower() if normalized else ""
+
+                if norm_key in normalized_places:
+                    # This is a duplicate
+                    original_place_id = normalized_places[norm_key]
+                    place_mapping[place_id] = original_place_id
+                    merged += 1
+                else:
+                    # First occurrence
+                    normalized_places[norm_key] = place_id
+                    place_mapping[place_id] = place_id
+
+                    # Update the place name if it was standardized
+                    if normalized != place_name and normalized:
+                        cursor.execute("""
+                            UPDATE PlaceTable
+                            SET PlaceName = ?
+                            WHERE PlaceID = ?
+                        """, (normalized, place_id))
+
+            # Update all references to merged places in EventTable
+            for old_place_id, new_place_id in place_mapping.items():
+                if old_place_id != new_place_id:
+                    cursor.execute("""
+                        UPDATE EventTable
+                        SET PlaceID = ?
+                        WHERE PlaceID = ?
+                    """, (new_place_id, old_place_id))
+
+                    # Delete the duplicate place
+                    cursor.execute("DELETE FROM PlaceTable WHERE PlaceID = ?", (old_place_id,))
+                    updated += 1
+
+        logger.info(f"Places repair completed: {standardized} standardized, {merged} merged, {updated} updated")
 
         return {
             "standardized": standardized,
@@ -515,16 +595,12 @@ async def repair_places(request: RepairRequest):
 async def repair_names(request: RepairRequest):
     """Repair name issues like reversed names, embedded variants, and titles."""
     try:
+        import re
+        from datetime import datetime
         from ...rootsmagic.adapter import RootsMagicDatabase
+        from ...utils.name_parser import NameParser
 
         db = RootsMagicDatabase(request.database_path)
-
-        # Placeholder for actual repair logic
-        # In a real implementation, you would:
-        # 1. Detect reversed names (First, Last vs Last, First)
-        # 2. Extract embedded variants (e.g., "John (Jack)" -> John + variant Jack)
-        # 3. Move titles to proper fields (e.g., "Dr. John Smith" -> Title: Dr., Name: John Smith)
-        # 4. Standardize formatting
 
         reversed_fixed = 0
         variants_extracted = 0
@@ -532,6 +608,114 @@ async def repair_names(request: RepairRequest):
         total_updated = 0
 
         logger.info(f"Repairing names in {request.database_path}")
+
+        with db.transaction():
+            cursor = db.conn.cursor()
+
+            # Get all names
+            cursor.execute("""
+                SELECT NameID, OwnerID, Surname, Given, Prefix, Suffix, Nickname, IsPrimary
+                FROM NameTable
+                ORDER BY NameID
+            """)
+            names = cursor.fetchall()
+
+            logger.info(f"Found {len(names)} names to analyze")
+
+            for name_id, owner_id, surname, given, prefix, suffix, nickname, is_primary in names:
+                updated = False
+                new_surname = surname
+                new_given = given
+                new_prefix = prefix
+                new_suffix = suffix
+                new_nickname = nickname
+
+                # 1. Extract and move prefixes (titles) from given names
+                if new_given and not new_prefix:
+                    text, extracted_prefix = NameParser.extract_prefix(new_given)
+                    if extracted_prefix:
+                        new_prefix = extracted_prefix
+                        new_given = text
+                        titles_moved += 1
+                        updated = True
+
+                # 2. Extract embedded variants from given names (in parentheses or quotes)
+                if new_given:
+                    # Check for parentheses variants like "John (Jack)"
+                    variant_match = re.search(r'\(([^)]+)\)', new_given)
+                    if variant_match:
+                        variant = variant_match.group(1).strip()
+                        # Remove the variant from given name
+                        new_given = re.sub(r'\s*\([^)]+\)', '', new_given).strip()
+
+                        # Create alternate name record with the variant
+                        if is_primary and variant:
+                            cursor.execute("""
+                                INSERT INTO NameTable (
+                                    OwnerID, Surname, Given, Prefix, Suffix, Nickname,
+                                    NameType, IsPrimary, Language
+                                )
+                                VALUES (?, ?, ?, ?, ?, ?, 1, 0, '')
+                            """, (owner_id, new_surname or '', variant, new_prefix or '', new_suffix or '', '', ))
+                            variants_extracted += 1
+                        updated = True
+
+                    # Check for quoted epithets
+                    text, epithets = NameParser.extract_quoted_epithets(new_given)
+                    if epithets:
+                        new_given = text
+                        if not new_nickname and epithets:
+                            new_nickname = epithets[0]
+                        updated = True
+
+                # 3. Extract nobility suffixes from given names
+                if new_given:
+                    text, nobility_suffix = NameParser.extract_nobility_suffix(new_given)
+                    if nobility_suffix:
+                        new_given = text
+                        if new_suffix:
+                            new_suffix = f"{new_suffix} {nobility_suffix}".strip()
+                        else:
+                            new_suffix = nobility_suffix
+                        updated = True
+
+                # 4. Detect reversed names (surname in given field with comma)
+                if new_given and ',' in new_given and not new_surname:
+                    # Pattern: "LastName, FirstName" in Given field
+                    parts = new_given.split(',', 1)
+                    if len(parts) == 2:
+                        potential_surname = parts[0].strip()
+                        potential_given = parts[1].strip()
+                        # Swap them
+                        new_surname = potential_surname
+                        new_given = potential_given
+                        reversed_fixed += 1
+                        updated = True
+
+                # 5. Handle surname particles misclassified as nicknames
+                if new_nickname and NameParser.has_surname_particle(new_nickname):
+                    parsed = NameParser.parse_field_with_surname_particle(new_nickname, 'NICK')
+                    if parsed.surname and not new_surname:
+                        new_surname = parsed.surname
+                        if parsed.given and not new_given:
+                            new_given = parsed.given
+                        if parsed.prefix and not new_prefix:
+                            new_prefix = parsed.prefix
+                        # Clear nickname since it was misclassified
+                        new_nickname = ''
+                        updated = True
+
+                # Update the name record if any changes were made
+                if updated:
+                    utc_mod_date = int(datetime.now().timestamp())
+                    cursor.execute("""
+                        UPDATE NameTable
+                        SET Surname = ?, Given = ?, Prefix = ?, Suffix = ?, Nickname = ?, UTCModDate = ?
+                        WHERE NameID = ?
+                    """, (new_surname or '', new_given or '', new_prefix or '', new_suffix or '', new_nickname or '', utc_mod_date, name_id))
+                    total_updated += 1
+
+        logger.info(f"Names repair completed: {reversed_fixed} reversed, {variants_extracted} variants, {titles_moved} titles, {total_updated} total updated")
 
         return {
             "reversed_fixed": reversed_fixed,
@@ -550,16 +734,11 @@ async def repair_names(request: RepairRequest):
 async def repair_events(request: RepairRequest):
     """Repair event issues like invalid dates and chronological errors."""
     try:
+        import re
+        from datetime import datetime
         from ...rootsmagic.adapter import RootsMagicDatabase
 
         db = RootsMagicDatabase(request.database_path)
-
-        # Placeholder for actual repair logic
-        # In a real implementation, you would:
-        # 1. Validate dates
-        # 2. Fix date formats
-        # 3. Check chronological order (birth before death, etc.)
-        # 4. Standardize event types
 
         dates_fixed = 0
         formats_standardized = 0
@@ -567,6 +746,88 @@ async def repair_events(request: RepairRequest):
         total_updated = 0
 
         logger.info(f"Repairing events in {request.database_path}")
+
+        with db.transaction():
+            cursor = db.conn.cursor()
+
+            # Get all events with their dates
+            cursor.execute("""
+                SELECT EventID, OwnerType, OwnerID, EventType, Date, SortDate, Details
+                FROM EventTable
+                ORDER BY OwnerType, OwnerID, SortDate
+            """)
+            events = cursor.fetchall()
+
+            logger.info(f"Found {len(events)} events to analyze")
+
+            # Group events by person to check chronological order
+            person_events = {}
+            for event_id, owner_type, owner_id, event_type, date, sort_date, details in events:
+                if owner_type == 0:  # Person event
+                    if owner_id not in person_events:
+                        person_events[owner_id] = []
+                    person_events[owner_id].append({
+                        'event_id': event_id,
+                        'event_type': event_type,
+                        'date': date,
+                        'sort_date': sort_date,
+                        'details': details
+                    })
+
+            # Check chronological order for each person
+            # Event types: 1=Birth, 2=Death, 3=Burial, etc.
+            for person_id, events_list in person_events.items():
+                birth_events = [e for e in events_list if e['event_type'] == 1]
+                death_events = [e for e in events_list if e['event_type'] == 2]
+
+                # Check if birth comes after death
+                if birth_events and death_events:
+                    birth_date = birth_events[0]['sort_date']
+                    death_date = death_events[0]['sort_date']
+
+                    if birth_date and death_date and birth_date > death_date:
+                        # Chronological error detected
+                        logger.warning(f"Person {person_id} has birth after death: birth={birth_date}, death={death_date}")
+                        chronological_fixed += 1
+
+            # Standardize date formats
+            for event_id, owner_type, owner_id, event_type, date, sort_date, details in events:
+                updated = False
+                new_date = date
+                new_sort_date = sort_date
+
+                if date:
+                    # Remove extra whitespace
+                    cleaned_date = re.sub(r'\s+', ' ', date).strip()
+                    if cleaned_date != date:
+                        new_date = cleaned_date
+                        updated = True
+                        formats_standardized += 1
+
+                    # Standardize common date patterns
+                    # Convert "01-15-2020" to "15 Jan 2020" format
+                    date_match = re.match(r'(\d{1,2})-(\d{1,2})-(\d{4})', cleaned_date)
+                    if date_match:
+                        month_num = int(date_match.group(1))
+                        day = date_match.group(2)
+                        year = date_match.group(3)
+                        month_names = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                        if 1 <= month_num <= 12:
+                            new_date = f"{day} {month_names[month_num]} {year}"
+                            updated = True
+                            dates_fixed += 1
+
+                if updated:
+                    utc_mod_date = int(datetime.now().timestamp())
+                    cursor.execute("""
+                        UPDATE EventTable
+                        SET Date = ?
+                        WHERE EventID = ?
+                    """, (new_date, event_id))
+                    total_updated += 1
+
+        logger.info(f"Events repair completed: {dates_fixed} dates, {formats_standardized} formats, {chronological_fixed} chronological, {total_updated} total updated")
 
         return {
             "dates_fixed": dates_fixed,
@@ -589,19 +850,143 @@ async def repair_people(request: RepairRequest):
 
         db = RootsMagicDatabase(request.database_path)
 
-        # Placeholder for actual repair logic
-        # In a real implementation, you would:
-        # 1. Fix relationship inconsistencies
-        # 2. Validate family structures
-        # 3. Link orphaned records
-        # 4. Repair missing parent/child links
-
         relationships_fixed = 0
         orphans_linked = 0
         families_repaired = 0
         total_updated = 0
 
         logger.info(f"Repairing people and families in {request.database_path}")
+
+        with db.transaction():
+            cursor = db.conn.cursor()
+
+            # 1. Fix inconsistent ParentID and SpouseID references
+            # Ensure ParentID points to a valid family where person is a child
+            cursor.execute("""
+                SELECT PersonID, ParentID, SpouseID
+                FROM PersonTable
+                WHERE ParentID > 0 OR SpouseID > 0
+            """)
+            persons = cursor.fetchall()
+
+            for person_id, parent_id, spouse_id in persons:
+                updated = False
+
+                # Check if ParentID is valid
+                if parent_id > 0:
+                    cursor.execute("""
+                        SELECT COUNT(*) FROM ChildTable
+                        WHERE ChildID = ? AND FamilyID = ?
+                    """, (person_id, parent_id))
+                    count = cursor.fetchone()[0]
+
+                    if count == 0:
+                        # ParentID is invalid, try to find correct family
+                        cursor.execute("""
+                            SELECT FamilyID FROM ChildTable
+                            WHERE ChildID = ?
+                            LIMIT 1
+                        """, (person_id,))
+                        result = cursor.fetchone()
+
+                        if result:
+                            correct_parent_id = result[0]
+                            cursor.execute("""
+                                UPDATE PersonTable
+                                SET ParentID = ?
+                                WHERE PersonID = ?
+                            """, (correct_parent_id, person_id))
+                            relationships_fixed += 1
+                            updated = True
+                        else:
+                            # No family link found, clear invalid ParentID
+                            cursor.execute("""
+                                UPDATE PersonTable
+                                SET ParentID = 0
+                                WHERE PersonID = ?
+                            """, (person_id,))
+                            updated = True
+
+                # Check if SpouseID is valid
+                if spouse_id > 0:
+                    cursor.execute("""
+                        SELECT COUNT(*) FROM FamilyTable
+                        WHERE FamilyID = ? AND (FatherID = ? OR MotherID = ?)
+                    """, (spouse_id, person_id, person_id))
+                    count = cursor.fetchone()[0]
+
+                    if count == 0:
+                        # SpouseID is invalid, try to find correct family
+                        cursor.execute("""
+                            SELECT FamilyID FROM FamilyTable
+                            WHERE FatherID = ? OR MotherID = ?
+                            LIMIT 1
+                        """, (person_id, person_id))
+                        result = cursor.fetchone()
+
+                        if result:
+                            correct_spouse_id = result[0]
+                            cursor.execute("""
+                                UPDATE PersonTable
+                                SET SpouseID = ?
+                                WHERE PersonID = ?
+                            """, (correct_spouse_id, person_id))
+                            relationships_fixed += 1
+                            updated = True
+                        else:
+                            # No family found, clear invalid SpouseID
+                            cursor.execute("""
+                                UPDATE PersonTable
+                                SET SpouseID = 0
+                                WHERE PersonID = ?
+                            """, (person_id,))
+                            updated = True
+
+                if updated:
+                    total_updated += 1
+
+            # 2. Find and count orphaned persons (no parent family, no spouse family)
+            cursor.execute("""
+                SELECT COUNT(*) FROM PersonTable p
+                WHERE p.ParentID = 0 AND p.SpouseID = 0
+                AND NOT EXISTS (
+                    SELECT 1 FROM ChildTable c WHERE c.ChildID = p.PersonID
+                )
+                AND NOT EXISTS (
+                    SELECT 1 FROM FamilyTable f WHERE f.FatherID = p.PersonID OR f.MotherID = p.PersonID
+                )
+            """)
+            orphans_linked = cursor.fetchone()[0]
+
+            # 3. Repair family structures - ensure FamilyTable references valid persons
+            cursor.execute("""
+                SELECT FamilyID, FatherID, MotherID
+                FROM FamilyTable
+            """)
+            families = cursor.fetchall()
+
+            for family_id, father_id, mother_id in families:
+                updated = False
+
+                # Check if father exists
+                if father_id > 0:
+                    cursor.execute("SELECT COUNT(*) FROM PersonTable WHERE PersonID = ?", (father_id,))
+                    if cursor.fetchone()[0] == 0:
+                        # Father doesn't exist, clear reference
+                        cursor.execute("UPDATE FamilyTable SET FatherID = 0 WHERE FamilyID = ?", (family_id,))
+                        updated = True
+                        families_repaired += 1
+
+                # Check if mother exists
+                if mother_id > 0:
+                    cursor.execute("SELECT COUNT(*) FROM PersonTable WHERE PersonID = ?", (mother_id,))
+                    if cursor.fetchone()[0] == 0:
+                        # Mother doesn't exist, clear reference
+                        cursor.execute("UPDATE FamilyTable SET MotherID = 0 WHERE FamilyID = ?", (family_id,))
+                        updated = True
+                        families_repaired += 1
+
+        logger.info(f"People repair completed: {relationships_fixed} relationships, {orphans_linked} orphans, {families_repaired} families, {total_updated} total updated")
 
         return {
             "relationships_fixed": relationships_fixed,
@@ -620,31 +1005,203 @@ async def repair_people(request: RepairRequest):
 async def sanity_check(request: RepairRequest):
     """Run comprehensive data quality checks on a database."""
     try:
+        import re
+        from pathlib import Path
         from ...rootsmagic.adapter import RootsMagicDatabase
+        from ...utils.name_parser import NameParser
 
         db = RootsMagicDatabase(request.database_path)
-
-        # Placeholder for actual sanity check logic
-        # In a real implementation, you would:
-        # 1. Check all names for issues
-        # 2. Check all places for issues
-        # 3. Check all events for issues
-        # 4. Check all relationships for issues
-        # 5. Calculate overall quality score
 
         name_issues = 0
         place_issues = 0
         event_issues = 0
         relationship_issues = 0
-        total_issues = name_issues + place_issues + event_issues + relationship_issues
-        quality_score = 100  # Placeholder
-
-        details = [
-            # Example detail structure
-            # {"category": "Names", "description": "Reversed names detected", "count": 5},
-        ]
+        details = []
 
         logger.info(f"Running sanity check on {request.database_path}")
+
+        cursor = db.conn.cursor()
+
+        # 1. Check names for issues
+        cursor.execute("""
+            SELECT NameID, Surname, Given, Prefix, Suffix, Nickname
+            FROM NameTable
+        """)
+        names = cursor.fetchall()
+
+        reversed_names = 0
+        embedded_variants = 0
+        titles_in_wrong_field = 0
+        placeholder_names = 0
+
+        for name_id, surname, given, prefix, suffix, nickname in names:
+            # Check for reversed names (comma in given name)
+            if given and ',' in given and not surname:
+                reversed_names += 1
+
+            # Check for embedded variants
+            if given and ('(' in given or ')' in given):
+                embedded_variants += 1
+
+            # Check for titles in wrong field
+            if given and not prefix:
+                _, extracted_prefix = NameParser.extract_prefix(given)
+                if extracted_prefix:
+                    titles_in_wrong_field += 1
+
+            # Check for placeholder names
+            if surname and surname.upper() in ['NN', 'UNKNOWN', '?', '??', 'N.N.']:
+                placeholder_names += 1
+
+            # Check for surname particles in nickname field
+            if nickname and NameParser.has_surname_particle(nickname):
+                name_issues += 1
+
+        if reversed_names > 0:
+            details.append({"category": "Names", "description": "Reversed names detected", "count": reversed_names})
+            name_issues += reversed_names
+
+        if embedded_variants > 0:
+            details.append({"category": "Names", "description": "Embedded name variants", "count": embedded_variants})
+            name_issues += embedded_variants
+
+        if titles_in_wrong_field > 0:
+            details.append({"category": "Names", "description": "Titles in wrong field", "count": titles_in_wrong_field})
+            name_issues += titles_in_wrong_field
+
+        if placeholder_names > 0:
+            details.append({"category": "Names", "description": "Placeholder names", "count": placeholder_names})
+            name_issues += placeholder_names
+
+        # 2. Check places for issues
+        cursor.execute("SELECT PlaceID, PlaceName FROM PlaceTable")
+        places = cursor.fetchall()
+
+        places_with_postal_codes = 0
+        duplicate_places = 0
+
+        seen_places = set()
+        for place_id, place_name in places:
+            if not place_name:
+                continue
+
+            # Check for postal codes
+            postal_patterns = [
+                r'\b[A-Z]\d[A-Z]\s?\d[A-Z]\d\b',  # Canadian
+                r'\b\d{5}(?:-\d{4})?\b',  # US ZIP
+                r'\b[A-Z]{1,2}\d{1,2}\s?\d[A-Z]{2}\b',  # UK
+            ]
+            for pattern in postal_patterns:
+                if re.search(pattern, place_name):
+                    places_with_postal_codes += 1
+                    break
+
+            # Check for duplicates (case-insensitive)
+            normalized = place_name.lower().strip()
+            if normalized in seen_places:
+                duplicate_places += 1
+            seen_places.add(normalized)
+
+        if places_with_postal_codes > 0:
+            details.append({"category": "Places", "description": "Places with postal codes", "count": places_with_postal_codes})
+            place_issues += places_with_postal_codes
+
+        if duplicate_places > 0:
+            details.append({"category": "Places", "description": "Duplicate places", "count": duplicate_places})
+            place_issues += duplicate_places
+
+        # 3. Check events for issues
+        cursor.execute("""
+            SELECT EventID, OwnerType, OwnerID, EventType, Date, SortDate
+            FROM EventTable
+            WHERE OwnerType = 0
+        """)
+        events = cursor.fetchall()
+
+        invalid_dates = 0
+        chronological_errors = 0
+
+        # Group by person
+        person_events = {}
+        for event_id, owner_type, owner_id, event_type, date, sort_date in events:
+            if owner_id not in person_events:
+                person_events[owner_id] = []
+            person_events[owner_id].append({
+                'event_type': event_type,
+                'date': date,
+                'sort_date': sort_date
+            })
+
+            # Check for invalid date formats
+            if date and re.search(r'\d{1,2}-\d{1,2}-\d{4}', date):
+                invalid_dates += 1
+
+        # Check chronological order
+        for person_id, events_list in person_events.items():
+            birth_events = [e for e in events_list if e['event_type'] == 1]
+            death_events = [e for e in events_list if e['event_type'] == 2]
+
+            if birth_events and death_events:
+                birth_date = birth_events[0]['sort_date']
+                death_date = death_events[0]['sort_date']
+                if birth_date and death_date and birth_date > death_date:
+                    chronological_errors += 1
+
+        if invalid_dates > 0:
+            details.append({"category": "Events", "description": "Invalid date formats", "count": invalid_dates})
+            event_issues += invalid_dates
+
+        if chronological_errors > 0:
+            details.append({"category": "Events", "description": "Chronological errors", "count": chronological_errors})
+            event_issues += chronological_errors
+
+        # 4. Check relationships for issues
+        cursor.execute("""
+            SELECT PersonID, ParentID, SpouseID
+            FROM PersonTable
+            WHERE ParentID > 0 OR SpouseID > 0
+        """)
+        persons = cursor.fetchall()
+
+        invalid_parent_refs = 0
+        invalid_spouse_refs = 0
+
+        for person_id, parent_id, spouse_id in persons:
+            if parent_id > 0:
+                cursor.execute("""
+                    SELECT COUNT(*) FROM ChildTable
+                    WHERE ChildID = ? AND FamilyID = ?
+                """, (person_id, parent_id))
+                if cursor.fetchone()[0] == 0:
+                    invalid_parent_refs += 1
+
+            if spouse_id > 0:
+                cursor.execute("""
+                    SELECT COUNT(*) FROM FamilyTable
+                    WHERE FamilyID = ? AND (FatherID = ? OR MotherID = ?)
+                """, (spouse_id, person_id, person_id))
+                if cursor.fetchone()[0] == 0:
+                    invalid_spouse_refs += 1
+
+        if invalid_parent_refs > 0:
+            details.append({"category": "Relationships", "description": "Invalid parent references", "count": invalid_parent_refs})
+            relationship_issues += invalid_parent_refs
+
+        if invalid_spouse_refs > 0:
+            details.append({"category": "Relationships", "description": "Invalid spouse references", "count": invalid_spouse_refs})
+            relationship_issues += invalid_spouse_refs
+
+        # Calculate totals
+        total_issues = name_issues + place_issues + event_issues + relationship_issues
+
+        # Calculate quality score (0-100, where 100 is perfect)
+        total_records = len(names) + len(places) + len(events) + len(persons)
+        if total_records > 0:
+            quality_score = max(0, min(100, 100 - (total_issues / total_records * 100)))
+        else:
+            quality_score = 100
+
+        logger.info(f"Sanity check completed: {total_issues} total issues found, quality score: {quality_score:.1f}")
 
         return {
             "total_issues": total_issues,
@@ -652,7 +1209,7 @@ async def sanity_check(request: RepairRequest):
             "place_issues": place_issues,
             "event_issues": event_issues,
             "relationship_issues": relationship_issues,
-            "quality_score": quality_score,
+            "quality_score": round(quality_score, 1),
             "details": details,
             "status": "completed",
         }
@@ -666,18 +1223,33 @@ async def sanity_check(request: RepairRequest):
 async def repair_all(request: RepairRequest):
     """Run all repairs on a database."""
     try:
-        from ...rootsmagic.adapter import RootsMagicDatabase
-
-        db = RootsMagicDatabase(request.database_path)
-
-        # Run all repairs
-        places_repaired = 0
-        names_repaired = 0
-        events_repaired = 0
-        relationships_repaired = 0
-        total_updated = 0
-
         logger.info(f"Running all repairs on {request.database_path}")
+
+        # Run all repair functions in sequence
+        # 1. Repair places first (needed for event references)
+        logger.info("Step 1/4: Repairing places...")
+        places_result = await repair_places(request)
+
+        # 2. Repair names
+        logger.info("Step 2/4: Repairing names...")
+        names_result = await repair_names(request)
+
+        # 3. Repair events
+        logger.info("Step 3/4: Repairing events...")
+        events_result = await repair_events(request)
+
+        # 4. Repair people and relationships
+        logger.info("Step 4/4: Repairing people and relationships...")
+        people_result = await repair_people(request)
+
+        # Aggregate results
+        places_repaired = places_result.get("standardized", 0) + places_result.get("merged", 0)
+        names_repaired = names_result.get("total_updated", 0)
+        events_repaired = events_result.get("total_updated", 0)
+        relationships_repaired = people_result.get("total_updated", 0)
+        total_updated = places_repaired + names_repaired + events_repaired + relationships_repaired
+
+        logger.info(f"All repairs completed: {total_updated} total updates")
 
         return {
             "places_repaired": places_repaired,
@@ -685,6 +1257,10 @@ async def repair_all(request: RepairRequest):
             "events_repaired": events_repaired,
             "relationships_repaired": relationships_repaired,
             "total_updated": total_updated,
+            "places_details": places_result,
+            "names_details": names_result,
+            "events_details": events_result,
+            "people_details": people_result,
             "status": "completed",
         }
 
