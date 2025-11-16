@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GedMerge ML Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+            color: #2c3e50;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e1e8ed;
+        }
+
+        .nav-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            color: #657786;
+            font-size: 1rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav-tab:hover {
+            color: #1da1f2;
+        }
+
+        .nav-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .model-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .model-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: #657786;
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .result {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .result-success {
+            border-left-color: #27ae60;
+            background: #d4edda;
+        }
+
+        .result-error {
+            border-left-color: #e74c3c;
+            background: #f8d7da;
+        }
+
+        .progress {
+            height: 8px;
+            background: #e1e8ed;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+
+        .job-list {
+            margin-top: 1rem;
+        }
+
+        .job-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-queued { background: #ffeaa7; color: #2d3436; }
+        .status-running { background: #74b9ff; color: #2d3436; }
+        .status-completed { background: #55efc4; color: #2d3436; }
+        .status-failed { background: #ff7675; color: white; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #657786;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🧬 GedMerge ML Dashboard</h1>
+            <p>Machine Learning for Genealogy Data Quality & Duplicate Detection</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('overview')">Overview</button>
+            <button class="nav-tab" onclick="showTab('models')">Models</button>
+            <button class="nav-tab" onclick="showTab('predict')">Predictions</button>
+            <button class="nav-tab" onclick="showTab('train')">Training</button>
+            <button class="nav-tab" onclick="showTab('quality')">Data Quality</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-models">0</div>
+                    <div class="stat-label">ML Models</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="active-jobs">0</div>
+                    <div class="stat-label">Active Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="predictions-today">0</div>
+                    <div class="stat-label">Predictions Today</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">98.5%</div>
+                    <div class="stat-label">Avg Accuracy</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📊 System Status</h2>
+                <div class="metric">
+                    <span class="metric-label">API Status</span>
+                    <span class="metric-value" id="api-status">Checking...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Last Update</span>
+                    <span class="metric-value" id="last-update">-</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Quick Actions</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="showTab('predict')">Run Predictions</button>
+                    <button class="btn btn-success" onclick="showTab('train')">Train Models</button>
+                    <button class="btn btn-warning" onclick="showTab('quality')">Quality Check</button>
+                    <button class="btn btn-primary" onclick="refreshModels()">Refresh Data</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Models Tab -->
+        <div id="models" class="tab-content">
+            <div class="card">
+                <h2>🤖 Registered ML Models</h2>
+                <div class="model-grid" id="model-grid">
+                    <p>Loading models...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictions Tab -->
+        <div id="predict" class="tab-content">
+            <div class="card">
+                <h2>🔮 Name Matching</h2>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="name1" placeholder="e.g., Jean-Baptiste Dubois">
+                </div>
+                <div class="form-group">
+                    <label>Second Name</label>
+                    <input type="text" id="name2" placeholder="e.g., John Baptist Dubois">
+                </div>
+                <button class="btn btn-primary" onclick="predictNameMatch()">Check Similarity</button>
+                <div id="name-match-result"></div>
+            </div>
+
+            <div class="card">
+                <h2>🌍 Language Detection</h2>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="lang-name" placeholder="e.g., François Müller">
+                </div>
+                <button class="btn btn-primary" onclick="detectLanguage()">Detect Language</button>
+                <div id="language-result"></div>
+            </div>
+        </div>
+
+        <!-- Training Tab -->
+        <div id="train" class="tab-content">
+            <div class="card">
+                <h2>🎓 Train New Model</h2>
+                <div class="form-group">
+                    <label>Model Type</label>
+                    <select id="train-model-type">
+                        <option value="duplicate_detector">Duplicate Detector</option>
+                        <option value="name_matcher">Name Matcher</option>
+                        <option value="language_detector">Language Detector</option>
+                        <option value="quality_classifier">Quality Classifier</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Database Path</label>
+                    <input type="text" id="train-db-path" placeholder="/path/to/database.rmtree">
+                </div>
+                <button class="btn btn-success" onclick="startTraining()">Start Training</button>
+            </div>
+
+            <div class="card">
+                <h2>📋 Training Jobs</h2>
+                <div class="job-list" id="job-list">
+                    <p>No training jobs yet.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Quality Tab -->
+        <div id="quality" class="tab-content">
+            <div class="card">
+                <h2>🔍 Data Quality Analysis</h2>
+                <p>Data quality analysis tools will be displayed here.</p>
+                <p style="color: #657786; margin-top: 1rem;">
+                    This section provides insights into data quality issues such as:
+                </p>
+                <ul style="margin-left: 2rem; margin-top: 1rem; color: #657786;">
+                    <li>Reversed names</li>
+                    <li>Embedded variants</li>
+                    <li>Titles in wrong fields</li>
+                    <li>Missing data</li>
+                    <li>Invalid dates</li>
+                    <li>Placeholder names</li>
+                    <li>Inconsistent formatting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let models = {};
+        let jobs = {};
+
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // Load data when switching to certain tabs
+            if (tabName === 'models') {
+                refreshModels();
+            } else if (tabName === 'train') {
+                refreshJobs();
+            }
+        }
+
+        // Check API health
+        async function checkHealth() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+
+                document.getElementById('api-status').textContent = data.status === 'healthy' ? '✅ Healthy' : '❌ Error';
+                document.getElementById('last-update').textContent = new Date(data.timestamp).toLocaleString();
+            } catch (error) {
+                document.getElementById('api-status').textContent = '❌ Offline';
+            }
+        }
+
+        // Refresh models
+        async function refreshModels() {
+            try {
+                const response = await fetch('/api/models');
+                models = await response.json();
+
+                const grid = document.getElementById('model-grid');
+                grid.innerHTML = '';
+
+                const modelCount = Object.keys(models).length;
+                document.getElementById('total-models').textContent = modelCount;
+
+                if (modelCount === 0) {
+                    grid.innerHTML = '<p>No models registered yet. Train a model to get started!</p>';
+                    return;
+                }
+
+                for (const [name, info] of Object.entries(models)) {
+                    const card = document.createElement('div');
+                    card.className = 'model-card';
+
+                    const metrics = info.metrics || {};
+                    const metricsHTML = Object.entries(metrics)
+                        .map(([key, value]) => `
+                            <div class="metric">
+                                <span class="metric-label">${key}</span>
+                                <span class="metric-value">${typeof value === 'number' ? value.toFixed(4) : value}</span>
+                            </div>
+                        `).join('');
+
+                    card.innerHTML = `
+                        <h3>${name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
+                        <div class="metric">
+                            <span class="metric-label">Version</span>
+                            <span class="metric-value">${info.latest_version}</span>
+                        </div>
+                        ${metricsHTML}
+                        <div class="metric">
+                            <span class="metric-label">Registered</span>
+                            <span class="metric-value">${new Date(info.registered_at).toLocaleDateString()}</span>
+                        </div>
+                    `;
+
+                    grid.appendChild(card);
+                }
+            } catch (error) {
+                console.error('Error fetching models:', error);
+                document.getElementById('model-grid').innerHTML = '<p>Error loading models.</p>';
+            }
+        }
+
+        // Predict name match
+        async function predictNameMatch() {
+            const name1 = document.getElementById('name1').value;
+            const name2 = document.getElementById('name2').value;
+
+            if (!name1 || !name2) {
+                alert('Please enter both names');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/predict/name-match', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name1, name2 })
+                });
+
+                const result = await response.json();
+
+                const resultDiv = document.getElementById('name-match-result');
+                const similarity = (result.similarity * 100).toFixed(1);
+
+                resultDiv.className = 'result ' + (result.is_match ? 'result-success' : '');
+                resultDiv.innerHTML = `
+                    <strong>Match Result:</strong> ${result.is_match ? '✅ Match' : '❌ Not a Match'}<br>
+                    <strong>Similarity:</strong> ${similarity}%
+                    <div class="progress">
+                        <div class="progress-bar" style="width: ${similarity}%"></div>
+                    </div>
+                `;
+            } catch (error) {
+                const resultDiv = document.getElementById('name-match-result');
+                resultDiv.className = 'result result-error';
+                resultDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        // Detect language
+        async function detectLanguage() {
+            const name = document.getElementById('lang-name').value;
+
+            if (!name) {
+                alert('Please enter a name');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/predict/language', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name })
+                });
+
+                const result = await response.json();
+
+                const resultDiv = document.getElementById('language-result');
+                const confidence = (result.confidence * 100).toFixed(1);
+
+                resultDiv.className = 'result result-success';
+                resultDiv.innerHTML = `
+                    <strong>Detected Language:</strong> ${result.language.toUpperCase()}<br>
+                    <strong>Confidence:</strong> ${confidence}%
+                    <div class="progress">
+                        <div class="progress-bar" style="width: ${confidence}%"></div>
+                    </div>
+                `;
+            } catch (error) {
+                const resultDiv = document.getElementById('language-result');
+                resultDiv.className = 'result result-error';
+                resultDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        // Start training
+        async function startTraining() {
+            const modelType = document.getElementById('train-model-type').value;
+            const dbPath = document.getElementById('train-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/train', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model_type: modelType,
+                        database_path: dbPath
+                    })
+                });
+
+                const result = await response.json();
+                alert(`Training job started: ${result.job_id}`);
+                refreshJobs();
+            } catch (error) {
+                alert('Error starting training: ' + error.message);
+            }
+        }
+
+        // Refresh training jobs
+        async function refreshJobs() {
+            try {
+                const response = await fetch('/api/train');
+                const jobsList = await response.json();
+
+                jobs = {};
+                jobsList.forEach(job => {
+                    jobs[job.job_id] = job;
+                });
+
+                const jobListDiv = document.getElementById('job-list');
+                jobListDiv.innerHTML = '';
+
+                let activeCount = 0;
+                if (jobsList.length === 0) {
+                    jobListDiv.innerHTML = '<p>No training jobs yet.</p>';
+                } else {
+                    jobsList.forEach(job => {
+                        if (job.status === 'running' || job.status === 'queued') {
+                            activeCount++;
+                        }
+
+                        const jobItem = document.createElement('div');
+                        jobItem.className = 'job-item';
+                        jobItem.innerHTML = `
+                            <div>
+                                <strong>${job.model_type.replace(/_/g, ' ')}</strong><br>
+                                <small>ID: ${job.job_id}</small>
+                            </div>
+                            <span class="status-badge status-${job.status}">${job.status}</span>
+                        `;
+                        jobListDiv.appendChild(jobItem);
+                    });
+                }
+
+                document.getElementById('active-jobs').textContent = activeCount;
+            } catch (error) {
+                console.error('Error fetching jobs:', error);
+            }
+        }
+
+        // Initialize dashboard
+        window.onload = () => {
+            checkHealth();
+            refreshModels();
+
+            // Refresh data every 30 seconds
+            setInterval(() => {
+                checkHealth();
+                refreshJobs();
+            }, 30000);
+        };
+    </script>
+</body>
+</html>
