@@ -7,1356 +7,2574 @@ Analyzing 3 GEDCOM files...
 MULTILINGUAL ANALYSIS OF GEDCOM DATA
 ================================================================================
 
-### NOBILITY TITLES FOUND IN NAMES ###
+### NOBILITY AND HONORIFIC TITLES FOUND IN NAMES ###
 
-These are titles extracted from NAME, GIVN, and SURN fields:
+These are titles extracted from NAME, GIVN, SURN, NPFX, NSFX, and NICK fields:
+Fields analyzed:
+  - NAME: Full name
+  - GIVN: Given name
+  - SURN: Surname
+  - NPFX: Name prefix (titles before name)
+  - NSFX: Name suffix (titles/suffixes after name)
+  - NICK: Nickname
+
 
 English:
   - 10th Baron
+      Example: 10th Baron of Kinderton [NSFX]
+      Example: 10th Baron FitzWarin [NSFX]
       Example: Sir Robert William /‘Kerr’ Carr 10th Baron Of Ferniehurst/
-      Example: ‘Kerr’ Carr 10th Baron Of Ferniehurst
   - 10th Earl
+      Example: 10th Earl of Warwick [NSFX]
+      Example: 10th Earl of Arundel [NSFX]
       Example: Richard /FitzAlan KG 11th Earl of Arundel 10th Earl of Surrey/
-      Example: FitzAlan KG 11th Earl of Arundel 10th Earl of Surrey
+  - 10th Lord
+      Example: 10th Lord of Gordon [NSFX]
+      Example: 10th Lord Oxnam [NSFX]
+  - 10th earl
+      Example: 10th earl of  March [NSFX]
+  - 11th Baron
+      Example: 11th Baron of Burford [NSFX]
   - 11th Earl
       Example: Richard /FitzAlan KG 11th Earl of Arundel 10th Earl of Surrey/
-      Example: FitzAlan KG 11th Earl of Arundel 10th Earl of Surrey
+      Example: FitzAlan KG 11th Earl of Arundel 10th Earl of Surrey [SURN]
+      Example: 11th Earl of Arundel [NSFX]
+  - 12th Earl
+      Example: 12th Earl of Mar and 2nd Earl of Douglas [NSFX]
+      Example: 9th Lord of the Isles, 12th Earl of Ross [NSFX]
+      Example: 12th Earl of Warwick [NSFX]
+  - 12th Lord
+      Example: 12th Lord of Norbury [NSFX]
+  - 13th Baron
+      Example: 13th Baron of Arrochar [NSFX]
+  - 13th Earl
+      Example: 13th Earl of Crawford [NSFX]
+  - 13th Lord
+      Example: 13th Lord of Shelton [NSFX]
+  - 14th Lord
+      Example: 14th Lord of Gawthorpe [NSFX]
   - 1st Baron
+      Example: 1st Baron Hoo [NSFX]
       Example: Thomas II 'The Wise' 1st Baron /Berkeley/
-      Example: Thomas II 'The Wise' 1st Baron
-      Example: Geoffrey 1st Baron /de Geneville/
+      Example: Thomas II 'The Wise' 1st Baron [GIVN]
+  - 1st Duke
+      Example: 1st Duke of Albany [NSFX]
+      Example: 1st Duke of Guise [NSFX]
+      Example: 1st Duke of Lancaster [NSFX]
+  - 1st Earl
+      Example: 1st Earl of Essex [NSFX]
+      Example: 1st Earl of Essex [NSFX]
+      Example: 1st Earl of Kent [NSFX]
   - 1st Lord
-      Example: Hugh 1st Lord de Vere /DeVere/
-      Example: Hugh 1st Lord de Vere
+      Example: 1st Lord [NSFX]
+      Example: 1st Lord Swynnerton [NSFX]
+      Example: 1st Lord Talbot [NSFX]
   - 2nd Baron
       Example: Maurice III 'the Magnanimous' 2nd Baron Berkeley /Berkeley/
-      Example: Maurice III 'the Magnanimous' 2nd Baron Berkeley
+      Example: Maurice III 'the Magnanimous' 2nd Baron Berkeley [GIVN]
+      Example: Sr. 2nd Baron Strange of Blackmere [NSFX]
+  - 2nd Duke
+      Example: 2nd Duke of Norfolk [NSFX]
+      Example: 2nd Duke of Brittany Tyrant King of Brittany Duke of Maine [NSFX]
+      Example: 2nd Duke of Albany [NSFX]
   - 2nd Earl
-      Example: Alexander 2nd Earl Of Philorth /Fraser/
-      Example: Alexander 2nd Earl Of Philorth
-      Example: Alexander 2nd Earl Of Philorth /Fraser/
+      Example: 2nd Earl of Leicester [NSFX]
+      Example: 2nd Earl of Gloucester [NSFX]
+      Example: (2nd Earl of Hertford) [NSFX]
+  - 2nd Lord
+      Example: 2nd Lord of Winestead [NSFX]
+      Example: 2nd Lord Strange of Blackmere [NSFX]
+      Example: 2nd Lord Basset of Sapcote [NSFX]
+  - 2nd baron
+      Example: 2nd baron of Wigmore [NSFX]
+  - 2nd lord
+      Example: 2nd Lord of Leche, 2nd lord-keeper of Stanton [NSFX]
+  - 3rd Baron
+      Example: 3rd Baron [NSFX]
+      Example: II 3rd Baron of Nantwich [NSFX]
+      Example: 3rd Baron of Kinderton [NSFX]
+  - 3rd Earl
+      Example: (3rd Earl of Pembroke) [NSFX]
+      Example: 3rd Earl of Derby [NSFX]
+      Example: (3rd Earl of Arundel) [NSFX]
+  - 3rd Lord
+      Example: 3rd Lord [NSFX]
+      Example: 3rd Lord of Oswestry and Clun [NSFX]
+      Example: 3rd Lord of Dutton [NSFX]
+  - 4th  Lord
+      Example: 4th  Lord of Sinclair [NSFX]
+  - 4th Baron
+      Example: 4th Baron Strange [NSFX]
+      Example: 4th Baron Of Kinderton [NSFX]
+      Example: 4th Baron of Ingham [NSFX]
+  - 4th Earl
+      Example: 4th Earl of Derby [NSFX]
+      Example: 4th Earl of Arundel [NSFX]
+      Example: (4th Earl of Hertford) [NSFX]
   - 4th Lord
-      Example: William /Sinclair. 4th Lord Sinclair/
-      Example: Sinclair. 4th Lord Sinclair
+      Example: 4th Lord Of Annandale [NSFX]
+      Example: III 4th Lord of Brambet [NSFX]
+      Example: 4th Lord of Lusignan [NSFX]
   - 5TH DUKE
       Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK /MEROVINGIAN/
-      Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK
+      Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK [GIVN]
+  - 5th Baron
+      Example: 5th Baron of Ingham [NSFX]
+      Example: 5th Baron of Caus [NSFX]
+      Example: 5th Baron of Shipbrook [NSFX]
   - 5th Earl
       Example: William Planagenet, 5th Earl Surrey /DeWarenne/
-      Example: William Planagenet, 5th Earl Surrey
-      Example: Archibald Douglas 5th Earl of Douglas Lord of Galloway 5th Earl of Douglas Lord of Galloway //
+      Example: William Planagenet, 5th Earl Surrey [GIVN]
+      Example: 5th Earl Surrey [NSFX]
   - 5th LORD
       Example: Robert 5th LORD de Adlington SHERIFF de Cheshire //
-      Example: Robert 5th LORD de Adlington SHERIFF de Cheshire
+      Example: Robert 5th LORD de Adlington SHERIFF de Cheshire [GIVN]
+  - 5th Lord
+      Example: 5th Lord of Dutton [NSFX]
+      Example: 5th Lord of Annandale [NSFX]
+      Example: 5th Lord of Sutton [NSFX]
+  - 6th Baron
+      Example: 6th Baron of Lancaster [NSFX]
+      Example: 6th Baron of Clackmannan and Rate [NSFX]
+      Example: 6th Baron of Roslin [NSFX]
+  - 6th Earl
+      Example: (6th Earl of Gloucester) [NSFX]
+      Example: 1st Lord of Clare and Thomond 6th Earl of Herfford [NSFX]
+      Example: (6th Earl of Chester) [NSFX]
+  - 6th Lord
+      Example: 6th Lord of Balfour [NSFX]
+      Example: 6th Lord of Annandale Earl of Carrick [NSFX]
+      Example: 6th Lord Saltoun of Abernethy [NSFX]
+  - 7th Baron
+      Example: 7th Baron De La Warr [NSFX]
+  - 7th Earl
+      Example: 7th Earl of Ormond [NSFX]
+      Example: 7th Earl of Ormond [NSFX]
+      Example: 7th Earl of Gloucester [NSFX]
+  - 7th Lord
+      Example: 7th Lord of Skelton [NSFX]
+      Example: 7th Lord of the Isles [NSFX]
+      Example: 7th Lord of Eaglesham [NSFX]
+  - 8TH LORD
+      Example: , 8TH LORD OXNAM [NSFX]
+  - 8th Baron
+      Example: 8th Baron of Kinderton [NSFX]
+      Example: (8th Baron of Kinderton) [NSFX]
+      Example: 8th Baron Ferrers of Chartley [NSFX]
+  - 8th Earl
+      Example: (8th Earl of Pembroke) [NSFX]
+      Example: 8th Earl Of Lennox [NSFX]
+      Example: 8th Earl Of Lennox [NSFX]
+  - 8th Lord
+      Example: 8th Lord of Dutton [NSFX]
+      Example: 8th Lord of Glenorchy [NSFX]
+      Example: 8th Lord of Roslin [NSFX]
+  - 9TH LORD
+      Example: , 9TH LORD OXNAM [NSFX]
+  - 9th Baron
+      Example: Knight of the Garter 1st Viscount Hereford 9th Baron Ferrers of Chartley [NSFX]
+      Example: 9th Baron of Knockin [NSFX]
+      Example: 9th Baron Gray of Wilton [NSFX]
   - 9th Earl
-      Example: David (9th Earl of Crawford) /Lindsay/
-      Example: David (9th Earl of Crawford)
-      Example: William /De Beauchamp/ 9th Earl Of Warwick
+      Example: 9th Earl Of Warwick [NSFX]
+      Example: 9th Earl Of Warwick [NSFX]
+      Example: (9th Earl of Pembroke) [NSFX]
+  - 9th Lord
+      Example: 1st Earl of Kinghorne and 9th Lord of Glamis [NSFX]
+      Example: 9th Lord of the Isles, 12th Earl of Ross [NSFX]
+      Example: of that Ilk, 9th Lord of Blair [NSFX]
   - Baron
       Example: Jeanne /Baron/
       Example: Jeanne /Baron/
-      Example: Baron
+      Example: Baron [SURN]
   - Baroness
       Example: Lady Katherine Baroness Hungerford /Peverell/
-      Example: Lady Katherine Baroness Hungerford
-      Example: Ramfray /De Rumilly, Countess of Rumigny, Baroness Rumigny/
+      Example: Lady Katherine Baroness Hungerford [GIVN]
+      Example: Baroness [NPFX]
+  - Baronet
+      Example: Fifth  Earl of Auchinbreck, First Baronet [NPFX]
+  - COUNTESS
+      Example: COUNTESS [NPFX]
+  - Captain
+      Example: Captain [NPFX]
+      Example: Captain [NPFX]
+      Example: Captain [NPFX]
+  - Colonel
+      Example: Colonel [NPFX]
+      Example: Colonel [NPFX]
+      Example: Colonel [NPFX]
   - Countess
-      Example: Aline Countess Norfolk /Bassett/
-      Example: Aline Countess Norfolk
-      Example: Theodore Countess of /Ardennes/
+      Example: , Countess of Huntingdon [NSFX]
+      Example: , Countess of Boulogne [NSFX]
+      Example: , Countess of Burgundy [NSFX]
   - DAME
       Example: DAME Berthe /Berthe,DAME/
       Example: DAME Berthe /Berthe,DAME/
       Example: DAME Berthe /Berthe,DAME/
   - DUCHESS
       Example: Marie DUCHESS /Geneva/
-      Example: Marie DUCHESS
+      Example: Marie DUCHESS [GIVN]
   - DUKE
       Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK /MEROVINGIAN/
-      Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK
+      Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK [GIVN]
   - Dame
-      Example: Anne /Dame de La Rochepot, Damville et Châteauneuf/
-      Example: Anne /Dame de La Rochepot, Damville et Châteauneuf/
-      Example: Dame de La Rochepot, Damville et Châteauneuf
+      Example: Dame de Repentigny [NSFX]
+      Example: Dame de Repentigny [NSFX]
+      Example: Dame de Champaigne [NSFX]
   - Duchess
-      Example: Irmgard, Duchess of Massgau /de Lorraine/
-      Example: Irmgard, Duchess of Massgau
-      Example: Rotrude De Trêves Duchess /De Thurgovie/
+      Example: , Duchess of Bohemia [NSFX]
+      Example: , Duchess of Bohemia [NSFX]
+      Example: , Duchess of Bohemia [NSFX]
   - Duke
-      Example: Charles of Blois Duke of /Brittany/
-      Example: Charles of Blois Duke of
-      Example: Duke De Meroving /Ansegisel/
+      Example: Duke of Bohemia [NSFX]
+      Example: I, Duke of Bohemia [NSFX]
+      Example: , Duke of Poland [NSFX]
   - EARL
       Example: Henry /rd EARL of NORTHUMBERLAND/
-      Example: rd EARL of NORTHUMBERLAND
+      Example: rd EARL of NORTHUMBERLAND [SURN]
       Example: Richard De CLARE  EARL OF /Gloucester/
   - Earl
-      Example: Henry, Earl Lancaster /Plantagenet/
-      Example: Henry, Earl Lancaster
-      Example: Edmund, Earl Arundel /Fitzalan/
+      Example: , Earl in Denmark [NSFX]
+      Example: , Earl of Northumberland [NSFX]
+      Example: , Earl of Halland [NSFX]
+  - General
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
   - Heir
       Example: Laurette /De Braose Heir of Tawstock/
-      Example: De Braose Heir of Tawstock
+      Example: De Braose Heir of Tawstock [SURN]
+      Example: Heir of Laxton  Shelford [NSFX]
   - Heiress
+      Example: Heiress of Psov [NSFX]
       Example: Ludmilla Heiress of Psov //
-      Example: Ludmilla Heiress of Psov
-      Example: Heiress of Mottram /St Andrew/
+      Example: Ludmilla Heiress of Psov [GIVN]
   - High King
-      Example: Muiredeach Tereach /High King Of Ireland/
-      Example: High King Of Ireland
-      Example: Conall Cáel, High King of /Ireland/
+      Example: , King of Gwynedd, High King of Br [NSFX]
+      Example: High King of Prydein or Britain, K [NSFX]
+      Example: , High King of Prydein or Britain [NSFX]
+  - Honorable
+      Example: Honorable [NPFX]
+      Example: Honorable [NPFX]
+  - II
+      Example: Sigurð Orm-i-øje /Ragnarsson\ II/
+      Example: Ragnarsson\ II [SURN]
+      Example: II,  Of Lens [NSFX]
+  - III
+      Example: Leszek III /De Pologne/
+      Example: Leszek III [GIVN]
+      Example: III, Count of Hainault [NSFX]
+  - IV
+      Example: IV, Prince of Poland [NSFX]
+      Example: Louis IV /de France/
+      Example: Louis IV [GIVN]
+  - IX
+      Example: Alfonso IX /Fernandez/
+      Example: Alfonso IX [GIVN]
+      Example: IX [NSFX]
+  - Ii
+      Example: In The Chaumois /Thierry Ii/
+      Example: Thierry Ii [SURN]
+      Example: Dietrich Ii Autun de /Ripuarien/
+  - Iii
+      Example: Iii /Theodon/
+      Example: Iii [NPFX]
+      Example: Iii [GIVN]
+  - Iv
+      Example: Johann Iv De /Melun/
+      Example: Johann Iv De [GIVN]
+      Example: Guillaume Iv Duke /Aquitaine/
   - KING
       Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK /MEROVINGIAN/
-      Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK
+      Example: Marcomir I Merovech 5TH DUKE COLOGNE KING SICAMBRIAN ASTERN FRANK [GIVN]
       Example: Harald II KING Of Denmark /Gormsson/
   - KING OF CIANNACHTA
       Example: Cronain KING OF CIANNACHTA /IRELAND MUMHAN Mac Tigernach/
-      Example: Cronain KING OF CIANNACHTA
+      Example: Cronain KING OF CIANNACHTA [GIVN]
   - KING Of Denmark
       Example: Harald II KING Of Denmark /Gormsson/
-      Example: Harald II KING Of Denmark
+      Example: Harald II KING Of Denmark [GIVN]
   - KIng
       Example: Vatnarr /KIng of Norway of Rogaland/
-      Example: KIng of Norway of Rogaland
+      Example: KIng of Norway of Rogaland [SURN]
   - KIng of Norway
       Example: Vatnarr /KIng of Norway of Rogaland/
-      Example: KIng of Norway of Rogaland
+      Example: KIng of Norway of Rogaland [SURN]
   - King
-      Example: Sveithi And 'The Sea King' /di Svidrassonn/
-      Example: Sveithi And 'The Sea King'
-      Example: Coilus, 'Old King Coel' /ap Tegfan/
+      Example: , King of Gwynedd [NSFX]
+      Example: , King of Gwynedd [NSFX]
+      Example: , King of Gwynedd, High King of Br [NSFX]
   - King OF THE
       Example: Ainftech Garnard King OF THE PICTS /SCOTLAND Mac domnall/
-      Example: Ainftech Garnard King OF THE PICTS
+      Example: Ainftech Garnard King OF THE PICTS [GIVN]
+  - King Of Ailech
+      Example: King Of Ailech [NSFX]
+      Example: King Of Ailech [NSFX]
   - King Of Airthirlifi
       Example: Mael Morda /King Of Airthirlifi/
-      Example: King Of Airthirlifi
+      Example: King Of Airthirlifi [SURN]
   - King Of Asturias
+      Example: King Of Asturias [NSFX]
       Example: Alfonso II " el /Casto King Of Asturias/
-      Example: Casto King Of Asturias
+      Example: Casto King Of Asturias [SURN]
   - King Of Austrasia
       Example: Sigebert /King Of Austrasia III/
-      Example: King Of Austrasia III
+      Example: King Of Austrasia III [SURN]
   - King Of Braganza
+      Example: , King Of Braganza [NSFX]
+      Example: King Of Braganza [NSFX]
       Example: Mileag Espaine /mac Bille/ , King Of Braganza
+  - King Of Cologne
+      Example: King Of Cologne [NSFX]
   - King Of Dalriada
       Example: Of Eochaid /King Of Dalriada/
-      Example: King Of Dalriada
+      Example: King Of Dalriada [SURN]
+  - King Of Dublin
+      Example: King Of Dublin [NSFX]
   - King Of Dyfed
       Example: Rhodri Ap Hyfaidd /King Of Dyfed/
-      Example: King Of Dyfed
+      Example: King Of Dyfed [SURN]
   - King Of Gwent
       Example: Tewdrig Theodoric /King Of Gwent/
-      Example: King Of Gwent
+      Example: King Of Gwent [SURN]
   - King Of Hedmark
       Example: Throndsson King Of Hedmark Eystein //
-      Example: Throndsson King Of Hedmark Eystein
+      Example: Throndsson King Of Hedmark Eystein [GIVN]
+  - King Of Hungary
+      Example: King Of Hungary [NSFX]
+      Example: King Of Hungary [NSFX]
   - King Of Ireland
       Example: Muireadhach /King Of Ireland/
-      Example: King Of Ireland
+      Example: King Of Ireland [SURN]
+  - King Of Kvenland
+      Example: Myth King Of Kvenland [NSFX]
   - King Of Leinster
       Example: Over- King Of Leinster /Muiredach/
-      Example: Over- King Of Leinster
+      Example: Over- King Of Leinster [GIVN]
   - King Of Lombardy
       Example: /Bernhard King Of Lombardy/
-      Example: Bernhard King Of Lombardy
+      Example: Bernhard King Of Lombardy [SURN]
   - King Of Man
       Example: Ranald King Of Man Amp /The Isles/
-      Example: Ranald King Of Man Amp
+      Example: Ranald King Of Man Amp [GIVN]
+  - King Of Munster
+      Example: King Of Munster [NSFX]
+      Example: King Of Munster [NSFX]
+  - King Of Navarre
+      Example: -King Of Navarre [NSFX]
+  - King Of Northumbria
+      Example: King Of Northumbria [NPFX]
   - King Of Nuestria
       Example: Thiedoric /III King Of Nuestria/
-      Example: III King Of Nuestria
+      Example: III King Of Nuestria [SURN]
+  - King Of Osraige
+      Example: King Of Osraige [NPFX]
   - King Of Ossary
       Example: Anmchaid /mac Con Cherca King Of Ossary/
-      Example: mac Con Cherca King Of Ossary
+      Example: mac Con Cherca King Of Ossary [SURN]
+  - King Of Persia
+      Example: III King Of Persia [NSFX]
+  - King Of Scots
+      Example: King Of Scots [NSFX]
+      Example: King Of Scots [NPFX]
   - King Of The
+      Example: King Of The Visigoths [NPFX]
       Example: Of Walia /King Of The Visigoths/
-      Example: King Of The Visigoths
-      Example: Drust King Of The Picts //
+      Example: King Of The Visigoths [SURN]
+  - King Of Thomond
+      Example: King Of Thomond [NSFX]
   - King Of Thuringia
       Example: Frotmund /King Of Thuringia/
-      Example: King Of Thuringia
+      Example: King Of Thuringia [SURN]
   - King Of Trojans
       Example: Frithuwald Borr Fredalaf Fredalat The Asgard King of Saxony Turkey and Sweden King Of Trojans Ben /Freothalaf/
-      Example: Frithuwald Borr Fredalaf Fredalat The Asgard King of Saxony Turkey and Sweden King Of Trojans Ben
+      Example: Frithuwald Borr Fredalaf Fredalat The Asgard King of Saxony Turkey and Sweden King Of Trojans Ben [GIVN]
+  - King Of Ulster
+      Example: King Of Ulster [NSFX]
+  - King Of Unified
+      Example: 1st King Of Unified Norway [NSFX]
+  - King Of Vandals
+      Example: King Of Vandals [NSFX]
+  - King Of the
+      Example: King Of the Picts [NSFX]
+  - King of Aeda
+      Example: King of Aeda Odba [NSFX]
+  - King of Aileach
+      Example: King of Aileach [NSFX]
   - King of Ailech
+      Example: King of Ailech  High King of Ireland [NSFX]
       Example: Mael Fithrich Macaedo Uaridnaig King of Ailech /Neill/
-      Example: Mael Fithrich Macaedo Uaridnaig King of Ailech
+      Example: Mael Fithrich Macaedo Uaridnaig King of Ailech [GIVN]
   - King of Alba
+      Example: , King of Alba [NSFX]
+      Example: King of Alba [NSFX]
       Example: Kenneth I MacAlpin /King of Alba/
-      Example: King of Alba
-      Example: Loach a /Scotland/ , King of Alba
+  - King of Alfheim
+      Example: King of Alfheim [NSFX]
+  - King of All
+      Example: King of All England [NPFX]
   - King of Alvheim
+      Example: , King of Alvheim [NSFX]
+      Example: King of Alvheim [NSFX]
       Example: Alfarin /av Alvheim/ , King of Alvheim
   - King of Amorica
       Example: King of Amorica /ap Gerint/
-      Example: King of Amorica
+      Example: King of Amorica [GIVN]
       Example: King of Amorica /ap Gerint/
   - King of Aquitaine
       Example: Charibert II 'King of Aquitaine' /de Aquitaine/
-      Example: Charibert II 'King of Aquitaine'
+      Example: Charibert II 'King of Aquitaine' [GIVN]
+      Example: King of Aquitaine [NSFX]
+  - King of Aragon
+      Example: King of Aragon [NSFX]
   - King of Argyll
       Example: /Dungal King of Argyll/
-      Example: Dungal King of Argyll
+      Example: Dungal King of Argyll [SURN]
   - King of Armenia
-      Example: Khosrov II-III King of Armenia //
-      Example: Khosrov II-III King of Armenia
-      Example: Trdat III-IV King of Armenia //
+      Example: King of Armenia [NSFX]
+      Example: King of Armenia [NSFX]
+      Example: King of Armenia [NSFX]
   - King of Asgard
+      Example: , King of Asgard [NSFX]
+      Example: King of Asgard [NSFX]
       Example: Woden son /av Frithuwald/ , King of Asgard
+  - King of Asturias
+      Example: King of Asturias [NSFX]
+  - King of Austrasia
+      Example: King of Austrasia [NSFX]
+      Example: (King of Austrasia) [NSFX]
   - King of Bavaria
+      Example: King of Bavaria [NSFX]
+      Example: King of Bavaria [NSFX]
       Example: Theodo Theudebert Agilofing Duke King of Bavaria von /Bayern/
-      Example: Theodo Theudebert Agilofing Duke King of Bavaria von
-      Example: Lothar I /De Germanie/ King of Bavaria
   - King of Bernicia
       Example: Egfrith King of Bernicia and /Northumbria/
-      Example: Egfrith King of Bernicia and
+      Example: Egfrith King of Bernicia and [GIVN]
   - King of Birka
+      Example: King of Birka [NSFX]
+      Example: King of Birka [NSFX]
       Example: Emund /Eriksson/ King of Birka
   - King of Bretagen
       Example: King of Bretagen /Salomon/
-      Example: King of Bretagen
+      Example: King of Bretagen [GIVN]
+  - King of Britain
+      Example: Saint Cyllin, King of Britain [NPFX]
+  - King of Brittany
+      Example: 2nd Duke of Brittany Tyrant King of Brittany Duke of Maine [NSFX]
+      Example: King of Brittany [NSFX]
+      Example: King of Brittany [NSFX]
   - King of Burgundy
-      Example: Chilperic /von Bourgogne/ , King of Burgundy
-      Example: Boso /de Bourgogne/ , King of Burgundy
-      Example: Gundicar /de Bourgogne/ , 1st King of Burgundy
+      Example: , King of Burgundy [NSFX]
+      Example: , King of Burgundy [NSFX]
+      Example: , 1st King of Burgundy [NSFX]
   - King of Camelodunum
+      Example: , King of Camelodunum or Colcheste [NSFX]
+      Example: King of Camelodunum or Colcheste [NSFX]
       Example: Coel Godhebog /ap Cyllin/ , King of Camelodunum or Colchester
+  - King of Ceredigion
+      Example: King of Ceredigion [NSFX]
   - King of Ciannachta
+      Example: King of Ciannachta [NSFX]
       Example: Cenn Faelad CENNFAELAD King of Ciannachta /IRELAND Mac GERTHIDE/
-      Example: Cenn Faelad CENNFAELAD King of Ciannachta
-      Example: Gerthide King of Ciannachta /IRELAND Mac Cronain/
+      Example: Cenn Faelad CENNFAELAD King of Ciannachta [GIVN]
+  - King of Cologne
+      Example: King of Cologne [NSFX]
   - King of Connacht
+      Example: King of Connacht [NSFX]
+      Example: King of Connacht [NSFX]
       Example: Muireadach Muredach Tireach /King of Connacht/
-      Example: King of Connacht
-      Example: Fiacha Scrabbteibe /King of Connacht/
+  - King of Connaught
+      Example: King of Connaught [NSFX]
+      Example: King of Connaught [NSFX]
+  - King of Cormag
+      Example: King of Cormag [NSFX]
+  - King of Craebh
+      Example: King of Craebh, Cianachta, and Fir-Li [NSFX]
   - King of Cumbria
+      Example: , King of Cumbria [NSFX]
+      Example: King of Cumbria [NSFX]
       Example: Maldred /a Dunbar/ , King of Cumbria
   - King of Dal
-      Example: Donart /mac Fergus/ , King of Dal Riada
-      Example: Fergus Mor /mac Muredach/ , King of Dal Riada
-      Example: Eochal Lyus /mac Edhan/ I, King of Dal Riada
+      Example: , King of Dal Riada [NSFX]
+      Example: IV, King of Dal Riada [NSFX]
+      Example: , King of Dal Riada and the Picts [NSFX]
+  - King of Dalriata
+      Example: King of Dalriata [NSFX]
   - King of Dardania
-      Example: Dardanus /son of Zerah/ , King of Dardania
-      Example: Erichthonius /son of Dardanus/ , King of Dardania
+      Example: , King of Dardania [NSFX]
+      Example: , King of Dardania [NSFX]
+      Example: King of Dardania [NSFX]
+  - King of Deheubarth
+      Example: King of Deheubarth [NSFX]
+      Example: (King of Deheubarth) [NSFX]
+      Example: King of Deheubarth [NSFX]
   - King of Denmark
-      Example: Ursus /Herbastusson King of Denmark/
-      Example: Herbastusson King of Denmark
-      Example: Svend /Haraldssonn/ I, King of Denmark, Norway and England
+      Example: I, King of Denmark, Norway and Eng [NSFX]
+      Example: , King of Denmark [NSFX]
+      Example: , King of Denmark [NSFX]
+  - King of Dublin
+      Example: King of Dublin [NSFX]
+      Example: King of Dublin [NSFX]
+      Example: King of Dublin [NSFX]
   - King of Dumnonia
-      Example: Cadfan /ap Conan/ , King of Dumnonia
-      Example: Caractacus Caradoc /ap Cunabelin/ , King of Dumnonia
-      Example: Donaut /ap Caradog/ , King of Dumnonia
+      Example: , King of Dumnonia [NSFX]
+      Example: , King of Dumnonia [NSFX]
+      Example: , King of Dumnonia [NSFX]
+  - King of Dura
+      Example: King of Dura [NSFX]
+  - King of Dyfed
+      Example: King of Dyfed Gwynedd and Powys [NSFX]
+      Example: King of Dyfed [NSFX]
   - King of Dál
-      Example: Domnall Brecc King of Dál Riata //
-      Example: Domnall Brecc King of Dál Riata
-      Example: Cennétig of Thomond King of Dál gCais /MacLorcáin/
+      Example: King of Dál Riata [NSFX]
+      Example: King of Dál Riata [NSFX]
+      Example: King of Dál Riata [NSFX]
   - King of East
+      Example: King of East Anglia [NSFX]
       Example: Tytila King of East Anglia //
-      Example: Tytila King of East Anglia
-      Example: /Sledda King of East Saxon/
+      Example: Tytila King of East Anglia [GIVN]
   - King of England
-      Example: Edward I 'Longshanks' /Plantagenet, King of England/
-      Example: Plantagenet, King of England
-      Example: Aethelwulf King of England //
+      Example: , King of England [NSFX]
+      Example: King of England [NSFX]
+      Example: I, King of England [NSFX]
   - King of Essex
       Example: Offa Sigheresson /King of Essex and Mercia/
-      Example: King of Essex and Mercia
+      Example: King of Essex and Mercia [SURN]
   - King of Ethiopia
+      Example: , King of Ethiopia [NSFX]
+      Example: King of Ethiopia [NSFX]
       Example: Memnon /of Troy/ , King of Ethiopia
   - King of Eways
+      Example: , King of Eways [NSFX]
+      Example: King of Eways [NSFX]
       Example: Coellyn /ap Caradog/ , King of Eways
   - King of Ewyas
-      Example: Llyr Lleddiarth /ap Caswallon/ , King of Ewyas
-      Example: Bran Fendigaid /ap Llyr/ , King of Ewyas, High King of Prydein or Britain
+      Example: King of Ewyas [NSFX]
+      Example: King of Ewyas, High King of Prydei [NSFX]
+      Example: King of Ewyas [NSFX]
   - King of Finland
+      Example: , King of Finland [NSFX]
+      Example: King of Finland [NSFX]
       Example: Sgaile /Balbh/ , King of Finland
+  - King of Fondheim
+      Example: King of Fondheim [NPFX]
+  - King of Formaeil
+      Example: King of Formaeil [NSFX]
+      Example: King of Formaeil [NSFX]
   - King of France
-      Example: Hugh ( King of France) /Capet/
-      Example: Hugh ( King of France)
-      Example: Robert /de France/ I, King of France, Count of Paris
+      Example: I, King of France, Count of Paris [NSFX]
+      Example: I, King of France [NSFX]
+      Example: II, King of France, Duke of Burgun [NSFX]
+  - King of Franks
+      Example: King of Franks [NPFX]
+      Example: (King of Franks) [NSFX]
   - King of Gall
       Example: Marius /King of Gall Goadhal/
-      Example: King of Gall Goadhal
+      Example: King of Gall Goadhal [SURN]
+      Example: King of Gall [NPFX]
   - King of Gardarige
+      Example: , King of Gardarige [NSFX]
+      Example: King of Gardarige [NSFX]
       Example: Radbart /od Gardarige/ , King of Gardarige
   - King of Germany
       Example: READ-ONLY Otto /King of Germany/
-      Example: King of Germany
+      Example: King of Germany [SURN]
+  - King of Glamorgan
+      Example: King of Glamorgan [NSFX]
+  - King of Gwent
+      Example: King of Gwent [NSFX]
   - King of Gwynedd
-      Example: Hywel /King of Gwynedd/
-      Example: King of Gwynedd
-      Example: Edwin /joint King of Gwynedd/
+      Example: , King of Gwynedd [NSFX]
+      Example: , King of Gwynedd [NSFX]
+      Example: , King of Gwynedd, High King of Br [NSFX]
+  - King of Hedemark
+      Example: King of Hedemark [NPFX]
   - King of Hedmark
+      Example: , Viking King of Hedmark [NSFX]
+      Example: Viking King of Hedmark [NSFX]
       Example: Thrond /King of Hedmark/
-      Example: King of Hedmark
-      Example: eystein /Throndssonn/ , Viking King of Hedmark
   - King of Hungary
+      Example: King of Hungary [NSFX]
       Example: Bela I King of Hungary //
-      Example: Bela I King of Hungary
-      Example: Geza King of Hungary /of Hungary/
+      Example: Bela I King of Hungary [GIVN]
   - King of Ilium
+      Example: , King of Ilium or Troy [NSFX]
+      Example: King of Ilium or Troy [NSFX]
       Example: Ilus /son of Tros/ , King of Ilium or Troy
+  - King of Innesgall
+      Example: King of Innesgall [NSFX]
   - King of Ireland
-      Example: daughter of Congal King of Ireland //
-      Example: daughter of Congal King of Ireland
-      Example: Cearbhall /mac Dunghal/ , King of Ireland
+      Example: , King of Ireland [NSFX]
+      Example: , King of Ireland [NSFX]
+      Example: , Petty King of Ireland [NSFX]
+  - King of Isles
+      Example: King of Isles of Man [NSFX]
+      Example: King of Isles of Man [NSFX]
   - King of Italy
-      Example: Ludwig II King of Italy //
-      Example: Ludwig II King of Italy
-      Example: Berenger /d'Italia/ II, King of Italy
+      Example: II, King of Italy [NSFX]
+      Example: King of Italy [NSFX]
+      Example: , King of Italy [NSFX]
+  - King of Jerusalem
+      Example: King of Jerusalem [NSFX]
   - King of Jutland
-      Example: Olaf /Gudrodssonn/ , King of Jutland and Vestfold
+      Example: , King of Jutland and Vestfold [NSFX]
+      Example: King of Jutland and Vestfold [NSFX]
+      Example: King of Jutland [NSFX]
   - King of Kent
+      Example: , under-King of Kent [NSFX]
       Example: Eadbald /King of Kent/
-      Example: King of Kent
-      Example: Eahlmund /King of Kent/
+      Example: King of Kent [SURN]
+  - King of Kintyre
+      Example: King of Kintyre [NSFX]
+      Example: King of Kintyre [NSFX]
   - King of Kvenland
-      Example: FrostiJøkull King of Kvenland /Karasson/
-      Example: FrostiJøkull King of Kvenland
+      Example: King of Kvenland [NSFX]
+      Example: Mythical King of Kvenland [NSFX]
+      Example: Mythical King of Kvenland [NSFX]
   - King of LOMBARD
       Example: King of LOMBARD /Italy/
-      Example: King of LOMBARD
+      Example: King of LOMBARD [GIVN]
   - King of Le
       Example: Clothaire I King of Le Vieux Soissons //
-      Example: Clothaire I King of Le Vieux Soissons
+      Example: Clothaire I King of Le Vieux Soissons [GIVN]
   - King of Leinster
-      Example: wife of Mureadac King of Leinster //
-      Example: wife of Mureadac King of Leinster
-      Example: Conal /King of Leinster/
+      Example: (King of Leinster) [NSFX]
+      Example: (King of Leinster and Dublin) [NSFX]
+      Example: King of Leinster [NPFX]
   - King of Leon
       Example: Alfonso IX /Fernandez King of Leon And Castile/
-      Example: Fernandez King of Leon And Castile
+      Example: Fernandez King of Leon And Castile [SURN]
+      Example: King of Leon [NSFX]
+  - King of León
+      Example: King of León and Castile [NSFX]
   - King of Lorraine
+      Example: King of Lorraine [NSFX]
+      Example: II, King of Lorraine [NSFX]
       Example: Lothar II King of Lorraine //
-      Example: Lothar II King of Lorraine
-      Example: Lothaire /de Lorraine/ II, King of Lorraine
+  - King of Lotharingia
+      Example: King of Lotharingia [NSFX]
   - King of Magonsaete
       Example: Merewalh /King of Magonsaete/
-      Example: King of Magonsaete
+      Example: King of Magonsaete [SURN]
+  - King of Maigh
+      Example: King of Maigh Seóla [NSFX]
+      Example: King of Maigh Seóla [NSFX]
+  - King of Man
+      Example: King of Man [NSFX]
+  - King of Meath
+      Example: King of Meath [NSFX]
   - King of Mercia
-      Example: Cenred /King of Mercia/
-      Example: King of Mercia
-      Example: Peada /King of Mercia/
+      Example: , King of Mercia [NSFX]
+      Example: , King of Mercia [NSFX]
+      Example: , King of Mercia [NSFX]
   - King of Meroving
       Example: Alegbert "The Lame" /King of Meroving/
-      Example: King of Meroving
+      Example: King of Meroving [SURN]
   - King of Metz
-      Example: Theuderic King of Metz Rheims /Merovingian/
-      Example: Theuderic King of Metz Rheims
-      Example: Sigebert /von Metz/ III, King of Metz
+      Example: III, King of Metz [NSFX]
+      Example: King of Metz, Rheims, Austrasia [NSFX]
+      Example: III King of Metz [NSFX]
+  - King of Mide
+      Example: King of Mide [NSFX]
+  - King of Morins
+      Example: King of Morins [NSFX]
   - King of Munster
-      Example: Lughaidh /King of Munster/
-      Example: King of Munster
-      Example: Eremon /mac Mileag/ , Eochaidh I 2nd King of Ireland at Tara, King of Munster
+      Example: King of Munster [NPFX]
+      Example: King of Munster [NPFX]
+      Example: King of Munster [NSFX]
+  - King of Naples
+      Example: King of Naples, Sicily, and Jerusalem [NSFX]
+  - King of Navarre
+      Example: King of Navarre [NSFX]
   - King of Neustria
+      Example: II, King of Neustria and the Frank [NSFX]
       Example: Dagobert I /King of Neustria & Burgundy/
-      Example: King of Neustria & Burgundy
-      Example: Clotaire /von die Franks/ II, King of Neustria and the Franks
+      Example: King of Neustria & Burgundy [SURN]
   - King of Northern
+      Example: of Britain , King of Northern Brit [NSFX]
+      Example: of Britain  King of Northern Brit [NSFX]
       Example: Coel Hen /ap Tegfan/ of Britain , King of Northern Britain, Dux Brittanorum, Governor of Ebrauc
   - King of Northumberland
+      Example: , King of Northumberland [NSFX]
+      Example: King of Northumberland [NSFX]
       Example: Nobrii a /Northumberland/ , King of Northumberland
   - King of Northumbria
+      Example: King of Northumbria [NSFX]
       Example: Norbril King of Northumbria //
-      Example: Norbril King of Northumbria
-      Example: Norbril // King of Northumbria
+      Example: Norbril King of Northumbria [GIVN]
   - King of Norway
+      Example: King of Norway [NSFX]
       Example: Mieszko Swietoslava I /Piastsson King of Norway Sweden and Poland/
-      Example: Piastsson King of Norway Sweden and Poland
+      Example: Piastsson King of Norway Sweden and Poland [SURN]
+  - King of Oriel
+      Example: King of Oriel [NSFX]
+  - King of Orleans
+      Example: King of Orleans [NSFX]
+  - King of Osraige
+      Example: King of Osraige in Ireland [NSFX]
+  - King of Ossaria
+      Example: King of Ossaria [NSFX]
+  - King of Ossory
+      Example: King of Ossory [NICK]
+      Example: King of Ossory [NSFX]
   - King of Paris
-      Example: Ingo /of Paris/ , King of Paris
-      Example: Charlbert /von die Franks/ I, King of Paris
+      Example: , King of Paris [NSFX]
+      Example: I, King of Paris [NSFX]
+      Example: King of Paris [NSFX]
   - King of Parthia
+      Example: Great King of Parthia, Persia & Ba [NSFX]
+      Example: Great King of Parthia [NSFX]
       Example: Valagash V Great King of Parthia //
-      Example: Valagash V Great King of Parthia
-      Example: Valagash I Great King of Parthia //
   - King of Poland
-      Example: Casimir I /of Poland/ King of Poland
-      Example: Boleslas III /of Poland/ King of Poland
+      Example: King of Poland [NSFX]
+      Example: King of Poland [NSFX]
+      Example: King of Poland [NSFX]
+  - King of Portugal
+      Example: IV King of Portugal and the Algarve [NSFX]
   - King of Powys
-      Example: Eudeyrn /ap Eifydd/ , King of Powys
-      Example: Eifydd /ap Eudos/ , King of Powys
-      Example: Euddigan /ap Eudeyrn/ , King of Powys
+      Example: , King of Powys [NSFX]
+      Example: , King of Powys [NSFX]
+      Example: , King of Powys [NSFX]
+  - King of Provence
+      Example: III King of Italy King of Provence Holy Roman Emperor [NSFX]
   - King of Raumerike
       Example: King of Raumerike /Hálfdan Hvítbeinn Óláfsson/
-      Example: King of Raumerike
+      Example: King of Raumerike [GIVN]
+  - King of Ringerike
+      Example: King of Ringerike [NPFX]
+  - King of Romerike
+      Example: King of Romerike and Vestfold [NSFX]
+      Example: King of Romerike and Vestfold [NSFX]
+  - King of Romsdal
+      Example: III Raumsson King of Romsdal [NSFX]
+  - King of SCOTLAND
+      Example: King of SCOTLAND [NPFX]
   - King of Saxons
       Example: Ethelrad /King of Saxons/
-      Example: King of Saxons
+      Example: King of Saxons [SURN]
   - King of Saxony
       Example: King of Saxony Warnechin Sachsen /Sachse/
-      Example: King of Saxony Warnechin Sachsen
+      Example: King of Saxony Warnechin Sachsen [GIVN]
       Example: Frithuwald Borr Fredalaf Fredalat The Asgard King of Saxony Turkey and Sweden King Of Trojans Ben /Freothalaf/
+  - King of Scania
+      Example: King of Scania [NSFX]
+      Example: King of Scania [NSFX]
   - King of Scotia
+      Example: , King of Scotia or Scotland [NSFX]
+      Example: King of Scotia or Scotland [NSFX]
       Example: Alba /a Scotland/ , King of Scotia or Scotland
   - King of Scotland
-      Example: Duncan I /King of Scotland/
-      Example: King of Scotland
-      Example: Donald /King of Scotland/
+      Example: I, King of Scotland [NSFX]
+      Example: III, King of Scotland [NSFX]
+      Example: I, King of Scotland [NSFX]
   - King of Scots
-      Example: Domnaill King of Scots //
-      Example: Domnaill King of Scots
+      Example: King of Scots [NSFX]
+      Example: King of Scots [NSFX]
+      Example: King of Scots [NSFX]
+  - King of Seisyllwg
+      Example: King of Seisyllwg [NSFX]
   - King of Siluria
-      Example: Cyllin /ap Caradog/ , King of Siluria
-      Example: Llewfer Mawr /ap Coel/ , King of Siluria
+      Example: , King of Siluria [NSFX]
+      Example: , King of Siluria [NSFX]
+      Example: King of Siluria [NSFX]
+  - King of Soisson
+      Example: King of The Franks King of Soisson [NSFX]
   - King of Soissons
       Example: Chilperic I /King of Soissons/
-      Example: King of Soissons
+      Example: King of Soissons [SURN]
+      Example: King of Soissons [NSFX]
   - King of South
       Example: Gudrod The Hunter Viking King of South east Norway //
-      Example: Gudrod The Hunter Viking King of South east Norway
+      Example: Gudrod The Hunter Viking King of South east Norway [GIVN]
   - King of Sweden
-      Example: Ivar (King of Sweden) /Halfdansson/
-      Example: Ivar (King of Sweden)
-      Example: Olof Mitkg /Bjornsson/ , King of Sweden
+      Example: , King of Sweden [NSFX]
+      Example: , King of Sweden [NSFX]
+      Example: VIII, King of Sweden [NSFX]
+  - King of Telach
+      Example: King of Telach Midi [NSFX]
+  - King of The
+      Example: King of The Franks King of Soisson [NSFX]
+      Example: King of The Visigoths [NSFX]
+  - King of Thomond
+      Example: King of Thomond [NSFX]
   - King of Thrace
+      Example: , King of Thrace [NSFX]
+      Example: King of Thrace [NSFX]
       Example: Tror /of Thrace/ , King of Thrace
   - King of Thuringia
+      Example: , Half King of Thuringia [NSFX]
+      Example: Half King of Thuringia [NSFX]
       Example: Bethar /von Thuringia/ , Half King of Thuringia
   - King of Troad
+      Example: , King of Troad [NSFX]
+      Example: King of Troad [NSFX]
       Example: Tros Acadia /son of Erichthonius/ , King of Troad
   - King of Trojans
       Example: FREOTHALAF (Frealaf, Friallaf, Froethelaf) /King of Trojans/
-      Example: King of Trojans
+      Example: King of Trojans [SURN]
   - King of Trondheim
       Example: Wrymund /King of Trondheim/
-      Example: King of Trondheim
+      Example: King of Trondheim [SURN]
   - King of Troy
+      Example: , King of Troy [NSFX]
+      Example: King of Troy [NSFX]
       Example: Priam /son of Laomedon/ , King of Troy
+  - King of Uisnech
+      Example: King of Uisnech [NSFX]
+      Example: King of Uisnech [NSFX]
+  - King of Ulster
+      Example: King of Ulster [NPFX]
+      Example: King of Ulster [NPFX]
   - King of Uppsala
-      Example: Halfdan White Leg King of Uppsala /de Vestfold/
-      Example: Halfdan White Leg King of Uppsala
-      Example: Ingjald /Braut-Onundson/ King of Uppsala
+      Example: King of Uppsala [NSFX]
+      Example: , King of Uppsala [NSFX]
+      Example: King of Uppsala [NSFX]
   - King of Vannetais
+      Example: , King of Vannetais or Brittany an [NSFX]
+      Example: King of Vannetais or Brittany an [NSFX]
       Example: Conan Meriadoc /ap Gerint/ , King of Vannetais or Brittany and Dumnonia
   - King of Vermland
+      Example: King of Vermland in Sweden [NSFX]
+      Example: King of Vermland in Sweden [NSFX]
       Example: Olaf /Ingjaldsson/ King of Vermland in Sweden
   - King of Vestfold
-      Example: Eystein I 'the Fart' King of Vestfold  Roumarike //
-      Example: Eystein I 'the Fart' King of Vestfold  Roumarike
-      Example: Halfdan I King of Vestfold //
+      Example: King of Vestfold & Roumarike [NSFX]
+      Example: King of Vestfold & Roumarike [NSFX]
+      Example: King of Vestfold [NSFX]
+  - King of Vesthold
+      Example: King of Vesthold [NPFX]
+  - King of Vestmar
+      Example: King of Vestmar [NPFX]
+  - King of Vestpold
+      Example: King of Vestpold [NSFX]
+  - King of Vingulmark
+      Example: of Alvheim King of Vingulmark [NSFX]
+      Example: King of Vingulmark [NPFX]
+  - King of Visigoths
+      Example: King of Visigoths of Spain [NSFX]
+  - King of Wales
+      Example: King of Wales [NSFX]
+      Example: King of Wales [NSFX]
   - King of Wessex
-      Example: Ealhmund King of Wessex, Eng. //
-      Example: Ealhmund King of Wessex, Eng.
-      Example: Eoppa Ingildsson /King of Wessex/
+      Example: , King of Wessex [NSFX]
+      Example: , King of Wessex [NSFX]
+      Example: King of Wessex [NSFX]
   - King of West
+      Example: King of West Saxons [NSFX]
+      Example: King of West Francia and Lotharingia [NSFX]
       Example: Leovigildo /King of West Goths/
-      Example: King of West Goths
+  - King of York
+      Example: Ui Ímair, King of York and Isle of Man [NSFX]
   - King of the
-      Example: King of the Catuvellauni /ap Cunabelin/
-      Example: King of the Catuvellauni
-      Example: Cunobelinus, Cymbeline, King of the Cattuvellauni /ap Cassivelaunus/
+      Example: , King of the Angeln [NSFX]
+      Example: , King of the Angles [NSFX]
+      Example: , King of the Saxons [NSFX]
   - Knight
-      Example: Emma Carter /Knight/
-      Example: Knight
-      Example: William Knight /Calverly/
+      Example: Knight Templar [NSFX]
+      Example: Knight of Hornby Castle Sheriff o [NSFX]
+      Example: Knight of Devon [NSFX]
   - LADY
       Example: Joan LADY /COOK Cooke/
-      Example: Joan LADY
+      Example: Joan LADY [GIVN]
   - LORD
       Example: Robert 5th LORD de Adlington SHERIFF de Cheshire //
-      Example: Robert 5th LORD de Adlington SHERIFF de Cheshire
+      Example: Robert 5th LORD de Adlington SHERIFF de Cheshire [GIVN]
+      Example: , 9TH LORD OXNAM [NSFX]
   - Lady
+      Example: Lady of Atholl [NSFX]
       Example: Lady /Godiva/
-      Example: Lady
-      Example: Lady Katherine Baroness Hungerford /Peverell/
+      Example: Lady [GIVN]
+  - Lieutenant
+      Example: Sir Philip 'Lord Lieutenant of Ireland' /De Courtenay/
+      Example: Sir Philip 'Lord Lieutenant of Ireland' /De Courtenay/
+      Example: Sir Philip 'Lord Lieutenant of Ireland' [GIVN]
   - Lord
-      Example: Marguerite /Lord/
-      Example: Lord
-      Example: Alexandre /Lord/
+      Example: , Lord of Sogn og Fjordane [NSFX]
+      Example: II, Lord Perracy [NSFX]
+      Example: I, Lord Perracy [NSFX]
+  - Major
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
   - Marchioness
       Example: Anne Marchioness Pembroke /Boleyn/
-      Example: Anne Marchioness Pembroke
+      Example: Anne Marchioness Pembroke [GIVN]
       Example: Anne Marchioness Pembroke /England/
+  - Marquess
+      Example: III Marquess of Saluzzo [NSFX]
+  - Miss
+      Example: Miss /Sayre/
+      Example: Miss [GIVN]
+      Example: Miss /De Braose/
+  - PRINCESS
+      Example: PRINCESS OF ENGLAND [NSFX]
   - Prince
-      Example: Lucy Prince /Bradford/
-      Example: Lucy Prince /Bradford/
-      Example: Lucy Prince
+      Example: , Prince of Sweden [NSFX]
+      Example: , Prince of Sweden [NSFX]
+      Example: I, Prince of Poland [NSFX]
   - Princess
-      Example: Beatrice Sancha Princess /Castile/
-      Example: Beatrice Sancha Princess
-      Example: Princess Emma Of /France/
+      Example: , Princess of Denmark [NSFX]
+      Example: , Princess of Poland, Queen of Swe [NSFX]
+      Example: Princess of Bohemia [NSFX]
   - QUEEN
       Example: Giselle QUEEN /DeRazes/
-      Example: Giselle QUEEN
+      Example: Giselle QUEEN [GIVN]
   - Queen
-      Example: Queen Eldgyth Of /England/
-      Example: Queen Eldgyth Of
-      Example: Redburh of Carolingians /Queen of Wessex/
+      Example: , Princess of Poland, Queen of Swe [NSFX]
+      Example: , Queen of Denmark [NSFX]
+      Example: , Queen of Denmark [NSFX]
   - Queen Of Bretagne
       Example: Judith /Queen Of Bretagne/
-      Example: Queen Of Bretagne
+      Example: Queen Of Bretagne [SURN]
   - Queen Of Ireland
       Example: /Queen Of Ireland/
-      Example: Queen Of Ireland
+      Example: Queen Of Ireland [SURN]
       Example: Mora /Queen Of Ireland/
+  - Queen Of Leinster
+      Example: High Queen Of Leinster [NSFX]
+  - Queen Of Ringme
+      Example: Queen Of Ringme [NSFX]
+  - Queen of Ailech
+      Example: Queen of Ailech and Ireland [NSFX]
+  - Queen of Alba
+      Example: Queen of Alba [NSFX]
   - Queen of Aragon
       Example: Felicitas /Queen of Aragon/
-      Example: Queen of Aragon
+      Example: Queen of Aragon [SURN]
+  - Queen of Bohemia
+      Example: Queen of Bohemia [NSFX]
+  - Queen of Brittany
+      Example: Queen of Brittany [NSFX]
+  - Queen of Burgundy
+      Example: Queen of Burgundy [NSFX]
+      Example: Countess of Flanders Queen of Burgundy [NSFX]
   - Queen of Castile
+      Example: Queen of Castile [NSFX]
       Example: Richeza of Poland /Queen of Castile and Leon/
-      Example: Queen of Castile and Leon
+      Example: Queen of Castile and Leon [SURN]
+  - Queen of Cormag
+      Example: Queen of Cormag [NSFX]
+  - Queen of Cornwall
+      Example: Queen of Cornwall [NSFX]
   - Queen of Denmark
-      Example: Hiordis Beron /Ursusdotter Queen of Denmark/
-      Example: Ursusdotter Queen of Denmark
-      Example: Urses Beron /Queen of Denmark/
+      Example: , Queen of Denmark [NSFX]
+      Example: , Queen of Denmark [NSFX]
+      Example: Queen of Denmark [NSFX]
+  - Queen of E
+      Example: , Countess of Flanders, Queen of E [NSFX]
+      Example: Countess of Flanders Queen of E [NSFX]
   - Queen of East
       Example: Sæwara Hereswith /Queen of East Anglia/
-      Example: Queen of East Anglia
+      Example: Queen of East Anglia [SURN]
       Example: Æthelgede /Queen of East Saxon/
   - Queen of England
-      Example: Matilda /de Flandres/ , Countess of Flanders, Queen of England
-      Example: Judith /de France/ , Queen of England, Princess of France
-      Example: Elfleda /of Bernicie/ , Queen of England
+      Example: , Queen of England, Princess of Fr [NSFX]
+      Example: , Queen of England [NSFX]
+      Example: Queen of England Princess of Fr [NSFX]
   - Queen of Formaeil
       Example: Queen of Formaeil /O'Cathain/
-      Example: Queen of Formaeil
+      Example: Queen of Formaeil [GIVN]
   - Queen of France
-      Example: Beatrice /de Vermandois/ , Queen of France
-      Example: Adele /de France/ , Queen of France
-      Example: Anna Agnesa /Yaroslavna/ , Grand Duchess of Kiev, Queen of France
+      Example: , Queen of France [NSFX]
+      Example: , Queen of France [NSFX]
+      Example: , Queen of France, Countess of Lao [NSFX]
+  - Queen of Franks
+      Example: Queen of Franks [NPFX]
   - Queen of Germany
+      Example: Queen of Germany [NSFX]
+      Example: Queen of Germany [NSFX]
       Example: Mathilde /von Ringelheim/ Queen of Germany
   - Queen of Gwynedd
       Example: Angharad Goldenhaired Queen of Gwynedd verch /Owain/
-      Example: Angharad Goldenhaired Queen of Gwynedd verch
+      Example: Angharad Goldenhaired Queen of Gwynedd verch [GIVN]
   - Queen of Iceni
+      Example: , Queen of Iceni [NSFX]
+      Example: Queen of Iceni [NSFX]
       Example: Boadicea verch /Mandubratius/ , Queen of Iceni
   - Queen of Ireland
-      Example: (Fru Cearbhall mac Dunghal) // , Queen of Ireland
+      Example: Queen of Ireland [NSFX]
+      Example: Queen of Ireland [NSFX]
+      Example: Queen of Ireland [NSFX]
   - Queen of Italy
-      Example: Cunigunde /de Gellone/ , Queen of Italy
-      Example: Bertha /de Toulouse/ , Queen of Italy
+      Example: , Queen of Italy [NSFX]
+      Example: , Queen of Italy [NSFX]
+      Example: Queen of Italy [NSFX]
+  - Queen of Jerusa
+      Example: Queen of Jerusa [NSFX]
   - Queen of Kent
+      Example: , Queen of Kent, Princess of Soiss [NSFX]
       Example: Berthe Aldeberge Blithildis /Queen of Kent/
-      Example: Queen of Kent
-      Example: Sexburga of East Anglia /Queen of Kent/
+      Example: Queen of Kent [SURN]
+  - Queen of Leinster
+      Example: Queen of Leinster [NSFX]
+      Example: Queen of Leinster . [NPFX]
+      Example: Queen of Leinster [NSFX]
+  - Queen of León
+      Example: Queen of León and Castile [NSFX]
   - Queen of Lombardy
       Example: Ascyla Queen of Lombardy /De Ascyllius/
-      Example: Ascyla Queen of Lombardy
+      Example: Ascyla Queen of Lombardy [GIVN]
   - Queen of Lorraine
+      Example: Queen of Lorraine [NSFX]
+      Example: Queen of Lorraine [NSFX]
       Example: Waldrade /de Lorraine/ , Queen of Lorraine
+  - Queen of Lotharingia
+      Example: Queen of Lotharingia [NSFX]
   - Queen of Mercia
+      Example: Queen of Mercia [NSFX]
       Example: Æthelswith /Queen of Mercia/
-      Example: Queen of Mercia
-      Example: Osthryth /Queen of Mercia/
+      Example: Queen of Mercia [SURN]
   - Queen of Metz
+      Example: , Queen of Metz [NSFX]
+      Example: Queen of Metz [NSFX]
       Example: Imnichilde /von Metz/ , Queen of Metz
+  - Queen of Muiredaig
+      Example: Queen of Muiredaig Princess of Laois [NSFX]
+  - Queen of Navarre
+      Example: Queen of Navarre [NSFX]
   - Queen of Norway
       Example: Gunhild /Gormsdatter Queen of Norway/
-      Example: Gormsdatter Queen of Norway
+      Example: Gormsdatter Queen of Norway [SURN]
       Example: Vatnarr /Queen of Norway/
   - Queen of Paris
+      Example: , Queen of Paris [NSFX]
+      Example: Queen of Paris [NSFX]
       Example: Ingoberge /de Paris/ , Queen of Paris
+  - Queen of Portugal
+      Example: Queen of Portugal [NSFX]
   - Queen of Powys
+      Example: Queen of Powys [NSFX]
       Example: Angharad ap /Owen Queen of Powys/
-      Example: Owen Queen of Powys
+      Example: Owen Queen of Powys [SURN]
+  - Queen of Ringmere
+      Example: Queen of Ringmere [NSFX]
   - Queen of Scotland
-      Example: Unknown Queen of Scotland /Macdonald/
-      Example: Unknown Queen of Scotland
-      Example: Aelgifu /Sigurdsdatter/ , Queen of Scotland
+      Example: , Queen of Scotland [NSFX]
+      Example: , Queen of Scotland [NSFX]
+      Example: , Queen of Scotland [NSFX]
   - Queen of Scots
       Example: Joan /Beaufort Queen of Scots/
-      Example: Beaufort Queen of Scots
+      Example: Beaufort Queen of Scots [SURN]
+      Example: Queen of Scots [NSFX]
+  - Queen of Sicily
+      Example: Queen of Sicily [NSFX]
   - Queen of Soissons
+      Example: , Queen of Soissons [NSFX]
+      Example: Queen of Soissons [NSFX]
       Example: Hadeltrude /von Soissons/ , Queen of Soissons
+  - Queen of Strathclyde
+      Example: Queen of Strathclyde [NSFX]
+      Example: Queen of Strathclyde [NSFX]
+  - Queen of Swe
+      Example: , Princess of Poland, Queen of Swe [NSFX]
+      Example: Princess of Poland Queen of Swe [NSFX]
   - Queen of Sweden
+      Example: Queen of Sweden [NSFX]
+      Example: Queen of Sweden [NSFX]
       Example: Swietoslava Sygryda /od Poland/ , Princess of Poland, Queen of Sweden, Norway, and Denmark
-      Example: (Fru Bjorn Eriksson) // , Queen of Sweden
-      Example: (Fru Erik Edmundsson) // , Queen of Sweden
   - Queen of Thuringia
       Example: Basina /Queen of Thuringia/
-      Example: Queen of Thuringia
+      Example: Queen of Thuringia [SURN]
   - Queen of Thuringii
       Example: Amfleda the Younger Queen of Thuringii /Vandals/
-      Example: Amfleda the Younger Queen of Thuringii
+      Example: Amfleda the Younger Queen of Thuringii [GIVN]
+      Example: Queen of Thuringii Vandals [NSFX]
   - Queen of Trojans
       Example: FREOTHALAF /Queen of Trojans/
-      Example: Queen of Trojans
+      Example: Queen of Trojans [SURN]
   - Queen of Troy
-      Example: Troan daughter /of Priam/ , Queen of Troy
-      Example: Hecuba /of Troy/ , Queen of Troy
+      Example: , Queen of Troy [NSFX]
+      Example: , Queen of Troy [NSFX]
+      Example: Queen of Troy [NSFX]
+  - Queen of Vestfold
+      Example: Queen of Vestfold [NPFX]
+  - Queen of Vingulmork
+      Example: Queen of Vingulmork Norway [NSFX]
+  - Queen of Wales
+      Example: Queen of Wales [NSFX]
   - Queen of Wessex
+      Example: , Queen of Wessex [NSFX]
       Example: Redburh of Carolingians /Queen of Wessex/
-      Example: Queen of Wessex
-      Example: Redburh of Carolingians /Queen of Wessex/
+      Example: Queen of Wessex [SURN]
   - Queen of West
       Example: Elas Queen of West /Saxons/
-      Example: Elas Queen of West
+      Example: Elas Queen of West [GIVN]
+      Example: Queen of West Francia [NSFX]
   - Queen of the
-      Example: Amalaberga, Queen of the Thuringii //
-      Example: Amalaberga, Queen of the Thuringii
-      Example: Basina /Queen of the Thuringians/
+      Example: , Queen of the West Franks, Counte [NSFX]
+      Example: , Queen of the Franks, Princess of [NSFX]
+      Example: , Queen of the Franks [NSFX]
+  - Reverend
+      Example: Reverend Charles /Chauncey/
+      Example: Reverend Charles [GIVN]
+      Example: Reverend [NPFX]
   - SIR
       Example: Neil Nigel MacCailean More th Laird SIR /Campbell/
-      Example: Neil Nigel MacCailean More th Laird SIR
+      Example: Neil Nigel MacCailean More th Laird SIR [GIVN]
+      Example: SIR [NPFX]
+  - SIr
+      Example: SIr [NSFX]
   - Sir
       Example: Sir John /Randolph/
-      Example: Sir John
+      Example: Sir John [GIVN]
       Example: Sir Thomas /Lewkenor/
+  - Squire
+      Example: Alice /Squire/
+      Example: Squire [SURN]
+      Example: John /Squire/
+  - V
+      Example: V, King of the Franks [NSFX]
+      Example: V [NSFX]
+      Example: Berthold V //
+  - VI
+      Example: Arnould VI /de Gavre/
+      Example: Arnould VI [GIVN]
+      Example: Louis VI 'le Gros' //
+  - VII
+      Example: Louis VII //
+      Example: Louis VII [GIVN]
+      Example: Waudbert VII /De Lommois/
+  - VIII
+      Example: VIII, King of Sweden [NSFX]
+      Example: Waudbert VIII /De Lommois/
+      Example: Waudbert VIII [GIVN]
+  - Vi
+      Example: (Vi) [NSFX]
+  - Vii
+      Example: (Vii) [NSFX]
+  - Viii
+      Example: (Viii) [NSFX]
   - Viscount
-      Example: Grelley /Viscount of Avranches Grelley Hiemois/
-      Example: Viscount of Avranches Grelley Hiemois
-      Example: Halfrid Viscount /DeChastelleraut/
+      Example: (4th Earl of Chester Viscount d'Avranches ) [NSFX]
+      Example: Viscount de Mouline [NSFX]
+      Example: Viscount [NPFX]
   - Viscountess
       Example: Litiuse (Viscountess of Troyes) /de Troyes/
-      Example: Litiuse (Viscountess of Troyes)
-      Example: Mary Viscountess /Blaton/
+      Example: Litiuse (Viscountess of Troyes) [GIVN]
+      Example: Viscountess of Châteaudun [NSFX]
   - baron
-      Example: Arnould VI /de Gavre/ baron d'Escornaix
-      Example: Arnould VI /de Gavre/ baron d'Escornaix
+      Example: baron d'Escornaix [NSFX]
+      Example: baron d'Escornaix [NSFX]
+      Example: baron d'Escornaix [NSFX]
+  - baroness
+      Example: baroness of balgonie [NSFX]
+  - countess
+      Example: countess of Valois [NSFX]
+      Example: countess of Cambrai [NSFX]
+      Example: countess of Eppenstein [NSFX]
   - dame
-      Example: Catherine dame de Nezement //
-      Example: Catherine dame de Nezement //
-      Example: Catherine dame de Nezement
+      Example: dame de La Bossière [NSFX]
+      Example: dame de La Bossière [NSFX]
+      Example: dame de Nezement [NSFX]
   - duchess
       Example: Herfast Crepon Brother /de Gunnora duchess of Normandie/
-      Example: de Gunnora duchess of Normandie
+      Example: de Gunnora duchess of Normandie [SURN]
   - duke
-      Example: Genebald II, duke of the East Franks //
-      Example: Genebald II, duke of the East Franks
-      Example: Dagobert IV, duke of the East Franks //
+      Example: duke in Haspengau [NSFX]
+      Example: duke of Saxony [NSFX]
+      Example: duke of Saxony [NSFX]
   - earl
-      Example: Brusi /Sigurdsson/ earl of Caithness
+      Example: earl of Caithness [NSFX]
+      Example: earl of Caithness [NSFX]
+      Example: earl of Oppland [NSFX]
+  - general
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
+  - heiress
+      Example: heiress of Oltigen [NSFX]
+      Example: heiress of haddon [NSFX]
+      Example: heiress of Seton [NSFX]
   - king
-      Example: Basinus II, king of the Thüringians //
-      Example: Basinus II, king of the Thüringians
-      Example: Chlodégar, king of the Salian Francs at Cologne //
+      Example: king of Uppsala & Lethra [NSFX]
+      Example: king of the Obotrites [NSFX]
+      Example: Markgraf of Ivrea, co-king of Ital [NSFX]
+  - king of Austrasia
+      Example: The Adopted king of Austrasia [NSFX]
+  - king of Connaught
+      Example: Hy Brune Tribe, king of Connaught [NSFX]
+      Example: king of Connaught [NSFX]
   - king of Denmark
-      Example: Horda-Knut /Sigurdsson/ king of Denmark
-      Example: Gorm /Del Gammel/ king of Denmark
+      Example: king of Denmark [NSFX]
+      Example: king of Denmark [NSFX]
+      Example: king of Denmark [NSFX]
   - king of Herulli
       Example: Anthyrius 1st /13th king of Herulli/
-      Example: 13th king of Herulli
+      Example: 13th king of Herulli [SURN]
   - king of Ireland
+      Example: king of Ireland [NSFX]
       Example: Carrol king of Ireland //
-      Example: Carrol king of Ireland
-      Example: Fergal /Mac Maele Duin king of Ireland/
+      Example: Carrol king of Ireland [GIVN]
+  - king of Ital
+      Example: Markgraf of Ivrea, co-king of Ital [NSFX]
+      Example: co-king of Ital [NSFX]
   - king of Italy
       Example: Adalbert // Markgraf of Ivrea, co-king of Italy
   - king of Kent
       Example: Eormenric /king of Kent/
-      Example: king of Kent
+      Example: king of Kent [SURN]
       Example: Ochta, king of Kent //
+  - king of Northumbria
+      Example: king of Northumbria [NSFX]
+  - king of Romerike
+      Example: king of Romerike and Vestfold [NSFX]
+  - king of Thomond
+      Example: king of Thomond [NSFX]
   - king of Uppsala
+      Example: king of Uppsala & Lethra [NSFX]
+      Example: king of Uppsala  Lethra [NSFX]
       Example: Ivar /Halfdansson/ king of Uppsala & Lethra
   - king of Wessex
+      Example: king of Wessex [NSFX]
       Example: Athelred I king of Wessex //
-      Example: Athelred I king of Wessex
-      Example: Athelred I // king of Wessex
+      Example: Athelred I king of Wessex [GIVN]
   - king of the
-      Example: Basinus II, king of the Thüringians //
-      Example: Basinus II, king of the Thüringians
-      Example: Chlodégar, king of the Salian Francs at Cologne //
+      Example: king of the Obotrites [NSFX]
+      Example: king of the Burgundians [NSFX]
+      Example: king of the Burgundians [NSFX]
   - knight
       Example: http://www.knight.org/advent/cathen/14042a.htm
+      Example: knight [NSFX]
+  - lady
+      Example: lady [NPFX]
   - lord
-      Example: Alan /de Dunstanville/ lord of Burpham
+      Example: lord of Burpham [NSFX]
+      Example: lord of Burpham [NSFX]
+      Example: lord of Ashby [NSFX]
+  - mISS
+      Example: mISS /Fitzgerold/
+      Example: mISS [GIVN]
+  - miss
+      Example: miss //
+      Example: miss [GIVN]
   - prince
-      Example: crioda prince of wessex //
-      Example: crioda prince of wessex //
-      Example: crioda prince of wessex
+      Example: prince of England [NSFX]
+      Example: prince of England [NSFX]
+      Example: prince of Taron [NSFX]
+  - princess
+      Example: princess [NSFX]
+      Example: princess of Germany [NSFX]
+  - sir
+      Example: sir [NPFX]
+      Example: sir [NPFX]
+      Example: sir [NPFX]
+  - v
+      Example: Count v. Andechs & Krain Markgraf v [NSFX]
+      Example: Count v. Andechs & Krain Markgraf v [NSFX]
+      Example: Hedwig /v. Bavaria/
   - viscount
       Example: Boson /viscount of Châtellerault/
-      Example: viscount of Châtellerault
+      Example: viscount of Châtellerault [SURN]
+  - viscountess
+      Example: viscountess [NPFX]
 
 French:
   - Baron
       Example: Jeanne /Baron/
       Example: Jeanne /Baron/
-      Example: Baron
+      Example: Baron [SURN]
   - COMTE
       Example: Etienne /de BOURGOGNE COMTE/
-      Example: de BOURGOGNE COMTE
+      Example: de BOURGOGNE COMTE [SURN]
+  - Capitaine
+      Example: Capitaine ou Châtelain de Thérouanne [NSFX]
   - Chevalier
       Example: Marie /Chevalier/
-      Example: Chevalier
+      Example: Chevalier [SURN]
       Example: Jacquette /Chevalier/
+  - Châtelain
+      Example: Châtelain de Berghes [NSFX]
+      Example: Capitaine ou Châtelain de Thérouanne [NSFX]
+  - Colonel
+      Example: Colonel [NPFX]
+      Example: Colonel [NPFX]
+      Example: Colonel [NPFX]
   - Comte
-      Example: Pierre III /Comte d'Orgemont de Chantilly/
-      Example: Comte d'Orgemont de Chantilly
-      Example: Adelramn III /Comte du Vexin/
+      Example: Comte de Flandres [NSFX]
+      Example: Comte de Vermandois [NSFX]
+      Example: Comte de Vermandois et de Valois [NSFX]
   - Comte De Bertagne
       Example: Frodaldus Comte De Bertagne /Bertagne/
-      Example: Frodaldus Comte De Bertagne
+      Example: Frodaldus Comte De Bertagne [GIVN]
   - Comte De Brienne
       Example: Érard /de Brienne, Comte De Brienne/
-      Example: de Brienne, Comte De Brienne
+      Example: de Brienne, Comte De Brienne [SURN]
   - Comte De Durbuy
       Example: Heinrich I Comte De Durbuy /Namur/
-      Example: Heinrich I Comte De Durbuy
+      Example: Heinrich I Comte De Durbuy [GIVN]
+  - Comte De Forcalquier
+      Example: Comte De Forcalquier [NSFX]
+  - Comte De Guisnes
+      Example: Comte De Guisnes [NPFX]
+  - Comte De Laon
+      Example: Comte De Laon [NPFX]
   - Comte De Montbeliard
       Example: Dietrich III Comte De Montbeliard de /Pfirt/
-      Example: Dietrich III Comte De Montbeliard de
+      Example: Dietrich III Comte De Montbeliard de [GIVN]
+  - Comte De Reims
+      Example: Comte De Reims [NSFX]
+  - Comte De Rousillon
+      Example: Comte De Rousillon [NSFX]
+  - Comte De Saint
+      Example: Comte De Saint Pol Et De Blois [NPFX]
   - Comte De Vendome
       Example: Bovin Comte De Vendome /Nevers/
-      Example: Bovin Comte De Vendome
+      Example: Bovin Comte De Vendome [GIVN]
+  - Comte d'Alencon
+      Example: Comte d'Alencon [NSFX]
+  - Comte d'Alençon
+      Example: Comte d'Alençon [NSFX]
   - Comte d'Amiens
+      Example: Comte d'Amiens, de Valois et Crépy [NSFX]
       Example: Richard Comte d'Amiens //
-      Example: Richard Comte d'Amiens
+      Example: Richard Comte d'Amiens [GIVN]
+  - Comte d'Angouleme
+      Example: Comte d'Angouleme [NSFX]
+      Example: Comte d'Angouleme [NSFX]
+  - Comte d'Angoulême
+      Example: Comte d'Angoulême [NSFX]
   - Comte d'Anjou
       Example: Foulques I Comte d'Anjou //
-      Example: Foulques I Comte d'Anjou
+      Example: Foulques I Comte d'Anjou [GIVN]
       Example: Ingelger Comte d'Anjou //
   - Comte d'Arles
+      Example: Comte d'Arles [NSFX]
       Example: Guillaume Comte d'Arles //
-      Example: Guillaume Comte d'Arles
-      Example: Theotbald Comte d'Arles //
+      Example: Guillaume Comte d'Arles [GIVN]
   - Comte d'Aulun
       Example: Bernhard Comte d'Aulun //
-      Example: Bernhard Comte d'Aulun
+      Example: Bernhard Comte d'Aulun [GIVN]
   - Comte d'Autun
       Example: Teiric /d'Autun Comte d'Autun/
-      Example: d'Autun Comte d'Autun
+      Example: d'Autun Comte d'Autun [SURN]
   - Comte d'Auvergne
       Example: Raimond (Pons I)(Duke of Aquitaine; Comte d'Auvergne; Margrave of Gothia) /de Toulouse/
-      Example: Raimond (Pons I)(Duke of Aquitaine; Comte d'Auvergne; Margrave of Gothia)
+      Example: Raimond (Pons I)(Duke of Aquitaine; Comte d'Auvergne; Margrave of Gothia) [GIVN]
       Example: Robert I Comte d'Auvergne //
   - Comte d'Avignon
       Example: Boso II Comte d'Avignon  Arles //
-      Example: Boso II Comte d'Avignon  Arles
+      Example: Boso II Comte d'Avignon  Arles [GIVN]
   - Comte d'Comborn
       Example: Hugues de Quercy Comte d'Comborn /Toulouse/
-      Example: Hugues de Quercy Comte d'Comborn
+      Example: Hugues de Quercy Comte d'Comborn [GIVN]
+  - Comte d'Entremont
+      Example: Comte d'Entremont [NSFX]
   - Comte d'Eu
-      Example: Robert /fitz Guillaume, Comte d'Eu/
-      Example: fitz Guillaume, Comte d'Eu
+      Example: Comte d'Eu [NSFX]
+      Example: Comte d'Eu [NSFX]
+      Example: 5th Comte d'Eu [NSFX]
   - Comte d'Evreux
       Example: LOUIS Comte d'Evreux /France/
-      Example: LOUIS Comte d'Evreux
+      Example: LOUIS Comte d'Evreux [GIVN]
+  - Comte d'Harcourt
+      Example: Comte d'Harcourt [NSFX]
+  - Comte d'Herbauges
+      Example: Comte d'Herbauges et de Wormsgau [NSFX]
   - Comte d'Heristal
       Example: Waleran I /de Vexin, Comte d'Heristal/
-      Example: de Vexin, Comte d'Heristal
+      Example: de Vexin, Comte d'Heristal [SURN]
   - Comte d'Orgemont
       Example: Pierre III /Comte d'Orgemont de Chantilly/
-      Example: Comte d'Orgemont de Chantilly
+      Example: Comte d'Orgemont de Chantilly [SURN]
   - Comte d'Orléans
       Example: Hadrian Comte d'Orléans //
-      Example: Hadrian Comte d'Orléans
+      Example: Hadrian Comte d'Orléans [GIVN]
+  - Comte d'Ostrevant
+      Example: Comte d'Ostrevant Kaiserlicher Pfalzgraf [NSFX]
   - Comte d'Roussillon
       Example: Miron I Comte d'Roussillon Comte De /Carcassonne/
-      Example: Miron I Comte d'Roussillon Comte De
+      Example: Miron I Comte d'Roussillon Comte De [GIVN]
+  - Comte de Anjou
+      Example: Comte de Anjou [NPFX]
+  - Comte de Aumâle
+      Example: Comte de Aumâle [NSFX]
   - Comte de Bar
-      Example: Nocher I Comte de Bar-sur-Aube //
-      Example: Nocher I Comte de Bar-sur-Aube
-      Example: Nocher II Comte de Bar-sur-Aube et de Soisso //
+      Example: Comte de Bar-sur-Aube [NSFX]
+      Example: Comte de Bar-sur-Aube et de Soisso [NSFX]
+      Example: Comte de Bar-sur-Aube [NSFX]
   - Comte de Barcelona
       Example: Ramon /Berenguer II Cap Dstopes Comte de Barcelona/
-      Example: Berenguer II Cap Dstopes Comte de Barcelona
+      Example: Berenguer II Cap Dstopes Comte de Barcelona [SURN]
       Example: Ramon /Berenguer el Vell Comte de Barcelona/
   - Comte de Bassigny
+      Example: Comte de Bassigny [NSFX]
       Example: Hugues I /Comte de Bassigny/
-      Example: Comte de Bassigny
-      Example: Hugues /Comte de Bassigny/
+      Example: Comte de Bassigny [SURN]
   - Comte de Bayeux
-      Example: Berengar /di Italia/ Comte de Bayeux
+      Example: Comte de Bayeux [NSFX]
+      Example: Comte de Bayeux [NSFX]
+      Example: Comte de Bayeux [NSFX]
+  - Comte de Besalu
+      Example: Comte de Besalu et de Ripoll [NSFX]
+  - Comte de Beulac
+      Example: Comte de Beulac [NSFX]
+  - Comte de Bigorre
+      Example: Comte de Bigorre [NSFX]
   - Comte de Blois
+      Example: Comte de Blois & Chartres [NSFX]
+      Example: Comte de Blois [NSFX]
       Example: Thibaut IV-II Comte de Blois  Chartres //
-      Example: Thibaut IV-II Comte de Blois  Chartres
-      Example: Etienne II Comte de Blois  Chartres //
   - Comte de Bourgogne
       Example: Guillaume I Comte de Bourgogne //
-      Example: Guillaume I Comte de Bourgogne
+      Example: Guillaume I Comte de Bourgogne [GIVN]
       Example: Renaud I Comte de Bourgogne //
   - Comte de Brienne
+      Example: Comte de Brienne, roi de Jérusalem [NSFX]
       Example: Comte de Brienne /Engelbert I/
-      Example: Comte de Brienne
-      Example: Comte de Brienne /Engelbert II/
+      Example: Comte de Brienne [GIVN]
   - Comte de Carcassone
       Example: Bernard Roger I Comte de Carcassone /deBigorre Foix/
-      Example: Bernard Roger I Comte de Carcassone
+      Example: Bernard Roger I Comte de Carcassone [GIVN]
   - Comte de Cerdagne
       Example: Miron /Comte de Cerdagne et d' Urgel/
-      Example: Comte de Cerdagne et d' Urgel
+      Example: Comte de Cerdagne et d' Urgel [SURN]
+  - Comte de Chantilly
+      Example: Comte de Chantilly [NPFX]
+  - Comte de Clermont
+      Example: Comte de Clermont-en-Beauvaisis [NPFX]
+  - Comte de Corbeil
+      Example: Comte de Corbeil [NSFX]
+  - Comte de Cornuaille
+      Example: King de Brittany Comte de Cornuaille et Poher [NSFX]
+  - Comte de Dammartin
+      Example: Comte de Dammartin [NSFX]
   - Comte de Dijon
+      Example: Comte de Dijon [NSFX]
       Example: Eliran Eude /Comte de Dijon/
-      Example: Comte de Dijon
+      Example: Comte de Dijon [SURN]
+  - Comte de Dreux
+      Example: Comte de Dreux et du Perche [NSFX]
   - Comte de Ferrette
       Example: Frédéric II. /Comte de Ferrette/
-      Example: Comte de Ferrette
+      Example: Comte de Ferrette [SURN]
   - Comte de Flandres
-      Example: Baudouin IV Comte de Flandres //
-      Example: Baudouin IV Comte de Flandres
-      Example: Baudouin III Comte de Flandres //
+      Example: Comte de Flandres [NSFX]
+      Example: Comte de Flandres [NSFX]
+      Example: Comte de Flandres [NSFX]
+  - Comte de Gascogne
+      Example: Comte de Gascogne [NPFX]
+  - Comte de Gasçogne
+      Example: el Cuervo  Comte de Gasçogne [NSFX]
   - Comte de Gatinais
       Example: Geoffroy I Comte de Gatinais //
-      Example: Geoffroy I Comte de Gatinais
+      Example: Geoffroy I Comte de Gatinais [GIVN]
+  - Comte de Gellone
+      Example: Comte de Gellone and de Toulouse [NPFX]
   - Comte de Genève
       Example: Gerold I Comte de Genève //
-      Example: Gerold I Comte de Genève
+      Example: Gerold I Comte de Genève [GIVN]
   - Comte de Ghenes
       Example: Auralius Comte de Ghenes /Vere/
-      Example: Auralius Comte de Ghenes
+      Example: Auralius Comte de Ghenes [GIVN]
+  - Comte de Ghisnes
+      Example: Comte de Ghisnes [NPFX]
+  - Comte de Guines
+      Example: Comte de Guines [NPFX]
+  - Comte de Hainault
+      Example: Comte de Hainault [NSFX]
+  - Comte de Hainaut
+      Example: Comte de Hainaut [NSFX]
+      Example: Comte de Hainaut et Hollande [NSFX]
+      Example: Comte de Hainaut et Hollande [NSFX]
+  - Comte de La
+      Example: Comte de La Marche [NSFX]
+  - Comte de Laon
+      Example: Comte de Laon [NSFX]
   - Comte de Longwy
       Example: Adalbert Comte de Longwy //
-      Example: Adalbert Comte de Longwy
+      Example: Adalbert Comte de Longwy [GIVN]
+      Example: Comte de Longwy [NPFX]
   - Comte de Louvain
       Example: Lambert I Comte de Louvain //
-      Example: Lambert I Comte de Louvain
+      Example: Lambert I Comte de Louvain [GIVN]
       Example: Lambert II Comte de Louvain //
   - Comte de Macon
       Example: Aubry I Comte de Macon Sire de Bracon //
-      Example: Aubry I Comte de Macon Sire de Bracon
+      Example: Aubry I Comte de Macon Sire de Bracon [GIVN]
+  - Comte de Madrie
+      Example: Comte de Madrie [NSFX]
+  - Comte de Magalone
+      Example: Comte de Magalone [NPFX]
   - Comte de Maine
       Example: Herbert I Eveille-Chien Comte de Maine //
-      Example: Herbert I Eveille-Chien Comte de Maine
+      Example: Herbert I Eveille-Chien Comte de Maine [GIVN]
       Example: Hugues III Comte de Maine //
+  - Comte de Mantes
+      Example: Comte de Mantes, Amiens, Valois et [NSFX]
+      Example: Comte de Mantes Amiens Valois et [NSFX]
+      Example: Comte de Mantes et du Vexin [NSFX]
+  - Comte de Meaux
+      Example: Comte de Meaux [NSFX]
   - Comte de Metz
       Example: Bouvin Comte de Metz //
-      Example: Bouvin Comte de Metz
+      Example: Bouvin Comte de Metz [GIVN]
+  - Comte de Montbéliard
+      Example: Comte de Montbéliard [NSFX]
+      Example: Comte de Montbéliard [NSFX]
+  - Comte de Montfort
+      Example: Comte de Montfort [NSFX]
   - Comte de Montpensier
       Example: Gilbert Comte de Montpensier de /Bourbon/
-      Example: Gilbert Comte de Montpensier de
+      Example: Gilbert Comte de Montpensier de [GIVN]
+  - Comte de Mortagne
+      Example: Comte de Mortagne [NSFX]
+      Example: Comte de Mortagne [NSFX]
   - Comte de Mouson
+      Example: Comte de Mouson [NSFX]
+      Example: Comte de Mouson [NSFX]
       Example: Thierry /Thibaud II Comte de Mouson/
-      Example: Thibaud II Comte de Mouson
-      Example: Thierry\Thibaud II // Comte de Mouson
   - Comte de Paris
       Example: Begon Comte de Paris //
-      Example: Begon Comte de Paris
+      Example: Begon Comte de Paris [GIVN]
       Example: Gerard I Comte de Paris //
+  - Comte de Penthièvre
+      Example: Comte de Penthièvre [NPFX]
+      Example: Comte de Penthièvre [NSFX]
+  - Comte de Perche
+      Example: Comte de Perche [NSFX]
+  - Comte de Perigord
+      Example: Comte de Perigord et de La Marche [NSFX]
+      Example: Comte de Perigord et Agen [NSFX]
+  - Comte de Poitiers
+      Example: Duc d'Aquitaine et Comte de Poitiers [NSFX]
   - Comte de Poitou
+      Example: Comte de Poitou, Duc d'Aquitaine [NSFX]
+      Example: Comte de Poitou Duc d'Aquitaine [NSFX]
       Example: Ebalus Mancer Comte de Poitou //
-      Example: Ebalus Mancer Comte de Poitou
   - Comte de Ponthieu
       Example: Jean Jean I Comte de Ponthieu /Montgommery/
-      Example: Jean Jean I Comte de Ponthieu
+      Example: Jean Jean I Comte de Ponthieu [GIVN]
+      Example: Comte de Ponthieu [NSFX]
   - Comte de Rasaz
       Example: Gisclafred Comte de Rasaz de /Carcassonne/
-      Example: Gisclafred Comte de Rasaz de
+      Example: Gisclafred Comte de Rasaz de [GIVN]
   - Comte de Rennes
+      Example: Comte de Rennes [NSFX]
+      Example: Comte de Rennes [NSFX]
       Example: Judicael /Berengar/ Comte de Rennes
+  - Comte de Rochefort
+      Example: Comte de Rochefort en Yvelines Chatelain of Chateaufort  Gometz Seneschal of France 1104-06 [NSFX]
   - Comte de Savoie
       Example: Umberto II Comte de Savoie //
-      Example: Umberto II Comte de Savoie
+      Example: Umberto II Comte de Savoie [GIVN]
       Example: Amadeo II Comte de Savoie //
+  - Comte de Savoya
+      Example: Comte de Savoya [NSFX]
   - Comte de Soissons
+      Example: Comte de Soissons [NSFX]
       Example: Guy Comte de Soissons //
-      Example: Guy Comte de Soissons
+      Example: Guy Comte de Soissons [GIVN]
+  - Comte de St
+      Example: Comte de St. Pol Seigneur de Roche de Nolay [NPFX]
+  - Comte de Substantion
+      Example: Comte de Substantion [NPFX]
+  - Comte de Tonnerre
+      Example: Comte de Tonnerre [NSFX]
+      Example: Comte de Tonnerre [NSFX]
   - Comte de Toulouse
       Example: Guilhem Comte de Toulouse //
-      Example: Guilhem Comte de Toulouse
+      Example: Guilhem Comte de Toulouse [GIVN]
+      Example: Comte de Toulouse dAlbi dAgen et du Quercy [NSFX]
+  - Comte de Tours
+      Example: II Comte de Tours [NSFX]
+  - Comte de Troyes
+      Example: Comte de Troyes and amp Meaux [NSFX]
+      Example: Comte de Troyes et de Meaux [NSFX]
+  - Comte de Valois
+      Example: Comte de Valois, Amiens et du Vexi [NSFX]
+      Example: Comte de Valois, Vexin, Crépy et B [NSFX]
+      Example: Comte de Valois Amiens et du Vexi [NSFX]
+  - Comte de Vendôme
+      Example: Comte de Vendôme [NSFX]
+  - Comte de Verdun
+      Example: Comte de Verdun [NSFX]
   - Comte de Verman
       Example: Raoul I /de Cambrai Comte de Verman-Dois/
-      Example: de Cambrai Comte de Verman-Dois
+      Example: de Cambrai Comte de Verman-Dois [SURN]
   - Comte de Vermandois
-      Example: Adalbert 'The Pious' Comte de Vermandois //
-      Example: Adalbert 'The Pious' Comte de Vermandois
-      Example: Heribert II Comte de Vermandois //
+      Example: Comte de Vermandois [NSFX]
+      Example: Comte de Vermandois et de Valois [NSFX]
+      Example: Comte de Vermandois et de Valois [NSFX]
+  - Comte de Vexin
+      Example: Comte de Vexin et d'Amiens [NSFX]
   - Comte de Vienne
       Example: Karl Konstentin Comte de Vienne //
-      Example: Karl Konstentin Comte de Vienne
+      Example: Karl Konstentin Comte de Vienne [GIVN]
       Example: Boso Comte de Vienne //
   - Comte de Woevre
       Example: Raoul /Comte de Woevre et Bar-sur-Seine/
-      Example: Comte de Woevre et Bar-sur-Seine
+      Example: Comte de Woevre et Bar-sur-Seine [SURN]
   - Comte de Woëvre
       Example: NN Wife of /Comte de Woëvre/
-      Example: Comte de Woëvre
+      Example: Comte de Woëvre [SURN]
   - Comte de bracelona
       Example: Ramon Borrel I /XVI Comte de bracelona/
-      Example: XVI Comte de bracelona
+      Example: XVI Comte de bracelona [SURN]
   - Comte de l
       Example: Thakur /Comte de l'Isle/
-      Example: Comte de l'Isle
+      Example: Comte de l'Isle [SURN]
   - Comte de la
+      Example: X, Comte de la Marche [NSFX]
+      Example: IX, Comte de la Marche [NSFX]
       Example: Hugh de Lusignan IX Comte de la /Marche/
-      Example: Hugh de Lusignan IX Comte de la
   - Comte de vannes
       Example: Alain /de Bretagne Duc of Bretagne Comte de vannes et Nantes/
-      Example: de Bretagne Duc of Bretagne Comte de vannes et Nantes
+      Example: de Bretagne Duc of Bretagne Comte de vannes et Nantes [SURN]
   - Comtesse
-      Example: Mathilde Comtesse de /Chalon/
-      Example: Mathilde Comtesse de
-      Example: Adelaide Comtesse de Vermandois et de Valoi //
+      Example: Comtesse de Vermandois [NSFX]
+      Example: Comtesse de Vermandois et de Valoi [NSFX]
+      Example: Comtesse de Soissons [NSFX]
   - DAME
       Example: DAME Berthe /Berthe,DAME/
       Example: DAME Berthe /Berthe,DAME/
       Example: DAME Berthe /Berthe,DAME/
   - DUC
       Example: Thibault /de BAR- LE- DUC/
-      Example: de BAR- LE- DUC
+      Example: de BAR- LE- DUC [SURN]
   - Dame
-      Example: Anne /Dame de La Rochepot, Damville et Châteauneuf/
-      Example: Anne /Dame de La Rochepot, Damville et Châteauneuf/
-      Example: Dame de La Rochepot, Damville et Châteauneuf
+      Example: Dame de Repentigny [NSFX]
+      Example: Dame de Repentigny [NSFX]
+      Example: Dame de Champaigne [NSFX]
   - Duc
-      Example: Sophia /de Bar-le-Duc/
-      Example: de Bar-le-Duc
-      Example: Boggis Duc /de Gascogne and Aquitaine/
+      Example: Comte de Poitou, Duc d'Aquitaine [NSFX]
+      Example: Duc D'Aquitaine [NSFX]
+      Example: Duc de Bretagne [NSFX]
+  - Duc  de Bretagne
+      Example: Duc  de Bretagne [NSFX]
   - Duc D'Aquitaine
+      Example: Duc D'Aquitaine [NSFX]
+      Example: Duc D'Aquitaine [NSFX]
       Example: Ranulf I /de Poitou/ Duc D'Aquitaine
   - Duc De Normandie
       Example: Richard I De Normandie - The Fearless, Sans Peur, Duc De Normandie //
-      Example: Richard I De Normandie - The Fearless, Sans Peur, Duc De Normandie
+      Example: Richard I De Normandie - The Fearless, Sans Peur, Duc De Normandie [GIVN]
   - Duc De Toulouse
       Example: I Duc De Toulouse /Guillaume/
-      Example: I Duc De Toulouse
+      Example: I Duc De Toulouse [GIVN]
   - Duc Demontfort
       Example: Simon deMontfort /Duc Demontfort/
-      Example: Duc Demontfort
+      Example: Duc Demontfort [SURN]
+  - Duc d'Alençon
+      Example: Duc d'Alençon et Comte du Perche [NSFX]
   - Duc d'Aquitaine
-      Example: Guillaume // Duc d'Aquitaine
+      Example: Comte de Poitou, Duc d'Aquitaine [NSFX]
+      Example: Comte de Poitou Duc d'Aquitaine [NSFX]
+      Example: Duc d'Aquitaine et Comte de Poitiers [NSFX]
+  - Duc d'Orléans
+      Example: Duc d'Orléans et de Valois [NSFX]
+  - Duc de Bar
+      Example: Duc de Bar [NSFX]
+  - Duc de Berry
+      Example: Duc de Berry [NSFX]
   - Duc de Bourgogne
+      Example: Duc de Bourgogne, Cte d'Auxerre [NSFX]
+      Example: Duc de Bourgogne, Cte de Chalon [NSFX]
       Example: Conrad II Duc de Bourgogne //
-      Example: Conrad II Duc de Bourgogne
-      Example: Giselbert Duc de Bourgogne //
   - Duc de Bretagne
-      Example: Conon I 'Le Tort' Duc de Bretagne //
-      Example: Conon I 'Le Tort' Duc de Bretagne
-      Example: Gurvand Duc de Bretagne //
+      Example: Duc de Bretagne [NSFX]
+      Example: Cte d'Anjou, Duc de Bretagne [NSFX]
+      Example: Duc de Bretagne [NSFX]
+  - Duc de Gascogne
+      Example: Duc de Gascogne [NSFX]
+      Example: Duc de Gascogne [NSFX]
+      Example: Duc de Gascogne [NSFX]
+  - Duc de Gueldre
+      Example: Duc de Gueldre et comte de Zutphen [NSFX]
   - Duc de Lorraine
       Example: Frederic /Duc de Lorraine/
-      Example: Duc de Lorraine
+      Example: Duc de Lorraine [SURN]
+  - Duc de Normandie
+      Example: Duc de Normandie [NSFX]
+      Example: Duc de Normandie [NSFX]
+      Example: Duc de Normandie [NSFX]
+  - Duc de Provence
+      Example: Duc de Provence [NPFX]
+  - Duc des
+      Example: Duc des Francs [NSFX]
+  - Duchesse
+      Example: Duchesse de Bretagne [NSFX]
+      Example: Duchesse de Basse Lorraine [NSFX]
+      Example: Duchesse d'Aquitaine [NSFX]
   - Ecuyer
       Example: Jean Pierre /Ecuyer De Comeau/
-      Example: Ecuyer De Comeau
+      Example: Ecuyer De Comeau [SURN]
       Example: Hubert /Ecuyer de Comeau/
+  - Lieutenant
+      Example: Sir Philip 'Lord Lieutenant of Ireland' /De Courtenay/
+      Example: Sir Philip 'Lord Lieutenant of Ireland' /De Courtenay/
+      Example: Sir Philip 'Lord Lieutenant of Ireland' [GIVN]
+  - M.
+      Example: M.Ps., Ph.D., CD [NSFX]
+      Example: (Iii,M.P.) [NSFX]
+      Example: M.P. [NSFX]
+  - Major
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
   - Marquis
-      Example: Raimund Bérenger /Marquis Of BARCELONA/
-      Example: Marquis Of BARCELONA
-      Example: Borrell /Marquis de Barcelona/
+      Example: , Marquis of Tuscany [NSFX]
+      Example: I, Marquis de Toulouse [NSFX]
+      Example: Marquis [NPFX]
   - Marquise
       Example: Marquise /de Vitré/
-      Example: Marquise
+      Example: Marquise [GIVN]
   - Prince
-      Example: Lucy Prince /Bradford/
-      Example: Lucy Prince /Bradford/
-      Example: Lucy Prince
+      Example: , Prince of Sweden [NSFX]
+      Example: , Prince of Sweden [NSFX]
+      Example: I, Prince of Poland [NSFX]
   - Princesse
       Example: AGRIPPINA CARETENE , Princesse Burgonde Chrétienne, Reine /dé Bourgogne/
-      Example: AGRIPPINA CARETENE , Princesse Burgonde Chrétienne, Reine
+      Example: AGRIPPINA CARETENE , Princesse Burgonde Chrétienne, Reine [GIVN]
+      Example: Princesse [NPFX]
   - ROI
       Example: Bendemi Des Huns /ROI DES HUNS OCCIDENTAUX EN UKRAINE/
-      Example: ROI DES HUNS OCCIDENTAUX EN UKRAINE
+      Example: ROI DES HUNS OCCIDENTAUX EN UKRAINE [SURN]
       Example: DONAT DES HUNS LE BOSSU /ROI DES HUNS/
   - Reine
       Example: Reine /Morin/
-      Example: Reine
+      Example: Reine [GIVN]
       Example: Reine /Fortin/
   - Roi
+      Example: Roi [NPFX]
       Example: Ragnhard I Roi /de Cambrai/
-      Example: Ragnhard I Roi
-      Example: Martisiandes Roi des Ménappes de Toxandrie //
+      Example: Ragnhard I Roi [GIVN]
   - SEIGNEUR
       Example: Andre SEIGNEUR DE /Vitre/
-      Example: Andre SEIGNEUR DE
+      Example: Andre SEIGNEUR DE [GIVN]
   - Seigneur
-      Example: Pierre /de Saint-Liebaud, Seigneur de Courcelles/
-      Example: de Saint-Liebaud, Seigneur de Courcelles
-      Example: Guy II "The Red", Seigneur de /Montlhéry/
+      Example: Seigneur de Loche [NSFX]
+      Example: , Seigneur de Loches de Villentroi [NSFX]
+      Example: Seigneur de St.James et St.Hilaire [NSFX]
+  - Seigneur De Bierback
+      Example: Seigneur De Bierback [NSFX]
+  - Seigneur De Bricquebec
+      Example: Seigneur De Bricquebec [NSFX]
   - Seigneur De Castres
       Example: Jean V Seigneur De Castres Comte /Vendome/
-      Example: Jean V Seigneur De Castres Comte
+      Example: Jean V Seigneur De Castres Comte [GIVN]
   - Seigneur De Chantilly
       Example: Guy De Seigneur De Chantilly  D' Ermenonville /Senlis/
-      Example: Guy De Seigneur De Chantilly  D' Ermenonville
+      Example: Guy De Seigneur De Chantilly  D' Ermenonville [GIVN]
+  - Seigneur De Chaumont
+      Example: Sixth Seigneur De Chaumont [NSFX]
+  - Seigneur De Châtillon
+      Example: Seigneur De Châtillon-Sur-Marne De Bazoches [NSFX]
   - Seigneur De Cormillé
       Example: Guy De Seigneur De Cormillé En Anjou /Sable/
-      Example: Guy De Seigneur De Cormillé En Anjou
+      Example: Guy De Seigneur De Cormillé En Anjou [GIVN]
   - Seigneur De Lisle
       Example: Foucher Seigneur De Lisle De La /Tour/
-      Example: Foucher Seigneur De Lisle De La
+      Example: Foucher Seigneur De Lisle De La [GIVN]
   - Seigneur De Montfort
       Example: Amauri /Seigneur De Montfort/
-      Example: Seigneur De Montfort
+      Example: Seigneur De Montfort [SURN]
+  - Seigneur d' Aubigny
+      Example: 4th Seigneur d' Aubigny [NSFX]
+  - Seigneur d'Abbaville
+      Example: Seigneur d'Abbaville [NSFX]
+  - Seigneur d'Abbetot
+      Example: Seigneur d'Abbetot [NICK]
   - Seigneur d'Amboise
       Example: Seigneur d'Amboise et Chaumont /Hugh/
-      Example: Seigneur d'Amboise et Chaumont
+      Example: Seigneur d'Amboise et Chaumont [GIVN]
+  - Seigneur d'Argouges
+      Example: Seigneur d'Argouges sur Aure [NPFX]
+  - Seigneur d'Aubigny
+      Example: 1st Seigneur d'Aubigny [NSFX]
+      Example: 3rd Seigneur d'Aubigny [NSFX]
+  - Seigneur d'Aumale
+      Example: Seigneur d'Aumale et de Quincampoix [NSFX]
+  - Seigneur d'Estouteville
+      Example: Seigneur d'Estouteville, de Hotot and de Vallemont [NSFX]
   - Seigneur d'Ivry
       Example: Robert Seigneur d'Ivry et /Breval/
-      Example: Robert Seigneur d'Ivry et
+      Example: Robert Seigneur d'Ivry et [GIVN]
+  - Seigneur d'Oison
+      Example: Seigneur d'Oison [NSFX]
+  - Seigneur de Barbezieux
+      Example: Seigneur de Barbezieux [NSFX]
+  - Seigneur de Beauge
+      Example: Seigneur de Beauge [NSFX]
+  - Seigneur de Beaugency
+      Example: Seigneur de Beaugency [NSFX]
   - Seigneur de Beauvau
       Example: Burnon Geoffroi "Geoffroy" II, /de Beauvau "de Beauvoir", Seigneur de Beauvau/
-      Example: de Beauvau "de Beauvoir", Seigneur de Beauvau
+      Example: de Beauvau "de Beauvoir", Seigneur de Beauvau [SURN]
+  - Seigneur de Botheon
+      Example: Seigneur de Botheon en [NSFX]
   - Seigneur de Boubers
       Example: Edmond /d'Abbeville Seigneur de Boubers/
-      Example: d'Abbeville Seigneur de Boubers
+      Example: d'Abbeville Seigneur de Boubers [SURN]
       Example: Girard /d'Abbeville Seigneur de Boubers/
+  - Seigneur de Bouchet
+      Example: Seigneur de Bouchet [NSFX]
   - Seigneur de Bourbers
       Example: Guillaume /d'Abbeville Seigneur de Bourbers/
-      Example: d'Abbeville Seigneur de Bourbers
+      Example: d'Abbeville Seigneur de Bourbers [SURN]
   - Seigneur de Braine
       Example: Guy Seigneur de Braine de /Baudemont/
-      Example: Guy Seigneur de Braine de
+      Example: Guy Seigneur de Braine de [GIVN]
+  - Seigneur de Bray
+      Example: Seigneur de Bray [NSFX]
+  - Seigneur de Champigneulle
+      Example: Seigneur de Champigneulle [NSFX]
+      Example: Seigneur de Champigneulle [NSFX]
+  - Seigneur de Champtoceaux
+      Example: Seigneur de Champtoceaux,de Briole,Mayenne [NSFX]
+  - Seigneur de Château
+      Example: Seigneur de Château-Chinon [NSFX]
+      Example: Seigneur de Château-Gonthier [NSFX]
+  - Seigneur de Châtillon
+      Example: Seigneur de Châtillon [NSFX]
+  - Seigneur de Coligny
+      Example: Seigneur de Coligny [NSFX]
+  - Seigneur de Conches
+      Example: (Seigneur de Conches and Nogent-le-Roi) [NSFX]
+      Example: (Seigneur de Conches) [NSFX]
+      Example: Seigneur de Conches Lord of Flamstead [NSFX]
   - Seigneur de Courcelles
       Example: Pierre /de Saint-Liebaud, Seigneur de Courcelles/
-      Example: de Saint-Liebaud, Seigneur de Courcelles
+      Example: de Saint-Liebaud, Seigneur de Courcelles [SURN]
+  - Seigneur de Courtenay
+      Example: 5ieme Seigneur de Courtenay [NSFX]
+  - Seigneur de Creil
+      Example: (Seigneur de Creil-en-Beauvaisis and de Clermont-en-Beauvaisis) [NSFX]
+  - Seigneur de Creully
+      Example: (Seigneur de Creully) [NSFX]
+      Example: Seigneur de Creully [NSFX]
+  - Seigneur de Dossemer
+      Example: Seigneur de Dossemer [NSFX]
+  - Seigneur de Déols
+      Example: Seigneur de Déols [NSFX]
+  - Seigneur de Faremont
+      Example: Seigneur de Faremont [NSFX]
+  - Seigneur de Florenne
+      Example: Seigneur de Florenne [NSFX]
+      Example: Seigneur de Florenne [NSFX]
+  - Seigneur de Florennes
+      Example: Seigneur de Florennes [NSFX]
+      Example: Seigneur de Florennes [NSFX]
+      Example: Seigneur de Florennes [NSFX]
+  - Seigneur de Fréteval
+      Example: Seigneur de Fréteval [NSFX]
+  - Seigneur de Gometz
+      Example: Seigneur de Gometz le Chateau 1068  1071 [NSFX]
+  - Seigneur de Houdetot
+      Example: Seigneur de Houdetot en Caux [NSFX]
+  - Seigneur de La
+      Example: Seigneur de La Prugne [NSFX]
+  - Seigneur de Lavardin
+      Example: Seigneur de Lavardin [NSFX]
   - Seigneur de Loche
+      Example: Seigneur de Loche [NSFX]
       Example: Gardier Seigneur de Loche //
-      Example: Gardier Seigneur de Loche
-      Example: Gardier // Seigneur de Loche
+      Example: Gardier Seigneur de Loche [GIVN]
   - Seigneur de Loches
+      Example: , Seigneur de Loches de Villentroi [NSFX]
+      Example: Seigneur de Loches de Villentroi [NSFX]
       Example: Garnier /de Loches/ , Seigneur de Loches de Villentrois
+  - Seigneur de Maule
+      Example: Seigneur de Maule [NSFX]
+  - Seigneur de Metz
+      Example: Seigneur de Metz-le-Comte [NSFX]
   - Seigneur de Molembaix
       Example: Jean /De Lannoy Chevalier, Seigneur de Molembaix/
-      Example: De Lannoy Chevalier, Seigneur de Molembaix
+      Example: De Lannoy Chevalier, Seigneur de Molembaix [SURN]
+  - Seigneur de Monceaux
+      Example: Seigneur de Monceaux-le-Comte [NSFX]
   - Seigneur de Montaigu
       Example: Roger /Seigneur de Montaigu et Pierrepont/
-      Example: Seigneur de Montaigu et Pierrepont
+      Example: Seigneur de Montaigu et Pierrepont [SURN]
+      Example: Seigneur de Montaigu [NSFX]
   - Seigneur de Montfort
-      Example: Raoul Seigneur de Montfort-Gael et de Br //
-      Example: Raoul Seigneur de Montfort-Gael et de Br
+      Example: Seigneur de Montfort-Gael et de Br [NSFX]
+      Example: Seigneur de Montfort [NSFX]
+      Example: Seigneur de Montfort [NSFX]
+  - Seigneur de Montgomery
+      Example: I Seigneur de Montgomery [NSFX]
+  - Seigneur de Montmorency
+      Example: Seigneur de Montmorency [NSFX]
+  - Seigneur de Montmorillon
+      Example: Seigneur de Montmorillon [NSFX]
+  - Seigneur de Muret
+      Example: Seigneur de Muret [NSFX]
+  - Seigneur de Roche
+      Example: Comte de St. Pol Seigneur de Roche de Nolay [NPFX]
+  - Seigneur de Rumigny
+      Example: Seigneur de Rumigny [NSFX]
+  - Seigneur de Saint
+      Example: Seigneur de Saint-Omer [NSFX]
+      Example: Seigneur de Saint Denis [NSFX]
+  - Seigneur de Saumur
+      Example: Seigneur de Saumur [NSFX]
   - Seigneur de Sceaux
       Example: Lisiar Seigneur de Sceaux //
-      Example: Lisiar Seigneur de Sceaux
+      Example: Lisiar Seigneur de Sceaux [GIVN]
+      Example: Seigneur de Sceaux Gâtinais [NSFX]
+  - Seigneur de St
+      Example: Seigneur de St.James et St.Hilaire [NSFX]
+      Example: Seigneur de St. James et St. Hilaire [NSFX]
+  - Seigneur de Sully
+      Example: Seigneur de Sully [NSFX]
   - Seigneur de Taillebourg
       Example: Geoffroi (Geoffroy) /de Rançon, Seigneur de Taillebourg/
-      Example: de Rançon, Seigneur de Taillebourg
+      Example: de Rançon, Seigneur de Taillebourg [SURN]
+  - Seigneur de Talmont
+      Example: Seigneur de Talmont [NSFX]
+      Example: Seigneur de Talmont [NSFX]
+  - Seigneur de Thézan
+      Example: Seigneur de Thézan [NSFX]
   - Seigneur de Tosny
-      Example: Radulf II Seigneur de Tosny //
-      Example: Radulf II Seigneur de Tosny
-      Example: Roger I Hispanicus Seigneur de Tosny //
+      Example: Seigneur de Tosny [NSFX]
+      Example: Seigneur de Tosny [NSFX]
+      Example: Seigneur de Tosny [NSFX]
+  - Seigneur de Trie
+      Example: (Seigneur de Trie) [NSFX]
   - Seigneur de Valmont
       Example: Henri d'Estouteville Seigneur de Valmont et /Rames/
-      Example: Henri d'Estouteville Seigneur de Valmont et
+      Example: Henri d'Estouteville Seigneur de Valmont et [GIVN]
+  - Seigneur de Woëvre
+      Example: Seigneur de Woëvre Count of Bar-sur-Seine [NSFX]
+      Example: I Seigneur de Woëvre, viscomte d'Auxerre, comte de Bar-sur-Seine [NSFX]
+  - Seigneur de la
+      Example: Seigneur de la Prugne et  de La Roche-Nolay [NSFX]
+      Example: (Seigneur de la Fere) [NSFX]
   - Vicomte
-      Example: Mayeul Vicomte de Narbonne //
-      Example: Mayeul Vicomte de Narbonne
-      Example: Warnarius Vicomte de Sens //
+      Example: Vicomte de Narbonne [NSFX]
+      Example: Vicomte de Sens, Cte de Troyes [NSFX]
+      Example: Vicomte [NPFX]
   - Vicomtesse
+      Example: Vicomtesse de Thouars MP [NSFX]
+      Example: Vicomtesse de Troyes [NSFX]
       Example: Melisende Vicomtesse Chateaudun /de Chateaudun/
-      Example: Melisende Vicomtesse Chateaudun
   - baron
-      Example: Arnould VI /de Gavre/ baron d'Escornaix
-      Example: Arnould VI /de Gavre/ baron d'Escornaix
+      Example: baron d'Escornaix [NSFX]
+      Example: baron d'Escornaix [NSFX]
+      Example: baron d'Escornaix [NSFX]
   - chevalier
       Example: p.92 titre de chevalier
       Example: p.92 titre de chevalier
+      Example: I Steward of Flanders, chevalier croisé [NSFX]
   - comte
-      Example: Nibelung III comte //
-      Example: Nibelung III comte
-      Example: Regnier V /de Hainaut, comte d'Egisheim/
+      Example: comte de Laon [NSFX]
+      Example: comte de Toulouse [NSFX]
+      Example: comte de Toulouse [NSFX]
   - comte d' Autun
       Example: Thierry Théodoric /ben Habibai David comte d' Autun dit le Pieux/
-      Example: ben Habibai David comte d' Autun dit le Pieux
+      Example: ben Habibai David comte d' Autun dit le Pieux [SURN]
+  - comte d'Anjou
+      Example: comte d'Anjou [NSFX]
+  - comte d'Artois
+      Example: comte d'Artois [NSFX]
   - comte d'Auxerre
+      Example: comte d'Auxerre [NSFX]
       Example: Konrad II comte d'Auxerre //
-      Example: Konrad II comte d'Auxerre
-      Example: Konrad II // comte d'Auxerre
+      Example: Konrad II comte d'Auxerre [GIVN]
   - comte d'Egisheim
       Example: Regnier V /de Hainaut, comte d'Egisheim/
-      Example: de Hainaut, comte d'Egisheim
+      Example: de Hainaut, comte d'Egisheim [SURN]
+  - comte d'Eu
+      Example: comte d'Eu [NSFX]
+  - comte d'Ivry
+      Example: comte d'Ivry [NSFX]
+  - comte de Bar
+      Example: I Seigneur de Woëvre, viscomte d'Auxerre, comte de Bar-sur-Seine [NSFX]
+  - comte de Barcelona
+      Example: comte de Barcelona [NSFX]
+      Example: XIII comte de Barcelona [NSFX]
+  - comte de Blois
+      Example: comte de Blois [NSFX]
   - comte de Boulogne
       Example: Adalolf /de Boulogne et Ternois, comte de Boulogne/
-      Example: de Boulogne et Ternois, comte de Boulogne
+      Example: de Boulogne et Ternois, comte de Boulogne [SURN]
+  - comte de Cambrai
+      Example: comte de Cambrai [NSFX]
+      Example: comte de Cambrai [NSFX]
   - comte de Carcassonne
       Example: Acfred I /comte de Carcassonne/
-      Example: comte de Carcassonne
+      Example: comte de Carcassonne [SURN]
+  - comte de Charroux
+      Example: comte de Charroux [NSFX]
+  - comte de Châlon
+      Example: comte de Châlon et de Mâcon [NSFX]
+  - comte de Dijon
+      Example: comte de Dijon [NSFX]
+  - comte de Dreux
+      Example: comte de Dreux et de Braine [NSFX]
+      Example: comte de Dreux de Brie et de Braine [NSFX]
+      Example: comte de Dreux [NSFX]
+  - comte de Ferrette
+      Example: comte de Ferrette [NSFX]
+  - comte de Flandre
+      Example: comte de Flandre [NSFX]
+  - comte de Foix
+      Example: comte de Foix [NSFX]
+  - comte de Jaffa
+      Example: comte de Jaffa [NSFX]
   - comte de Laon
+      Example: comte de Laon [NSFX]
       Example: Héribert comte de Laon //
-      Example: Héribert comte de Laon
-      Example: Héribert // comte de Laon
+      Example: Héribert comte de Laon [GIVN]
   - comte de Lorraine
+      Example: comte de Lorraine [NSFX]
       Example: Edzo comte de Lorraine //
-      Example: Edzo comte de Lorraine
-      Example: Edzo // comte de Lorraine
+      Example: Edzo comte de Lorraine [GIVN]
+  - comte de Mâcon
+      Example: comte de Mâcon [NSFX]
+  - comte de Namur
+      Example: comte de Namur [NSFX]
+  - comte de Nevers
+      Example: comte de Nevers [NSFX]
+  - comte de Paris
+      Example: comte de Paris [NSFX]
   - comte de Peronne
+      Example: comte de Peronne [NSFX]
+      Example: comte de Peronne [NSFX]
       Example: Pépin II /De Vermandois/ comte de Peronne
+  - comte de Picquigny
+      Example: comte de Picquigny [NSFX]
+  - comte de Ponthieu
+      Example: comte de Ponthieu et d'Alencon [NSFX]
+      Example: comte de Ponthieu [NSFX]
+      Example: comte de Ponthieu [NSFX]
+  - comte de Provence
+      Example: Roi titulaire de Naples, comte de Provence et duc d'Anjou [NSFX]
+  - comte de ROUERGUE
+      Example: comte de ROUERGUE [NSFX]
+  - comte de Roucy
+      Example: comte de Roucy Vicomte de Reims [NSFX]
   - comte de Rouergue
+      Example: comte de Rouergue [NSFX]
       Example: Ermengaud /comte de Rouergue/
-      Example: comte de Rouergue
+      Example: comte de Rouergue [SURN]
   - comte de Rouerque
+      Example: comte de Rouerque [NSFX]
       Example: Fulcoald comte de Rouerque //
-      Example: Fulcoald comte de Rouerque
-      Example: Fulcoald // comte de Rouerque
+      Example: Fulcoald comte de Rouerque [GIVN]
+  - comte de Sens
+      Example: I comte de Sens [NSFX]
   - comte de Soissons
       Example: Renaud II de Soissons /comte de Soissons/
-      Example: comte de Soissons
+      Example: comte de Soissons [SURN]
+  - comte de Suze
+      Example: comte de Suze [NSFX]
+  - comte de Tonnerre
+      Example: comte de Tonnerre [NSFX]
+      Example: comte de Tonnerre [NSFX]
   - comte de Toulouse
-      Example: Raymond I comte de Toulouse //
-      Example: Raymond I comte de Toulouse
-      Example: Raymond III Pons comte de Toulouse //
+      Example: comte de Toulouse [NSFX]
+      Example: comte de Toulouse [NSFX]
+      Example: comte de Toulouse [NSFX]
   - comte de Valois
       Example: Raoul de Mantes /comte de Valois/
-      Example: comte de Valois
+      Example: comte de Valois [SURN]
+  - comte de Vendôme
+      Example: comte de Vendôme [NSFX]
+      Example: comte de Vendôme [NSFX]
+  - comte de Verdun
+      Example: comte de Verdun et d'Enham [NSFX]
   - comte de Vermandois
+      Example: comte de Vermandois et de Senlis [NSFX]
+      Example: comte de Vermandois et de Senlis [NSFX]
       Example: Héribert I /De Vermandois/ comte de Vermandois et de Senlis
+  - comte de Vexin
+      Example: comte de Vexin Amiens et Valois [NSFX]
+      Example: comte de Vexin Amiens et Valois [NSFX]
+  - comte de Vienne
+      Example: comte de Vienne [NSFX]
+      Example: , comte de Vienne [NSFX]
+  - comte de Zutphen
+      Example: Duc de Gueldre et comte de Zutphen [NSFX]
+  - comte de de
+      Example: comte de de Blois [NSFX]
+  - comte de la
+      Example: comte de la Marche [NSFX]
+      Example: comte de la Marche [NSFX]
   - comte de ll
       Example: Eudes Chartres /comte de ll/
-      Example: comte de ll
+      Example: comte de ll [SURN]
+  - comtesse
+      Example: comtesse [NPFX]
+      Example: comtesse de Corbeil heretiere de Melun [NSFX]
+      Example: comtesse de Corbeil heretiere de Melun [NSFX]
   - dame
-      Example: Catherine dame de Nezement //
-      Example: Catherine dame de Nezement //
-      Example: Catherine dame de Nezement
+      Example: dame de La Bossière [NSFX]
+      Example: dame de La Bossière [NSFX]
+      Example: dame de Nezement [NSFX]
   - duc
-      Example: Clemence /de Bar-le-duc/
-      Example: de Bar-le-duc
-      Example: Renaud I /de Bar-le-duc/
+      Example: duc de Normandie [NSFX]
+      Example: duc de Brabant [NSFX]
+      Example: duc de France [NSFX]
+  - duc d'Anjou
+      Example: duc d'Anjou [NSFX]
+      Example: Roi titulaire de Naples, comte de Provence et duc d'Anjou [NSFX]
+  - duc d'Aquitaine
+      Example: duc d'Aquitaine [NSFX]
+  - duc de Bourbon
+      Example: duc de Bourbon et d'Auvergne [NSFX]
+  - duc de Bourgogne
+      Example: duc de Bourgogne [NSFX]
+      Example: duc de Bourgogne [NSFX]
   - duc de Brabant
-      Example: Henri I duc de Brabant //
-      Example: Henri I duc de Brabant
-      Example: Godefroy III duc de Brabant //
+      Example: duc de Brabant [NSFX]
+      Example: duc de Brabant [NSFX]
+      Example: duc de Brabant [NSFX]
   - duc de Bretagne
-      Example: Geoffrey duc de Bretagne //
-      Example: Geoffrey duc de Bretagne
-      Example: Conan /le Tort/ duc de Bretagne
+      Example: duc de Bretagne [NSFX]
+      Example: duc de Bretagne [NSFX]
+      Example: duc de Bretagne [NSFX]
   - duc de France
+      Example: duc de France [NSFX]
       Example: Hugues 'le Grand' duc de France //
-      Example: Hugues 'le Grand' duc de France
-      Example: Hugues 'le Grand' // duc de France
+      Example: Hugues 'le Grand' duc de France [GIVN]
+  - duc de Gascogne
+      Example: duc de Gascogne [NSFX]
+      Example: duc de Gascogne [NSFX]
+  - duc de Gasconha
+      Example: duc de Gasconha [NSFX]
+  - duc de Guyenne
+      Example: duc de Guyenne [NSFX]
   - duc de Normandie
-      Example: Richard II 'le bon' duc de Normandie //
-      Example: Richard II 'le bon' duc de Normandie
-      Example: Robert 'the devil' duc de Normandie //
+      Example: duc de Normandie [NSFX]
+      Example: duc de Normandie [NSFX]
+      Example: duc de Normandie [NSFX]
   - duc des
       Example: Dagobert «Magnus» /duc des Francs saliens/
-      Example: duc des Francs saliens
+      Example: duc des Francs saliens [SURN]
+  - duchesse
+      Example: duchesse [NPFX]
+  - marquis
+      Example: marquis of Pont-à-Mousson [NSFX]
+      Example: marquis of Montferrat [NSFX]
   - prince
-      Example: crioda prince of wessex //
-      Example: crioda prince of wessex //
-      Example: crioda prince of wessex
+      Example: prince of England [NSFX]
+      Example: prince of England [NSFX]
+      Example: prince of Taron [NSFX]
   - princesse
+      Example: princesse de Kiev [NSFX]
+      Example: princesse de Kiev [NSFX]
       Example: Anna /Yaroslavna/ princesse de Kiev
   - reine
+      Example: reine de France [NSFX]
+      Example: reine de France [NSFX]
       Example: Amasalonthe /reine d'reine d' Italie/
-      Example: Amasalonthe /reine d'reine d' Italie/
-      Example: reine d'reine d' Italie
   - roi
-      Example: Chlodomir IV /roi des Francs (Personne Fictiv)/
-      Example: roi des Francs (Personne Fictiv)
-      Example: Henri I roi de France //
+      Example: roi d'Italie [NSFX]
+      Example: roi de France [NSFX]
+      Example: roi de Soissons [NSFX]
   - seigneur
-      Example: Amaury I /seigneur de Montfort/
-      Example: seigneur de Montfort
-      Example: Guy I /seigneur de Montlhéry et de Bray/
+      Example: seigneur de Villaines [NSFX]
+      Example: seigneur de Tanlay [NSFX]
+      Example: seigneur de Courtenay, Montargis, Châteaurenard, Champignelles, Tanlay, Charny et Chantecoq. [NSFX]
+  - seigneur d'Alençon
+      Example: seigneur d'Alençon [NSFX]
+  - seigneur de Beaugency
+      Example: seigneur de Beaugency [NSFX]
+  - seigneur de Briquebec
+      Example: seigneur de Briquebec [NSFX]
+      Example: seigneur de Briquebec [NSFX]
+  - seigneur de Bures
+      Example: seigneur de la Ferté seigneur de Bures-sur-Yvette [NSFX]
+  - seigneur de Béconcelles
+      Example: seigneur de Béconcelles [NSFX]
+  - seigneur de Béthune
+      Example: seigneur de Béthune [NSFX]
+  - seigneur de Castelnau
+      Example: Gausbert Ier seigneur de Castelnau-Monratier [NPFX]
+  - seigneur de Château
+      Example: seigneur de Château-Landon [NSFX]
+  - seigneur de Courtenay
+      Example: seigneur de Courtenay, Montargis, Châteaurenard, Champignelles, Tanlay, Charny et Chantecoq. [NSFX]
+      Example: 3ième seigneur de Courtenay [NSFX]
+  - seigneur de Ham
+      Example: seigneur de Ham [NSFX]
+  - seigneur de L
+      Example: seigneur de L'Île-Bouchard [NSFX]
+      Example: seigneur de L'Isle-Adam [NSFX]
+  - seigneur de Mercatel
+      Example: seigneur de Mercatel [NSFX]
   - seigneur de Montfort
       Example: Amaury I /seigneur de Montfort/
-      Example: seigneur de Montfort
+      Example: seigneur de Montfort [SURN]
   - seigneur de Montlhéry
       Example: Guy I /seigneur de Montlhéry et de Bray/
-      Example: seigneur de Montlhéry et de Bray
+      Example: seigneur de Montlhéry et de Bray [SURN]
+      Example: seigneur de Montlhéry et de Bray [NSFX]
+  - seigneur de Roeulx
+      Example: seigneur de Roeulx [NSFX]
+  - seigneur de Segré
+      Example: seigneur de Segré [NSFX]
+  - seigneur de Sully
+      Example: seigneur de Sully [NSFX]
+  - seigneur de Tanlay
+      Example: seigneur de Tanlay [NSFX]
   - seigneur de Villaines
+      Example: seigneur de Villaines [NSFX]
+      Example: seigneur de Villaines [NSFX]
       Example: Charles /Pasquier de Franclieu/ seigneur de Villaines
+  - seigneur de la
+      Example: seigneur de la Ferté seigneur de Bures-sur-Yvette [NSFX]
   - vicomte
-      Example: Robert II vicomte d'Auvergne //
-      Example: Robert II vicomte d'Auvergne
-      Example: Robert I vicomte d'Auvergne //
+      Example: vicomte de Caudebec [NSFX]
+      Example: vicomte d'Auvergne [NSFX]
+      Example: vicomte de Tours, Cte de Blois [NSFX]
   - écuyer
-      Example: Jean /Peschart/ écuyer
-      Example: Pierre /Pasquier de Franclieu/ écuyer
-      Example: Pierre /Pasquier de Franclieu/ écuyer
+      Example: écuyer [NSFX]
+      Example: écuyer [NSFX]
+      Example: écuyer [NSFX]
 
 German:
+  - Burggraf
+      Example: Burggraf of Magdeburg [NSFX]
+      Example: Burggraf of Passau [NSFX]
+      Example: Burggraf of Regensburg [NSFX]
+  - Frau
+      Example: Ega (Frau Gerberga von Franconia) //
+      Example: Ega (Frau Gerberga von Franconia) [GIVN]
+      Example: Frau Gerberga von Franconia [NICK]
+  - General
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
   - Graf
+      Example: Graf in Wormsgau [NSFX]
       Example: Rutpert IV Graf in Wormsgau //
-      Example: Rutpert IV Graf in Wormsgau
-      Example: Volmar II von /Metz Graf im Bliesgau/
+      Example: Rutpert IV Graf in Wormsgau [GIVN]
   - Graf im Bliesgau
       Example: Volmar II von /Metz Graf im Bliesgau/
-      Example: Metz Graf im Bliesgau
+      Example: Metz Graf im Bliesgau [SURN]
   - Graf im Chiengau
       Example: Sieghard IV /"Sizzo Von Melk" Graf im Chiengau/
-      Example: "Sizzo Von Melk" Graf im Chiengau
+      Example: "Sizzo Von Melk" Graf im Chiengau [SURN]
   - Graf im Isengau
       Example: Chadalhoch /von Traungau, Graf im Isengau/
-      Example: von Traungau, Graf im Isengau
+      Example: von Traungau, Graf im Isengau [SURN]
+  - Graf im Westphalen
+      Example: Graf im Westphalen [NPFX]
   - Graf von Attel
       Example: Engelbert /Hallgraf, Graf von Attel, Lindburg und Wasserburg/
-      Example: Hallgraf, Graf von Attel, Lindburg und Wasserburg
+      Example: Hallgraf, Graf von Attel, Lindburg und Wasserburg [SURN]
   - Graf von Calw
       Example: Gottfried I /Graf von Calw-Sindelfingen/
-      Example: Graf von Calw-Sindelfingen
+      Example: Graf von Calw-Sindelfingen [SURN]
   - Graf von Dillingen
       Example: Hupold /von Dillingen, Graf von Dillingen/
-      Example: von Dillingen, Graf von Dillingen
+      Example: von Dillingen, Graf von Dillingen [SURN]
   - Graf von Freiburg
       Example: Egino V. /Graf von Urach, Egino I. Graf von Freiburg/
-      Example: Graf von Urach, Egino I. Graf von Freiburg
+      Example: Graf von Urach, Egino I. Graf von Freiburg [SURN]
   - Graf von Gammertingen
       Example: Ulrich II. /Graf von Gammertingen/
-      Example: Graf von Gammertingen
+      Example: Graf von Gammertingen [SURN]
   - Graf von Grögling
       Example: Ernst /Graf von Grögling-Ottenburg/
-      Example: Graf von Grögling-Ottenburg
+      Example: Graf von Grögling-Ottenburg [SURN]
   - Graf von Henneberg
       Example: Heinrich /Graf von Henneberg Schleusingen/
-      Example: Graf von Henneberg Schleusingen
+      Example: Graf von Henneberg Schleusingen [SURN]
   - Graf von Oltingen
       Example: Bucco /Graf von Oltingen/
-      Example: Graf von Oltingen
+      Example: Graf von Oltingen [SURN]
   - Graf von Sachsen
       Example: Otto I /Graf von Sachsen/
-      Example: Graf von Sachsen
+      Example: Graf von Sachsen [SURN]
   - Graf von Urach
       Example: Rudolf /Graf von Urach-Dettingen/
-      Example: Graf von Urach-Dettingen
+      Example: Graf von Urach-Dettingen [SURN]
       Example: Egino V. /Graf von Urach, Egino I. Graf von Freiburg/
   - Graf von Worms
       Example: Adelmo /Graf von Worms/
-      Example: Graf von Worms
+      Example: Graf von Worms [SURN]
   - Graf von Zollern
       Example: Friedrich I. /Graf von Zollern/
-      Example: Graf von Zollern
+      Example: Graf von Zollern [SURN]
   - Graf zu Göss
       Example: Aribo /Graf zu Göss-Schladnitz Leobental/
-      Example: Graf zu Göss-Schladnitz Leobental
+      Example: Graf zu Göss-Schladnitz Leobental [SURN]
   - Gräfin
-      Example: Elisabeth /Gräfin von Henneberg Schleusingen/
-      Example: Gräfin von Henneberg Schleusingen
-      Example: /Gräfin von Braunschweig/
+      Example: Gräfin [NPFX]
+      Example: Gräfin im Kraichgau [NSFX]
+      Example: Gräfin im Wormsgau [NSFX]
   - Hallgraf
       Example: Engelbert /Hallgraf, Graf von Attel, Lindburg und Wasserburg/
-      Example: Hallgraf, Graf von Attel, Lindburg und Wasserburg
+      Example: Hallgraf, Graf von Attel, Lindburg und Wasserburg [SURN]
+  - Herr
+      Example: Herr of Neuenstein [NSFX]
+      Example: Mangold /Herr von Neuffen und  Sulmetingen/
+      Example: Herr von Neuffen und  Sulmetingen [SURN]
   - Herzog
-      Example: Hugo /Herzog von Franken/
-      Example: Herzog von Franken
-      Example: Adalrich Herzog /Elsaß/
+      Example: Herzog of Sachsen und Bayern [NSFX]
+      Example: Herzog [NPFX]
+      Example: Herzog [NSFX]
   - Herzog von Franken
       Example: Hugo /Herzog von Franken/
-      Example: Herzog von Franken
+      Example: Herzog von Franken [SURN]
   - Herzog von Zähringen
       Example: Berthold V. /Herzog von Zähringen/
-      Example: Herzog von Zähringen
+      Example: Herzog von Zähringen [SURN]
   - Herzogin
-      Example: /Herzogin von Ratien/
-      Example: Herzogin von Ratien
+      Example: Herzogin of Bayern [NSFX]
+      Example: Herzogin of Alemannen [NSFX]
+      Example: Herzogin of Lothringen [NSFX]
   - König
       Example: Alaric I, "Der Kühne", König /von Visigoths/
-      Example: Alaric I, "Der Kühne", König
+      Example: Alaric I, "Der Kühne", König [GIVN]
       Example: Eduard III /König von England/
+  - Königin
+      Example: Königin of Ostfranken [NSFX]
+      Example: Königin der Franken [NSFX]
+      Example: Königin des Ostfrankenreiches [NSFX]
   - Landgraf
       Example: Wilhelm III /von Hessen, Landgraf/
-      Example: von Hessen, Landgraf
+      Example: Landgraf [NPFX]
+      Example: von Hessen, Landgraf [SURN]
+  - Major
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
   - Markgraf
-      Example: Adalbert Markgraf of Ivrea //
-      Example: Adalbert Markgraf of Ivrea
-      Example: Berthold V Count v. Andechs  Krain Markgraf v //
+      Example: Count v. Andechs & Krain Markgraf v [NSFX]
+      Example: Markgraf der Nieder-Lausitz [NSFX]
+      Example: Markgraf von Meissen [NSFX]
   - Pfalzgraf
-      Example: Hugobert Senechall Pfalzgraf /end/
-      Example: Hugobert Senechall Pfalzgraf
-      Example: Otto IV Pfalzgraf von Bayern //
+      Example: Pfalzgraf von Bayern [NSFX]
+      Example: Pfalzgraf in Bayern [NSFX]
+      Example: Pfalzgraf of Saxony [NSFX]
   - Prinz
       Example: Europäische Stammtafeln, Band I, Frank Baron Freytag von Loringhoven,1975, Isenburg, W. K. Prinz von
+  - Prinzessin
+      Example: Prinzessin [NPFX]
+      Example: Prinzessin [NPFX]
   - Ritter
       Example: Anna Margaretha /Ritter/
-      Example: Ritter
+      Example: Ritter [SURN]
       Example: Eve /Ritter/
+  - general
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
   - graf
       Example: graf /De Nellenbourg/
-      Example: graf
+      Example: graf [GIVN]
+  - herzog
+      Example: herzog of Glogau und Sagan [NSFX]
 
 Italian:
+  - Barone
+      Example: Earl of Hinchingbrooke Barone [NSFX]
   - Conte
+      Example: Conte di Apulia [NICK]
       Example: Roricon /Conte du Maine/
-      Example: Conte du Maine
-      Example: Riculfo Conte de /Carcassonne/
+      Example: Conte du Maine [SURN]
   - Contessa
+      Example: Contessa di Teano [NSFX]
       Example: Ermellina /Contessa dei ALBERTI/
-      Example: Contessa dei ALBERTI
-      Example: Guinidilda Contessa de /Carcassonne/
+      Example: Contessa dei ALBERTI [SURN]
+  - Duca
+      Example: Duca di Amalfi [NSFX]
+      Example: Duca [NPFX]
+  - Marchesa
+      Example: Marchesa de Frioul [NSFX]
   - Marchese
       Example: Marchese of Unruochinger /di Fruili/
-      Example: Marchese of Unruochinger
+      Example: Marchese of Unruochinger [GIVN]
       Example: Marchese of Unruochinger /di Fruili/
+  - Principe
+      Example: Principe [NPFX]
+      Example: Principe de Benavento [NSFX]
+      Example: I Principe de Benevento [NSFX]
   - Regina
       Example: Regina /of Auxerre/
       Example: Regina /of Auxerre/
-      Example: Regina
+      Example: Regina [GIVN]
+  - Signora
+      Example: Signora Di Gerassi [NSFX]
+  - conte
+      Example: conte [NPFX]
+  - duca
+      Example: duca di Gaeta [NSFX]
+      Example: duca di Gaeta [NSFX]
+  - marchese
+      Example: marchese di Toscana [NSFX]
   - principe
       Example: Aio /principe di Benevento/
-      Example: principe di Benevento
+      Example: principe di Benevento [SURN]
   - re
       Example: re-mariage de J-Bte Guenet
 
 Latin:
   - Dux
+      Example: Comte de Vienne Dux de Provence [NSFX]
+      Example: Dux im Haspengau Count im Oberrhein- und Wormsgau [NSFX]
       Example: Ferreolus /de Rodez Dux/
-      Example: de Rodez Dux
-      Example: Coel Hen /ap Tegfan/ of Britain , King of Northern Britain, Dux Brittanorum, Governor of Ebrauc
+  - Princeps
+      Example: Wasconorum Princeps [NSFX]
   - Regina
       Example: Regina /of Auxerre/
       Example: Regina /of Auxerre/
-      Example: Regina
+      Example: Regina [GIVN]
   - Rex
+      Example: Rex Francorum Imperator Romanorum [NSFX]
+      Example: Rex Francorum [NSFX]
       Example: Filia Rex /Scotiae/
-      Example: Filia Rex
-      Example: Margaret Filia Rex /Delumley/
+  - comes
+      Example: comes in Neustrien und Austrien [NSFX]
 
 Norse:
   - Jarl
       Example: Jarl Rognvald /Eysteinssonn/
-      Example: Jarl Rognvald
-      Example: Sigurd Hlodvirsson /Jarl/
+      Example: Jarl Rognvald [GIVN]
+      Example: Jarl of Maër [NSFX]
   - Thane
       Example: Crinan 'The Thane' //
-      Example: Crinan 'The Thane'
-      Example: Crinan 'The Thane' Mormaer of Atholl //
+      Example: Crinan 'The Thane' [GIVN]
+      Example: , Abbot of Dunkeld, Thane of Athol [NSFX]
 
 Portuguese:
   - CONDE
       Example: Havise /DE CONDE-D'ANTOING/
       Example: Havise /DE CONDE-D'ANTOING/
-      Example: DE CONDE-D'ANTOING
+      Example: DE CONDE-D'ANTOING [SURN]
   - Conde
       Example: Isabel /De Conde/
       Example: Isabel /De Conde/
-      Example: De Conde
+      Example: De Conde [SURN]
   - Condessa
+      Example: Condessa [NPFX]
       Example: Condessa /Cerdayna/
-      Example: Condessa
-      Example: Condessa /De Cerdagne de Cordoue-D'Aquitaine/
+      Example: Condessa [GIVN]
   - DUQUE
       Example: Frederico I DUQUE DE /LOTARÍNGEA/
       Example: Frederico I DUQUE DE /LOTARÍNGEA/
-      Example: Frederico I DUQUE DE
+      Example: Frederico I DUQUE DE [GIVN]
   - Duque
+      Example: Duque de Lorraine [NSFX]
+      Example: Duque de Lorraine [NSFX]
       Example: Guerech I /Duque de Bretaña/
-      Example: Guerech I /Duque de Bretaña/
-      Example: Duque de Bretaña
   - Duquesa
       Example: Menina /Gosende de Cantabria Duquesa de Cantabria/
       Example: Menina /Gosende de Cantabria Duquesa de Cantabria/
-      Example: Gosende de Cantabria Duquesa de Cantabria
+      Example: Gosende de Cantabria Duquesa de Cantabria [SURN]
+  - General
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+  - Major
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
+      Example: d. Le Major [NSFX]
+  - Princesa
+      Example: Princesa Doña [NPFX]
+      Example: Princesa Doña [NPFX]
+      Example: Princesa de Asturias [NSFX]
+  - Príncipe
+      Example: Príncipe Don [NPFX]
+      Example: Príncipe Don [NPFX]
+      Example: Príncipe de Pamplona [NSFX]
+  - Rainha
+      Example: Rainha [NPFX]
+      Example: Rainha [NPFX]
   - Rei
       Example: Aminadabe /Rei Graal/
-      Example: Rei Graal
+      Example: Rei Graal [SURN]
+      Example: Rei [NPFX]
   - Senhora
+      Example: Senhora de Donzy [NSFX]
       Example: Senhora Sancho /Sanchez/
-      Example: Senhora Sancho
-      Example: Senhora Pedro Afonso de //
+      Example: Senhora Sancho [GIVN]
+  - conde
+      Example: conde de Aveiro [NSFX]
+      Example: conde de Aveiro [NSFX]
+  - duque
+      Example: duque de Coímbra [NSFX]
+      Example: duque de Coímbra [NSFX]
+      Example: duque de Viseu [NSFX]
+  - duquesa
+      Example: duquesa consorte de Borgoña [NSFX]
+      Example: duquesa consorte de Borgoña [NSFX]
+  - general
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
 
 Spanish:
   - CONDE
       Example: Havise /DE CONDE-D'ANTOING/
       Example: Havise /DE CONDE-D'ANTOING/
-      Example: DE CONDE-D'ANTOING
+      Example: DE CONDE-D'ANTOING [SURN]
   - Conde
       Example: Isabel /De Conde/
       Example: Isabel /De Conde/
-      Example: De Conde
+      Example: De Conde [SURN]
   - Condesa
-      Example: Elvira /De Castilla,  Condesa dos cristãos de Coimbra/
-      Example: De Castilla,  Condesa dos cristãos de Coimbra
+      Example: Condesa Consorte [NPFX]
+      Example: Condesa de Hainaut [NSFX]
+      Example: Condesa Consorte Doña [NPFX]
   - DUQUE
       Example: Frederico I DUQUE DE /LOTARÍNGEA/
       Example: Frederico I DUQUE DE /LOTARÍNGEA/
-      Example: Frederico I DUQUE DE
+      Example: Frederico I DUQUE DE [GIVN]
   - Duque
+      Example: Duque de Lorraine [NSFX]
+      Example: Duque de Lorraine [NSFX]
       Example: Guerech I /Duque de Bretaña/
-      Example: Guerech I /Duque de Bretaña/
-      Example: Duque de Bretaña
   - Duquesa
       Example: Menina /Gosende de Cantabria Duquesa de Cantabria/
       Example: Menina /Gosende de Cantabria Duquesa de Cantabria/
-      Example: Gosende de Cantabria Duquesa de Cantabria
+      Example: Gosende de Cantabria Duquesa de Cantabria [SURN]
+  - General
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+      Example: The National Archives of the UK; Kew, Surrey, England; Consulate, Honolulu, Hawaii (later United States of America): General Correspondence and Miscellanea; Class: FO 331; Piece: 59
+  - Mayor
+      Example: , Mayor of the Palace of Austrasia [NSFX]
+      Example: I, Mayor of the Palace of Austrasi [NSFX]
+      Example: , Mayor of the Palace of Austrasia [NSFX]
+  - Princesa
+      Example: Princesa Doña [NPFX]
+      Example: Princesa Doña [NPFX]
+      Example: Princesa de Asturias [NSFX]
+  - Príncipe
+      Example: Príncipe Don [NPFX]
+      Example: Príncipe Don [NPFX]
+      Example: Príncipe de Pamplona [NSFX]
   - REINA
       Example: Urraca /Galindez REINA CONSORTE DE NAVARRA/
-      Example: Galindez REINA CONSORTE DE NAVARRA
+      Example: Galindez REINA CONSORTE DE NAVARRA [SURN]
   - Reina
-      Example: Ozenda /De Navarra Reina Consorte de Asturias/
-      Example: De Navarra Reina Consorte de Asturias
+      Example: Reina Consorte Doña [NPFX]
+      Example: Reina de Pamplona [NSFX]
+      Example: Reina [NPFX]
   - Rey
+      Example: Rey de Lyon [NPFX]
       Example: Fernaudu Rey /Leon II/
-      Example: Fernaudu Rey
-      Example: Alfonso VII el Emperador /Rey de Castile and Leon/
+      Example: Fernaudu Rey [GIVN]
+  - Señor
+      Example: II Señor de Viscaya [NSFX]
+      Example: Señor de Castelvell [NSFX]
+      Example: Señor de Lara, la Bureba y Aza [NSFX]
   - Señora
       Example: Señora /de Castrogeriz/
-      Example: Señora
+      Example: Señora [GIVN]
+  - conde
+      Example: conde de Aveiro [NSFX]
+      Example: conde de Aveiro [NSFX]
+  - duque
+      Example: duque de Coímbra [NSFX]
+      Example: duque de Coímbra [NSFX]
+      Example: duque de Viseu [NSFX]
+  - duquesa
+      Example: duquesa consorte de Borgoña [NSFX]
+      Example: duquesa consorte de Borgoña [NSFX]
+  - general
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
+      Example: general court 3 June 1662
+  - rey
+      Example: rey de Portugal [NSFX]
   - señor
       Example: Aznar III señor de Vizcaya //
-      Example: Aznar III señor de Vizcaya
+      Example: Aznar III señor de Vizcaya [GIVN]
 
 ### OCCUPATIONS FOUND IN DATA ###
 
@@ -1515,76 +2733,76 @@ Portuguese:
 ### SAMPLE PLACES BY LANGUAGE ###
 
 English:
-  - Bothamsall, Nottingham, England
-  - Bristol, England, United Kingdom
-  - Dudley, England
-  - Mangotsfield, Bristol, Gloucestershire, England
-  - Middle Claydon, Buckingham, England
-  - Ohio, United States
-  - Orkney Island, Orkney, Scotland
-  - Plaisance, , , Italy
-  - South End Cemetary, East Hampton, Suffolk County, New York, United States of America
-  - Willisham, Mid Suffolk District, Suffolk, England
+  - Aldenham, Hertfordshire, England
+  - Black Friars Churchyard, Hereford, Herefordshire, England
+  - Great Hanwood, Shropshire, England
+  - Hen, Staffordshire, England
+  - Hipperholme, Yorkshire, England, United Kingdom
+  - Launay, , Perche (Orne), France
+  - St-Pierre, bacqueville-en-caux, Seine-Maritime, Haute-Normandie, France
+  - Westminster Abbey or Winchester Cathedral, London, Middlesex, England
+  - Woodchurch, Kent, England, United Kingdom
+  - Zollern, Wessingen, Hohaenzollern, Prussia
 
 French:
-  - Bar-sur-Aube, Aube, Champagne-Ardenne, France
-  - Châteaubriant, Loire-Atlantique, France
-  - Conteville, Pas-de-Calais, Nord-Pas-de-Calais, France
-  - Creil, Oise, Hauts-de-France, France
-  - Hay du Puits, Normande, France
-  - Hudson, Québec, Canada
-  - Longwy, Meurthe Et Moselle, Lorraine, France
-  - Ste-Mélaine, ar. Pont-l'Eveque, ev. Lisieux, Normandie (Calvados), France
-  - Thoires, Côte-d'Or, Bourgogne, France
-  - Vendôme, Loir-et-Cher, Centre, France
+  - Albon, Drôme, Auvergne-Rhône-Alpes, France
+  - Coligny, Loiret, Centre-Val de Loire, France
+  - Gerabronn, Jagstkreis, Württemberg, Germany
+  - Grand Pré, Kings County, Nova Scotia, Canada
+  - Halluin, Nord-Pas-de-Calais, France
+  - Pays des Hurons, , Canada
+  - Roussillon, , Rhône-Alpes, France
+  - Saint-Maur-des-Fossés, Val-de-Marne, Île-de-France, France
+  - Saint-Nazaire, Loire-Atlantique, Pays de la Loire, France
+  - St-Nicolas, La Ferté-Vidame, Eure-et-Loir, Centre, France
 
 German:
-  - Görlitz, Dresden, Sachsen, Allemagne
-  - Kathedral von Aachen, Nordrhein-Westfalen, Heiliges Römisches Reich
-  - Kilnely In Craven, England
-  - Köln, Regierungsbezirk Köln, North Rhine-Westphalia, Duitsland
-  - buried in Dettingen, later reburied in Zwiefalten Monastery
-  - in battle at Mechain, Montgomeryshire, Wales
-  - in battle, Fontenoy, Belgique
-  - in battle, Lune, Elbe, , Germany
-  - killed in battle with the Arabia
-  - Þórshöfn, Norður-Þingeyjarsýsla, Norðurland Eystra, Iceland
+  - Bad Tölz-Wolfratshausen, Oberbayern, Bavaria, Germany
+  - Birkenau, Bergstraße, Hessen, Germany
+  - Furness Abbey, Barrow-In-Furness, England
+  - Plumpton in Spofforth, Yorkshire, Angleterre
+  - Vohburg an der Donau Landkreis Pfaffenhofen an der Ilm
+  - Wittislingen, Landkreis Dillingen an der Donau, Bayern, Alemanha
+  - in battle at Falkirk, Stirlingshire, Scotland
+  - in battle at Halidon Hill, Berwick, Scotland
+  - in battle at Tournai, Tournai, Hainaut, Belgium
+  - in battle at Tracht-Mugha, Ireland
 
 Italian:
-  - Aftbatlnicopolis, Provincia di Venezia, Nicopolis, Italy
-  - Hof, Hof i Alptafirdi, Sudur Mula, Iceland
-  - IL 60655 Chicago, Cook, Illinois, United States
-  - Naustdal i . Nordfjord, Sogn og Fjordane, Norway
-  - Pavia, Provincia di Pavia, Lombardia, Italy
-  - Provincia di Milano, Italy
-  - Provincia di Napoli, Italie
-  - Savoia di Lucania, Potenza, Italy
-  - Thvotta, Hof I Alptafirdi, Sudur Mula, Iceland
-  - Turin, Provincia di Torino, Piemonte, Italy
+  - Basilica di Sant'Anastasia al Palatino, Provincia di Roma, Italy, Roman Empire
+  - Chiesa di Santa Maria Rotonda, Ravenna, Emilia-Romagna, Ostrogothic Italy
+  - Duke Henry I of Bavaria, Duke of Saxony, Henry of Germany II
+  - Killed by his cousin Clovis I - Frankish Kingdom
+  - Saint Peter's Basilica, Provincia di Roma, Italy
+  - Sant'Andrea Monastery, Provincia di Torino, Piedmont, Italy
+  - St-Jean-Baptiste d'Argences, Caen, e. Bayeux, Normandie (Calvados), France
+  - Thvotta, Hof I Alftafirdi, Sudur-Mulasysla, Iceland
+  - Verona, Provincia di Verona, Veneto, Italy
+  - Waimea, Kaua'i, Kingdom of Hawaii
 
 Portuguese:
-  - (Ireland-O'Toole
-  - A Rock near Stein
-  - Died a prisoner, Wallingford Castle, Berkshire, , England
-  - Guimarães Oliveira do Castelo, Guimarães, Braga, Portugal
+  - A, Fyn, Denmark
+  - As Sheriff of, Inverness-shire, Scotland
   - Land Granr, a., Scotland
-  - O'ahu, Hawaii, United States
-  - São Pulo, Amazonas, Brazil
+  - Napo'opo'o, Kona, Hawaii
+  - Napo'opo'o, South Kona, Hawaii
+  - Of, , a, France
+  - Stratford On A., Warwickshire, England
   - Virtual Burial on Find a Grave, actual location currently unknown
-  - during a voyage to Boston to negotiate an exchange of prisoners
   - murdered by a vassal Bernard Plantevelues, France
+  - of Thvotta, Hof a Alptafirdi, Nordur Mula, Iceland
 
 Spanish:
-  - Arnedo, Navarra, España
-  - El Beni, Bolivia
-  - Esztergom, Komárom, Hungary
-  - Esztergom, Komárom-Esztergom, Hungary
-  - Góra, Dolnoslaskie, Poland
-  - Hofi, Rangárvallasýsla, Suðurland, Iceland
-  - Ravenna, Milán, Italia
-  - Seville, Seville, Andalucía, Spain
-  - Y.
-  - Zamora, Castilla y León, España
+  - Barbastro, Huesca, Aragón, España
+  - Besalú, Catalonia, Spain
+  - Colorado Springs, El Paso, Colorado, United States
+  - Paiz Vasco España
+  - Pamplona, Navarra, España
+  - Ripoll, Gerona, Cataluña, Spain
+  - San Martín del Rey Aurelio, Asturias, España
+  - Saragossa, Aragón, Spain
+  - Znojmo, Csehország
+  - Þvottá, Suður-Múlasýsla, Eastern Region, Iceland
 
 ================================================================================
 COMPREHENSIVE EQUIVALENCY TABLE

@@ -31,16 +31,22 @@ class MultilingualAnalyzer:
             'English': [
                 r'\b(King|Queen|Prince|Princess|Duke|Duchess|Marquess|Marchioness)\b',
                 r'\b(Earl|Countess|Viscount|Viscountess|Baron|Baroness|Baronet)\b',
-                r'\b(Lord|Lady|Sir|Dame|Knight)\b',
+                r'\b(Lord|Lady|Sir|Dame|Knight|Squire)\b',
+                r'\b(Dr\.|Doctor|Rev\.|Reverend|Hon\.|Honorable|Capt\.|Captain)\b',
+                r'\b(Lt\.|Lieutenant|Col\.|Colonel|Gen\.|General|Maj\.|Major)\b',
+                r'\b(Mr\.|Mrs\.|Miss|Ms\.)\b',
                 r'\b(Heiress|Heir)\s+of\s+\w+',
                 r'\b(\d+(?:st|nd|rd|th)\s+(?:Earl|Baron|Lord|Duke))\b',
                 r'\b(High\s+King|King\s+of\s+\w+|Queen\s+of\s+\w+)\b',
+                r'\b(Jr\.|Sr\.|II|III|IV|V|VI|VII|VIII|IX|Esq\.)\b',
             ],
             'French': [
                 r'\b(Roi|Reine|Prince|Princesse|Duc|Duchesse|Marquis|Marquise)\b',
                 r'\b(Comte|Comtesse|Vicomte|Vicomtesse|Baron|Baronne)\b',
                 r'\b(Seigneur|Dame|Chevalier|Ecuyer|Écuyer)\b',
                 r'\b(Châtelain|Châtelaine)\b',
+                r'\b(Dr\.|Docteur|Rév\.|Révérend|M\.|Mme|Mlle)\b',
+                r'\b(Capitaine|Lieutenant|Colonel|Général|Major)\b',
                 r'\b(comte\s+d[\'e]\s*\w+|duc\s+d[\'e]\s*\w+)\b',
                 r'\b(seigneur\s+d[\'e]\s*\w+)\b',
             ],
@@ -49,6 +55,8 @@ class MultilingualAnalyzer:
                 r'\b(Graf|Gräfin|Freiherr|Freifrau|Ritter)\b',
                 r'\b(Markgraf|Pfalzgraf|Landgraf|Burggraf)\b',
                 r'\b(Hallgraf)\b',
+                r'\b(Dr\.|Doktor|Herr|Frau|Fräulein)\b',
+                r'\b(Hauptmann|Leutnant|Oberst|General|Major)\b',
                 r'\b(Graf\s+(?:von|im|zu)\s+\w+)\b',
                 r'\b(Herzog\s+(?:von|zu)\s+\w+)\b',
             ],
@@ -56,16 +64,22 @@ class MultilingualAnalyzer:
                 r'\b(Re|Regina|Principe|Principessa|Duca|Duchessa)\b',
                 r'\b(Marchese|Marchesa|Conte|Contessa|Barone|Baronessa)\b',
                 r'\b(Signore|Signora|Cavaliere)\b',
+                r'\b(Dott\.|Dottore|Sig\.|Sig\.ra|Sig\.na)\b',
+                r'\b(Capitano|Tenente|Colonnello|Generale|Maggiore)\b',
             ],
             'Spanish': [
                 r'\b(Rey|Reina|Príncipe|Princesa|Duque|Duquesa)\b',
                 r'\b(Marqués|Marquesa|Conde|Condesa|Barón|Baronesa)\b',
                 r'\b(Señor|Señora|Caballero|Hidalgo)\b',
+                r'\b(Dr\.|Doctor|Sr\.|Sra\.|Srta\.)\b',
+                r'\b(Capitán|Teniente|Coronel|General|Mayor)\b',
             ],
             'Portuguese': [
                 r'\b(Rei|Rainha|Príncipe|Princesa|Duque|Duquesa)\b',
                 r'\b(Marquês|Marquesa|Conde|Condessa|Barão|Baronesa)\b',
                 r'\b(Senhor|Senhora|Cavaleiro|Fidalgo)\b',
+                r'\b(Dr\.|Doutor|Sr\.|Sra\.|Srta\.)\b',
+                r'\b(Capitão|Tenente|Coronel|General|Major)\b',
             ],
             'Latin': [
                 r'\b(Rex|Regina|Princeps|Dux|Comes|Baro)\b',
@@ -196,15 +210,17 @@ class MultilingualAnalyzer:
                     if len([ex for ex in self.title_examples[title] if ex == current_name]) < 10:
                         self.title_examples[title].append(current_name)
 
-            # Also check GIVN and SURN fields
-            elif tag in ['GIVN', 'SURN'] and value:
+            # Also check GIVN, SURN, NPFX, NSFX, and NICK fields
+            elif tag in ['GIVN', 'SURN', 'NPFX', 'NSFX', 'NICK'] and value:
                 titles = self.extract_titles_from_name(value)
                 for title_info in titles:
                     lang = title_info['language']
                     title = title_info['title']
                     self.name_titles[lang].add(title)
-                    if len([ex for ex in self.title_examples[title] if ex == value]) < 10:
-                        self.title_examples[title].append(value)
+                    # Store with field type context
+                    field_context = f"{value} [{tag}]"
+                    if len([ex for ex in self.title_examples[title] if value in ex]) < 10:
+                        self.title_examples[title].append(field_context)
 
             # Extract occupations
             if tag == 'OCCU':
@@ -305,8 +321,16 @@ class MultilingualAnalyzer:
         print("MULTILINGUAL ANALYSIS OF GEDCOM DATA")
         print("="*80)
 
-        print("\n### NOBILITY TITLES FOUND IN NAMES ###")
-        print("\nThese are titles extracted from NAME, GIVN, and SURN fields:")
+        print("\n### NOBILITY AND HONORIFIC TITLES FOUND IN NAMES ###")
+        print("\nThese are titles extracted from NAME, GIVN, SURN, NPFX, NSFX, and NICK fields:")
+        print("Fields analyzed:")
+        print("  - NAME: Full name")
+        print("  - GIVN: Given name")
+        print("  - SURN: Surname")
+        print("  - NPFX: Name prefix (titles before name)")
+        print("  - NSFX: Name suffix (titles/suffixes after name)")
+        print("  - NICK: Nickname")
+        print()
         for lang, items in sorted(self.name_titles.items()):
             if items:
                 print(f"\n{lang}:")
