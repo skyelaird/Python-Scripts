@@ -20,9 +20,60 @@ class MultilingualAnalyzer:
         self.relationships = defaultdict(set)
         self.places = defaultdict(set)
         self.general_terms = defaultdict(set)
+        self.name_titles = defaultdict(set)  # Titles found in NAME fields
+        self.title_examples = defaultdict(list)  # Store examples of each title
 
         # Track all text for language detection
         self.all_text = []
+
+        # Comprehensive nobility and honorific titles by language
+        self.nobility_titles = {
+            'English': [
+                r'\b(King|Queen|Prince|Princess|Duke|Duchess|Marquess|Marchioness)\b',
+                r'\b(Earl|Countess|Viscount|Viscountess|Baron|Baroness|Baronet)\b',
+                r'\b(Lord|Lady|Sir|Dame|Knight)\b',
+                r'\b(Heiress|Heir)\s+of\s+\w+',
+                r'\b(\d+(?:st|nd|rd|th)\s+(?:Earl|Baron|Lord|Duke))\b',
+                r'\b(High\s+King|King\s+of\s+\w+|Queen\s+of\s+\w+)\b',
+            ],
+            'French': [
+                r'\b(Roi|Reine|Prince|Princesse|Duc|Duchesse|Marquis|Marquise)\b',
+                r'\b(Comte|Comtesse|Vicomte|Vicomtesse|Baron|Baronne)\b',
+                r'\b(Seigneur|Dame|Chevalier|Ecuyer|Écuyer)\b',
+                r'\b(Châtelain|Châtelaine)\b',
+                r'\b(comte\s+d[\'e]\s*\w+|duc\s+d[\'e]\s*\w+)\b',
+                r'\b(seigneur\s+d[\'e]\s*\w+)\b',
+            ],
+            'German': [
+                r'\b(König|Königin|Prinz|Prinzessin|Herzog|Herzogin)\b',
+                r'\b(Graf|Gräfin|Freiherr|Freifrau|Ritter)\b',
+                r'\b(Markgraf|Pfalzgraf|Landgraf|Burggraf)\b',
+                r'\b(Hallgraf)\b',
+                r'\b(Graf\s+(?:von|im|zu)\s+\w+)\b',
+                r'\b(Herzog\s+(?:von|zu)\s+\w+)\b',
+            ],
+            'Italian': [
+                r'\b(Re|Regina|Principe|Principessa|Duca|Duchessa)\b',
+                r'\b(Marchese|Marchesa|Conte|Contessa|Barone|Baronessa)\b',
+                r'\b(Signore|Signora|Cavaliere)\b',
+            ],
+            'Spanish': [
+                r'\b(Rey|Reina|Príncipe|Princesa|Duque|Duquesa)\b',
+                r'\b(Marqués|Marquesa|Conde|Condesa|Barón|Baronesa)\b',
+                r'\b(Señor|Señora|Caballero|Hidalgo)\b',
+            ],
+            'Portuguese': [
+                r'\b(Rei|Rainha|Príncipe|Princesa|Duque|Duquesa)\b',
+                r'\b(Marquês|Marquesa|Conde|Condessa|Barão|Baronesa)\b',
+                r'\b(Senhor|Senhora|Cavaleiro|Fidalgo)\b',
+            ],
+            'Latin': [
+                r'\b(Rex|Regina|Princeps|Dux|Comes|Baro)\b',
+            ],
+            'Norse': [
+                r'\b(Jarl|Thane)\b',
+            ]
+        }
 
     def is_likely_french(self, text: str) -> bool:
         """Detect if text is likely French."""
@@ -83,6 +134,24 @@ class MultilingualAnalyzer:
         else:
             return "English"
 
+    def extract_titles_from_name(self, name_value: str) -> list:
+        """Extract nobility titles from a name string."""
+        found_titles = []
+
+        for language, patterns in self.nobility_titles.items():
+            for pattern in patterns:
+                matches = re.finditer(pattern, name_value, re.IGNORECASE)
+                for match in matches:
+                    title = match.group(1) if match.groups() else match.group(0)
+                    found_titles.append({
+                        'title': title,
+                        'language': language,
+                        'full_name': name_value,
+                        'match': match.group(0)
+                    })
+
+        return found_titles
+
     def parse_gedcom_file(self, filepath: str):
         """Parse GEDCOM file and extract multilingual patterns."""
         # Try multiple encodings
@@ -99,6 +168,7 @@ class MultilingualAnalyzer:
 
         current_record = None
         current_tag = None
+        current_name = None
 
         for line in lines:
             line = line.strip()
@@ -114,14 +184,30 @@ class MultilingualAnalyzer:
             tag = parts[1]
             value = parts[2] if len(parts) > 2 else ""
 
-            # Extract titles
-            if tag == 'TITL':
-                lang = self.detect_language(value)
-                self.titles[lang].add(value.strip())
-                self.all_text.append((value, lang))
+            # Extract nobility titles from NAME fields
+            if tag == 'NAME':
+                current_name = value.strip()
+                titles = self.extract_titles_from_name(current_name)
+                for title_info in titles:
+                    lang = title_info['language']
+                    title = title_info['title']
+                    self.name_titles[lang].add(title)
+                    # Store example with full name context (limit to 10 examples per title)
+                    if len([ex for ex in self.title_examples[title] if ex == current_name]) < 10:
+                        self.title_examples[title].append(current_name)
+
+            # Also check GIVN and SURN fields
+            elif tag in ['GIVN', 'SURN'] and value:
+                titles = self.extract_titles_from_name(value)
+                for title_info in titles:
+                    lang = title_info['language']
+                    title = title_info['title']
+                    self.name_titles[lang].add(title)
+                    if len([ex for ex in self.title_examples[title] if ex == value]) < 10:
+                        self.title_examples[title].append(value)
 
             # Extract occupations
-            elif tag == 'OCCU':
+            if tag == 'OCCU':
                 if value:
                     lang = self.detect_language(value)
                     self.occupations[lang].add(value.strip())
@@ -143,6 +229,7 @@ class MultilingualAnalyzer:
                 current_tag = 'EVEN'
             elif level == '0':
                 current_tag = None
+                current_name = None
 
     def find_equivalencies(self):
         """Find potential equivalencies across languages."""
@@ -218,12 +305,17 @@ class MultilingualAnalyzer:
         print("MULTILINGUAL ANALYSIS OF GEDCOM DATA")
         print("="*80)
 
-        print("\n### TITLES FOUND IN DATA ###")
-        for lang, items in sorted(self.titles.items()):
+        print("\n### NOBILITY TITLES FOUND IN NAMES ###")
+        print("\nThese are titles extracted from NAME, GIVN, and SURN fields:")
+        for lang, items in sorted(self.name_titles.items()):
             if items:
                 print(f"\n{lang}:")
                 for item in sorted(items):
+                    # Show examples for each title (limit to 3)
+                    examples = self.title_examples.get(item, [])[:3]
                     print(f"  - {item}")
+                    for example in examples:
+                        print(f"      Example: {example}")
 
         print("\n### OCCUPATIONS FOUND IN DATA ###")
         for lang, items in sorted(self.occupations.items()):
