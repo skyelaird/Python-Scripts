@@ -2,7 +2,8 @@
 Person record merger with confidence-based decisions.
 
 Handles merging duplicate person records while preserving data quality
-and resolving conflicts intelligently.
+and resolving conflicts intelligently. Uses validation-based confidence
+tiers for merge decisions.
 """
 
 from typing import List, Dict, Optional, Set, Tuple
@@ -12,6 +13,7 @@ from ..rootsmagic.models import RMPerson, RMName, RMEvent, RMFamily
 from ..rootsmagic.adapter import RootsMagicDatabase
 from ..matching.matcher import MatchCandidate
 from .conflict_resolver import ConflictResolver, MergeDecision, ConflictResolution
+from ..validation import ConfidenceTier
 
 
 class MergeStrategy(Enum):
@@ -79,14 +81,16 @@ class PersonMerger:
     def merge_candidates(
         self,
         candidates: List[MatchCandidate],
-        auto_merge_threshold: float = 90.0
+        auto_merge_threshold: float = 90.0,
+        use_confidence_tiers: bool = True
     ) -> List[MergeResult]:
         """
         Merge a list of match candidates.
 
         Args:
             candidates: List of match candidates to merge
-            auto_merge_threshold: Confidence threshold for automatic merging
+            auto_merge_threshold: Confidence threshold for automatic merging (legacy, used if use_confidence_tiers=False)
+            use_confidence_tiers: If True, use validation-based confidence tiers for decisions
 
         Returns:
             List of merge results
@@ -94,12 +98,58 @@ class PersonMerger:
         results = []
 
         for candidate in candidates:
-            # Determine if we should auto-merge
-            should_auto = (
-                self.strategy == MergeStrategy.AUTOMATIC or
-                (self.strategy == MergeStrategy.INTERACTIVE and
-                 candidate.confidence >= auto_merge_threshold)
-            )
+            # Determine if we should auto-merge based on confidence tier or score
+            if use_confidence_tiers and candidate.match_result.confidence_tier:
+                # Use validation-based confidence tier system
+                tier = candidate.match_result.confidence_tier
+
+                if tier == ConfidenceTier.REJECT:
+                    # Hard rejection - validation failures
+                    result = MergeResult(
+                        success=False,
+                        merged_person_id=None,
+                        removed_person_id=None,
+                        conflicts_resolved=[],
+                        errors=["Rejected due to validation failures"],
+                        details={
+                            'candidate': candidate,
+                            'confidence_tier': tier.value,
+                            'validation_issues': candidate.match_result.details.get('validation_issues', [])
+                        }
+                    )
+                    results.append(result)
+                    continue
+
+                elif tier == ConfidenceTier.AUTO_MERGE:
+                    # High confidence - auto-merge
+                    should_auto = True
+
+                else:  # NEEDS_REVIEW
+                    # Medium confidence - depends on strategy
+                    should_auto = self.strategy == MergeStrategy.AUTOMATIC
+                    if not should_auto:
+                        result = MergeResult(
+                            success=False,
+                            merged_person_id=None,
+                            removed_person_id=None,
+                            conflicts_resolved=[],
+                            errors=["Flagged for human review"],
+                            details={
+                                'candidate': candidate,
+                                'confidence_tier': tier.value,
+                                'validation_issues': candidate.match_result.details.get('validation_issues', [])
+                            }
+                        )
+                        results.append(result)
+                        continue
+
+            else:
+                # Legacy: Use score-based threshold
+                should_auto = (
+                    self.strategy == MergeStrategy.AUTOMATIC or
+                    (self.strategy == MergeStrategy.INTERACTIVE and
+                     candidate.confidence >= auto_merge_threshold)
+                )
 
             if should_auto:
                 result = self.merge_persons(
