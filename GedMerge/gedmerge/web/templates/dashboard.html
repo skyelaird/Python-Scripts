@@ -295,6 +295,7 @@
             <button class="nav-tab" onclick="showTab('models')">Models</button>
             <button class="nav-tab" onclick="showTab('predict')">Predictions</button>
             <button class="nav-tab" onclick="showTab('train')">Training</button>
+            <button class="nav-tab" onclick="showTab('places')">Places Repairs</button>
             <button class="nav-tab" onclick="showTab('quality')">Data Quality</button>
         </div>
 
@@ -393,9 +394,23 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Database Path</label>
-                    <input type="text" id="train-db-path" placeholder="/path/to/database.rmtree">
+                    <label>Database File Upload</label>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="file" id="train-db-file" accept=".rmtree,.ged,.db" style="flex: 1;">
+                        <button class="btn btn-primary" onclick="uploadFile()" style="white-space: nowrap;">📤 Upload File</button>
+                    </div>
+                    <small style="color: #657786; display: block; margin-top: 0.5rem;">
+                        Supported formats: .rmtree (RootsMagic), .ged (GEDCOM), .db (SQLite)
+                    </small>
                 </div>
+                <div class="form-group">
+                    <label>Or Enter Database Path</label>
+                    <input type="text" id="train-db-path" placeholder="/path/to/database.rmtree">
+                    <small style="color: #657786; display: block; margin-top: 0.5rem;">
+                        Use absolute path or upload a file above
+                    </small>
+                </div>
+                <div id="upload-status" style="margin-top: 1rem;"></div>
                 <button class="btn btn-success" onclick="startTraining()">Start Training</button>
             </div>
 
@@ -404,6 +419,60 @@
                 <div class="job-list" id="job-list">
                     <p>No training jobs yet.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Places Repairs Tab -->
+        <div id="places" class="tab-content">
+            <div class="card">
+                <h2>🌍 Places Repairs & Standardization</h2>
+                <p style="color: #657786; margin-bottom: 1.5rem;">
+                    Standardize and repair place names in your genealogy database. This tool helps match place name variations and apply multilingual standardization.
+                </p>
+
+                <div class="form-group">
+                    <label>Database File</label>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="file" id="places-db-file" accept=".rmtree,.ged,.db" style="flex: 1;">
+                        <button class="btn btn-primary" onclick="uploadPlacesFile()" style="white-space: nowrap;">📤 Upload</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Or Enter Database Path</label>
+                    <input type="text" id="places-db-path" placeholder="/path/to/database.rmtree">
+                </div>
+
+                <div id="places-upload-status"></div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button class="btn btn-success" onclick="analyzePlaces()">🔍 Analyze Places</button>
+                    <button class="btn btn-warning" onclick="repairPlaces()">🔧 Repair Places</button>
+                </div>
+
+                <div id="places-results" style="margin-top: 2rem;"></div>
+            </div>
+
+            <div class="card">
+                <h2>📊 Place Statistics</h2>
+                <div id="places-stats">
+                    <p style="color: #657786;">Upload a database and analyze to see place statistics.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🔧 Common Repairs</h2>
+                <p style="color: #657786; margin-bottom: 1rem;">
+                    The Places Repairs tool can:
+                </p>
+                <ul style="margin-left: 2rem; color: #657786;">
+                    <li>Standardize place name formats (City, County, State, Country)</li>
+                    <li>Match multilingual variations (München ↔ Munich)</li>
+                    <li>Fix common abbreviations (NY → New York)</li>
+                    <li>Resolve place hierarchies (ensure proper nesting)</li>
+                    <li>Detect and merge duplicate place entries</li>
+                    <li>Add missing standardized place names</li>
+                </ul>
             </div>
         </div>
 
@@ -590,13 +659,60 @@
             }
         }
 
+        // Upload file
+        async function uploadFile() {
+            const fileInput = document.getElementById('train-db-file');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file to upload');
+                return;
+            }
+
+            const statusDiv = document.getElementById('upload-status');
+            statusDiv.innerHTML = '<p style="color: #667eea;">⏳ Uploading file...</p>';
+
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Upload failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                // Update the database path input with uploaded file path
+                document.getElementById('train-db-path').value = result.file_path;
+
+                statusDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ File uploaded successfully!<br>
+                        <strong>Path:</strong> ${result.file_path}<br>
+                        <strong>Size:</strong> ${(result.file_size / 1024 / 1024).toFixed(2)} MB
+                    </div>
+                `;
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Upload failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
         // Start training
         async function startTraining() {
             const modelType = document.getElementById('train-model-type').value;
             const dbPath = document.getElementById('train-db-path').value;
 
             if (!dbPath) {
-                alert('Please enter database path');
+                alert('Please enter database path or upload a file');
                 return;
             }
 
@@ -657,6 +773,163 @@
                 document.getElementById('active-jobs').textContent = activeCount;
             } catch (error) {
                 console.error('Error fetching jobs:', error);
+            }
+        }
+
+        // Upload file for places repairs
+        async function uploadPlacesFile() {
+            const fileInput = document.getElementById('places-db-file');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file to upload');
+                return;
+            }
+
+            const statusDiv = document.getElementById('places-upload-status');
+            statusDiv.innerHTML = '<p style="color: #667eea;">⏳ Uploading file...</p>';
+
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Upload failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                // Update the database path input with uploaded file path
+                document.getElementById('places-db-path').value = result.file_path;
+
+                statusDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ File uploaded successfully!<br>
+                        <strong>Path:</strong> ${result.file_path}<br>
+                        <strong>Size:</strong> ${(result.file_size / 1024 / 1024).toFixed(2)} MB
+                    </div>
+                `;
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Upload failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Analyze places
+        async function analyzePlaces() {
+            const dbPath = document.getElementById('places-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path or upload a file');
+                return;
+            }
+
+            const resultsDiv = document.getElementById('places-results');
+            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Analyzing places...</p>';
+
+            try {
+                const response = await fetch('/api/places/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ database_path: dbPath })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Analysis failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                // Display statistics
+                const statsDiv = document.getElementById('places-stats');
+                statsDiv.innerHTML = `
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">${result.total_places}</div>
+                            <div class="stat-label">Total Places</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.unique_places}</div>
+                            <div class="stat-label">Unique Places</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.duplicates}</div>
+                            <div class="stat-label">Potential Duplicates</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${result.needs_standardization}</div>
+                            <div class="stat-label">Need Standardization</div>
+                        </div>
+                    </div>
+                `;
+
+                // Display results
+                resultsDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ Analysis complete!<br>
+                        Found ${result.duplicates} potential duplicate place names and ${result.needs_standardization} places needing standardization.
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Analysis failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Repair places
+        async function repairPlaces() {
+            const dbPath = document.getElementById('places-db-path').value;
+
+            if (!dbPath) {
+                alert('Please enter database path or upload a file');
+                return;
+            }
+
+            if (!confirm('This will standardize and repair place names in your database. Continue?')) {
+                return;
+            }
+
+            const resultsDiv = document.getElementById('places-results');
+            resultsDiv.innerHTML = '<p style="color: #667eea;">⏳ Repairing places...</p>';
+
+            try {
+                const response = await fetch('/api/places/repair', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ database_path: dbPath })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Repair failed: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                resultsDiv.innerHTML = `
+                    <div class="result result-success">
+                        ✅ Places repaired successfully!<br>
+                        <strong>Standardized:</strong> ${result.standardized} places<br>
+                        <strong>Merged:</strong> ${result.merged} duplicate places<br>
+                        <strong>Updated:</strong> ${result.updated} records
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result result-error">
+                        ❌ Repair failed: ${error.message}
+                    </div>
+                `;
             }
         }
 

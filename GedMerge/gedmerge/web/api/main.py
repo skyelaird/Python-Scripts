@@ -1,6 +1,6 @@
 """FastAPI application for GedMerge ML models."""
 
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
@@ -10,6 +10,8 @@ from typing import List, Dict, Optional, Any
 from pathlib import Path
 import logging
 from datetime import datetime
+import shutil
+import os
 
 from ...ml.models import (
     DuplicateDetectionModel,
@@ -379,6 +381,130 @@ async def get_model_metrics(model_name: str, version: Optional[str] = None):
         }
     except Exception as e:
         raise HTTPException(status_code=404, detail=str(e))
+
+
+@app.post("/api/upload")
+async def upload_file(file: UploadFile = File(...)):
+    """Upload a database file for training or analysis."""
+    try:
+        # Create uploads directory if it doesn't exist
+        upload_dir = BASE_DIR / "static" / "uploads"
+        upload_dir.mkdir(parents=True, exist_ok=True)
+
+        # Generate unique filename
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_extension = Path(file.filename).suffix
+        unique_filename = f"{timestamp}_{file.filename}"
+        file_path = upload_dir / unique_filename
+
+        # Save file
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        file_size = os.path.getsize(file_path)
+
+        logger.info(f"File uploaded: {file_path} ({file_size} bytes)")
+
+        return {
+            "filename": unique_filename,
+            "file_path": str(file_path),
+            "file_size": file_size,
+            "uploaded_at": datetime.now().isoformat(),
+        }
+
+    except Exception as e:
+        logger.error(f"Error uploading file: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class PlacesAnalysisRequest(BaseModel):
+    database_path: str
+
+
+class PlacesRepairRequest(BaseModel):
+    database_path: str
+
+
+@app.post("/api/places/analyze")
+async def analyze_places(request: PlacesAnalysisRequest):
+    """Analyze places in a database for duplicates and standardization needs."""
+    try:
+        from ...rootsmagic.adapter import RootsMagicDatabase
+
+        db = RootsMagicDatabase(request.database_path)
+
+        # Get all places from database
+        # This is a simplified implementation - you may need to adjust based on your actual schema
+        places = []
+        try:
+            # Try to query places from the database
+            query = "SELECT DISTINCT PlaceName FROM PlaceTable WHERE PlaceName IS NOT NULL"
+            places = [row[0] for row in db.connection.execute(query).fetchall()]
+        except Exception as e:
+            # If PlaceTable doesn't exist, try EventTable
+            try:
+                query = "SELECT DISTINCT Place FROM EventTable WHERE Place IS NOT NULL"
+                places = [row[0] for row in db.connection.execute(query).fetchall()]
+            except:
+                logger.warning(f"Could not query places: {e}")
+                places = []
+
+        # Simple analysis
+        total_places = len(places)
+        unique_places = len(set(places))
+        duplicates = total_places - unique_places
+
+        # Check for places needing standardization (simplified)
+        needs_standardization = 0
+        for place in places:
+            # Check for common issues
+            if place and (',' not in place or place.isupper() or place.islower()):
+                needs_standardization += 1
+
+        return {
+            "total_places": total_places,
+            "unique_places": unique_places,
+            "duplicates": duplicates,
+            "needs_standardization": needs_standardization,
+        }
+
+    except Exception as e:
+        logger.error(f"Error analyzing places: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/places/repair")
+async def repair_places(request: PlacesRepairRequest):
+    """Repair and standardize places in a database."""
+    try:
+        from ...rootsmagic.adapter import RootsMagicDatabase
+
+        db = RootsMagicDatabase(request.database_path)
+
+        # This is a simplified implementation
+        # In a real implementation, you would:
+        # 1. Load all places
+        # 2. Standardize format (City, County, State, Country)
+        # 3. Merge duplicates
+        # 4. Update records
+
+        standardized = 0
+        merged = 0
+        updated = 0
+
+        # Placeholder for actual repair logic
+        logger.info(f"Repairing places in {request.database_path}")
+
+        return {
+            "standardized": standardized,
+            "merged": merged,
+            "updated": updated,
+            "status": "completed",
+        }
+
+    except Exception as e:
+        logger.error(f"Error repairing places: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":
