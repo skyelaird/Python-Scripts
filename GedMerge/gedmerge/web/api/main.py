@@ -656,12 +656,12 @@ async def analyze_places(request: PlacesAnalysisRequest):
         try:
             # Try to query places from the database
             query = "SELECT DISTINCT Name FROM PlaceTable WHERE Name IS NOT NULL"
-            places = [row[0] for row in db.connection.execute(query).fetchall()]
+            places = [row[0] for row in db.conn.execute(query).fetchall()]
         except Exception as e:
             # If PlaceTable doesn't exist, try EventTable
             try:
                 query = "SELECT DISTINCT Place FROM EventTable WHERE Place IS NOT NULL"
-                places = [row[0] for row in db.connection.execute(query).fetchall()]
+                places = [row[0] for row in db.conn.execute(query).fetchall()]
             except:
                 logger.warning(f"Could not query places: {e}")
                 places = []
