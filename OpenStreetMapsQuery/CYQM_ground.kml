@@ -1,0 +1,646 @@
+<?xml version="1.0" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>CYQM Ground Network</name>
+    <Style id="runway">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="taxiway">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>2</width>
+      </LineStyle>
+    </Style>
+    <Style id="apron">
+      <LineStyle>
+        <color>ff808080</color>
+        <width>1</width>
+      </LineStyle>
+    </Style>
+    <Style id="parking">
+      <IconStyle>
+        <scale>0.5</scale>
+        <color>ff00ff00</color>
+      </IconStyle>
+    </Style>
+    <Style id="gate">
+      <IconStyle>
+        <scale>0.5</scale>
+        <color>ff0000ff</color>
+      </IconStyle>
+    </Style>
+    <Style id="holding">
+      <IconStyle>
+        <scale>0.4</scale>
+        <color>ffff00ff</color>
+      </IconStyle>
+    </Style>
+    <Folder>
+      <name>Runways</name>
+      <Placemark>
+        <name>11/29</name>
+        <description>length: 2438
+surface: asphalt</description>
+        <styleUrl>#runway</styleUrl>
+        <LineString>
+          <coordinates>-64.6629306,46.1077977,0 -64.6637465,46.1077729,0 -64.6674843,46.1076594,0 -64.6700394,46.1075818,0 -64.6772111,46.107364,0 -64.6776571,46.1073504,0 -64.6779587,46.1073413,0 -64.6841918,46.107152,0 -64.6855127,46.1071119,0 -64.6931596,46.1068796,0 -64.694288,46.1068453,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>06/24</name>
+        <description>length: 3048
+surface: asphalt</description>
+        <styleUrl>#runway</styleUrl>
+        <LineString>
+          <coordinates>-64.6677117,46.1261668,0 -64.667972,46.1259696,0 -64.6698156,46.1245725,0 -64.6760986,46.119811,0 -64.6776584,46.1186289,0 -64.6778301,46.1184988,0 -64.6785244,46.1179726,0 -64.6845448,46.1134097,0 -64.684662,46.1133208,0 -64.685122,46.1129721,0 -64.6855848,46.1126213,0 -64.6855974,46.1126118,0 -64.6910099,46.1085092,0 -64.6931596,46.1068796,0 -64.6942628,46.1060433,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Taxiways</name>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6873652,46.1147542,0 -64.6874127,46.1146767,0 -64.687419,46.1145972,0 -64.6873993,46.1145182,0 -64.6873386,46.114437,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.68663,46.1140041,0 -64.68665,46.1140665,0 -64.686651,46.1141689,0 -64.6866005,46.1142749,0 -64.6855989,46.1150252,0 -64.6855257,46.1151451,0 -64.6855357,46.1152708,0 -64.685634,46.1153776,0 -64.6858924,46.1155409,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6846108,46.1074045,0 -64.6845723,46.1073223,0 -64.684512,46.1072542,0 -64.6844138,46.1071988,0 -64.6841918,46.107152,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>B</name>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6775145,46.10604,0 -64.677573,46.1071041,0 -64.6776242,46.1071939,0 -64.6777083,46.1072669,0 -64.677822,46.1073165,0 -64.6779587,46.1073413,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.686,46.1156731,0 -64.6860317,46.1157023,0 -64.6860748,46.1157322,0 -64.6861269,46.1157654,0 -64.6865255,46.1160194,0 -64.6867231,46.1161453,0 -64.68705,46.1163536,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6858924,46.1155409,0 -64.6860261,46.1155763,0 -64.6861515,46.1155814,0 -64.6862528,46.1155623,0 -64.6863561,46.1155189,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>A</name>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6771935,46.1057904,0 -64.6732347,46.1059023,0 -64.6700782,46.1059968,0 -64.6695479,46.1060127,0 -64.6644172,46.1061664,0 -64.6641453,46.1062201,0 -64.6639217,46.1063067,0 -64.6636074,46.1065289,0 -64.6632555,46.1067777,0 -64.6631305,46.1069282,0 -64.6630955,46.1071166,0 -64.663113,46.1074235,0 -64.6631963,46.1075724,0 -64.6633475,46.1076834,0 -64.6635272,46.1077441,0 -64.6637465,46.1077729,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>D</name>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6846108,46.1074045,0 -64.6849253,46.1124326,0 -64.6849377,46.1125,0 -64.6849806,46.1127336,0 -64.685122,46.1129721,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6858924,46.1155409,0 -64.6859666,46.1156105,0 -64.686,46.1156731,0 -64.686007,46.1157034,0 -64.6860085,46.1157493,0 -64.6860035,46.1157943,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6873386,46.114437,0 -64.68744,46.1145098,0 -64.6875397,46.1146219,0 -64.6875704,46.1146561,0 -64.6875957,46.1146842,0 -64.6878719,46.1149913,0 -64.6881275,46.1152893,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6844197,46.1067046,0 -64.6844776,46.1067803,0 -64.6844969,46.1068836,0 -64.6844548,46.106987,0 -64.6843233,46.1070854,0 -64.6841918,46.107152,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6860035,46.1157943,0 -64.6860748,46.1157322,0 -64.6861278,46.115692,0 -64.6863561,46.1155189,0 -64.6865028,46.1154077,0 -64.6865359,46.1153827,0 -64.6868446,46.1151487,0 -64.6869535,46.1150662,0 -64.6873652,46.1147542,0 -64.6874623,46.1146806,0 -64.6875397,46.1146219,0 -64.687572,46.1145974,0 -64.6878222,46.1144078,0 -64.6880443,46.1142395,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6855127,46.1071119,0 -64.6852004,46.1070699,0 -64.6850059,46.1070244,0 -64.684784,46.1069332,0 -64.6844197,46.1067046,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6855127,46.1071119,0 -64.6847925,46.1071852,0 -64.6846873,46.1072484,0 -64.684634,46.1073174,0 -64.6846108,46.1074045,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>C</name>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6844197,46.1067046,0 -64.6829818,46.1057463,0 -64.6812834,46.105799,0 -64.6805648,46.1058213,0 -64.678228,46.1058939,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6873386,46.114437,0 -64.6874504,46.1144749,0 -64.6875897,46.1144817,0 -64.6877221,46.1144582,0 -64.6878222,46.1144078,0 -64.6879285,46.1143614,0 -64.6879891,46.1143418,0 -64.6880479,46.114331,0 -64.6881108,46.114327,0 -64.6881745,46.1143305,0 -64.688232,46.1143398,0 -64.6883481,46.1143755,0 -64.6885287,46.1144864,0 -64.688705,46.1145977,0 -64.6889427,46.1147461,0 -64.6889778,46.1147803,0 -64.6890044,46.1148179,0 -64.6890175,46.1148577,0 -64.6890176,46.1148991,0 -64.6890094,46.1149439,0 -64.6889837,46.1149903,0 -64.6889571,46.1150169,0 -64.6889172,46.1150486,0 -64.6886783,46.1151635,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.677573,46.1071041,0 -64.6775344,46.1071988,0 -64.6774601,46.1072688,0 -64.6773493,46.1073272,0 -64.6772111,46.107364,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.678228,46.1058939,0 -64.6771935,46.1057904,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6695479,46.1060127,0 -64.6696408,46.1059898,0 -64.6697056,46.1059509,0 -64.6697618,46.1058938,0 -64.6697854,46.1058336,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6697854,46.1058336,0 -64.6698214,46.1058901,0 -64.669881,46.1059473,0 -64.6699651,46.1059837,0 -64.6700782,46.1059968,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6697854,46.1058336,0 -64.6697597,46.1054897,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6775145,46.10604,0 -64.6776018,46.1059595,0 -64.6776595,46.1059284,0 -64.6777321,46.1059065,0 -64.678228,46.1058939,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6771935,46.1057904,0 -64.6773761,46.1058373,0 -64.677445,46.1058893,0 -64.6774914,46.1059575,0 -64.6775145,46.10604,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6882324,46.1149042,0 -64.6886201,46.1148205,0 -64.6886528,46.1148085,0 -64.6886772,46.1147928,0 -64.6886975,46.114774,0 -64.688721,46.1147438,0 -64.6887383,46.1147009,0 -64.6887416,46.1146656,0 -64.6887374,46.1146432,0 -64.6887241,46.1146215,0 -64.688705,46.1145977,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6860035,46.1157943,0 -64.6859858,46.1158272,0 -64.6859774,46.1158564,0 -64.6859752,46.1158714,0 -64.6859756,46.1158926,0 -64.6859805,46.1159146,0 -64.6859867,46.1159363,0 -64.6860002,46.1159608,0 -64.6860228,46.1159881,0 -64.6860442,46.1160057,0 -64.686084,46.1160335,0 -64.6863153,46.1161799,0 -64.6865969,46.1163581,0 -64.6866379,46.1163739,0 -64.6866897,46.1163806,0 -64.6870933,46.1163661,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6865466,46.1154064,0 -64.6869599,46.1156873,0 -64.6873582,46.115958,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6865466,46.1154064,0 -64.6865379,46.1153934,0 -64.6865359,46.1153827,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6865466,46.1154064,0 -64.686523,46.1154061,0 -64.6865028,46.1154077,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6874623,46.1146806,0 -64.6875022,46.1146676,0 -64.68755,46.1146678,0 -64.6875957,46.1146842,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6861269,46.1157654,0 -64.6861161,46.1157412,0 -64.6861169,46.1157146,0 -64.6861278,46.115692,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.687572,46.1145974,0 -64.6875645,46.114619,0 -64.687565,46.1146347,0 -64.6875704,46.1146561,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6869662,46.1151484,0 -64.6869468,46.1151249,0 -64.6869433,46.1150948,0 -64.6869535,46.1150662,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6877938,46.1156744,0 -64.6873482,46.1153912,0 -64.6869662,46.1151484,0 -64.6869333,46.1151363,0 -64.6868905,46.1151357,0 -64.6868446,46.1151487,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6732005,46.1052493,0 -64.6731867,46.1051987,0 -64.6731441,46.1051604,0 -64.673102,46.1051405,0 -64.6729155,46.1051401,0 -64.6728819,46.1051486,0 -64.6728505,46.1051667,0 -64.6728389,46.1051892,0 -64.6728389,46.1052431,0 -64.6728389,46.1053687,0 -64.6728534,46.1053895,0 -64.6728809,46.1054022,0 -64.673007,46.1054026,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6730047,46.1052595,0 -64.6728827,46.1052619,0 -64.6728533,46.1052556,0 -64.6728389,46.1052431,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6738647,46.1053216,0 -64.6732938,46.1053365,0 -64.6732559,46.1053511,0 -64.6732286,46.1053725,0 -64.6732085,46.1054021,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6738698,46.1054591,0 -64.6733056,46.1054725,0 -64.6732679,46.105485,0 -64.6732379,46.1055067,0 -64.6732155,46.1055364,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6636074,46.1065289,0 -64.662385,46.1059688,0 -64.662343,46.105938,0 -64.6623177,46.1059065,0 -64.6622688,46.1057685,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6738572,46.1051846,0 -64.673275,46.1052006,0 -64.6732445,46.1052122,0 -64.6732184,46.105228,0 -64.6732005,46.1052493,0 -64.6732085,46.1054021,0 -64.6732155,46.1055364,0 -64.6732347,46.1059023,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>F</name>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6841047,46.1161667,0 -64.6839908,46.1162533,0 -64.6832217,46.1168381,0 -64.682444,46.1174233,0 -64.6803241,46.1190185,0 -64.6802205,46.1190902,0 -64.6801159,46.1191404,0 -64.6799979,46.1191832,0 -64.6798709,46.1192081,0 -64.6797404,46.119213,0 -64.6796143,46.1191944,0 -64.6795043,46.119159,0 -64.6793988,46.1191059,0 -64.6785696,46.1185822,0 -64.6785066,46.1185306,0 -64.6784636,46.1184767,0 -64.6784315,46.1184228,0 -64.6784019,46.1183466,0 -64.6783912,46.118274,0 -64.6784019,46.1181997,0 -64.6784207,46.1181476,0 -64.6784502,46.1180937,0 -64.6785244,46.1179726,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6771935,46.1057904,0 -64.6770528,46.1057121,0 -64.6769775,46.10561,0 -64.6769635,46.1055204,0 -64.6770025,46.1054427,0 -64.6771115,46.105381,0 -64.677258,46.1053594,0 -64.6777926,46.105343,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6812834,46.105799,0 -64.6810601,46.1057149,0 -64.6809993,46.1056718,0 -64.6809626,46.1056297,0 -64.6809486,46.1055993,0 -64.6809527,46.1055218,0 -64.6809968,46.1054698,0 -64.6812451,46.1053152,0 -64.6813034,46.1053003,0 -64.6813756,46.1053029,0 -64.681449,46.1053214,0 -64.6815065,46.1053509,0 -64.6815618,46.1053793,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6809486,46.1055993,0 -64.6808641,46.1056769,0 -64.6807324,46.1057551,0 -64.6805648,46.1058213,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6849928,46.1165914,0 -64.685084,46.116617,0 -64.6851087,46.1166161,0 -64.6851705,46.1166137,0 -64.6852537,46.1165817,0 -64.6858983,46.1160997,0 -64.6859088,46.1160918,0 -64.6859255,46.1160722,0 -64.6859356,46.1160545,0 -64.6859423,46.116034,0 -64.6859544,46.1159644,0 -64.6859752,46.1158714,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.684793,46.1164645,0 -64.6849928,46.1165914,0 -64.6850738,46.1166428,0 -64.6852309,46.1167425,0 -64.6853106,46.1167634,0 -64.6854112,46.1167541,0 -64.685485,46.1167192,0 -64.6857138,46.1165442,0 -64.6858617,46.1164311,0 -64.6860965,46.1162516,0 -64.6861448,46.1161759,0 -64.6861374,46.1160899,0 -64.686084,46.1160335,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6844544,46.1162484,0 -64.6842988,46.1161977,0 -64.6841358,46.1162019,0 -64.6839908,46.1162533,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6857827,46.1158802,0 -64.6850344,46.1164487,0 -64.6849566,46.1164813,0 -64.6848694,46.1164864,0 -64.684793,46.1164645,0 -64.6844544,46.1162484,0 -64.6843705,46.1161475,0 -64.6843598,46.1160364,0 -64.6844273,46.1159215,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6855989,46.1150252,0 -64.6851236,46.1153922,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.685634,46.1153776,0 -64.6854709,46.1153252,0 -64.6852805,46.1153308,0 -64.6851236,46.1153922,0 -64.6844273,46.1159215,0 -64.6841047,46.1161667,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>E</name>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.685122,46.1129721,0 -64.6853084,46.113148,0 -64.6856138,46.1133431,0 -64.6856324,46.1133552,0 -64.68663,46.1140041,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.68663,46.1140041,0 -64.6873386,46.114437,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6785696,46.1185822,0 -64.6784931,46.1185474,0 -64.6784234,46.1185232,0 -64.6783483,46.1185046,0 -64.6782652,46.1184897,0 -64.6781954,46.1184823,0 -64.6781015,46.118486,0 -64.6780264,46.1184953,0 -64.6779326,46.1185148,0 -64.6778467,46.1185418,0 -64.6776584,46.1186289,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6868049,46.1161095,0 -64.6867503,46.1161359,0 -64.6867231,46.1161453,0 -64.6866967,46.1161545,0 -64.6866082,46.1161805,0 -64.6865197,46.1162019,0 -64.6864834,46.1162065,0 -64.6864486,46.1162079,0 -64.6864191,46.1162056,0 -64.6863862,46.1162005,0 -64.6863668,46.1161954,0 -64.6863153,46.1161799,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6639217,46.1063067,0 -64.6638197,46.1060069,0 -64.6638168,46.1058352,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6638168,46.1058352,0 -64.6639672,46.105769,0 -64.6641164,46.1057025,0 -64.6640961,46.1053643,0 -64.663905,46.1052741,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6856324,46.1133552,0 -64.6854671,46.1132884,0 -64.6852756,46.1132463,0 -64.6850935,46.1132398,0 -64.684909,46.1132625,0 -64.6847456,46.1133127,0 -64.6845448,46.1134097,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6856324,46.1133552,0 -64.6855091,46.1132479,0 -64.6854508,46.1131443,0 -64.6854204,46.113044,0 -64.6854134,46.1129355,0 -64.6854368,46.112853,0 -64.6854858,46.1127623,0 -64.6855974,46.1126118,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6855974,46.1126118,0 -64.6855021,46.1126474,0 -64.685383,46.1126781,0 -64.6852826,46.1126814,0 -64.6851869,46.1126652,0 -64.6850958,46.1126344,0 -64.6850188,46.112594,0 -64.6849377,46.1125,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6845448,46.1134097,0 -64.6846849,46.1132706,0 -64.684804,46.1131411,0 -64.6848717,46.1130505,0 -64.6849137,46.1129566,0 -64.6849371,46.1128675,0 -64.6849417,46.1127575,0 -64.6849377,46.1125,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.667972,46.1259696,0 -64.6679326,46.1261132,0 -64.6679675,46.1262508,0 -64.6680667,46.1263382,0 -64.6682169,46.1264107,0 -64.6682848,46.1264173,0 -64.6683886,46.1264274,0 -64.6685549,46.1263847,0 -64.6686917,46.1262936,0 -64.6690725,46.1259813,0 -64.6691503,46.1258827,0 -64.6692308,46.1255574,0 -64.6693139,46.1253659,0 -64.6694239,46.125128,0 -64.669558,46.1248956,0 -64.6698156,46.1245725,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>A</name>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.682444,46.1174233,0 -64.6826571,46.1173546,0 -64.6828612,46.1173289,0 -64.6830652,46.1173623,0 -64.6832618,46.1174343,0 -64.6833241,46.1174741,0 -64.6836905,46.1177078,0 -64.6841001,46.1179691,0 -64.6842188,46.1180051,0 -64.6843542,46.1180148,0 -64.6844933,46.1179871,0 -64.6845897,46.1179486,0 -64.6846102,46.1179328,0 -64.6847311,46.1178397,0 -64.6855245,46.1172286,0 -64.6855433,46.1172152,0 -64.6856075,46.1171694,0 -64.6856366,46.1171487,0 -64.6856946,46.1170972,0 -64.6857178,46.1170586,0 -64.6857457,46.1169621,0 -64.6857735,46.1168398,0 -64.6858617,46.1164311,0 -64.6859406,46.1160967,0 -64.6859544,46.1159644,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>B</name>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6836905,46.1177078,0 -64.6837918,46.1177423,0 -64.6839055,46.1177664,0 -64.6840401,46.117776,0 -64.6841677,46.1177616,0 -64.6842721,46.1177374,0 -64.684292,46.1177301,0 -64.6843464,46.1177101,0 -64.6844137,46.1176731,0 -64.6847607,46.1174,0 -64.6849471,46.1172666,0 -64.6852546,46.1170322,0 -64.6855345,46.1168189,0 -64.6855856,46.1167739,0 -64.6856366,46.1167176,0 -64.6856575,46.1166886,0 -64.6856784,46.1166339,0 -64.6856993,46.1165793,0 -64.6857138,46.1165442,0 -64.6858983,46.1160997,0 -64.6859544,46.1159644,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6832217,46.1168381,0 -64.6831406,46.1169493,0 -64.6830867,46.1170738,0 -64.6830845,46.1172185,0 -64.6831428,46.1173244,0 -64.6832618,46.1174343,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>C</name>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-64.6833241,46.1174741,0 -64.68352,46.1175282,0 -64.6836997,46.1175345,0 -64.6838365,46.1175095,0 -64.6839073,46.117485,0 -64.6839757,46.1174613,0 -64.6840722,46.117399,0 -64.6848762,46.1167924,0 -64.6850353,46.1166723,0 -64.6850738,46.1166428,0 -64.6851087,46.1166161,0 -64.6858368,46.1160576,0 -64.6858794,46.1160203,0 -64.6859752,46.1158714,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Aprons</name>
+      <Placemark>
+        <name>8</name>
+        <description>surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-64.6899054,46.11441,0 -64.6892098,46.1139697,0 -64.6886609,46.1136222,0 -64.6879168,46.1141871,0 -64.6872913,46.1142048,0 -64.6867887,46.113895,0 -64.6839633,46.1160263,0 -64.6823449,46.1172661,0 -64.6827785,46.1175112,0 -64.6833772,46.1176911,0 -64.6848078,46.1186101,0 -64.6861811,46.1175353,0 -64.6861284,46.1174385,0 -64.6862414,46.1173574,0 -64.6858398,46.1170779,0 -64.6859182,46.1167287,0 -64.6861643,46.1165268,0 -64.6864177,46.1163283,0 -64.6869419,46.1166596,0 -64.687571,46.1167524,0 -64.6876309,46.1167097,0 -64.6876144,46.1166993,0 -64.6876469,46.1166745,0 -64.6874033,46.1165204,0 -64.6878507,46.1161806,0 -64.6878238,46.1161636,0 -64.6877903,46.1161424,0 -64.687857,46.1160918,0 -64.6882401,46.1158007,0 -64.6883115,46.1157465,0 -64.6883391,46.115764,0 -64.6884417,46.1158289,0 -64.6885375,46.1157561,0 -64.6884677,46.1157119,0 -64.6886839,46.1155476,0 -64.6887195,46.1155701,0 -64.6888163,46.1154966,0 -64.6888814,46.1155378,0 -64.6889661,46.1154734,0 -64.6887867,46.1152609,0 -64.6899054,46.11441,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>5</name>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-64.6711647,46.1058619,0 -64.6683702,46.105953,0 -64.6683278,46.1049553,0 -64.6711009,46.1048698,0 -64.6711647,46.1058619,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-64.681758,46.1049883,0 -64.6818808,46.1049852,0 -64.6819574,46.1049073,0 -64.6823532,46.104897,0 -64.6824212,46.1049557,0 -64.6824375,46.1052519,0 -64.6825268,46.1053176,0 -64.6825591,46.1058496,0 -64.6779509,46.105993,0 -64.6771435,46.1060181,0 -64.6769665,46.1059032,0 -64.6731692,46.1060194,0 -64.6731341,46.1054343,0 -64.6721641,46.1054261,0 -64.6721565,46.1044724,0 -64.6724259,46.1044748,0 -64.6724358,46.1050991,0 -64.6725706,46.1050981,0 -64.6725607,46.1044737,0 -64.6727556,46.104472,0 -64.6727649,46.1046979,0 -64.6731372,46.1046878,0 -64.6731392,46.1047238,0 -64.6731559,46.1050787,0 -64.6736564,46.1050674,0 -64.6736551,46.1050407,0 -64.6736836,46.1050352,0 -64.6736853,46.1050491,0 -64.6738345,46.1050453,0 -64.6737996,46.1044475,0 -64.6739232,46.1044376,0 -64.6739192,46.1043497,0 -64.673794,46.1043529,0 -64.6737748,46.104023,0 -64.6747898,46.1040804,0 -64.674797,46.1042339,0 -64.6749634,46.1042371,0 -64.6756843,46.1042516,0 -64.6757208,46.104861,0 -64.6756269,46.1048641,0 -64.6756365,46.1050063,0 -64.6764542,46.1049799,0 -64.6764509,46.1049315,0 -64.6764339,46.1049321,0 -64.6764172,46.1046835,0 -64.6764871,46.1046812,0 -64.6765974,46.1046776,0 -64.6766635,46.1046911,0 -64.6769165,46.1046844,0 -64.6769286,46.1048786,0 -64.6772039,46.1048704,0 -64.6771923,46.1046828,0 -64.677475,46.1046744,0 -64.6774865,46.1048594,0 -64.6779265,46.1048463,0 -64.6779232,46.1047924,0 -64.6779885,46.1047905,0 -64.6779813,46.1046742,0 -64.6782022,46.1046684,0 -64.6782072,46.1047613,0 -64.6783679,46.1047571,0 -64.6783557,46.1045291,0 -64.6784376,46.1045266,0 -64.6784745,46.1051108,0 -64.6790167,46.1050943,0 -64.6790104,46.1049949,0 -64.6792491,46.1049876,0 -64.6792547,46.1050766,0 -64.6799604,46.1050551,0 -64.6799621,46.1050826,0 -64.6800078,46.1050812,0 -64.680006,46.1050526,0 -64.6800444,46.1050514,0 -64.6800424,46.1050192,0 -64.680319,46.1050119,0 -64.6803259,46.1050998,0 -64.6814119,46.1050691,0 -64.6815532,46.1050647,0 -64.6815517,46.1050425,0 -64.6816478,46.1050395,0 -64.6816462,46.1050136,0 -64.6816738,46.1050127,0 -64.681676,46.1050443,0 -64.6816775,46.1050671,0 -64.6818727,46.1051385,0 -64.6819027,46.1050992,0 -64.6817075,46.1050277,0 -64.6817066,46.1050117,0 -64.6817378,46.1050108,0 -64.6817364,46.104989,0 -64.681758,46.1049883,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-64.6625985,46.1057193,0 -64.6629918,46.1056561,0 -64.6630959,46.1059636,0 -64.6629269,46.1059887,0 -64.6628835,46.1060716,0 -64.6629315,46.106093,0 -64.6627578,46.1062796,0 -64.662207,46.1060332,0 -64.6619187,46.1058286,0 -64.6619574,46.1058224,0 -64.6619134,46.1056893,0 -64.661793,46.1053194,0 -64.6623335,46.1052444,0 -64.662353,46.1051979,0 -64.6624213,46.1051886,0 -64.6624324,46.1052217,0 -64.6624416,46.1052202,0 -64.6624636,46.1052863,0 -64.6624545,46.1052878,0 -64.6625985,46.1057193,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-64.663418,46.105437,0 -64.6633937,46.1050307,0 -64.6641822,46.1049916,0 -64.6641983,46.1057913,0 -64.6634473,46.1058173,0 -64.663418,46.105437,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Parking &amp; Gates</name>
+      <Placemark>
+        <name>6B</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.6886783,46.1151635,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.6881275,46.1152893,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.6877938,46.1156744,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.68705,46.1163536,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1B</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.6870933,46.1163661,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-64.6878958,46.116118,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-64.6879613,46.1160685,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-64.688204,46.1158822,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-64.688271,46.1158286,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6A</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.6882324,46.1149042,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1A</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.6868049,46.1161095,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-64.6873582,46.115958,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

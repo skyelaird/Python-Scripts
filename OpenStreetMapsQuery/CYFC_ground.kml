@@ -1,0 +1,352 @@
+<?xml version="1.0" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>CYFC Ground Network</name>
+    <Style id="runway">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="taxiway">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>2</width>
+      </LineStyle>
+    </Style>
+    <Style id="apron">
+      <LineStyle>
+        <color>ff808080</color>
+        <width>1</width>
+      </LineStyle>
+    </Style>
+    <Style id="parking">
+      <IconStyle>
+        <scale>0.5</scale>
+        <color>ff00ff00</color>
+      </IconStyle>
+    </Style>
+    <Style id="gate">
+      <IconStyle>
+        <scale>0.5</scale>
+        <color>ff0000ff</color>
+      </IconStyle>
+    </Style>
+    <Style id="holding">
+      <IconStyle>
+        <scale>0.4</scale>
+        <color>ffff00ff</color>
+      </IconStyle>
+    </Style>
+    <Folder>
+      <name>Runways</name>
+      <Placemark>
+        <name>15/33</name>
+        <description>length: 1829
+surface: asphalt</description>
+        <styleUrl>#runway</styleUrl>
+        <LineString>
+          <coordinates>-66.5400268,45.874727,0 -66.53973,45.874551,0 -66.5372835,45.8730999,0 -66.5362274,45.8724734,0 -66.5335316,45.8708744,0 -66.5313615,45.8695706,0 -66.5304145,45.8690253,0 -66.5300489,45.8688069,0 -66.5299149,45.8687269,0 -66.5294198,45.8684311,0 -66.52849,45.8678757,0 -66.5184348,45.8620036,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>09/27</name>
+        <description>length: 2440
+surface: asphalt
+width: 61</description>
+        <styleUrl>#runway</styleUrl>
+        <LineString>
+          <coordinates>-66.5228848,45.8705308,0 -66.5280833,45.869193,0 -66.5292148,45.8689059,0 -66.5297104,45.8687792,0 -66.5299149,45.8687269,0 -66.5304177,45.8685983,0 -66.5317497,45.8682576,0 -66.5487,45.8639335,0 -66.5521764,45.8630463,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Taxiways</name>
+      <Placemark>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.538549,45.8759341,0 -66.5385306,45.8759602,0 -66.5385258,45.8759856,0 -66.5385315,45.8760097,0 -66.5385449,45.8760325,0 -66.5385737,45.8760552,0 -66.5386772,45.8760993,0 -66.5389533,45.8762138,0 -66.5399913,45.8766638,0 -66.5400458,45.8766947,0 -66.5400741,45.8767322,0 -66.5400866,45.8767683,0 -66.5400873,45.8768004,0 -66.5400722,45.8768362,0 -66.5399959,45.8769438,0 -66.5399648,45.8769768,0 -66.5399311,45.877008,0 -66.5396719,45.8772292,0 -66.5394238,45.8774426,0 -66.5393497,45.8776173,0 -66.5391819,45.8777621,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>D</name>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.532139,45.8720241,0 -66.5339865,45.8731211,0 -66.5348304,45.8736221,0 -66.5375191,45.8752087,0 -66.5384946,45.8757867,0 -66.5385319,45.8758002,0 -66.5385698,45.8758089,0 -66.5386051,45.8758116,0 -66.5386404,45.8758108,0 -66.5386703,45.875805,0 -66.5386969,45.8757957,0 -66.5387211,45.8757853,0 -66.5387419,45.8757725,0 -66.5393931,45.8752348,0 -66.5397779,45.874922,0 -66.5398013,45.8748959,0 -66.5398325,45.8748466,0 -66.5398513,45.8747992,0 -66.5398561,45.8747562,0 -66.5398499,45.8747065,0 -66.5398304,45.8746601,0 -66.5397964,45.8746132,0 -66.53973,45.874551,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.529796,45.8691966,0 -66.5297656,45.8691054,0 -66.5297101,45.8690262,0 -66.5295858,45.868953,0 -66.5294379,45.8689052,0 -66.5292148,45.8689059,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.5396719,45.8772292,0 -66.5404757,45.8776814,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>C</name>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.5339931,45.8743105,0 -66.5340208,45.8742878,0 -66.5344561,45.8739298,0 -66.5348304,45.8736221,0 -66.5352693,45.8732612,0 -66.5362274,45.8724734,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>A</name>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.5296381,45.8710201,0 -66.5296071,45.870942,0 -66.5295738,45.870851,0 -66.5295658,45.8707336,0 -66.5296619,45.8700379,0 -66.529796,45.8691966,0 -66.5298504,45.8691016,0 -66.5299585,45.8690253,0 -66.5301049,45.8689847,0 -66.5302635,45.8689858,0 -66.5304145,45.8690253,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>B</name>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.532139,45.8720241,0 -66.5325668,45.8716675,0 -66.5335316,45.8708744,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.538549,45.8759341,0 -66.5387419,45.8757725,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.5339865,45.8731211,0 -66.5336112,45.8734309,0 -66.5331792,45.8737874,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.5521764,45.8630463,0 -66.5526387,45.8639234,0 -66.5526735,45.8640037,0 -66.552687,45.8640896,0 -66.5526762,45.8641624,0 -66.5526414,45.8642353,0 -66.5525904,45.8643025,0 -66.5525207,45.8643679,0 -66.5524402,45.8644165,0 -66.5523463,45.8644538,0 -66.5513807,45.8647004,0 -66.5512949,45.8647097,0 -66.5512064,45.8647097,0 -66.5511152,45.8647022,0 -66.5510374,45.8646854,0 -66.5509543,45.8646611,0 -66.5487,45.8639335,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.529796,45.8691966,0 -66.5297971,45.8690613,0 -66.5297702,45.8688895,0 -66.5297104,45.8687792,0 -66.5296871,45.8687363,0 -66.5296066,45.8686224,0 -66.5295208,45.8685253,0 -66.5294198,45.8684311,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.529796,45.8691966,0 -66.529848,45.8690426,0 -66.5299499,45.8688988,0 -66.5300063,45.8688465,0 -66.5300489,45.8688069,0 -66.5300948,45.8687643,0 -66.5302289,45.8686878,0 -66.5304177,45.8685983,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.5375191,45.8752087,0 -66.5374395,45.8754873,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.532139,45.8720241,0 -66.5319218,45.8721883,0 -66.5318101,45.8722351,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-66.538549,45.8759341,0 -66.5385692,45.8759104,0 -66.5385776,45.8758884,0 -66.5385771,45.8758632,0 -66.5385686,45.8758427,0 -66.5385516,45.8758227,0 -66.5385245,45.8758034,0 -66.5384946,45.8757867,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Aprons</name>
+      <Placemark>
+        <name>Apron 1</name>
+        <description>area: yes</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-66.528029,45.8713917,0 -66.5283921,45.8716003,0 -66.5307382,45.8729477,0 -66.5305328,45.8731056,0 -66.5307018,45.8732078,0 -66.5309532,45.8733593,0 -66.5309952,45.8733251,0 -66.5313334,45.8731412,0 -66.5316564,45.8728819,0 -66.5320333,45.8725677,0 -66.5320242,45.872424,0 -66.5320189,45.8723204,0 -66.5298019,45.8709965,0 -66.5295272,45.8709914,0 -66.5285312,45.8709729,0 -66.528029,45.8713917,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-66.5341208,45.8751506,0 -66.5346625,45.8747049,0 -66.5339931,45.8743105,0 -66.5337144,45.8741463,0 -66.5331726,45.8745921,0 -66.5332641,45.874646,0 -66.5341208,45.8751506,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-66.5377235,45.8772928,0 -66.5378474,45.8771899,0 -66.5381975,45.876899,0 -66.5383972,45.8767411,0 -66.5387489,45.8762061,0 -66.5386415,45.875952,0 -66.5383315,45.8757968,0 -66.5379374,45.876479,0 -66.5373952,45.876447,0 -66.5369691,45.8764279,0 -66.5367769,45.8765483,0 -66.5370905,45.8767356,0 -66.5367748,45.8769916,0 -66.5372311,45.8772387,0 -66.5374033,45.8771001,0 -66.5377235,45.8772928,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-66.5373952,45.876447,0 -66.5374358,45.8762733,0 -66.5375752,45.8762799,0 -66.5377019,45.875647,0 -66.5375625,45.8756381,0 -66.5376037,45.875422,0 -66.5373217,45.8752456,0 -66.5372869,45.8754308,0 -66.537157,45.8754154,0 -66.5369691,45.8764279,0 -66.5373952,45.876447,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-66.5336677,45.8741107,0 -66.5328511,45.8736241,0 -66.5325352,45.873881,0 -66.5322932,45.874078,0 -66.5323377,45.8741045,0 -66.5323766,45.8741277,0 -66.532704,45.8743227,0 -66.5328316,45.8743987,0 -66.5330924,45.8745541,0 -66.5331099,45.8745646,0 -66.5336677,45.8741107,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-66.5390764,45.8777023,0 -66.5389695,45.8776389,0 -66.5389306,45.8776158,0 -66.5391081,45.8774681,0 -66.5392229,45.8775349,0 -66.5393631,45.8774181,0 -66.5394766,45.8774841,0 -66.5395644,45.8777423,0 -66.539393,45.877885,0 -66.5392902,45.8778234,0 -66.5391819,45.8777621,0 -66.5390764,45.8777023,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Parking &amp; Gates</name>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5325668,45.8716675,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5296619,45.8700379,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5280833,45.869193,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: backward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.52849,45.8678757,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5313615,45.8695706,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: backward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5317497,45.8682576,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5352693,45.8732612,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5393931,45.8752348,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: backward
+holding_position:type: intermediate</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5389533,45.8762138,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: intermediate</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5384194,45.876059,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>holding_position:type: intermediate</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-66.5374395,45.8754873,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-66.5306072,45.8729281,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-66.5302591,45.8727296,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-66.5299856,45.8725737,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4-6</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-66.5297033,45.8724127,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

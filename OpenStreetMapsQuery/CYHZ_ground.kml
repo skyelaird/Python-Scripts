@@ -1,0 +1,1012 @@
+<?xml version="1.0" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>CYHZ Ground Network</name>
+    <Style id="runway">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="taxiway">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>2</width>
+      </LineStyle>
+    </Style>
+    <Style id="apron">
+      <LineStyle>
+        <color>ff808080</color>
+        <width>1</width>
+      </LineStyle>
+    </Style>
+    <Style id="parking">
+      <IconStyle>
+        <scale>0.5</scale>
+        <color>ff00ff00</color>
+      </IconStyle>
+    </Style>
+    <Style id="gate">
+      <IconStyle>
+        <scale>0.5</scale>
+        <color>ff0000ff</color>
+      </IconStyle>
+    </Style>
+    <Style id="holding">
+      <IconStyle>
+        <scale>0.4</scale>
+        <color>ffff00ff</color>
+      </IconStyle>
+    </Style>
+    <Folder>
+      <name>Runways</name>
+      <Placemark>
+        <name>14/32</name>
+        <description>source: Bing
+surface: paved
+width: 63</description>
+        <styleUrl>#runway</styleUrl>
+        <LineString>
+          <coordinates>-63.5174552,44.8937274,0 -63.5165355,44.8932679,0 -63.5119552,44.8909794,0 -63.5076592,44.8888366,0 -63.5064053,44.8882204,0 -63.5054383,44.8877356,0 -63.5045037,44.8872685,0 -63.5020244,44.8860216,0 -63.4980862,44.8840465,0 -63.4933819,44.8817093,0 -63.4931083,44.881565,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>05/23</name>
+        <description>source: Bing
+surface: paved
+width: 63</description>
+        <styleUrl>#runway</styleUrl>
+        <LineString>
+          <coordinates>-63.527261,44.8656517,0 -63.5269059,44.8660119,0 -63.5246324,44.8682873,0 -63.524261,44.8686587,0 -63.5234903,44.8694479,0 -63.5182491,44.8747629,0 -63.5099758,44.8831427,0 -63.5070088,44.8861625,0 -63.5061184,44.8870519,0 -63.5054383,44.8877356,0 -63.5047912,44.8884058,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>05/23</name>
+        <description>runway: displaced_threshold
+source: Bing
+surface: paved
+width: 63</description>
+        <styleUrl>#runway</styleUrl>
+        <LineString>
+          <coordinates>-63.5047912,44.8884058,0 -63.5042822,44.8889319,0 -63.5039998,44.8892237,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Taxiways</name>
+      <Placemark>
+        <name>K</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5099758,44.8831427,0 -63.509694,44.883129,0 -63.509453,44.8831487,0 -63.507911,44.8832692,0 -63.5072056,44.8833196,0 -63.5020798,44.8837093,0 -63.5018292,44.8837053,0 -63.5016206,44.8836655,0 -63.5014445,44.8836026,0 -63.4994737,44.8826181,0 -63.496053,44.8809062,0 -63.4957349,44.8808204,0 -63.4953726,44.8808163,0 -63.4944063,44.8809398,0 -63.4942855,44.8809536,0 -63.4940917,44.8810217,0 -63.4939392,44.8811263,0 -63.4936711,44.881393,0 -63.4933819,44.8817093,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>M</name>
+        <description>surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.4994737,44.8826181,0 -63.4987343,44.8833739,0 -63.4980862,44.8840465,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>G</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5125945,44.8868367,0 -63.5107922,44.8870632,0 -63.5095466,44.8872244,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>E</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5095466,44.8872244,0 -63.5093103,44.8872305,0 -63.5091392,44.8871944,0 -63.50894,44.8871256,0 -63.5079744,44.8866441,0 -63.5070088,44.8861625,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>H</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.513208,44.8897106,0 -63.5129984,44.8899205,0 -63.512617,44.8903024,0 -63.5119552,44.8909794,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5125945,44.8868367,0 -63.5128679,44.887945,0 -63.5129734,44.8883742,0 -63.513114,44.8889457,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>A</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5122411,44.8840868,0 -63.5128527,44.8835705,0 -63.5140702,44.8823371,0 -63.5152646,44.8811271,0 -63.5157874,44.8805975,0 -63.5170194,44.8793493,0 -63.5182831,44.878069,0 -63.520185,44.8761421,0 -63.5211555,44.8751588,0 -63.5213793,44.8749321,0 -63.5220215,44.8742848,0 -63.5231166,44.8731743,0 -63.5252393,44.8710284,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.513114,44.8889457,0 -63.5132473,44.8895086,0 -63.5132627,44.8895783,0 -63.5132509,44.8896387,0 -63.513208,44.8897106,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5120065,44.8844035,0 -63.5122288,44.8853234,0 -63.5125945,44.8868367,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5190343,44.8909261,0 -63.519282,44.8910535,0 -63.5192835,44.8910903,0 -63.5189888,44.8913822,0 -63.5187754,44.8915936,0 -63.5184202,44.8916335,0 -63.5171034,44.8909625,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.513114,44.8889457,0 -63.5131774,44.889056,0 -63.5132627,44.8891181,0 -63.5140308,44.8895002,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5122411,44.8840868,0 -63.5121724,44.884114,0 -63.5121024,44.8841182,0 -63.5120313,44.8841022,0 -63.5118017,44.8839899,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5120065,44.8844035,0 -63.5119235,44.8841123,0 -63.5118772,44.8840468,0 -63.5118017,44.8839899,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>L</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5076592,44.8888366,0 -63.5069904,44.8895217,0 -63.5066015,44.8899258,0 -63.5064567,44.8900246,0 -63.5063133,44.8900712,0 -63.5061396,44.8900868,0 -63.5059723,44.8900662,0 -63.5058658,44.8900302,0 -63.5057218,44.88996,0 -63.5045309,44.8893728,0 -63.504315,44.8892058,0 -63.5042527,44.8891145,0 -63.5042406,44.8890127,0 -63.5042822,44.8889319,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>B</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5252393,44.8710284,0 -63.5254055,44.8708056,0 -63.5254573,44.8706665,0 -63.5254763,44.8704939,0 -63.5253899,44.8701282,0 -63.5252842,44.8696805,0 -63.5251776,44.8694407,0 -63.5250934,44.8693562,0 -63.5250407,44.8693078,0 -63.5249251,44.8692345,0 -63.5247905,44.8691652,0 -63.5245098,44.8691427,0 -63.5242233,44.869157,0 -63.5239137,44.8692309,0 -63.5237198,44.8693211,0 -63.5234903,44.8694479,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5171034,44.8909625,0 -63.5167482,44.8908499,0 -63.5157168,44.8905586,0 -63.5152472,44.8903234,0 -63.5150859,44.8902426,0 -63.5150235,44.8901942,0 -63.5149822,44.8901302,0 -63.5149602,44.8900542,0 -63.5149382,44.8899885,0 -63.5148911,44.8899315,0 -63.5140308,44.8895002,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5179294,44.8905825,0 -63.5176682,44.8904627,0 -63.5176133,44.8904746,0 -63.517203,44.8909046,0 -63.5171512,44.8909456,0 -63.5171034,44.8909625,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>A</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5252393,44.8710284,0 -63.5259955,44.8702644,0 -63.5263552,44.869901,0 -63.5274688,44.8687818,0 -63.5277397,44.8685522,0 -63.5292557,44.8676142,0 -63.5294366,44.8675094,0 -63.5295024,44.8674699,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5140308,44.8895002,0 -63.5138352,44.8894431,0 -63.513642,44.8894439,0 -63.5134606,44.889496,0 -63.5133374,44.8895724,0 -63.513208,44.8897106,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5120065,44.8844035,0 -63.5120159,44.8843449,0 -63.5120444,44.8842895,0 -63.5122411,44.8840868,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>C</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5213793,44.8749321,0 -63.5206837,44.8745952,0 -63.5202851,44.8744557,0 -63.5198141,44.8744314,0 -63.5192968,44.8744831,0 -63.5188325,44.8745543,0 -63.5182491,44.8747629,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5178902,44.8797885,0 -63.5175177,44.8796006,0 -63.5170194,44.8793493,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5152646,44.8811271,0 -63.5157331,44.8813544,0 -63.515948,44.8814587,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5164455,44.8809248,0 -63.5162599,44.8808325,0 -63.5157874,44.8805975,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5211555,44.8751588,0 -63.5216405,44.8754118,0 -63.5218883,44.8755331,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5231166,44.8731743,0 -63.5236199,44.8734274,0 -63.5244123,44.8737867,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5220215,44.8742848,0 -63.5225202,44.8745336,0 -63.5229681,44.8747582,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.520185,44.8761421,0 -63.520691,44.8763849,0 -63.5208629,44.8764534,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>J</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5294874,44.8668962,0 -63.530051,44.8671213,0 -63.5301916,44.8671785,0 -63.5303736,44.8672718,0 -63.5304427,44.8673125,0 -63.5306032,44.8674003,0 -63.5307502,44.8674858,0 -63.5308443,44.8675405,0 -63.5309762,44.8676172,0 -63.5310529,44.8676618,0 -63.5310821,44.8676788,0 -63.5312538,44.8677815,0 -63.5313129,44.8678169,0 -63.5329679,44.8688074,0 -63.5331323,44.8689102,0 -63.5332469,44.8689941,0 -63.5333005,44.8690508,0 -63.5333325,44.869124,0 -63.5333497,44.8692124,0 -63.5333314,44.8693084,0 -63.5332404,44.8694357,0 -63.5328727,44.86992,0 -63.5323755,44.8705991,0 -63.5321426,44.8709053,0 -63.5320522,44.8709793,0 -63.5319701,44.8710196,0 -63.5318966,44.8710507,0 -63.5318131,44.8711036,0 -63.5317555,44.8711535,0 -63.5307032,44.8725545,0 -63.5305622,44.8727481,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5182831,44.878069,0 -63.5187731,44.8783227,0 -63.518868,44.8783718,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5313129,44.8678169,0 -63.5312696,44.8677615,0 -63.5312448,44.8677076,0 -63.531237,44.86765,0 -63.5312485,44.8675765,0 -63.5312878,44.8675139,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5321426,44.8709053,0 -63.532104,44.8709754,0 -63.5321041,44.8710699,0 -63.5321316,44.8712018,0 -63.53212,44.8713734,0 -63.5320278,44.8715164,0 -63.5319183,44.8716634,0 -63.5318837,44.8717043,0 -63.5318607,44.8717737,0 -63.531901,44.8718431,0 -63.5319587,44.8719003,0 -63.5323852,44.8720596,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5307032,44.8725545,0 -63.5305095,44.8724839,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>B</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5259955,44.8702644,0 -63.5258723,44.8703057,0 -63.525767,44.8703188,0 -63.5256508,44.8703087,0 -63.5255385,44.8702639,0 -63.5253899,44.8701282,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>B</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5247905,44.8691652,0 -63.5245164,44.8690489,0 -63.5243878,44.8689392,0 -63.5243423,44.8687451,0 -63.524378,44.8686131,0 -63.5246324,44.8682873,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5307603,44.8676593,0 -63.5306836,44.8677236,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5310278,44.8678095,0 -63.5309559,44.8678714,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5312538,44.8677815,0 -63.5312039,44.8677753,0 -63.5311557,44.8677762,0 -63.53111,44.8677827,0 -63.5310709,44.867791,0 -63.5310278,44.8678095,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5310529,44.8676618,0 -63.531067,44.8676985,0 -63.5310696,44.8677355,0 -63.5310637,44.8677637,0 -63.5310527,44.8677827,0 -63.5310278,44.8678095,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5309762,44.8676172,0 -63.5309261,44.8676116,0 -63.5308739,44.8676172,0 -63.530823,44.8676292,0 -63.5307891,44.8676421,0 -63.5307603,44.8676593,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5307502,44.8674858,0 -63.5307709,44.8675118,0 -63.5307839,44.8675432,0 -63.5307865,44.8675765,0 -63.5307826,44.8676116,0 -63.5307735,44.8676366,0 -63.5307603,44.8676593,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5308443,44.8675405,0 -63.5309136,44.8675638,0 -63.5309733,44.8675748,0 -63.5310263,44.8675779,0 -63.5310992,44.8675771,0 -63.5311643,44.8675662,0 -63.531214,44.8675505,0 -63.5312878,44.8675139,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>J</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5294874,44.8668962,0 -63.5293375,44.8668151,0 -63.5292819,44.8667866,0 -63.5284474,44.8663757,0 -63.528218,44.8662643,0 -63.5281564,44.8662325,0 -63.5276074,44.8659636,0 -63.5274471,44.8659231,0 -63.527257,44.8659086,0 -63.52706,44.8659374,0 -63.5269059,44.8660119,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5295024,44.8674699,0 -63.5295814,44.8673998,0 -63.5296344,44.8673211,0 -63.5296648,44.8672286,0 -63.5296607,44.8671251,0 -63.5296279,44.8670406,0 -63.5295634,44.8669602,0 -63.5294874,44.8668962,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5295024,44.8674699,0 -63.5297605,44.8673126,0 -63.529872,44.8672608,0 -63.5299701,44.8672376,0 -63.5300701,44.8672281,0 -63.5301893,44.8672294,0 -63.5302816,44.8672444,0 -63.5303736,44.8672718,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>F</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5095466,44.8872244,0 -63.5093224,44.887287,0 -63.5091674,44.8873574,0 -63.5090446,44.8874592,0 -63.5083519,44.8881479,0 -63.5076592,44.8888366,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>D</name>
+        <description>source: Bing
+surface: paved</description>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5118017,44.8839899,0 -63.5109784,44.8835776,0 -63.5103595,44.8832674,0 -63.5101645,44.8831924,0 -63.5099758,44.8831427,0</coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>N</name>
+        <styleUrl>#taxiway</styleUrl>
+        <LineString>
+          <coordinates>-63.5129984,44.8899205,0 -63.5173518,44.8919042,0 -63.5175065,44.8920686,0 -63.5174893,44.8922513,0 -63.5173862,44.8924157,0 -63.5165355,44.8932679,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Aprons</name>
+      <Placemark>
+        <description>source: Bing</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5156662,44.8817611,0 -63.515948,44.8814587,0 -63.5164455,44.8809248,0 -63.5165125,44.8808529,0 -63.5165925,44.8808347,0 -63.5166243,44.8808006,0 -63.5178279,44.8813996,0 -63.517769,44.8814548,0 -63.5178231,44.8814825,0 -63.5174937,44.8818078,0 -63.5174371,44.8818579,0 -63.5170814,44.882223,0 -63.5170419,44.8822037,0 -63.5169366,44.8823117,0 -63.5168485,44.882401,0 -63.5168225,44.8823879,0 -63.5165633,44.8826449,0 -63.5161399,44.8824414,0 -63.5161729,44.8823897,0 -63.5162823,44.8820645,0 -63.5156662,44.8817611,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>addr:city: Goffs
+addr:housenumber: 579
+addr:postcode: B2T 1K3
+addr:province: Nova Scotia
+addr:street: Barnes Drive
+addr:suburb: Halifax Stanfield International Airport
+source: Bing</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5187385,44.8793378,0 -63.5183961,44.8796782,0 -63.5179525,44.8797254,0 -63.5178902,44.8797885,0 -63.5178238,44.8798557,0 -63.5180757,44.8800481,0 -63.5180813,44.8801448,0 -63.5176345,44.8805839,0 -63.5178313,44.8806881,0 -63.5180404,44.8806998,0 -63.5180744,44.8806653,0 -63.518211,44.8805289,0 -63.5182396,44.8805433,0 -63.5184004,44.8803908,0 -63.5188957,44.8798861,0 -63.5192059,44.87957,0 -63.5187385,44.8793378,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>addr:city: Goffs
+addr:postcode: B2T 1K3
+addr:province: Nova Scotia
+addr:suburb: Halifax Stanfield International Airport</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5214848,44.8772478,0 -63.5205731,44.8767273,0 -63.520766,44.8765407,0 -63.5208629,44.8764534,0 -63.5210611,44.8763382,0 -63.5217906,44.875617,0 -63.5218883,44.8755331,0 -63.5219944,44.8754421,0 -63.5221983,44.8755409,0 -63.5228205,44.8749061,0 -63.5229681,44.8747582,0 -63.5231317,44.8745944,0 -63.5234374,44.8747274,0 -63.5244123,44.8737867,0 -63.5248912,44.8733247,0 -63.5259346,44.8738382,0 -63.5258736,44.8739012,0 -63.5256918,44.8738111,0 -63.5255009,44.8740046,0 -63.5249452,44.8737284,0 -63.5244496,44.8742312,0 -63.5245338,44.8743009,0 -63.5244034,44.8744466,0 -63.5243804,44.874616,0 -63.5236692,44.8753502,0 -63.5234595,44.8754527,0 -63.5231208,44.8757968,0 -63.5228171,44.8758801,0 -63.5225993,44.8760881,0 -63.5222525,44.8764405,0 -63.5218435,44.8768472,0 -63.5218013,44.8768917,0 -63.5215275,44.8771617,0 -63.5214848,44.8772478,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>addr:city: Goffs
+addr:housenumber: 535
+addr:postcode: B2T 1B9
+addr:province: Nova Scotia
+addr:street: Pratt and Whitney Drive
+addr:suburb: Halifax Stanfield International Airport
+surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5335453,44.871695,0 -63.5330581,44.8714763,0 -63.5330336,44.8715095,0 -63.5329534,44.8714798,0 -63.5327138,44.8718041,0 -63.532309,44.8723519,0 -63.5320466,44.8726972,0 -63.5318977,44.872646,0 -63.5313935,44.8724757,0 -63.5313114,44.8724009,0 -63.5312887,44.8723542,0 -63.5312996,44.8723186,0 -63.5317231,44.8717679,0 -63.5320424,44.8713338,0 -63.5320361,44.8712389,0 -63.5320219,44.8711847,0 -63.5319766,44.8711447,0 -63.5317074,44.8710518,0 -63.5317607,44.8709695,0 -63.5320365,44.870636,0 -63.5321306,44.8706175,0 -63.532187,44.8705621,0 -63.5324036,44.8702798,0 -63.5326691,44.8699417,0 -63.5330438,44.8701425,0 -63.5330869,44.8702867,0 -63.5331525,44.8704068,0 -63.5332467,44.8704487,0 -63.5340827,44.870777,0 -63.5341839,44.8708169,0 -63.5336705,44.871539,0 -63.533599,44.8716281,0 -63.5335453,44.871695,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5315975,44.8677368,0 -63.5308594,44.8673039,0 -63.5310324,44.8672642,0 -63.5310935,44.8672137,0 -63.5310833,44.8671343,0 -63.5310223,44.8670369,0 -63.530895,44.8666473,0 -63.5316583,44.8660245,0 -63.5317205,44.8660712,0 -63.5341424,44.8675429,0 -63.535507,44.868785,0 -63.535654,44.8689246,0 -63.5353784,44.8692751,0 -63.5350219,44.8691362,0 -63.5340589,44.8703383,0 -63.534342,44.8704551,0 -63.5340827,44.870777,0 -63.5332467,44.8704487,0 -63.5331525,44.8704068,0 -63.5330869,44.8702867,0 -63.5330438,44.8701425,0 -63.5330887,44.8700232,0 -63.5336394,44.8692299,0 -63.5336353,44.8691091,0 -63.5335783,44.8690019,0 -63.5335257,44.8689249,0 -63.5334574,44.8688721,0 -63.5315975,44.8677368,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5197854,44.879669,0 -63.5184482,44.8789828,0 -63.5186096,44.8786193,0 -63.518868,44.8783718,0 -63.5194454,44.8778188,0 -63.5199295,44.8780925,0 -63.5202927,44.8780557,0 -63.5205174,44.8781578,0 -63.5210131,44.8776718,0 -63.5211918,44.8777616,0 -63.520627,44.8783089,0 -63.5205636,44.8782803,0 -63.5203849,44.8784519,0 -63.5204971,44.8785029,0 -63.5198197,44.8792035,0 -63.5201024,44.8793545,0 -63.5197854,44.879669,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5297999,44.8730697,0 -63.5293033,44.8728656,0 -63.5296762,44.8723619,0 -63.5293398,44.8722334,0 -63.5296064,44.8718766,0 -63.5306468,44.8722932,0 -63.5305095,44.8724839,0 -63.5303498,44.8727051,0 -63.5301361,44.8726253,0 -63.5297999,44.8730697,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5323457,44.8696475,0 -63.5324528,44.869495,0 -63.5320788,44.8689366,0 -63.5324132,44.8686434,0 -63.5319659,44.8683543,0 -63.5316661,44.8686408,0 -63.5314591,44.8685045,0 -63.5311061,44.8688294,0 -63.5313385,44.8689491,0 -63.5311147,44.8692448,0 -63.5323457,44.8696475,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5317607,44.8709695,0 -63.5320365,44.870636,0 -63.5317185,44.8705153,0 -63.5316849,44.8704691,0 -63.5306014,44.8701232,0 -63.5303336,44.8705206,0 -63.5314486,44.8709502,0 -63.5314985,44.870865,0 -63.5317113,44.8709285,0 -63.5317607,44.8709695,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <description>surface: asphalt</description>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5310245,44.8679086,0 -63.5309559,44.8678714,0 -63.5306836,44.8677236,0 -63.5305599,44.8676565,0 -63.5302196,44.8677581,0 -63.5294662,44.868455,0 -63.5296756,44.8686668,0 -63.5297499,44.8686442,0 -63.5303412,44.8681507,0 -63.5307797,44.8684147,0 -63.5309838,44.868231,0 -63.5310245,44.8679086,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5141188,44.882485,0 -63.5142154,44.8827435,0 -63.5153956,44.8833231,0 -63.5140223,44.8847599,0 -63.5133678,44.8844615,0 -63.5132611,44.8845731,0 -63.5139238,44.884895,0 -63.5142528,44.8861168,0 -63.514116,44.8861329,0 -63.514173,44.8863764,0 -63.5141225,44.886381,0 -63.5141469,44.8865506,0 -63.5142153,44.8865425,0 -63.5142609,44.8868009,0 -63.5142186,44.8868079,0 -63.5142511,44.8869728,0 -63.5143342,44.8869636,0 -63.5143684,44.8871586,0 -63.5144466,44.8871517,0 -63.5147185,44.8884138,0 -63.5157606,44.8889398,0 -63.5159398,44.8890079,0 -63.5162329,44.8893125,0 -63.5157639,44.8897959,0 -63.5158551,44.8898374,0 -63.5163973,44.889324,0 -63.5161514,44.8890402,0 -63.5163469,44.8888429,0 -63.5171024,44.8891487,0 -63.5169819,44.8892721,0 -63.5171871,44.8895882,0 -63.5170405,44.8897324,0 -63.5171138,44.8899043,0 -63.5173532,44.889992,0 -63.5166828,44.8907011,0 -63.5161178,44.8905492,0 -63.5158442,44.8904499,0 -63.5154894,44.8903104,0 -63.5152994,44.8901604,0 -63.5152066,44.8899233,0 -63.5133051,44.8889732,0 -63.5122202,44.8843534,0 -63.5129011,44.8837517,0 -63.5141188,44.882485,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5117789,44.8885545,0 -63.5125011,44.888466,0 -63.5128282,44.888635,0 -63.512483,44.8871788,0 -63.5108637,44.8873686,0 -63.5110272,44.8880815,0 -63.5117789,44.8885545,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#apron</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>-63.5107036,44.8867844,0 -63.5123476,44.8865891,0 -63.5120245,44.8853099,0 -63.5110267,44.8854311,0 -63.5105357,44.8860819,0 -63.5107036,44.8867844,0</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Parking &amp; Gates</name>
+      <Placemark>
+        <name>36</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5162873,44.8893934,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>16</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5143521,44.8864175,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>20</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5145346,44.8871637,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>27</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5149549,44.8884915,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>44</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5158164,44.8898107,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2B</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5148624,44.8839573,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5133668,44.8844889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5142456,44.8845852,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2C</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5150573,44.8837588,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5133165,44.8845392,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2E</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5153931,44.8834169,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5144506,44.8843766,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>10</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5135521,44.8847269,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5136969,44.8846745,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>14</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5140659,44.8854152,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>22</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5146538,44.8877871,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>18</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.514371,44.8864866,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>24</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5147231,44.8881778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>23</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5146681,44.8878461,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>38</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5161576,44.8895257,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.513469,44.8845098,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>40</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.515845,44.8897161,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>42</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.516028,44.8896581,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>12</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5138828,44.8848585,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>34</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5161157,44.8894582,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2D</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5152107,44.8836027,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>9</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5133742,44.8846032,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2A</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5146537,44.8841697,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>15</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5143299,44.8863365,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>26</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.514831,44.8884334,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>46</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5159156,44.8897688,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>28</name>
+        <styleUrl>#gate</styleUrl>
+        <Point>
+          <coordinates>-63.5156146,44.8888145,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5057218,44.88996,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5294366,44.8675094,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>holding_position:type: intermediate</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5304427,44.8673125,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>holding_position:type: intermediate</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5292819,44.8667866,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5250934,44.8693562,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.528218,44.8662643,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-63.5304382,44.8679367,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5307377,44.8681081,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5109784,44.8835776,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: backward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.507911,44.8832692,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.4987343,44.8833739,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.4944063,44.8809398,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: backward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5045037,44.8872685,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5061184,44.8870519,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5079744,44.8866441,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5064053,44.8882204,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5083519,44.8881479,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: backward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5069904,44.8895217,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <description>direction: forward
+holding_position:type: runway</description>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.512617,44.8903024,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <styleUrl>#holding</styleUrl>
+        <Point>
+          <coordinates>-63.5020244,44.8860216,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DE-ICE 3</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-63.5113277,44.8863022,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DE-ICE 4</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-63.5112084,44.8858322,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DE-ICE 1</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-63.5117551,44.8880492,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DE-ICE 2</name>
+        <styleUrl>#parking</styleUrl>
+        <Point>
+          <coordinates>-63.5116596,44.8876527,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
